@@ -9,7 +9,7 @@
 
 == Status
 
-https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml[image:https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml/badge.svg[MSFS2024LiveryTools]]
+image:https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml/badge.svg[Jackson Hybrid Xml,link=https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml]
 
 == About
 
