@@ -1,0 +1,30 @@
+ImageToMSFSKTX2 is a tool to convert png files to the KTX2 format the modern MSFS 2024 liveries use. It is a large windows batch script which works by copying your pngs to convert into a certain folder structure then executing the batch and afterward grabbing the final texture files from some other folder and copy them to the final target directory.
+
+While all this works perfect there are some caveats with this:
+
+- A lot of manual work
+- Lack of support for dds files which are still be used by MSFS 2020 style liveries
+- Not designed to work with a lot of projects as you have to take care on what to copy where
+- hence error-prone workflow
+
+To overcome all this the idea came up to create a tool which is more project centric and has some graphical user interface which is nice to use.
+Unfortunately there was nothing similar so - the old story - I did it my self.
+The result is what you have now here.
+Also I used this to actually learn Kotlin Multi Platform, so this is my first attempt with this new technology.
+
+
+
+Please find the setup guide on the github page of this project below and in the zip file.
+
+Github page of this project: https://github.com/sknull/MSFS2024LiveryTools
+Documentation PDF: https://github.com/sknull/MSFS2024LiveryTools/blob/main/docs/README.pdf
+
+A word of warning: This project is in an early alpha stage and might mess up things.
+So please have in mind to backup your important work before trying this out.
+A known issue is that the scrollbar in the projects view behaves "funny" this is due to the technology used and I cannot do anything about it at the current time. I keep my eyes on this and will fix this asap.
+
+The name of this project suggests that it is only compatible with 2024 this is not true since it only converts pictures (textures) between png and dds or ktx2 so you can also use this for your 2020 projects.
+
+If you find any issues or have ideas please let me know via PM.
+
+Happy creating
