@@ -1,1 +1,0 @@
-image:https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml/badge.svg[Jackson Hybrid Xml,link=https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml]
