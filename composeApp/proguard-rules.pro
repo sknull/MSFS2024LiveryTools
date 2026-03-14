@@ -1,0 +1,5 @@
+-ignorewarnings
+-dontnote
+-keep class * extends androidx.lifecycle.ViewModel { *; }
+-keep class de.visualdigits.msfs2024tools.** { *; }
+-keep class org.koin.** { *; }

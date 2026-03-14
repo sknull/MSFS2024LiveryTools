@@ -1,0 +1,52 @@
+{
+    "language": "EN",
+    "simType": "MICROSOFT",
+    "sdkRoot": "C:\\MSFS 2024 SDK",
+    "layoutGeneratorToolPath": "C:\\Anwendungen\\MSFSLayoutGenerator.exe",
+    "flagHQAlbd": true,
+    "flagNoAlphaAlbd": false,
+    "flagHQDecal": true,
+    "flagNoAlphaDecal": false,
+    "nvidiaTextureToolPath": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA Texture Tools\\nvtt_export.exe",
+    "imageToMSFSKTX2Path": "E:\\Games\\MSFS 2024\\ImageToMSFSKTX2",
+    "projects": [
+        {
+            "airplaneName": "Boom XB1",
+            "liveryName": "Nasa",
+            "packageDir": "E:\\Games\\MSFS 2024\\MainLibrary\\Aircraft\\Airplanes\\Civilian\\Boom XB1\\Boom XB1 Nasa",
+            "packageTextureDir": "E:\\Games\\MSFS 2024\\MainLibrary\\Aircraft\\Airplanes\\Civilian\\Boom XB1\\Boom XB1 Nasa\\SimObjects\\Airplanes\\boom-xb1\\liveries\\VisualDigits\\boom-xb1_nasa\\texture",
+            "modelTexturesDir": "E:\\Games\\MSFS 2024\\Blender\\Airplanes\\General Aviation\\Boom XB1\\Boom XB1_Nasa\\texture",
+            "textureTypes": [
+                "ALBD",
+                "COMP"
+            ]
+        },
+        {
+            "airplaneName": "DA62X",
+            "liveryName": "Schiller-Ultramarin",
+            "packageDir": "E:\\Games\\MSFS 2024\\MainLibrary\\Aircraft\\Airplanes\\Civilian\\Diamond DA62X\\FS24_DA62X_Schiller-Ultramarin",
+            "packageTextureDir": "E:\\Games\\MSFS 2024\\MainLibrary\\Aircraft\\Airplanes\\Civilian\\Diamond DA62X\\FS24_DA62X_Schiller-Ultramarin\\SimObjects\\Airplanes\\DA62X_Schiller-Ultramarin\\texture.Schiller-Ultramarin",
+            "modelTexturesDir": "E:\\Games\\MSFS 2024\\Blender\\Airplanes\\General Aviation\\Diamond DA62\\DA62_Schiller Ultramarin\\texture",
+            "textureTypes": [
+                "ALBD",
+                "COMP"
+            ]
+        },
+        {
+            "airplaneName": "Da42VI",
+            "liveryName": "Schiller-Ultramarin",
+            "packageDir": "E:\\Games\\MSFS 2024\\MainLibrary\\Aircraft\\Airplanes\\Civilian\\Diamond DA42\\cows-da42vi_Schiller-Ultramarin",
+            "packageTextureDir": "E:\\Games\\MSFS 2024\\MainLibrary\\Aircraft\\Airplanes\\Civilian\\Diamond DA42\\cows-da42vi_Schiller-Ultramarin\\SimObjects\\Airplanes\\da42vi_Schiller-Ultramarin\\texture.Schiller-Ultramarin",
+            "modelTexturesDir": "E:\\Games\\MSFS 2024\\Blender\\Airplanes\\General Aviation\\Diamond DA42\\cows-da42vi_Schiller Ultramarin\\texture",
+            "textureTypes": [
+                "ALBD",
+                "COMP"
+            ]
+        },
+        {
+            "airplaneName": "aaaa",
+            "liveryName": "aaaaa",
+            "textureTypes": []
+        }
+    ]
+}

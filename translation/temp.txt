@@ -1,0 +1,92 @@
+Hinzufügen
+Hinzufügen...
+BESCHÄFTIGT...
+Abbrechen
+Verzeichnis auswählen
+Datei auswählen
+Schließen
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Löschen
+Bearbeiten
+Bearbeiten...
+Die Festplatte ist voll.
+Datei nicht gefunden.
+Ergebnis konnte nicht analysiert werden.
+Bei einem lokalen Vorgang ist ein unbekannter Fehler aufgetreten.
+Keine Konfiguration angegeben.
+Internetverbindung unterbrochen.
+Die Anfrage ist abgelaufen.
+Ergebnis konnte nicht analysiert werden.
+Bei einem Remote-Vorgang ist ein unbekannter Fehler aufgetreten.
+Feld in der Konfiguration unbekannt.
+Falsch.
+Feld ist nicht festgelegt.
+Einstellungen aus Bild-Tool importieren
+Foo bar baz
+Flugzeugname
+Flugzeuge
+Trockenlauf
+Flag HQ Albedo
+Flag HQ Decal
+Flag force no alpha albedo
+Flag force no alpha decal
+ImageToMSFSKTX2-Verzeichnis
+Layoutgenerator-Tool ausführbar
+Name der Lackierung
+Sprache
+Hauptverzeichnis der Bibliothek
+Verzeichnis der Modelltexturen
+NVIDIA Textur-Tool ausführbar
+Paketverzeichnis
+Paket-Texturverzeichnis
+Projekt-Stammverzeichnis
+MSFS SDK-Stammverzeichnis
+Simulationstyp
+Texturformat
+Texturtypen
+Deutsch
+Englisch
+Über
+Hilfe
+Sprache
+Neues Projekt...
+Keine Suchergebnisse.
+Ok
+Suchen
+Suchen...
+Details anzeigen...
+Fehlerausgabe
+Ausgabe
+Konfiguration
+Projekte
+Element löschen
+Info
+Der Name des Flugzeugs, für das Sie eine Lackierung erstellen möchten. # Sollte in allen Ihren Projekten eindeutig sein. # Wenn Sie an mehreren Lackierungen für das Flugzeug arbeiten, stellen Sie sicher, dass der Name in allen Ihren Projekten konsistent ist.
+Die Namen aller Flugzeuge, an denen Sie arbeiten.
+Verzeichnisse durchsuchen.
+Dateien durchsuchen.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+ImageToMSFSKTX2-Verzeichnis
+Ausführbare Datei des Layoutgenerator-Tools. # Da diese Datei an einer beliebigen Stelle in Ihrem Dateisystem abgelegt wird
+Der Name des Lackierungsprojekts, an dem Sie arbeiten. # Sollte für alle Lackierungen eines Flugzeugs eindeutig sein.
+Sprache
+Das Stammverzeichnis Ihrer Hauptbibliothek mit Add-ons # oder der Ort, an dem Sie Ihre endgültigen Pakete für die Auslieferung speichern. # Dies wird als Startverzeichnis für Dateiauswahlen verwendet.
+Das Texturverzeichnis Ihres Blender-Projekts (oder des Projekts, mit dem Sie arbeiten). # Dies ist das Verzeichnis, in dem Ihre Modelltexturen in Form von PNG-Dateien gespeichert sind.
+Ausführbare Datei von NVIDIA Texturetool. # Dies ist obligatorisch und erforderlich, um Texturen aus jedem Simulationsformat in PNG zu konvertieren. # Der Standardwert ist C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe
+Im Explorer öffnen.
+Das Stammverzeichnis der Add-on-Struktur innerhalb Ihrer Hauptbibliothek.
+Das Verzeichnis des Texturordners innerhalb Ihres Pakets.
+Das Stammverzeichnis Ihrer Blender-Projekte # oder wo auch immer Sie Ihre Lackierungen speichern. # Dies wird als Startverzeichnis für Dateiauswahlen verwendet.
+Das Feld ist nicht editierbar.
+MSFS SDK-Stammverzeichnis. # Wenn Sie zuvor ImageToMSFSKTX2 verwendet haben, wird dies ebenfalls importiert, wenn Sie auf die Schaltfläche „Importieren” klicken. # Das SDK ist obligatorisch, wenn Sie an Projekten arbeiten, die KTX2 als Bilder verwenden, da mit dem NVIDIA-Tool konvertierte Bilder in der Simulation nicht funktionieren. # Standard ist C:/MSFS 2024 SDK
+Der von Ihnen verwendete Store. # Entweder Microsoft oder Steam. # Der Standard ist Microsoft.
+Das Texturformat, mit dem Ihr Projekt in MSFS2024 arbeitet. # DDS oder KTX2. # Dieser Wert wird automatisch aus dem Texturverzeichnis des Pakets berechnet.
+Die Texturtypen, die Sie in die Konvertierungen einbeziehen möchten. # MSFS-Pakete können viele Texturen enthalten, und normalerweise arbeiten wir nur mit #  Albedo- (ALBD) und Kompositionsdateien (COMP). # In den meisten Fällen sollten Sie also ALBD und COMP auswählen. # Wenn Ihr Projekt keine Metallic-Farben verwendet, können Sie getrost nur ALBD auswählen.
+True
+Möchten Sie diesen Eintrag wirklich löschen?

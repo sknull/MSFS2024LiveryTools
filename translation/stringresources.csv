@@ -1,0 +1,96 @@
+key;de;default;en
+add;Hinzufügen;Add;Add
+add_hint;Hinzufügen...;Add...;Add...
+busy_hint;BESCHÄFTIGT...;BUSY...;BUSY...
+cancel;Abbrechen;Cancel;Cancel
+choose_directory;Verzeichnis auswählen;Choose Directory;Choose Directory
+choose_file;Datei auswählen;Choose File;Choose File
+close;Schließen;Close;Close
+conversion_dds_to_png;DDS > PNG;DDS > PNG;DDS > PNG
+conversion_ktx2_to_png;KTX2 > DDS;KTX2 > DDS;KTX2 > DDS
+conversion_png_to_dds;PNG > DDS;PNG > DDS;PNG > DDS
+conversion_png_to_ktx2;PNG > KTX2;PNG > KTX2;PNG > KTX2
+delete;Löschen;Delete;Delete
+edit;Bearbeiten;Edit;Edit
+edit_hint;Bearbeiten...;Edit...;Edit...
+error_global_configuration_invalid;Es muss mindestens der Sim Typ gesetzt sein.;At least the sim type must be set.;At least the sim type must be set.
+error_local_disk_full;Die Festplatte ist voll.;The disk is full;The disk is full
+error_local_file_not_found;Datei nicht gefunden.;File not found;File not found
+error_local_serialization;Ergebnis konnte nicht analysiert werden.;Could not parse result;Could not parse result
+error_local_unknown;Bei einem lokalen Vorgang ist ein unbekannter Fehler aufgetreten.;An unknown error occured in a local operation;An unknown error occured in a local operation
+error_no_configuration;Keine Konfiguration angegeben.;No configuration given;No configuration given
+error_project_configuration_invalid;Es muss mindestens der Flugzeugname und der Lackierungsname gesetzt sein.;At least the airplane name and the livey name must be set.;At least the airplane name and the livey name must be set.
+error_remote_no_internet;Internetverbindung unterbrochen.;Lost internet connection;Lost internet connection
+error_remote_request_timeout;Die Anfrage ist abgelaufen.;The request timed out;The request timed out
+error_remote_serialization;Ergebnis konnte nicht analysiert werden.;Could not parse result;Could not parse result
+error_remote_unknown;Bei einem Remote-Vorgang ist ein unbekannter Fehler aufgetreten.;An unknown error occured in a remote operation;An unknown error occured in a remote operation
+error_unknown_field;Feld in der Konfiguration unbekannt.;Field not known in configuration;Field not known in configuration
+false;Falsch.;False;False
+field_unset;Feld ist nicht festgelegt.;Field is not set.;Field is not set.
+import_imagetool;Einstellungen aus Bild-Tool importieren;Import Settings From Image Tool;Import Settings From Image Tool
+info_text;Foo bar baz;Foo bar baz;Foo bar baz
+label_airplaneName;Flugzeugname;Airplane name;Airplane name
+label_airplanes;Flugzeuge;Airplanes;Airplanes
+label_dryrun;Trockenlauf;Dry Run;Dry Run
+label_flagHQAlbd;Flag HQ Albedo;Flag HQ albedo;Flag HQ albedo
+label_flagHQDecal;Flag HQ Decal;Flag HQ Decal;Flag HQ Decal
+label_flagNoAlphaAlbd;Flag force no alpha albedo;Flag force no alpha albedo;Flag force no alpha albedo
+label_flagNoAlphaDecal;Flag force no alpha decal;Flag force no alpha decal;Flag force no alpha decal
+label_imageToMSFSKTX2Path;ImageToMSFSKTX2-Verzeichnis;ImageToMSFSKTX2 directory;ImageToMSFSKTX2 directory
+label_layoutGeneratorToolPath;Layoutgenerator-Tool ausführbar;Layoutgenerator tool executable;Layoutgenerator tool executable
+label_liveryName;Name der Lackierung;Livery name;Livery name
+label_locale;Sprache;Language;Language
+label_mainLibraryRootFolder;Root Ordner der Bibliothek;Main library root directory;Main library root directory
+label_modelTexturesDir;Root Ordner der Modelltexturen;Model textures directory;Model textures directory
+label_nvidiaTextureToolPath;NVIDIA Textur-Tool ausführbar;NVIDIA texturetool executable;NVIDIA texturetool executable
+label_packageDir;Paketverzeichnis;Package directory;Package directory
+label_packageTextureDir;Paket-Texturverzeichnis;Package texture directory;Package texture directory
+label_projectRootFolder;Projekt-Stammverzeichnis;Project root directory;Project root directory
+label_sdkRoot;MSFS SDK-Stammverzeichnis;MSFS SDK root directory;MSFS SDK root directory
+label_simType;Simulationstyp;Simulation type;Simulation type
+label_textureFormat;Texturformat;Texture format;Texture format
+label_textureTypes;Texturtypen;Texture types;Texture types
+language_de;Deutsch;German;German
+language_en;Englisch;English;English
+menu_about;Über;About;About
+menu_help;Hilfe;Help;Help
+menu_language;Sprache;Language;Language
+new_project_hint;Neues Projekt...;New project...;New project...
+ok;Ok;Ok;Ok
+search;Suchen;Search;Search
+search_hint;Suchen...;Search...;Search...
+show_details_hint;Details anzeigen...;Show details...;Show details...
+stderr;Fehlerausgabe;Error Output;Error Output
+stdout;Ausgabe;Output;Output
+tab_airplanes;Flugzeuge;Airplanes;Airplanes
+tab_configuration;Konfiguration;Configuration;Configuration
+tab_projects;Projekte;Projects;Projects
+title_delete;Element löschen;Delete item;Delete item
+title_info;Info;Info;Info
+tooltip_airplaneName;Der Name des Flugzeugs, für das Du eine Lackierung erstellen möchtest.\nSollte in allen Ihren Projekten eindeutig sein.\nWenn Du an mehreren Lackierungen für das Flugzeug arbeitest, stelle sicher, daß der Name in allen Ihren Projekten konsistent ist.;The name of the airplane you want to create a livery.\nShould be unique across all your projects.\nIf you work on multiple liveries for the airplane make sure that the name is consistent across your projects.;The name of the airplane you want to create a livery.\nShould be unique across all your projects.\nIf you work on multiple liveries for the airplane make sure that the name is consistent across your projects.
+tooltip_airplanes;Die Namen aller Flugzeuge, an denen Du arbeitest.;The names of all airplanes you work on.;The names of all airplanes you work on.
+tooltip_browseDirectories;Verzeichnisse durchsuchen.;Browse directories.;Browse directories.
+tooltip_browseFiles;Dateien durchsuchen.;Browse files.;Browse files.
+tooltip_flagHQAlbd;Flag HQ Albedo;Flag HQ albedo;Flag HQ albedo
+tooltip_flagHQDecal;Flag HQ Decal;Flag HQ Decal;Flag HQ Decal
+tooltip_flagNoAlphaAlbd;Flag Force No Alpha Albedo;Flag force no alpha albedo;Flag force no alpha albedo
+tooltip_flagNoAlphaDecal;Flag Force No Alpha Decal;Flag force no alpha decal;Flag force no alpha decal
+tooltip_imageToMSFSKTX2Path;ImageToMSFSKTX2-Verzeichnis;ImageToMSFSKTX2 directory;ImageToMSFSKTX2 directory
+tooltip_layoutGeneratorToolPath;Ausführbare Datei des Layoutgenerator-Tools.\nDa diese Datei an einer beliebigen Stelle in Ihrem Dateisystem abgelegt wird;Layoutgenerator tool executable.\nAs this is just thrown anywhere in your filesystem;Layoutgenerator tool executable.\nAs this is just thrown anywhere in your filesystem
+tooltip_liveryName;Der Name des Lackierungsprojekts, an dem Du arbeitest.\nSollte für alle Lackierungen eines Flugzeugs eindeutig sein.;The name of the livery project you are working on.\nShould be unique across all liveries for an airplane.;The name of the livery project you are working on.\nShould be unique across all liveries for an airplane.
+tooltip_locale;Sprache;Language;Language
+tooltip_mainLibraryRootFolder;Der Root Ordner Deines Hauptbibliothek mit Add-ons\noder der Ort, an dem Du deine endgültigen Pakete für die Auslieferung speicherst.\nDies wird als Startverzeichnis für Filechoose verwendet.;The root directory of your main library of addons\nor where you store your final packages for delivery.\nThis is used as start directory for file choosers.;The root directory of your main library of addons\nor where you store your final packages for delivery.\nThis is used as start directory for file choosers.
+tooltip_modelTexturesDir;Das Texturverzeichnis Deines Blender-Projekts (oder des Projekts, mit dem Du arbeitest).\nDies ist das Verzeichnis, in dem Ihre Modelltexturen in Form von PNG-Dateien gespeichert sind.;The texture directory of your blender (or whatever you work with) project.\nThis is the directory where your models textures live in form of png files.;The texture directory of your blender (or whatever you work with) project.\nThis is the directory where your models textures live in form of png files.
+tooltip_nvidiaTextureToolPath;Ausführbare Datei „NVIDIA Texturetool“.\nDies ist obligatorisch und erforderlich, um Texturen aus jedem Simulationsformat in PNG zu konvertieren.\nDer Standardpfad lautet C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.;NVIDIA texturetool executable.\nThis is mandatory and needed to convert textures from any sim format to png.\nDefault is C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe;NVIDIA texturetool executable.\nThis is mandatory and needed to convert textures from any sim format to png.\nDefault is C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe
+tooltip_openInExplorer;Im Explorer öffnen.;Open in explorer.;Open in explorer.
+tooltip_packageDir;Der Root Ordner der Add-on-Struktur in Ihrer Hauptbibliothek.;The root directory of the add on structure within you main library.;The root directory of the add on structure within you main library.
+tooltip_packageTextureDir;Das Verzeichnis des Texturordners in Ihrem Paket.;The directory of the texture folder within your package.;The directory of the texture folder within your package.
+tooltip_projectRootFolder;Der Root Ordner Ihrer Blender-Projekte\noder wo auch immer Sie Ihre Lackierungen speichern.\nDies wird als Startverzeichnis für Dateiauswahlen verwendet.;The root directory of your blender projects\nor where ever you story your liveries.\nThis is used as start directory for file choosers.;The root directory of your blender projects\nor where ever you story your liveries.\nThis is used as start directory for file choosers.
+tooltip_readonly;Das Feld ist nicht editierbar.;Field is not editable.;Field is not editable.
+tooltip_sdkRoot;MSFS SDK Root Ordner.\nWenn Du zuvor ImageToMSFSKTX2 verwendet hast, wird dies ebenfalls importiert, wenn Du auf die Schaltfläche „Importieren” klickst.\nDas SDK ist obligatorisch, wenn Du an Projekten arbeitest, die das KTX2 Format verwenden, da mit dem NVIDIA-Tool konvertierte Bilder im Sim nicht funktionieren.\nStandard ist C:/MSFS 2024 SDK;MSFS SDK root directory.\nIf you used ImageToMSFSKTX2 before this is also imported when you click the import button.\nThe sdk is mandatory if you work on projects using KTX2 as images converted\nwith the nvidia tool will not work in the sim.\nDefault is C:/MSFS 2024 SDK;MSFS SDK root directory.\nIf you used ImageToMSFSKTX2 before this is also imported when you click the import button.\nThe sdk is mandatory if you work on projects using KTX2 as images converted\nwith the nvidia tool will not work in the sim.\nDefault is C:/MSFS 2024 SDK
+tooltip_simType;Der von Dir verwendete Store.\nEntweder Microsoft oder Steam.\nDer Standard ist Microsoft.;The store you are using.\nOne of microsoft or steam.\nThe default is microsoft.;The store you are using.\nOne of microsoft or steam.\nThe default is microsoft.
+tooltip_textureFormat;Das Texturformat, mit dem Dein Projekt in MSFS2024 arbeitet.\nDDS oder KTX2.\nDieser Wert wird automatisch aus dem Texturverzeichnis des Pakets berechnet.;The texture format your project works with in MSFS2024.\nDDS or KTX2.\nThis value is calculated automatically from the package texture directory.;The texture format your project works with in MSFS2024.\nDDS or KTX2.\nThis value is calculated automatically from the package texture directory.
+tooltip_textureTypes;Die Texturtypen, die Du in die Konvertierungen einbeziehen möchtest.\nMSFS-Pakete können viele Texturen enthalten, und normalerweise arbeiten wir nur mit\n Albedo- (ALBD) und Kompositionsdateien (COMP).\nIn den meisten Fällen sollten Du also ALBD und COMP auswählen.\nWenn dein Projekt keine Metallic-Farben verwendet, können Du getrost nur ALBD auswählen.;The texture types you want to include in the conversions.\nMSFS packages can contain a lot of textures and normally we only work on\n albedo (ALBD) and composition (COMP) files.\nSo most times you want to select ALBD and COMP.\nIf your project does not make use of metallic colors you can safely choose ALBD only.;The texture types you want to include in the conversions.\nMSFS packages can contain a lot of textures and normally we only work on\n albedo (ALBD) and composition (COMP) files.\nSo most times you want to select ALBD and COMP.\nIf your project does not make use of metallic colors you can safely choose ALBD only.
+true;True;True;True
+warning_delete;Möchtest Du diesen Eintrag wirklich löschen?;Do you really want to delete this item?.;Do you really want to delete this item?.
+warning_no_results;Keine Projekte.;No projects.;No projects.

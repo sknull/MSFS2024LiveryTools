@@ -1,0 +1,12 @@
+{
+    "simType": "STEAM",
+    "sdkRoot": "sdkRootImageTool",
+    "layoutGeneratorToolPath": "layoutGeneratorToolPath",
+    "flagHQAlbd": true,
+    "flagNoAlphaAlbd": false,
+    "flagHQDecal": true,
+    "flagNoAlphaDecal": false,
+    "nvidiaTextureToolPath": "nvidiaTextureToolPath",
+    "imageToMSFSKTX2Path": null,
+    "projects": []
+}

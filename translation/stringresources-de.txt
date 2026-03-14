@@ -1,0 +1,95 @@
+Hinzufügen
+Hinzufügen...
+BESCHÄFTIGT...
+Abbrechen
+Verzeichnis auswählen
+Datei auswählen
+Schließen
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Löschen
+Bearbeiten
+Bearbeiten...
+Es muss mindestens der Sim Typ gesetzt sein.
+Die Festplatte ist voll.
+Datei nicht gefunden.
+Ergebnis konnte nicht analysiert werden.
+Bei einem lokalen Vorgang ist ein unbekannter Fehler aufgetreten.
+Keine Konfiguration angegeben.
+Es muss mindestens der Flugzeugname und der Lackierungsname gesetzt sein.
+Internetverbindung unterbrochen.
+Die Anfrage ist abgelaufen.
+Ergebnis konnte nicht analysiert werden.
+Bei einem Remote-Vorgang ist ein unbekannter Fehler aufgetreten.
+Feld in der Konfiguration unbekannt.
+Falsch.
+Feld ist nicht festgelegt.
+Einstellungen aus Bild-Tool importieren
+Foo bar baz
+Flugzeugname
+Flugzeuge
+Trockenlauf
+Flag HQ Albedo
+Flag HQ Decal
+Flag force no alpha albedo
+Flag force no alpha decal
+ImageToMSFSKTX2-Verzeichnis
+Layoutgenerator-Tool ausführbar
+Name der Lackierung
+Sprache
+Root Ordner der Bibliothek
+Root Ordner der Modelltexturen
+NVIDIA Textur-Tool ausführbar
+Paketverzeichnis
+Paket-Texturverzeichnis
+Projekt-Stammverzeichnis
+MSFS SDK-Stammverzeichnis
+Simulationstyp
+Texturformat
+Texturtypen
+Deutsch
+Englisch
+Über
+Hilfe
+Sprache
+Neues Projekt...
+Ok
+Suchen
+Suchen...
+Details anzeigen...
+Fehlerausgabe
+Ausgabe
+Flugzeuge
+Konfiguration
+Projekte
+Element löschen
+Info
+Der Name des Flugzeugs, für das Du eine Lackierung erstellen möchtest. # Sollte in allen Ihren Projekten eindeutig sein. # Wenn Du an mehreren Lackierungen für das Flugzeug arbeitest, stelle sicher, daß der Name in allen Ihren Projekten konsistent ist.
+Die Namen aller Flugzeuge, an denen Du arbeitest.
+Verzeichnisse durchsuchen.
+Dateien durchsuchen.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+ImageToMSFSKTX2-Verzeichnis
+Ausführbare Datei des Layoutgenerator-Tools. # Da diese Datei an einer beliebigen Stelle in Ihrem Dateisystem abgelegt wird
+Der Name des Lackierungsprojekts, an dem Du arbeitest. # Sollte für alle Lackierungen eines Flugzeugs eindeutig sein.
+Sprache
+Der Root Ordner Deines Hauptbibliothek mit Add-ons # oder der Ort, an dem Du deine endgültigen Pakete für die Auslieferung speicherst. # Dies wird als Startverzeichnis für Filechoose verwendet.
+Das Texturverzeichnis Deines Blender-Projekts (oder des Projekts, mit dem Du arbeitest). # Dies ist das Verzeichnis, in dem Ihre Modelltexturen in Form von PNG-Dateien gespeichert sind.
+Ausführbare Datei „NVIDIA Texturetool“. # Dies ist obligatorisch und erforderlich, um Texturen aus jedem Simulationsformat in PNG zu konvertieren. # Der Standardpfad lautet C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Im Explorer öffnen.
+Der Root Ordner der Add-on-Struktur in Ihrer Hauptbibliothek.
+Das Verzeichnis des Texturordners in Ihrem Paket.
+Der Root Ordner Ihrer Blender-Projekte # oder wo auch immer Sie Ihre Lackierungen speichern. # Dies wird als Startverzeichnis für Dateiauswahlen verwendet.
+Das Feld ist nicht editierbar.
+MSFS SDK Root Ordner. # Wenn Du zuvor ImageToMSFSKTX2 verwendet hast, wird dies ebenfalls importiert, wenn Du auf die Schaltfläche „Importieren” klickst. # Das SDK ist obligatorisch, wenn Du an Projekten arbeitest, die das KTX2 Format verwenden, da mit dem NVIDIA-Tool konvertierte Bilder im Sim nicht funktionieren. # Standard ist C:/MSFS 2024 SDK
+Der von Dir verwendete Store. # Entweder Microsoft oder Steam. # Der Standard ist Microsoft.
+Das Texturformat, mit dem Dein Projekt in MSFS2024 arbeitet. # DDS oder KTX2. # Dieser Wert wird automatisch aus dem Texturverzeichnis des Pakets berechnet.
+Die Texturtypen, die Du in die Konvertierungen einbeziehen möchtest. # MSFS-Pakete können viele Texturen enthalten, und normalerweise arbeiten wir nur mit #  Albedo- (ALBD) und Kompositionsdateien (COMP). # In den meisten Fällen sollten Du also ALBD und COMP auswählen. # Wenn dein Projekt keine Metallic-Farben verwendet, können Du getrost nur ALBD auswählen.
+True
+Möchtest Du diesen Eintrag wirklich löschen?
+Keine Projekte.

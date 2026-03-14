@@ -1,0 +1,13 @@
+{
+    "language": "EN",
+    "simType": "STEAM",
+    "sdkRoot": "C:\\MSFS 2024 SDK",
+    "layoutGeneratorToolPath": "C:\\Anwendungen\\MSFSLayoutGenerator.exe",
+    "flagHQAlbd": false,
+    "flagNoAlphaAlbd": true,
+    "flagHQDecal": false,
+    "flagNoAlphaDecal": true,
+    "nvidiaTextureToolPath": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA Texture Tools\\nvtt_export.exe",
+    "imageToMSFSKTX2Path": "E:\\Games\\MSFS 2024\\ImageToMSFSKTX2",
+    "projects": []
+}
