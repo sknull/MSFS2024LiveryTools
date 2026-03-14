@@ -1,4 +1,4 @@
-name: Windows Release
+name: MSFS 2024 Livery Tools Release
 
 on:
   push:
