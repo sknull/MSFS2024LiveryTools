@@ -7,18 +7,23 @@ on:
       - develop
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read
       issues: write
       packages: write
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'liberica'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Build and deploy package
+        run: ./gradlew.bat zipDesktopDistributable
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mvn --batch-mode clean deploy -DskipTests -Pgithub
