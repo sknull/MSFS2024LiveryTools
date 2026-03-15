@@ -7,7 +7,7 @@ import de.visualdigits.msfs2024tools.domain.model.errorhandling.DataError
 
 interface ConfigurationRepository {
 
-    fun loadConfiguration(): Pair<GlobalConfiguration, List<ProjectConfiguration>>
+    fun loadConfiguration(): Result<Pair<GlobalConfiguration, List<ProjectConfiguration>>, DataError.Local>
 
     suspend fun saveGlobalConfiguration(
         globalConfiguration: GlobalConfiguration

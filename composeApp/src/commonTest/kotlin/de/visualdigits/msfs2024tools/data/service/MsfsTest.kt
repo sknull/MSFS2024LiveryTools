@@ -27,6 +27,7 @@ class MsfsTest {
             modelTexturesDir = "E:\\Games\\MSFS 2024\\Blender\\Airplanes\\General Aviation\\Diamond DA42\\cows-da42vi_Schiller Ultramarin\\texture",
             textureTypes = listOf(TextureType.ALBD, TextureType.COMP)
         )
+
 //    private val projectConfiguration = ProjectConfiguration(
 //        name = "boom",
 //        packageDir = "E:\\Games\\MSFS 2024\\MainLibrary\\Aircraft\\Airplanes\\Civilian\\Gulfstream G650 G700",

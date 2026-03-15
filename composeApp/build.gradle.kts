@@ -1,5 +1,11 @@
 import de.visualdigits.common.util.TranslationUtil
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.TaskAction
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -9,7 +15,7 @@ plugins {
     alias(libs.plugins.gradle.pdf)
 }
 
-version = "1.0.0"
+version = "1.0.1"
 
 buildscript {
     dependencies {
@@ -17,11 +23,40 @@ buildscript {
     }
 }
 
+abstract class GenerateVersionTask : DefaultTask() {
+    @get:Input
+    abstract val appVersion: Property<String>
+
+    @get:OutputDirectory
+    abstract val outputDirectory: DirectoryProperty
+
+    @TaskAction
+    fun generate() {
+        val outputFile = outputDirectory.file("AppConfig.kt").get().asFile
+        outputFile.parentFile.mkdirs()
+        outputFile.writeText("""
+            package de.visualdigits.generated
+            object AppConfig {
+                const val VERSION = "${appVersion.get()}"
+            }
+        """.trimIndent())
+    }
+}
+
+val generateVersionClass = tasks.register<GenerateVersionTask>("generateVersionClass") {
+    appVersion.set(project.version.toString())
+    outputDirectory.set(layout.buildDirectory.dir("generated/version"))
+}
+
 kotlin {
     jvm()
     jvmToolchain(21)
 
     sourceSets {
+        val commonMain by getting {
+            kotlin.srcDir(generateVersionClass)
+        }
+
         commonMain.dependencies {
             implementation(libs.bundles.compose)
             implementation(libs.bundles.coil)
@@ -44,7 +79,9 @@ kotlin {
             implementation(libs.deskit)
 
             implementation(libs.html.converter)
+
         }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.junit.jupiter.api)
@@ -57,6 +94,7 @@ kotlin {
             implementation(libs.skiko.awt.runtime.windows.x64)
             implementation(libs.kotlinx.coroutinesSwing)
         }
+
         jvmTest.dependencies {
         }
     }
@@ -125,7 +163,7 @@ compose.resources {
 }
 
 tasks.asciidoctorPdf {
-    notCompatibleWithConfigurationCache("Das Asciidoctor-Plugin unterstützt den Configuration Cache noch nicht vollständig.")
+    notCompatibleWithConfigurationCache("No caching supported.")
     baseDirFollowsSourceFile()
     setSourceDir(rootDir)
     sources {

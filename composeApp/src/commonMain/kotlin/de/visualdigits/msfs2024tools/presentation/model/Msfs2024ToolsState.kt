@@ -4,6 +4,8 @@ import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
+import org.jetbrains.compose.resources.StringResource
+import java.util.Locale
 
 
 data class Msfs2024ToolsState(
@@ -18,7 +20,9 @@ data class Msfs2024ToolsState(
 
 
     val selectedTabIndex: Int = 0,
-    val selectedTabLabel: String? = null,
+    val selectedTabLabel: StringResource? = null,
+
+    val selectedLocale: Locale? = null,
 
     val isEditingGlobalConfiguration: Boolean = false,
     val isEditingProjectConfiguration: Boolean = false,

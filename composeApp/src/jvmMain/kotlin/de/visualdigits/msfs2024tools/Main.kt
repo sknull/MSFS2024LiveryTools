@@ -21,6 +21,9 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.formdev.flatlaf.FlatDarculaLaf
 import de.visualdigits.di.initKoin
+import de.visualdigits.msfs2024tools.data.datasource.FilesystemConfigurationDataSource
+import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
 import de.visualdigits.msfs2024tools.presentation.components.Msfs2024InfoDialog
 import de.visualdigits.msfs2024tools.presentation.components.Msfs2024MenuBar
 import kotlinx.coroutines.cancel
@@ -46,7 +49,8 @@ fun main() {
 
         UIManager.setLookAndFeel(FlatDarculaLaf())
 
-        val locale = Locale.ENGLISH
+        val globalConfiguration = FilesystemConfigurationDataSource().loadConfiguration()
+        val locale = globalConfiguration.language?.locale?: Locale.ENGLISH
         Locale.setDefault(locale)
 
 

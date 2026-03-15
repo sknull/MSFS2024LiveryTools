@@ -131,7 +131,7 @@ private fun ProjectListScreen(
                     )
 
                     Text(
-                        text = state.selectedTabLabel?:"?",
+                        text = state.selectedTabLabel?.let { l -> stringResource(l) } ?: "?",
                         style = MaterialTheme.typography.headlineLarge,
                         modifier = Modifier
                             .padding(0.dp)
@@ -139,8 +139,6 @@ private fun ProjectListScreen(
                 }
             }
         }
-
-        val firstTabLabel = stringResource(Res.string.tab_configuration)
 
         // menu tab buttons
         TabButtonRow(
@@ -168,13 +166,13 @@ private fun ProjectListScreen(
                     msfs2024ToolsViewModel.onAction(
                         Msfs2024ToolsAction.OnTabSelected(
                             0,
-                            firstTabLabel
+                            Res.string.tab_configuration
                         )
                     )
                 }
-                                  },
+            },
             items = linkedMapOf(
-                stringResource(Res.string.tab_projects) to {
+                Res.string.tab_projects to {
                     ProjectsTab(
                         state = state,
                         hazeState = hazeState,
@@ -183,7 +181,7 @@ private fun ProjectListScreen(
                         }
                     )
                 },
-                stringResource(Res.string.tab_airplanes) to {
+                Res.string.tab_airplanes to {
                     AirplanesTab(
                         state = state,
                         onProjectListAction = { action ->
@@ -191,7 +189,7 @@ private fun ProjectListScreen(
                         }
                     )
                 },
-                stringResource(Res.string.tab_configuration) to {
+                Res.string.tab_configuration to {
                     GlobalConfigurationTab(
                         state = state,
                         onProjectListAction = { action ->
@@ -216,7 +214,7 @@ private fun ProjectListScreen(
                         )
                     )
                 },
-                text = label,
+                text = stringResource(label),
             )
         }
     }

@@ -54,6 +54,19 @@ data class ProjectConfiguration(
         val TEXTURETYPES_DEFAULT = listOf(TextureType.ALBD, TextureType.COMP)
     }
 
+    init {
+        if (textureFormat == null) {
+            val dir = packageTextureDir
+            textureFormat = if (dir?.listFiles { file -> file.name.endsWith(".dds", ignoreCase = true) }?.isNotEmpty() == true) {
+                TextureFormat.DDS
+            } else if (dir?.listFiles { file -> file.name.endsWith(".ktx2", ignoreCase = true) }?.isNotEmpty() == true) {
+                TextureFormat.KTX2
+            } else {
+                null
+            }
+        }
+    }
+
     val thumbnailFile: File?
         get() {
             var thumbnailFile: File? = File(packageTextureDir, "thumbnail.png")

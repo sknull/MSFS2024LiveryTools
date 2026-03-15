@@ -15,10 +15,11 @@ class DefaultConfigurationRepository(
     val configurationDataSource: ConfigurationDataSource
 ): ConfigurationRepository {
 
-    override fun loadConfiguration(): Pair<GlobalConfiguration, List<ProjectConfiguration>> {
+    override fun loadConfiguration(): Result<Pair<GlobalConfiguration, List<ProjectConfiguration>>, DataError.Local> {
         val globalConfigurationDto = configurationDataSource.loadConfiguration()
         val globalConfiguration = globalConfigurationDto.toGlobalConfiguration()
-        return Pair(globalConfiguration, globalConfigurationDto.projects.map { p -> p.toProjectConfiguration(globalConfiguration)})
+
+        return Result.Success(Pair(globalConfiguration, globalConfigurationDto.projects.map { p -> p.toProjectConfiguration(globalConfiguration)}))
     }
 
     override suspend fun saveGlobalConfiguration(

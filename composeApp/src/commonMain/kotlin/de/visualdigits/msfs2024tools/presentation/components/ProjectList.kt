@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import de.visualdigits.common.presentation.components.bevelBorder
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
@@ -57,6 +58,7 @@ fun ProjectList(
             verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
         ) {
             val projects = state.projectConfigurations
+                .sortedBy { p -> p.airplaneName }
                 .groupBy { p -> p.airplaneName }
                 .map { (airplaneName, projects) ->
                     Pair(airplaneName, projects.sortedBy { p -> p.liveryName })
@@ -80,6 +82,7 @@ fun ProjectList(
                             style = MaterialTheme.typography.titleSmall,
                             modifier = Modifier
                                 .padding(8.dp)
+                                .fillMaxWidth()
                         )
                     }
                 }

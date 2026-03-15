@@ -34,6 +34,7 @@ class SetupGlobalTest {
     }
 
     @Test
+    @Disabled("Only for local testing")
     fun testConvert() {
         val config = setupGlobal(
             configFile = File(ClassLoader.getSystemResource("msfs2024/testConfiguration.json").toURI()),

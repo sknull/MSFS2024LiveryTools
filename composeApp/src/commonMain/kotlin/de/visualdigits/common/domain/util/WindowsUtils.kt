@@ -26,10 +26,21 @@ object WindowsUtils {
             },
         )
 
-        val template = log[1].message.split(" ").map { t -> t.length }
+        val lines = log.firstOrNull()
+            ?.message
+            ?.split("\r\n")
+            ?.filter { l -> l.isNotBlank() }
+            ?:listOf()
+        val template = lines[1]
+            .split(" ")
+            .map { t -> t.length }
+        val data = lines.drop(2)
+            .map { line ->
+                splitByTemplate(line, template)
+            }
         val table = Table(
             keys = splitByTemplate(log[0].message, template),
-            data = log.drop(2).map { line -> splitByTemplate(line.message, template) }
+            data = data
         )
 
         table

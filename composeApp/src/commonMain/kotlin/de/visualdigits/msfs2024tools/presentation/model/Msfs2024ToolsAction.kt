@@ -5,12 +5,19 @@ import de.visualdigits.common.domain.model.KeyValue
 import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
+import org.jetbrains.compose.resources.StringResource
+import java.util.Locale
 
 sealed interface Msfs2024ToolsAction {
 
     data class OnTabSelected(
         val index: Int,
-        val label: String
+        val label: StringResource?
+    ): Msfs2024ToolsAction
+
+
+    data class OnLanguageSelected(
+        val locale: Locale,
     ): Msfs2024ToolsAction
 
 

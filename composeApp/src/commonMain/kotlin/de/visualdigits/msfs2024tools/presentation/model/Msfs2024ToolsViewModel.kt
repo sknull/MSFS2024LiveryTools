@@ -40,13 +40,7 @@ class Msfs2024ToolsViewModel(
     val state: StateFlow<Msfs2024ToolsState> = _state
         .onStart {
             if (_state.value.globalConfiguration == null ) {
-                val (globalConfiguration, projectConfigurations) = configurationRepository.loadConfiguration()
-                _state.update {
-                    it.copy(
-                        globalConfiguration = globalConfiguration,
-                        projectConfigurations = projectConfigurations
-                    )
-                }
+                loadConfiguration()
             }
         }
         .stateIn(
@@ -204,6 +198,14 @@ class Msfs2024ToolsViewModel(
                 }
             }
 
+            is Msfs2024ToolsAction.OnLanguageSelected -> {
+                _state.update {
+                    it.copy(
+                        selectedLocale = action.locale
+                    )
+                }
+            }
+
             is Msfs2024ToolsAction.OnPanelOkClick -> {
                 _state.update {
                     it.copy(
@@ -245,6 +247,32 @@ class Msfs2024ToolsViewModel(
                 )
             }
         }
+    }
+
+    private fun loadConfiguration() = viewModelScope.launch {
+        _state.update {
+            it.copy(
+                isLoading = true,
+            )
+        }
+        configurationRepository.loadConfiguration()
+            .onSuccess { (globalConfiguration, projectConfigurations) ->
+                _state.update {
+                    it.copy(
+                        globalConfiguration = globalConfiguration,
+                        projectConfigurations = projectConfigurations,
+                        isLoading = false
+                    )
+                }
+            }
+            .onError { error ->
+                _state.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = error.toUiText()
+                    )
+                }
+            }
     }
 
     private fun executeConversion(

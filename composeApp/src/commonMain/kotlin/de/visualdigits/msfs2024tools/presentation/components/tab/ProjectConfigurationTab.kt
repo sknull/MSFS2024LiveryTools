@@ -54,6 +54,13 @@ fun ProjectsTab(
                 onProjectListAction(Msfs2024ToolsAction.OnBusyOkClick())
             }
         )
+    } else if (state.projectConfigurations.isEmpty()) {
+        ErrorCard(
+            errorMessage = stringResource(Res.string.warning_no_results),
+            severity = Severity.Warn,
+            shapeContainer = ShapeContainer
+        )
+        Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
     } else {
         Column(
             modifier = Modifier
@@ -90,13 +97,6 @@ fun ProjectsTab(
             if (state.errorMessage != null) {
                 ErrorCard(
                     errorMessage = state.errorMessage.asString(),
-                    shapeContainer = ShapeContainer
-                )
-                Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
-            } else if (state.projectConfigurations.isEmpty()) {
-                ErrorCard(
-                    errorMessage = stringResource(Res.string.warning_no_results),
-                    severity = Severity.Warn,
                     shapeContainer = ShapeContainer
                 )
                 Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())

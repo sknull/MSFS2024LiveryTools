@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,6 +56,7 @@ fun MsfsTabButton(
                     .align(Alignment.BottomEnd)
             )
 
+            val buttonShape = MsfsTabButtonShape(radius = 6.dp, cutSizeX = 0.3f, cutSizeY = 0.6f)
             FlexibleTextButton(
                 text = text,
                 width = width,
@@ -72,7 +72,7 @@ fun MsfsTabButton(
                     .clip(ShapeButton)
                     .pointerHoverIcon(PointerIcon.Hand),
                 buttonColor = selectedFgColor,
-                buttonShape = CutCornerShape(bottomEnd = height * 3 / 4),
+                buttonShape = buttonShape,
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.Top
             )

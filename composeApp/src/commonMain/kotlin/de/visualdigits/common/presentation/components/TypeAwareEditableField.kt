@@ -2,7 +2,6 @@ package de.visualdigits.common.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -61,6 +60,13 @@ fun TypeAwareEditableField(
 ) {
     val scope = rememberCoroutineScope()
     val focusRequester = remember { FocusRequester() }
+    val finalUnfocusedBorderColor = if (valid() == false) {
+        Severity.Error.color()
+    } else if (value == null) {
+        Severity.Warn.color()
+    } else {
+        unfocusedBorderColor
+    }
 
     when {
         StringResourceEnumerable::class.java.isAssignableFrom(clazz)
@@ -75,7 +81,7 @@ fun TypeAwareEditableField(
                 label = label,
                 toolTip = toolTip,
                 initialValue = value?:"",
-                unfocusedBorderColor = unfocusedBorderColor,
+                unfocusedBorderColor = finalUnfocusedBorderColor,
                 focusedBorderColor = focusedBorderColor,
                 buttonShape = buttonShape,
                 onValueChange = onValueChange,
@@ -93,7 +99,7 @@ fun TypeAwareEditableField(
                 label = label,
                 toolTip = toolTip,
                 initialValue = value?:"",
-                unfocusedBorderColor = unfocusedBorderColor,
+                unfocusedBorderColor = finalUnfocusedBorderColor,
                 focusedBorderColor = focusedBorderColor,
                 buttonShape = buttonShape,
                 onValueChange = onValueChange,
@@ -158,7 +164,7 @@ fun TypeAwareEditableField(
                     },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = if (valid() == true) unfocusedBorderColor else Severity.Error.color(),
+                        unfocusedBorderColor = finalUnfocusedBorderColor,
                         focusedBorderColor = focusedBorderColor
                     )
                 )
@@ -181,7 +187,7 @@ fun TypeAwareEditableField(
                     },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = if (valid() == true) unfocusedBorderColor else Severity.Error.color(),
+                        unfocusedBorderColor = finalUnfocusedBorderColor,
                         focusedBorderColor = focusedBorderColor
                     )
                 )

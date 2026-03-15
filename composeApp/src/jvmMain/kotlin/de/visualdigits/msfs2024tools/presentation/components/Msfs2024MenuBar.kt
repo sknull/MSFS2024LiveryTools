@@ -9,6 +9,7 @@ import co.touchlab.kermit.Logger
 import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
 import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.domain.service.ConfigurationRepository
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -64,6 +65,7 @@ fun FrameWindowScope.Msfs2024MenuBar(
                         snackbarHostState
                     ) {
                         languageTrigger(it)
+                        msfs2024ToolsViewModel.onAction(Msfs2024ToolsAction.OnLanguageSelected(it))
                     }
                 }
             )
