@@ -3,9 +3,12 @@
 :description: Project Documentation for Msfs2024LiveryTools
 :keywords: kotlin, Microsoft Flight Simulator 2024, texture conversion
 :icons: font
-:toc:
+:toc: macro
 :toc-title: Contents
-:toclevels: 5
+:toclevels: 3
+:idseparator: -
+
+toc::[]
 
 == Status
 
@@ -29,9 +32,14 @@ image::resources/splash.jpg[]
 Thanks to https://flightsim.to/profile/Flak[FLAK] who has created the https://flightsim.to/file/89937/image-to-ktx2-texture-script-for-msfs-2024-livery-creation-imagetomsfsktx2[MSFS2024 Image Tool]
 All knowledge on converting images to the proper KTX2 format for Microsoft Flight Simulator 2024 was taken from his batch script.
 
-WARNING: For now there are no safeguards. The project is in early alpha state but can already be used.
+[WARNING]
+====
+⚠️
+
+For now there are no safeguards. The project is in early alpha state but can already be used.
 If you convert textures after having set up your project target files will eventually be overwritten.
 You are responsible to make backups of your data to avoid loosing your hard work!
+====
 
 === Motivation
 
