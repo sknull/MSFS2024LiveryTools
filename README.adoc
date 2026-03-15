@@ -34,6 +34,8 @@ All knowledge on converting images to the proper KTX2 format for Microsoft Fligh
 
 [WARNING]
 ====
+:warning:
+
 For now there are no safeguards. The project is in early alpha state but can already be used.
 If you convert textures after having set up your project target files will eventually be overwritten.
 You are responsible to make backups of your data to avoid loosing your hard work!
