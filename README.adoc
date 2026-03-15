@@ -12,6 +12,14 @@
 image:https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml/badge.svg[MSFS 2024 Livery Tools,link=https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml]
 image:https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci-release.yml/badge.svg[MSFS 2024 Livery Tools Release,link=https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci-release.yml]
 
+Version 1.0.1
+
+Github page: https://github.com/sknull/MSFS2024LiveryTools
+
+Releases page: https://github.com/sknull/MSFS2024LiveryTools/releases
+
+Flightsim.to page: https://flightsim.to/addon/105878/msfs-2024-livery-tools
+
 == About
 
 image::resources/splash.jpg[]
@@ -50,7 +58,7 @@ To use this tool you need these tools (which you might have already from working
 
 == Documentation
 
-Zhis document in form of a PDF file can be found link:docs/README.pdf[here]
+This document in form of a PDF file can be found link:docs/README.pdf[here]
 
 == Setup
 

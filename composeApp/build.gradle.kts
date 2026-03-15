@@ -15,7 +15,7 @@ plugins {
     alias(libs.plugins.gradle.pdf)
 }
 
-version = "1.0.1"
+version = "1.0.2"
 
 buildscript {
     dependencies {
