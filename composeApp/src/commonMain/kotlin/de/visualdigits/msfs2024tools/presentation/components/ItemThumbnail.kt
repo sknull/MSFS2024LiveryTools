@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.tab
+package de.visualdigits.msfs2024tools.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

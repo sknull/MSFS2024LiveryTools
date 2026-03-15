@@ -24,6 +24,7 @@ data class Msfs2024ToolsState(
     val isEditingProjectConfiguration: Boolean = false,
 
     val isLoading: Boolean = false,
+    val isConverting: Boolean = false,
 
     val errorMessage: UiText? = null,
 

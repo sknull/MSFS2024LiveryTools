@@ -37,10 +37,10 @@ import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.MsfsTabButt
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.MsfsTabButtonSelectedFgColor
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.MsfsTabButtonUnselectedBrush
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.msfs2024tools.presentation.tab.AirplanesTab
-import de.visualdigits.msfs2024tools.presentation.tab.GlobalConfigurationTab
-import de.visualdigits.msfs2024tools.presentation.tab.MsfsTabButton
-import de.visualdigits.msfs2024tools.presentation.tab.ProjectsTab
+import de.visualdigits.msfs2024tools.presentation.components.tab.AirplanesTab
+import de.visualdigits.msfs2024tools.presentation.components.tab.MsfsTabButton
+import de.visualdigits.msfs2024tools.presentation.components.tab.GlobalConfigurationTab
+import de.visualdigits.msfs2024tools.presentation.components.tab.ProjectsTab
 import dev.chrisbanes.haze.HazeStyle
 import dev.chrisbanes.haze.HazeTint
 import dev.chrisbanes.haze.hazeEffect

@@ -260,7 +260,7 @@ class Msfs2024ToolsViewModel(
         }
         _state.update {
             it.copy(
-                isLoading = true,
+                isConverting = true,
             )
         }
         msfs2024Service.executeConversion(

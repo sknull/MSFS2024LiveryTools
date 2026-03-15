@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.tab
+package de.visualdigits.msfs2024tools.presentation.components.tab
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.ConfigurationPanel
 import de.visualdigits.common.presentation.components.ErrorCard
+import de.visualdigits.msfs2024tools.presentation.components.common.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton

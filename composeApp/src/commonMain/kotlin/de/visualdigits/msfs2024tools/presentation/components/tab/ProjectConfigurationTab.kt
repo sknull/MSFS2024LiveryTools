@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.tab
+package de.visualdigits.msfs2024tools.presentation.components.tab
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,8 @@ import de.visualdigits.common.presentation.components.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.ConfigurationPanel
 import de.visualdigits.common.presentation.components.ErrorCard
 import de.visualdigits.common.presentation.components.FlexibleTextButton
+import de.visualdigits.msfs2024tools.presentation.components.ProjectList
+import de.visualdigits.msfs2024tools.presentation.components.common.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton
@@ -44,9 +46,9 @@ fun ProjectsTab(
     hazeState: HazeState,
     onProjectListAction: (Msfs2024ToolsAction) -> Unit
 ) {
-    if (state.isLoading) {
+    if (state.isLoading || state.isConverting) {
         BusyPanel(
-            showTerminal = true,
+            showTerminal = state.isConverting,
             state = state,
             onClick = {
                 onProjectListAction(Msfs2024ToolsAction.OnBusyOkClick())
