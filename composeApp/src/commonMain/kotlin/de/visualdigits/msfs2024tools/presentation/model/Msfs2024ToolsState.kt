@@ -1,10 +1,9 @@
 package de.visualdigits.msfs2024tools.presentation.model
 
 import de.visualdigits.common.domain.model.UiText
-import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
-import de.visualdigits.msfs2024tools.domain.model.type.Language
 import org.jetbrains.compose.resources.StringResource
 
 
@@ -21,8 +20,6 @@ data class Msfs2024ToolsState(
 
     val selectedTabIndex: Int = 0,
     val selectedTabLabel: StringResource? = null,
-
-    val language: Language? = null,
 
     val isEditingSettings: Boolean = false,
     val isEditingProjectConfiguration: Boolean = false,

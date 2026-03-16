@@ -88,9 +88,12 @@ object TranslationUtil {
                 line.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)".toRegex())
                     .map { it.removeSurrounding("\"").replace("\"\"", "\"") }
             }
-        val languages = table.take(1).first().drop(1)
+        val keys = table.take(1)
+        val data = table.drop(1).sortedBy { line -> line[0] }
+        val sortedTable = keys + data
+        val languages = sortedTable.take(1).first().drop(1)
         val resources = languages.map { XmlResources() }
-        table
+        sortedTable
             .drop(1)
             .forEach { row ->
                 val key = row.take(1).first()

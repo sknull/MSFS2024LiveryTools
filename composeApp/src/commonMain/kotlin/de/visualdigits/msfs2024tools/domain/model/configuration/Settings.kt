@@ -6,6 +6,7 @@ import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.domain.model.type.SimType
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.label_airplanes
+import msfs2024liverytools.composeapp.generated.resources.label_language
 import msfs2024liverytools.composeapp.generated.resources.label_layoutGeneratorToolPath
 import msfs2024liverytools.composeapp.generated.resources.label_mainLibraryRootFolder
 import msfs2024liverytools.composeapp.generated.resources.label_nvidiaTextureToolPath
@@ -88,6 +89,7 @@ data class Settings(
 
     override fun asMap(): Map<String, String?> {
         return mapOf(
+            "language" to language?.name,
             "simType" to simType?.name,
             "sdkRoot" to sdkRoot.canonicalPath,
             "layoutGeneratorToolPath" to layoutGeneratorToolPath?.canonicalPath,
@@ -99,6 +101,7 @@ data class Settings(
 
     override fun labelResource(id: String): StringResource? {
         return when (id) {
+            "language" -> Res.string.label_language
             "simType" -> Res.string.label_simType
             "sdkRoot" -> Res.string.label_sdkRoot
             "layoutGeneratorToolPath" -> Res.string.label_layoutGeneratorToolPath
@@ -112,6 +115,7 @@ data class Settings(
 
     override fun toolTipResource(id: String): StringResource? {
         return when (id) {
+            "language" -> Res.string.label_language
             "simType" -> Res.string.tooltip_simType
             "sdkRoot" -> Res.string.tooltip_sdkRoot
             "layoutGeneratorToolPath" -> Res.string.tooltip_layoutGeneratorToolPath
@@ -121,25 +125,6 @@ data class Settings(
             "airplanes" -> Res.string.tooltip_airplanes
             else -> null
         }
-    }
-
-    override operator fun set(key: String, value: String): Settings {
-        when (key) {
-            "language" -> language = Language.valueOf(value)
-            "simType" -> simType = SimType.valueOf(value)
-            "sdkRoot" -> sdkRoot = File(value)
-            "layoutGeneratorToolPath" -> layoutGeneratorToolPath = File(value)
-            "nvidiaTextureToolPath" -> nvidiaTextureToolPath = File(value)
-            "mainLibraryRootFolder" -> mainLibraryRootFolder = File(value)
-            "projectRootFolder" -> projectRootFolder = File(value)
-            "airplanes" -> {
-                airplanes.clear()
-                val map = value.split(",").map { v -> v.trim() }
-                airplanes.addAll(map)
-            }
-        }
-
-        return this
     }
 
     override fun copy(key: String?, value: String?): Settings {
@@ -163,6 +148,7 @@ data class Settings(
 
     override fun fieldClass(key: String): Pair<Class<*>, Class<*>?>? {
         return when (key) {
+            "language" -> Pair(Language::class.java, null)
             "simType" -> Pair(SimType::class.java, null)
             "sdkRoot" -> Pair(File::class.java, null)
             "layoutGeneratorToolPath" -> Pair(File::class.java, null)
@@ -186,6 +172,7 @@ data class Settings(
     @Suppress("UNCHECKED_CAST")
     override fun <T : Any> getFieldValues(key: String, clazz: KClass<T>): List<Pair<String, T>> {
         return when (key) {
+            "language" -> Language.entries.map { e -> Pair(e.name, e.resourceId) }.sortedBy { e -> e.first } as List<Pair<String, T>>
             "simType" -> SimType.entries.map { e -> Pair(e.name, e.name) }.sortedBy { e -> e.first } as List<Pair<String, T>>
             "layoutGeneratorToolPath" -> listOf(Pair("exe", "exe")) as List<Pair<String, T>>
             "nvidiaTextureToolPath" -> listOf(Pair("exe", "exe")) as List<Pair<String, T>>
@@ -209,6 +196,7 @@ data class Settings(
 
     override fun valid(key: String): Boolean? {
         return when (key) {
+            "language" -> language != null
             "simType" -> simType != null
             "sdkRoot" -> File(sdkRoot, "Tools").exists() && sdkRoot.isDirectory
             "layoutGeneratorToolPath" -> layoutGeneratorToolPath == null || (layoutGeneratorToolPath?.exists() == true && layoutGeneratorToolPath?.isFile == true)

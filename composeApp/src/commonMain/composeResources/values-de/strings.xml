@@ -38,9 +38,9 @@
   <string name="label_flagNoAlphaAlbd">Flag force no alpha albedo</string>
   <string name="label_flagNoAlphaDecal">Flag force no alpha decal</string>
   <string name="label_imageToMSFSKTX2Path">ImageToMSFSKTX2-Verzeichnis</string>
+  <string name="label_language">Sprache</string>
   <string name="label_layoutGeneratorToolPath">Layoutgenerator-Tool ausführbar</string>
   <string name="label_liveryName">Name der Lackierung</string>
-  <string name="label_locale">Sprache</string>
   <string name="label_mainLibraryRootFolder">Root Ordner der Bibliothek</string>
   <string name="label_modelTexturesDir">Root Ordner der Modelltexturen</string>
   <string name="label_nvidiaTextureToolPath">NVIDIA Textur-Tool ausführbar</string>
@@ -59,7 +59,6 @@
   <string name="language_tr">Türkisch</string>
   <string name="menu_about">Über</string>
   <string name="menu_help">Hilfe</string>
-  <string name="menu_language">Sprache</string>
   <string name="new_project_hint">Neues Projekt...</string>
   <string name="ok">Ok</string>
   <string name="search">Suchen</string>

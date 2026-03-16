@@ -58,7 +58,7 @@ language_it;Italienisch;Italian;Italian;Italiano;;Italiano;İtalyanca
 language_tr;Türkisch;Turkish;Turkish;Turco;;Turco;Türkçe
 menu_about;Über;About;About;Acerca de;À propos;Informazioni;Hakkında
 menu_help;Hilfe;Help;Help;Ayuda;Aide;Aiuto;Yardım
-menu_language;Sprache;Language;Language;Idioma;Langue;Lingua;Dil
+label_language;Sprache;Language;Language;Idioma;Langue;Lingua;Dil
 new_project_hint;Neues Projekt...;New project...;New project...;Nuevo proyecto...;Nouveau projet...;Nuovo progetto...;Yeni proje...
 ok;Ok;Ok;Ok;Aceptar;OK;Ok;Tamam
 search;Suchen;Search;Search;Buscar;Rechercher;Cerca;Ara

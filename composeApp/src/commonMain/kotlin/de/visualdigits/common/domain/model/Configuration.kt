@@ -20,8 +20,6 @@ interface Configuration<T : Configuration<T>> {
 
     fun update(other: T): T
 
-    operator fun set(key: String, value: String): T
-
     fun copy(key: String?, value: String?): T
 
     /**

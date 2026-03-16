@@ -38,9 +38,9 @@
   <string name="label_flagNoAlphaAlbd">Alfa albedo yok bayrağı</string>
   <string name="label_flagNoAlphaDecal">Alfa çıkartma yok bayrağı</string>
   <string name="label_imageToMSFSKTX2Path">ImageToMSFSKTX2 dizini</string>
+  <string name="label_language">Dil</string>
   <string name="label_layoutGeneratorToolPath">Layoutgenerator aracı yürütülebilir dosyası</string>
   <string name="label_liveryName">Livery adı</string>
-  <string name="label_locale">Dil</string>
   <string name="label_mainLibraryRootFolder">Ana kütüphane kök dizini</string>
   <string name="label_modelTexturesDir">Model doku dizini</string>
   <string name="label_nvidiaTextureToolPath">NVIDIA texturetool yürütülebilir dosyası</string>
@@ -59,7 +59,6 @@
   <string name="language_tr">Türkçe</string>
   <string name="menu_about">Hakkında</string>
   <string name="menu_help">Yardım</string>
-  <string name="menu_language">Dil</string>
   <string name="new_project_hint">Yeni proje...</string>
   <string name="ok">Tamam</string>
   <string name="search">Ara</string>

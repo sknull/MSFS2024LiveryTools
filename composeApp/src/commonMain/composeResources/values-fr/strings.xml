@@ -38,9 +38,9 @@
   <string name="label_flagNoAlphaAlbd">Activer l'albédo sans alpha</string>
   <string name="label_flagNoAlphaDecal">Forcer le drapeau sans décalque alpha</string>
   <string name="label_imageToMSFSKTX2Path">Répertoire ImageToMSFSKTX2</string>
+  <string name="label_language">Langue</string>
   <string name="label_layoutGeneratorToolPath">Exécutable de l'outil Layoutgenerator</string>
   <string name="label_liveryName">Nom de la livrée</string>
-  <string name="label_locale">Langue</string>
   <string name="label_mainLibraryRootFolder">Répertoire racine de la bibliothèque principale</string>
   <string name="label_modelTexturesDir">Répertoire des textures du modèle</string>
   <string name="label_nvidiaTextureToolPath">Exécutable de l'outil de texture NVIDIA</string>
@@ -59,7 +59,6 @@
   <string name="language_tr" ></string>
   <string name="menu_about">À propos</string>
   <string name="menu_help">Aide</string>
-  <string name="menu_language">Langue</string>
   <string name="new_project_hint">Nouveau projet...</string>
   <string name="ok">OK</string>
   <string name="search">Rechercher</string>

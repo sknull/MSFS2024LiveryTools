@@ -38,9 +38,9 @@
   <string name="label_flagNoAlphaAlbd">Contrassegna forza albedo senza alfa</string>
   <string name="label_flagNoAlphaDecal">Contrassegna forza decalcomania senza alfa</string>
   <string name="label_imageToMSFSKTX2Path">Directory ImageToMSFSKTX2</string>
+  <string name="label_language">Lingua</string>
   <string name="label_layoutGeneratorToolPath">Eseguibile dello strumento Layoutgenerator</string>
   <string name="label_liveryName">Nome livrea</string>
-  <string name="label_locale">Lingua</string>
   <string name="label_mainLibraryRootFolder">Directory principale della libreria</string>
   <string name="label_modelTexturesDir">Directory delle texture del modello</string>
   <string name="label_nvidiaTextureToolPath">Eseguibile di NVIDIA TextureTool</string>
@@ -59,7 +59,6 @@
   <string name="language_tr">Turco</string>
   <string name="menu_about">Informazioni</string>
   <string name="menu_help">Aiuto</string>
-  <string name="menu_language">Lingua</string>
   <string name="new_project_hint">Nuovo progetto...</string>
   <string name="ok">Ok</string>
   <string name="search">Cerca</string>

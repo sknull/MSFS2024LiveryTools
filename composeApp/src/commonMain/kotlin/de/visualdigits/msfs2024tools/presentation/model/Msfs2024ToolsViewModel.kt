@@ -12,6 +12,7 @@ import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfigura
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
+import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.domain.service.ConfigurationRepository
 import de.visualdigits.msfs2024tools.domain.service.Msfs2024Service
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,6 +26,7 @@ import kotlinx.coroutines.launch
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.error_global_configuration_invalid
 import msfs2024liverytools.composeapp.generated.resources.error_project_configuration_invalid
+import java.util.Locale
 
 class Msfs2024ToolsViewModel(
     val configurationRepository: ConfigurationRepository,
@@ -57,7 +59,7 @@ class Msfs2024ToolsViewModel(
     fun onAction(action: Msfs2024ToolsAction) {
         when (action) {
             //
-            // Global Configuration
+            // Settings
             //
             is Msfs2024ToolsAction.OnEditSettingsClick -> {
                 _state.update {
@@ -70,6 +72,11 @@ class Msfs2024ToolsViewModel(
             }
 
             is Msfs2024ToolsAction.OnSettingsValueChanged -> {
+                if (action.keyValue.key == "language") {
+                    action.keyValue.value?.also { l ->
+                        Locale.setDefault(Language.valueOf(l).locale)
+                    }
+                }
                 _state.update {
                     val settings = action.settings?.copy(
                         key = action.keyValue.key,
@@ -201,7 +208,7 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnLanguageSelected -> {
                 _state.update {
                     it.copy(
-                        language = action.language
+                        settings = it.settings?.copy(key = "language", value = action.language.name)
                     )
                 }
             }

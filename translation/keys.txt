@@ -57,7 +57,7 @@ language_it
 language_tr
 menu_about
 menu_help
-menu_language
+label_language
 new_project_hint
 ok
 search

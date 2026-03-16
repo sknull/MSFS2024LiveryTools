@@ -26,12 +26,10 @@ import de.visualdigits.msfs2024tools.data.datasource.FilesystemConfigurationData
 import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.presentation.components.Msfs2024InfoDialog
 import de.visualdigits.msfs2024tools.presentation.components.Msfs2024MenuBar
-import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
 import kotlinx.coroutines.cancel
 import msfs2024liverytools.composeapp.generated.resources.Msfs2024Tools
 import msfs2024liverytools.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
-import org.koin.compose.viewmodel.koinViewModel
 import java.util.Locale
 import javax.swing.UIManager
 
@@ -64,22 +62,13 @@ fun main() {
             icon = painterResource(Res.drawable.Msfs2024Tools),
             state = state
         ) {
-            val msfs2024ToolsViewModel = koinViewModel<Msfs2024ToolsViewModel>()
-
             var languageTrigger by remember { mutableStateOf(language) }
             var menuVisible by remember { mutableStateOf(true) }
             var showInfoDialog by remember { mutableStateOf(false) }
 
             if (menuVisible) {
                 Msfs2024MenuBar(
-                    scope = rememberCoroutineScope(),
-                    msfs2024ToolsViewModel = msfs2024ToolsViewModel,
                     showInfoDialog = { showInfoDialog = it },
-                    snackbarHostState = remember { SnackbarHostState() },
-                    languageTrigger = {
-                        languageTrigger = it
-                        menuVisible = false
-                    },
                     currentLanguage = languageTrigger
                 )
             }

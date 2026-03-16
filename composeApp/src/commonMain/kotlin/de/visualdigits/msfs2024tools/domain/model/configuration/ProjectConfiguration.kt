@@ -186,20 +186,6 @@ data class ProjectConfiguration(
         )
     }
 
-    override operator fun set(key: String, value: String): ProjectConfiguration {
-        when (key) {
-            "airplaneName" -> airplaneName = value
-            "liveryName" -> liveryName = value
-            "packageDir" -> packageDir = File(value)
-            "packageTextureDir" -> packageTextureDir = File(value)
-            "modelTexturesDir" -> modelTexturesDir = File(value)
-            "textureFormat" -> textureFormat = TextureFormat.valueOf(value)
-            "textureTypes" -> textureTypes = value.split(",").map { v -> TextureType.valueOf(v.trim()) }
-        }
-
-        return this
-    }
-
     override fun copy(key: String?, value: String?): ProjectConfiguration {
         val newConfiguration = clone()
         when (key) {
