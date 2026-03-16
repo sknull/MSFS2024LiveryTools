@@ -15,7 +15,7 @@ toc::[]
 image:https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml/badge.svg[MSFS 2024 Livery Tools,link=https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci.yml]
 image:https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci-release.yml/badge.svg[MSFS 2024 Livery Tools Release,link=https://github.com/sknull/MSFS2024LiveryTools/actions/workflows/github-ci-release.yml]
 
-Version 1.0.1
+Version 1.0.2
 
 Github page: https://github.com/sknull/MSFS2024LiveryTools
 
