@@ -32,6 +32,7 @@
   <string name="info_text">Foo bar baz</string>
   <string name="label_airplaneName">Nombre del avión</string>
   <string name="label_airplanes">Aviones</string>
+  <string name="label_configuration">Configuración</string>
   <string name="label_dryrun">Simulación</string>
   <string name="label_flagHQAlbd">Marcar albedo HQ</string>
   <string name="label_flagHQDecal">Marcar calcomanía HQ</string>
@@ -41,6 +42,7 @@
   <string name="label_language">Idioma</string>
   <string name="label_layoutGeneratorToolPath">Ejecutable de la herramienta Layoutgenerator</string>
   <string name="label_liveryName">Nombre de la librea</string>
+  <string name="label_locale">Idioma</string>
   <string name="label_mainLibraryRootFolder">Directorio raíz de la biblioteca principal</string>
   <string name="label_modelTexturesDir">Directorio de texturas del modelo</string>
   <string name="label_nvidiaTextureToolPath">Ejecutable de NVIDIA TextureTool</string>
@@ -67,7 +69,6 @@
   <string name="stderr">Salida de errores</string>
   <string name="stdout">Salida</string>
   <string name="tab_airplanes">Aviones</string>
-  <string name="tab_configuration">Configuración</string>
   <string name="tab_projects">Proyectos</string>
   <string name="title_delete">Eliminar elemento</string>
   <string name="title_info">Información</string>

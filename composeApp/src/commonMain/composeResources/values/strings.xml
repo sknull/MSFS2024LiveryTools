@@ -32,6 +32,7 @@
   <string name="info_text">Foo bar baz</string>
   <string name="label_airplaneName">Airplane name</string>
   <string name="label_airplanes">Airplanes</string>
+  <string name="label_configuration">Configuration</string>
   <string name="label_dryrun">Dry Run</string>
   <string name="label_flagHQAlbd">Flag HQ albedo</string>
   <string name="label_flagHQDecal">Flag HQ Decal</string>
@@ -41,6 +42,7 @@
   <string name="label_language">Language</string>
   <string name="label_layoutGeneratorToolPath">Layoutgenerator tool executable</string>
   <string name="label_liveryName">Livery name</string>
+  <string name="label_locale">Language</string>
   <string name="label_mainLibraryRootFolder">Main library root directory</string>
   <string name="label_modelTexturesDir">Model textures directory</string>
   <string name="label_nvidiaTextureToolPath">NVIDIA texturetool executable</string>
@@ -67,7 +69,6 @@
   <string name="stderr">Error Output</string>
   <string name="stdout">Output</string>
   <string name="tab_airplanes">Airplanes</string>
-  <string name="tab_configuration">Configuration</string>
   <string name="tab_projects">Projects</string>
   <string name="title_delete">Delete item</string>
   <string name="title_info">Info</string>

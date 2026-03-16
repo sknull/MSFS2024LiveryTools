@@ -30,12 +30,14 @@ Importer les paramètres depuis l'outil d'image
 Foo bar baz
 Nom de l'avion
 Avions
+Configuration
 Simulation
 Activer l'albédo HQ
 Activer le décalque HQ
 Activer l'albédo sans alpha
 Forcer le drapeau sans décalque alpha
 Répertoire ImageToMSFSKTX2
+Langue
 Exécutable de l'outil Layoutgenerator
 Nom de la livrée
 Langue
@@ -57,7 +59,6 @@ Anglais
 
 À propos
 Aide
-Langue
 Nouveau projet...
 OK
 Rechercher
@@ -66,7 +67,6 @@ Afficher les détails...
 Message d'erreur
 Sortie
 Avions
-Configuration
 Projets
 Supprimer l'élément
 Info

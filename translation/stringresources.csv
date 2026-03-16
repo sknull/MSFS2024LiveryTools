@@ -31,12 +31,14 @@ import_imagetool;Einstellungen aus Bild-Tool importieren;Import Settings From Im
 info_text;Foo bar baz;Foo bar baz;Foo bar baz;Foo bar baz;Foo bar baz;Foo bar baz;Foo bar baz
 label_airplaneName;Flugzeugname;Airplane name;Airplane name;Nombre del avión;Nom de l'avion;Nome dell'aereo;Uçak adı
 label_airplanes;Flugzeuge;Airplanes;Airplanes;Aviones;Avions;Aerei;Uçaklar
+label_configuration;Konfiguration;Configuration;Configuration;Configuración;Configuration;Configurazione;Yapılandırma
 label_dryrun;Trockenlauf;Dry Run;Dry Run;Simulación;Simulation;Prova generale;Deneme Çalıştırması
 label_flagHQAlbd;Flag HQ Albedo;Flag HQ albedo;Flag HQ albedo;Marcar albedo HQ;Activer l'albédo HQ;Contrassegna albedo HQ;HQ albedo bayrağı
 label_flagHQDecal;Flag HQ Decal;Flag HQ Decal;Flag HQ Decal;Marcar calcomanía HQ;Activer le décalque HQ;Contrassegna decalcomania HQ;HQ çıkartma bayrağı
 label_flagNoAlphaAlbd;Flag force no alpha albedo;Flag force no alpha albedo;Flag force no alpha albedo;Marcar albedo sin alfa;Activer l'albédo sans alpha;Contrassegna forza albedo senza alfa;Alfa albedo yok bayrağı
 label_flagNoAlphaDecal;Flag force no alpha decal;Flag force no alpha decal;Flag force no alpha decal;Marcar calcomanía sin alfa;Forcer le drapeau sans décalque alpha;Contrassegna forza decalcomania senza alfa;Alfa çıkartma yok bayrağı
 label_imageToMSFSKTX2Path;ImageToMSFSKTX2-Verzeichnis;ImageToMSFSKTX2 directory;ImageToMSFSKTX2 directory;Directorio ImageToMSFSKTX2;Répertoire ImageToMSFSKTX2;Directory ImageToMSFSKTX2;ImageToMSFSKTX2 dizini
+label_language;Sprache;Language;Language;Idioma;Langue;Lingua;Dil
 label_layoutGeneratorToolPath;Layoutgenerator-Tool ausführbar;Layoutgenerator tool executable;Layoutgenerator tool executable;Ejecutable de la herramienta Layoutgenerator;Exécutable de l'outil Layoutgenerator;Eseguibile dello strumento Layoutgenerator;Layoutgenerator aracı yürütülebilir dosyası
 label_liveryName;Name der Lackierung;Livery name;Livery name;Nombre de la librea;Nom de la livrée;Nome livrea;Livery adı
 label_locale;Sprache;Language;Language;Idioma;Langue;Lingua;Dil
@@ -58,7 +60,6 @@ language_it;Italienisch;Italian;Italian;Italiano;;Italiano;İtalyanca
 language_tr;Türkisch;Turkish;Turkish;Turco;;Turco;Türkçe
 menu_about;Über;About;About;Acerca de;À propos;Informazioni;Hakkında
 menu_help;Hilfe;Help;Help;Ayuda;Aide;Aiuto;Yardım
-label_language;Sprache;Language;Language;Idioma;Langue;Lingua;Dil
 new_project_hint;Neues Projekt...;New project...;New project...;Nuevo proyecto...;Nouveau projet...;Nuovo progetto...;Yeni proje...
 ok;Ok;Ok;Ok;Aceptar;OK;Ok;Tamam
 search;Suchen;Search;Search;Buscar;Rechercher;Cerca;Ara
@@ -67,7 +68,6 @@ show_details_hint;Details anzeigen...;Show details...;Show details...;Mostrar de
 stderr;Fehlerausgabe;Error Output;Error Output;Salida de errores;Message d'erreur;Output errori;Hata Çıktısı
 stdout;Ausgabe;Output;Output;Salida;Sortie;Output;Çıktı
 tab_airplanes;Flugzeuge;Airplanes;Airplanes;Aviones;Avions;Aerei;Uçaklar
-tab_configuration;Konfiguration;Configuration;Configuration;Configuración;Configuration;Configurazione;Yapılandırma
 tab_projects;Projekte;Projects;Projects;Proyectos;Projets;Progetti;Projeler
 title_delete;Element löschen;Delete item;Delete item;Eliminar elemento;Supprimer l'élément;Elimina elemento;Öğeyi sil
 title_info;Info;Info;Info;Información;Info;Info;Bilgi

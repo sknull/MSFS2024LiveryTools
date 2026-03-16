@@ -61,118 +61,117 @@ fun ProjectsTab(
             shapeContainer = ShapeContainer
         )
         Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
-    } else {
-        Column(
-            modifier = Modifier
-                .padding(PaddingContainer)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
-        ) {
-            if (!state.isEditingProjectConfiguration && state.currentProjectConfiguration == null) {
-                FlexibleTextButton(
-                    text = stringResource(Res.string.new_project_hint),
-                    height = 30.dp,
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
-                    onClick = {
-                        onProjectListAction(
-                            Msfs2024ToolsAction.OnNewProjectClick()
-                        )
-                    },
-                    modifier = Modifier
-                        .pointerHoverIcon(PointerIcon.Hand)
-                        .align(Alignment.Start),
-                    buttonColor = ColorButton,
-                    buttonShape = ShapeButton,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_create_new_folder_24px),
-                            contentDescription = null,
-                            tint = ColorIcon
-                        )
-                    }
-                )
-            }
+    }
 
-            if (state.errorMessage != null) {
-                ErrorCard(
-                    errorMessage = state.errorMessage.asString(),
-                    shapeContainer = ShapeContainer
-                )
-                Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
-            }
-
-            when {
-                state.currentProjectConfiguration != null -> {
-                    if (state.isEditingProjectConfiguration) {
-                        ConfigurationEditForm(
-                            fieldHeight = 70.dp,
-                            unfocusedBorderColor = ColorUnfocused,
-                            focusedBorderColor = ColorFocused,
-                            iconTint = ColorIcon,
-                            buttonShape = ShapeButton,
-                            buttonColor = ColorButton,
-                            containerShape = ShapeContainer,
-                            space = SpaceBetweenComponents,
-                            onValueChange = { keyValue ->
-                                onProjectListAction(
-                                    Msfs2024ToolsAction.OnProjectConfigurationValueChanged(
-                                        projectConfiguration = state.currentProjectConfiguration,
-                                        keyValue = keyValue
-                                    ))
-                            },
-                            onCancelClick = {
-                                onProjectListAction(
-                                    Msfs2024ToolsAction.OnEditProjectConfigurationCancelClick(
-                                        originalProjectConfiguration = state.originalProjectConfiguration
-                                    )
-                                )
-                            },
-                            onOkClick = {
-                                onProjectListAction(
-                                    Msfs2024ToolsAction.OnSaveProjectConfigurationClick(
-                                        projectConfiguration = state.currentProjectConfiguration
-                                    )
-                                )
-                            },
-                            configuration = state.currentProjectConfiguration,
-                            state = state
-                        )
-                    } else {
-                        ConfigurationPanel(
-                            configuration = state.currentProjectConfiguration,
-                            onEditClick = {
-                                onProjectListAction(
-                                    Msfs2024ToolsAction.OnEditProjectConfigurationClick()
-                                )
-                            },
-                            onDeleteClick = {
-                                onProjectListAction(
-                                    Msfs2024ToolsAction.OnDeleteProjectClick(
-                                        projectConfiguration = state.currentProjectConfiguration,
-                                    )
-                                )
-                            },
-                            onOkClick = {
-                                onProjectListAction(Msfs2024ToolsAction.OnPanelOkClick(state.settings))
-                            },
-                            iconTint = ColorIcon,
-                            space = SpaceBetweenComponents,
-                            showOkButton = true,
-                            buttonColor = ColorButton,
-                            buttonShape = ShapeButton,
-                            focusedBorderColor = ColorFocused
-                        )
-                    }
-                }
-
-                else -> {
-                    ProjectList(
-                        onProjectListAction = onProjectListAction,
-                        state = state,
-                        hazeState = hazeState
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
+    ) {
+        if (!state.isEditingProjectConfiguration && state.currentProjectConfiguration == null) {
+            FlexibleTextButton(
+                text = stringResource(Res.string.new_project_hint),
+                height = 30.dp,
+                paddingStart = 0.dp,
+                paddingTop = 0.dp,
+                onClick = {
+                    onProjectListAction(
+                        Msfs2024ToolsAction.OnNewProjectClick()
+                    )
+                },
+                modifier = Modifier
+                    .pointerHoverIcon(PointerIcon.Hand)
+                    .align(Alignment.Start),
+                buttonColor = ColorButton,
+                buttonShape = ShapeButton,
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(Res.drawable.icon_create_new_folder_24px),
+                        contentDescription = null,
+                        tint = ColorIcon
                     )
                 }
+            )
+        }
+
+        if (state.errorMessage != null) {
+            ErrorCard(
+                errorMessage = state.errorMessage.asString(),
+                shapeContainer = ShapeContainer
+            )
+            Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
+        }
+
+        when {
+            state.currentProjectConfiguration != null -> {
+                if (state.isEditingProjectConfiguration) {
+                    ConfigurationEditForm(
+                        fieldHeight = 70.dp,
+                        unfocusedBorderColor = ColorUnfocused,
+                        focusedBorderColor = ColorFocused,
+                        iconTint = ColorIcon,
+                        buttonShape = ShapeButton,
+                        buttonColor = ColorButton,
+                        containerShape = ShapeContainer,
+                        space = SpaceBetweenComponents,
+                        onValueChange = { keyValue ->
+                            onProjectListAction(
+                                Msfs2024ToolsAction.OnProjectConfigurationValueChanged(
+                                    projectConfiguration = state.currentProjectConfiguration,
+                                    keyValue = keyValue
+                                ))
+                        },
+                        onCancelClick = {
+                            onProjectListAction(
+                                Msfs2024ToolsAction.OnEditProjectConfigurationCancelClick(
+                                    originalProjectConfiguration = state.originalProjectConfiguration
+                                )
+                            )
+                        },
+                        onOkClick = {
+                            onProjectListAction(
+                                Msfs2024ToolsAction.OnSaveProjectConfigurationClick(
+                                    projectConfiguration = state.currentProjectConfiguration
+                                )
+                            )
+                        },
+                        configuration = state.currentProjectConfiguration,
+                        state = state
+                    )
+                } else {
+                    ConfigurationPanel(
+                        configuration = state.currentProjectConfiguration,
+                        onEditClick = {
+                            onProjectListAction(
+                                Msfs2024ToolsAction.OnEditProjectConfigurationClick()
+                            )
+                        },
+                        onDeleteClick = {
+                            onProjectListAction(
+                                Msfs2024ToolsAction.OnDeleteProjectClick(
+                                    projectConfiguration = state.currentProjectConfiguration,
+                                )
+                            )
+                        },
+                        onOkClick = {
+                            onProjectListAction(Msfs2024ToolsAction.OnPanelOkClick(state.settings))
+                        },
+                        iconTint = ColorIcon,
+                        space = SpaceBetweenComponents,
+                        showOkButton = true,
+                        buttonColor = ColorButton,
+                        buttonShape = ShapeButton,
+                        focusedBorderColor = ColorFocused
+                    )
+                }
+            }
+
+            else -> {
+                ProjectList(
+                    onProjectListAction = onProjectListAction,
+                    state = state,
+                    hazeState = hazeState
+                )
             }
         }
     }

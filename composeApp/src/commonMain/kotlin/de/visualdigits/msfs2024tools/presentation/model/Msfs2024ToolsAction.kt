@@ -11,10 +11,12 @@ import org.jetbrains.compose.resources.StringResource
 sealed interface Msfs2024ToolsAction {
 
     data class OnTabSelected(
-        val index: Int,
-        val label: StringResource?
+        val index: Int
     ): Msfs2024ToolsAction
 
+    data class OnInitializeTabs(
+        val tabLabels: List<StringResource>
+    ): Msfs2024ToolsAction
 
     data class OnLanguageSelected(
         val language: Language,
@@ -22,10 +24,12 @@ sealed interface Msfs2024ToolsAction {
 
 
     //
-    // Global Configuration
+    // Settings
     //
 
-    class OnEditSettingsClick : Msfs2024ToolsAction
+    data class OnEditSettingsClick(
+        val isEditingSettings: Boolean
+    ) : Msfs2024ToolsAction
 
     data class OnSettingsValueChanged(
         val settings: Settings?,
@@ -73,6 +77,13 @@ sealed interface Msfs2024ToolsAction {
         val projectConfiguration: ProjectConfiguration
     ) : Msfs2024ToolsAction
 
+
+    //
+    //
+    //
+    data class OnShowInfosClick(
+        val isShowInfos: Boolean
+    ) : Msfs2024ToolsAction
 
     data class OnPanelOkClick(
         val configuration: Configuration<*>?,

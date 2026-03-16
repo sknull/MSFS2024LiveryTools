@@ -73,6 +73,8 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
         } else {
             logger(log(Severity.Info, "No actual conversion done due to a dry run."))
         }
+
+        logger(log(Severity.Info, "Deleting temporary directory."))
         tempDir.deleteRecursively()
 
         if (!dryRun && modifiedFiles.isNotEmpty()) {

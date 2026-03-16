@@ -1,28 +1,27 @@
-package de.visualdigits.msfs2024tools.presentation.components
+package de.visualdigits.msfs2024tools.presentation.screen
 
-import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerIcon
-import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
-import de.visualdigits.common.presentation.components.FlexibleTextButton
-import de.visualdigits.common.presentation.components.bevelBorder
 import de.visualdigits.generated.AppConfig
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeButton
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.HazeTint
+import dev.chrisbanes.haze.hazeEffect
 import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.ok
 import msfs2024liverytools.composeapp.generated.resources.title_info
 import org.jetbrains.compose.resources.stringResource
 import java.time.LocalDate
@@ -30,11 +29,31 @@ import java.time.temporal.ChronoField
 
 
 @Composable
-fun Msfs2024InfoDialog(
-    showInfoDialog: Boolean,
-    setShowInfoDialog: (Boolean) -> Unit,
+fun InfoScreen(
+    state: Msfs2024ToolsState,
+    hazeState: HazeState,
+    modifier: Modifier = Modifier,
 ) {
-    if (showInfoDialog) {
+    ScreenFrame(
+        modifier = modifier,
+        containerModifier = Modifier
+            .fillMaxSize()
+            .padding(start = 100.dp),
+        contentModifier = Modifier
+            .fillMaxSize(fraction = 0.97f)
+            .clip(ShapeContainer)
+            .hazeEffect(
+                state = hazeState,
+                style = HazeStyle(
+                    blurRadius = 10.dp,
+                    backgroundColor = Color.Unspecified,
+                    tint = HazeTint(Color.Black.copy(alpha = 0.4f))
+                )
+            ),
+        state = state,
+        hazeState = hazeState,
+        label = stringResource(Res.string.title_info)
+    ) {
         val linkColor = MaterialTheme.colorScheme.primary
 
         val html = remember(linkColor) {
@@ -55,41 +74,11 @@ fun Msfs2024InfoDialog(
             )
         }
 
-        AlertDialog(
-            modifier = Modifier
-                .border(1.dp, Color(0xFF333333), ShapeContainer)
-                .padding(0.dp),
-            shape = ShapeContainer,
-            containerColor = Color.Black.copy(alpha = 0.8f),
-            textContentColor = Color.White,
-            title = {
-                Text(
-                    text = stringResource(Res.string.title_info),
-                    color = Color.White,
-                    style = MaterialTheme.typography.titleMedium
-                )
-            },
-            text = {
-                Text(
-                    text = html,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            },
-            confirmButton = {
-                FlexibleTextButton(
-                    modifier = Modifier
-                        .pointerHoverIcon(PointerIcon.Hand),
-                    onClick = { setShowInfoDialog(false) },
-                    buttonShape = ShapeButton,
-                    buttonColor = Color.Gray
-                ) {
-                    Text(
-                        text = stringResource(Res.string.ok),
-                        color = Color.White
-                    )
-                }
-            },
-            onDismissRequest = { setShowInfoDialog(false) }
+        Text(
+            modifier = modifier
+                .padding(16.dp),
+            text = html,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

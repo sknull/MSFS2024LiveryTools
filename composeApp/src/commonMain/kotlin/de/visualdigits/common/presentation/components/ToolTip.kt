@@ -14,10 +14,12 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ToolTip(
     text: String?,
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
     if (text != null) {
         TooltipArea(
+            modifier = modifier,
             tooltip = {
                 Surface(
                     modifier = Modifier

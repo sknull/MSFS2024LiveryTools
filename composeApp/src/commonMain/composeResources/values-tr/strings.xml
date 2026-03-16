@@ -32,6 +32,7 @@
   <string name="info_text">Foo bar baz</string>
   <string name="label_airplaneName">Uçak adı</string>
   <string name="label_airplanes">Uçaklar</string>
+  <string name="label_configuration">Yapılandırma</string>
   <string name="label_dryrun">Deneme Çalıştırması</string>
   <string name="label_flagHQAlbd">HQ albedo bayrağı</string>
   <string name="label_flagHQDecal">HQ çıkartma bayrağı</string>
@@ -41,6 +42,7 @@
   <string name="label_language">Dil</string>
   <string name="label_layoutGeneratorToolPath">Layoutgenerator aracı yürütülebilir dosyası</string>
   <string name="label_liveryName">Livery adı</string>
+  <string name="label_locale">Dil</string>
   <string name="label_mainLibraryRootFolder">Ana kütüphane kök dizini</string>
   <string name="label_modelTexturesDir">Model doku dizini</string>
   <string name="label_nvidiaTextureToolPath">NVIDIA texturetool yürütülebilir dosyası</string>
@@ -67,7 +69,6 @@
   <string name="stderr">Hata Çıktısı</string>
   <string name="stdout">Çıktı</string>
   <string name="tab_airplanes">Uçaklar</string>
-  <string name="tab_configuration">Yapılandırma</string>
   <string name="tab_projects">Projeler</string>
   <string name="title_delete">Öğeyi sil</string>
   <string name="title_info">Bilgi</string>

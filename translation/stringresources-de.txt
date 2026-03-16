@@ -30,12 +30,14 @@ Einstellungen aus Bild-Tool importieren
 Foo bar baz
 Flugzeugname
 Flugzeuge
+Konfiguration
 Trockenlauf
 Flag HQ Albedo
 Flag HQ Decal
 Flag force no alpha albedo
 Flag force no alpha decal
 ImageToMSFSKTX2-Verzeichnis
+Sprache
 Layoutgenerator-Tool ausführbar
 Name der Lackierung
 Sprache
@@ -57,7 +59,6 @@ Italienisch
 Türkisch
 Über
 Hilfe
-Sprache
 Neues Projekt...
 Ok
 Suchen
@@ -66,7 +67,6 @@ Details anzeigen...
 Fehlerausgabe
 Ausgabe
 Flugzeuge
-Konfiguration
 Projekte
 Element löschen
 Info

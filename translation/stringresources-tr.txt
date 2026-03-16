@@ -30,12 +30,14 @@ Görüntü Aracından Ayarları İçe Aktar
 Foo bar baz
 Uçak adı
 Uçaklar
+Yapılandırma
 Deneme Çalıştırması
 HQ albedo bayrağı
 HQ çıkartma bayrağı
 Alfa albedo yok bayrağı
 Alfa çıkartma yok bayrağı
 ImageToMSFSKTX2 dizini
+Dil
 Layoutgenerator aracı yürütülebilir dosyası
 Livery adı
 Dil
@@ -57,7 +59,6 @@ Fransızca
 Türkçe
 Hakkında
 Yardım
-Dil
 Yeni proje...
 Tamam
 Ara
@@ -66,7 +67,6 @@ Ayrıntıları göster...
 Hata Çıktısı
 Çıktı
 Uçaklar
-Yapılandırma
 Projeler
 Öğeyi sil
 Bilgi

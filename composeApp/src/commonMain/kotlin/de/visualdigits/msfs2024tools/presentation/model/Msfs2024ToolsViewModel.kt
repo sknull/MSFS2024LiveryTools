@@ -58,6 +58,7 @@ class Msfs2024ToolsViewModel(
     @OptIn(ExperimentalCoroutinesApi::class)
     fun onAction(action: Msfs2024ToolsAction) {
         when (action) {
+
             //
             // Settings
             //
@@ -65,7 +66,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         originalSettings = it.settings,
-                        isEditingSettings = true,
+                        isEditingSettings = action.isEditingSettings,
+                        isShowInfos = false,
                         errorMessage = null
                     )
                 }
@@ -101,7 +103,7 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnSaveSettingsClick -> {
                 saveSettings(
                     settings = action.settings,
-                    projectConfigurations = action.projectConfigurations
+                    projectConfigurations = action.projectConfigurations,
                 )
             }
 
@@ -193,12 +195,38 @@ class Msfs2024ToolsViewModel(
             //
             //
             //
+            is Msfs2024ToolsAction.OnShowInfosClick -> {
+                _state.update {
+                    it.copy(
+                        originalSettings = it.settings,
+                        isEditingSettings = false,
+                        isShowInfos = action.isShowInfos,
+                        errorMessage = null
+                    )
+                }
+            }
+
+            is Msfs2024ToolsAction.OnInitializeTabs -> {
+                _state.update {
+                    it.copy(
+                        tabLabels = action.tabLabels,
+                        selectedTabIndex = 0,
+                        selectedTabLabel = action.tabLabels.firstOrNull(),
+                        isEditingSettings = false,
+                        isShowInfos = false,
+                        isEditingProjectConfiguration = false,
+                        errorMessage = null
+                    )
+                }
+            }
+
             is Msfs2024ToolsAction.OnTabSelected -> {
                 _state.update {
                     it.copy(
                         selectedTabIndex = action.index,
-                        selectedTabLabel = action.label,
+                        selectedTabLabel = it.tabLabels[action.index],
                         isEditingSettings = false,
+                        isShowInfos = false,
                         isEditingProjectConfiguration = false,
                         errorMessage = null
                     )
@@ -217,7 +245,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         currentProjectConfiguration = null,
-                        isEditingSettings = false
+                        isEditingSettings = false,
+                        isEditingProjectConfiguration = false
                     )
                 }
             }
@@ -225,7 +254,10 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnBusyOkClick -> {
                 _state.update {
                     it.copy(
+                        isEditingSettings = false,
+                        isEditingProjectConfiguration = false,
                         isLoading = false,
+                        isConverting = false,
                         logs = listOf()
                     )
                 }
@@ -264,6 +296,7 @@ class Msfs2024ToolsViewModel(
         }
         configurationRepository.loadConfiguration()
             .onSuccess { (settings, projectConfigurations) ->
+                Locale.setDefault(settings.language?.locale?: Language.EN.locale)
                 _state.update {
                     it.copy(
                         settings = settings,

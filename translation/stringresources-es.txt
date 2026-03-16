@@ -30,12 +30,14 @@ Importar ajustes desde la herramienta de imagen
 Foo bar baz
 Nombre del avión
 Aviones
+Configuración
 Simulación
 Marcar albedo HQ
 Marcar calcomanía HQ
 Marcar albedo sin alfa
 Marcar calcomanía sin alfa
 Directorio ImageToMSFSKTX2
+Idioma
 Ejecutable de la herramienta Layoutgenerator
 Nombre de la librea
 Idioma
@@ -57,7 +59,6 @@ Italiano
 Turco
 Acerca de
 Ayuda
-Idioma
 Nuevo proyecto...
 Aceptar
 Buscar
@@ -66,7 +67,6 @@ Mostrar detalles...
 Salida de errores
 Salida
 Aviones
-Configuración
 Proyectos
 Eliminar elemento
 Información

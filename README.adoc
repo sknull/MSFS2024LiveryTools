@@ -115,13 +115,13 @@ When you first open the app you will see the empty project view:
 
 image::resources/screen-01.png[]
 
-=== The Configuration View
+=== The Settings View
 
 To get started you need to set a few things up.
 
 image::resources/screen-02.png[]
 
-So click on "Configuration" and you will see the following form where you have
+So click on the little gear icon on the left panel, and you will see the following form where you have
 to set at least the type of store you are using (either Microsoft or Steam).
 This is important for the latter conversion as the Microsoft SDK needs this information.
 
@@ -131,15 +131,9 @@ Additionally you should set the main library root directory (this is where you s
 
 Optionally you may also set the path to the layoutgenerator tool. When you do the layout.json for the target project will then automatically recreate when you convert textures towards the Sim (either png to dds or png to ktx2).
 
-image::resources/screen-04.png[]
-
 When you click "OK" the settings will be stored in a little json file:
 
     <USER_HOME>/.msfs2024liverytools/configuration.json
-
-The setup will look like this:
-
-image::resources/screen-05.png[]
 
 An idea for later is to be able to group projects by airplane so I decided this is not a free text field but a selection from a preset list.
 Hence you have to configure for which airplanes you want to create liveries.
@@ -149,20 +143,23 @@ Unfortunately there is currently a problem with the way Kotlin Multi Platform wo
 
 So click on "Airplane" and add some airplane name:
 
-image::resources/screen-06.png[]
+image::resources/screen-04.png[]
 
-image::resources/screen-07.png[]
+image::resources/screen-05.png[]
 
 You will end up with something like this:
-When an airplane is used by some project configuration the delete button will be disabled to preventing you from messing things up.
 
-image::resources/screen-08.png[]
+image::resources/screen-06.png[]
+
+When an airplane is used by some project configuration the delete button will be disabled to preventing you from messing things up.
 
 === Project Configuration
 
 After that preparation work we need to setup our first project:
 
-image::resources/screen-09.png[]
+image::resources/screen-07.png[]
+
+image::resources/screen-08.png[]
 
 First select the airplane, then enter a useful name for the livery.
 After that set the package directory (the directory which contains the layout.jon file)
@@ -170,20 +167,20 @@ Then the package texture sub directory - the respective filepicker will use the 
 Finally the texture types should be fine as is. If you are you are sure not not make use of metallic effects and use the original composite texture anyways you could delete the COMP entry.
 NORM and DECAL are also supported but normally I do not fiddle with normals &#128512;.
 
-image::resources/screen-09a.png[]
+image::resources/screen-09.png[]
 
 As you can see there is one field greyed out and cannot be altered - the texture format is calculated from which type of textures are found in the package texture directory.
 So you do not have to take care on using the correct format.
+There is one caveat with this: If you decide to edit the project afterward and modify the package textured dir so that it points to a project using a different texture format than before, the format will not be updated.
+The finished configuration will look something like this:
 
 image::resources/screen-10.png[]
 
 When you click "OK" you should see something like this - your first project configuration:
 
-image::resources/screen-09b.png[]
+image::resources/screen-11.png[]
 
 Click again on "OK" and you will see the project overview page. This is probably your main view and hence also the start view of the app.
-
-image::resources/screen-11.png[]
 
 === Running Conversions
 
@@ -207,6 +204,10 @@ image::resources/screen-14.png[]
 Finally a setup with dozens of livery projects can look like this.
 
 image::resources/screen-15.png[]
+
+When you click ion the info button on the left panel you will see the current version and some useful links.
+
+image::resources/screen-16.png[]
 
 Voilá
 

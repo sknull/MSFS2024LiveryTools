@@ -30,12 +30,14 @@ import_imagetool
 info_text
 label_airplaneName
 label_airplanes
+label_configuration
 label_dryrun
 label_flagHQAlbd
 label_flagHQDecal
 label_flagNoAlphaAlbd
 label_flagNoAlphaDecal
 label_imageToMSFSKTX2Path
+label_language
 label_layoutGeneratorToolPath
 label_liveryName
 label_locale
@@ -57,7 +59,6 @@ language_it
 language_tr
 menu_about
 menu_help
-label_language
 new_project_hint
 ok
 search
@@ -66,7 +67,6 @@ show_details_hint
 stderr
 stdout
 tab_airplanes
-tab_configuration
 tab_projects
 title_delete
 title_info

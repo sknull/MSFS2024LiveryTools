@@ -30,12 +30,14 @@ Import Settings From Image Tool
 Foo bar baz
 Airplane name
 Airplanes
+Configuration
 Dry Run
 Flag HQ albedo
 Flag HQ Decal
 Flag force no alpha albedo
 Flag force no alpha decal
 ImageToMSFSKTX2 directory
+Language
 Layoutgenerator tool executable
 Livery name
 Language
@@ -57,7 +59,6 @@ Italian
 Turkish
 About
 Help
-Language
 New project...
 Ok
 Search
@@ -66,7 +67,6 @@ Show details...
 Error Output
 Output
 Airplanes
-Configuration
 Projects
 Delete item
 Info

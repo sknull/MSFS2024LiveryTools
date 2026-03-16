@@ -20,7 +20,9 @@ data class Msfs2024ToolsState(
 
     val selectedTabIndex: Int = 0,
     val selectedTabLabel: StringResource? = null,
+    val tabLabels: List<StringResource> = listOf(),
 
+    val isShowInfos: Boolean = false,
     val isEditingSettings: Boolean = false,
     val isEditingProjectConfiguration: Boolean = false,
 

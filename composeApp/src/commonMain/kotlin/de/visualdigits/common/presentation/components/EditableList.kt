@@ -137,6 +137,7 @@ fun EditableList(
                             SquaredIconButton(
                                 icon = painterResource(Res.drawable.icon_edit_24px),
                                 iconTint = iconTint,
+                                modifier = Modifier.padding(start = 5.dp),
                                 size = 30.dp,
                                 toolTip = stringResource(Res.string.edit),
                                 buttonShape = buttonShape,
@@ -151,6 +152,7 @@ fun EditableList(
                             SquaredIconButton(
                                 icon = painterResource(Res.drawable.icon_delete_24px),
                                 iconTint = iconTint,
+                                modifier = Modifier.padding(start = 5.dp),
                                 size = 30.dp,
                                 toolTip = stringResource(Res.string.delete),
                                 enabled = allowDelete,

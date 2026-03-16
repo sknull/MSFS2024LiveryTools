@@ -11,8 +11,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun TabButtonRow(
     buttonRowModifier: Modifier = Modifier,
-    containerModifier: Modifier = Modifier,
-    contentModifier: Modifier = Modifier,
     horizontalArrangement: Arrangement.Horizontal,
     initializeViewModel: () -> Unit = {},
     items: LinkedHashMap<StringResource, @Composable () -> Unit>,
@@ -29,15 +27,6 @@ fun TabButtonRow(
             button(label, index)
         }
     }
-    // outer box
-    Box(
-        modifier = containerModifier
-    ) {
-        // inner semitransparent box
-        Box(
-            modifier = contentModifier,
-        ) {
-            items.toList()[selectedTab()].second()
-        }
-    }
+
+    items.toList()[selectedTab()].second()
 }

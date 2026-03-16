@@ -2,6 +2,7 @@ package de.visualdigits.common.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -128,6 +129,7 @@ fun TypeAwareEditableField(
                             SquaredIconButton(
                                 icon = painterResource(Res.drawable.icon_folder_open_24px),
                                 iconTint = iconTint,
+                                modifier = Modifier.padding(start = 5.dp),
                                 size = 30.dp,
                                 buttonShape = buttonShape,
                                 buttonColor = buttonColor,

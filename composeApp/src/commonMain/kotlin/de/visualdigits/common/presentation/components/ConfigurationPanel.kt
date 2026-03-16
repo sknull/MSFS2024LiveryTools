@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
@@ -191,6 +192,7 @@ fun ConfigurationPanel(
                         SquaredIconButton(
                             icon = painterResource(Res.drawable.icon_info_24px),
                             iconTint = iconTint,
+                            modifier = Modifier.padding(start = 5.dp),
                             size = 30.dp,
                             toolTip = stringResource(Res.string.tooltip_readonly),
                             buttonShape = buttonShape,
@@ -203,6 +205,7 @@ fun ConfigurationPanel(
                         SquaredIconButton(
                             icon = painterResource(Res.drawable.icon_folder_open_24px),
                             iconTint = iconTint,
+                            modifier = Modifier.padding(start = 5.dp),
                             size = 30.dp,
                             toolTip = stringResource(Res.string.tooltip_openInExplorer),
                             buttonShape = buttonShape,

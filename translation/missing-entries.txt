@@ -3,10 +3,7 @@ Missing Keys
 
 de
 ----------------------------------------
-language_es
-language_fr
-language_it
-language_tr
+
 
 default
 ----------------------------------------
@@ -14,17 +11,11 @@ default
 
 en
 ----------------------------------------
-language_es
-language_fr
-language_it
-language_tr
+
 
 es
 ----------------------------------------
-language_es
-language_fr
-language_it
-language_tr
+
 
 fr
 ----------------------------------------
@@ -35,14 +26,7 @@ language_tr
 
 it
 ----------------------------------------
-language_es
-language_fr
-language_it
-language_tr
+
 
 tr
 ----------------------------------------
-language_es
-language_fr
-language_it
-language_tr

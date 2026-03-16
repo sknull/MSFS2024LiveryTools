@@ -30,12 +30,14 @@ Importa impostazioni dallo strumento immagine
 Foo bar baz
 Nome dell'aereo
 Aerei
+Configurazione
 Prova generale
 Contrassegna albedo HQ
 Contrassegna decalcomania HQ
 Contrassegna forza albedo senza alfa
 Contrassegna forza decalcomania senza alfa
 Directory ImageToMSFSKTX2
+Lingua
 Eseguibile dello strumento Layoutgenerator
 Nome livrea
 Lingua
@@ -57,7 +59,6 @@ Italiano
 Turco
 Informazioni
 Aiuto
-Lingua
 Nuovo progetto...
 Ok
 Cerca
@@ -66,7 +67,6 @@ Mostra dettagli...
 Output errori
 Output
 Aerei
-Configurazione
 Progetti
 Elimina elemento
 Info
