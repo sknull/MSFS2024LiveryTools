@@ -1,6 +1,6 @@
 package de.visualdigits.msfs2024tools.data.service
 
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import kotlinx.coroutines.runBlocking
@@ -11,8 +11,8 @@ import java.io.File
 @Disabled("Only for local testing")
 class MsfsTest {
 
-    private val globalConfiguration =
-        GlobalConfigurationDto(
+    private val settings =
+        SettingsDto(
             layoutGeneratorToolPath = "C:\\Anwendungen\\MSFSLayoutGenerator.exe",
             projects = mutableListOf()
         )
@@ -47,28 +47,28 @@ class MsfsTest {
     @Test
     fun testPngToKtx2() {
         runBlocking {
-            PngToKtx2Converter.convert(globalConfiguration, projectConfiguration, {})
+            PngToKtx2Converter.convert(settings, projectConfiguration, {})
         }
     }
 
     @Test
     fun testPngToDds() {
         runBlocking {
-            PngToDdsConverter.convert(globalConfiguration, projectConfiguration, {})
+            PngToDdsConverter.convert(settings, projectConfiguration, {})
         }
     }
 
     @Test
     fun testKtx2ToPng() {
         runBlocking {
-            Ktx2ToPngConverter.convert(globalConfiguration, projectConfiguration, {})
+            Ktx2ToPngConverter.convert(settings, projectConfiguration, {})
         }
     }
 
     @Test
     fun testDdsToPng() {
         runBlocking {
-            DdsToPngConverter.convert(globalConfiguration, projectConfiguration, {})
+            DdsToPngConverter.convert(settings, projectConfiguration, {})
         }
     }
 

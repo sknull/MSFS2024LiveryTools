@@ -1,0 +1,99 @@
+Ajouter
+Ajouter...
+En cours...
+Annuler
+Sélectionner un répertoire
+Sélectionner un fichier
+Fermer
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Supprimer
+Modifier
+Modifier...
+Le type de simulation doit au moins être défini.
+Le disque est plein
+Fichier introuvable
+Impossible d'analyser le résultat
+Une erreur inconnue s'est produite lors d'une opération locale
+Aucune configuration fournie
+Au moins le nom de l'avion et le nom de la livrée doivent être définis.
+Connexion Internet perdue
+Délai d'attente de la requête expiré
+Impossible d'analyser le résultat
+Une erreur inconnue s'est produite lors d'une opération à distance
+Champ inconnu dans la configuration
+Faux
+Le champ n'est pas défini.
+Importer les paramètres depuis l'outil d'image
+Foo bar baz
+Nom de l'avion
+Avions
+Simulation
+Activer l'albédo HQ
+Activer le décalque HQ
+Activer l'albédo sans alpha
+Forcer le drapeau sans décalque alpha
+Répertoire ImageToMSFSKTX2
+Exécutable de l'outil Layoutgenerator
+Nom de la livrée
+Langue
+Répertoire racine de la bibliothèque principale
+Répertoire des textures du modèle
+Exécutable de l'outil de texture NVIDIA
+Répertoire du paquet
+Répertoire des textures du paquet
+Répertoire racine du projet
+Répertoire racine du SDK MSFS
+Type de simulation
+Format de texture
+Types de textures
+Allemand
+Anglais
+
+
+
+
+À propos
+Aide
+Langue
+Nouveau projet...
+OK
+Rechercher
+Rechercher...
+Afficher les détails...
+Message d'erreur
+Sortie
+Avions
+Configuration
+Projets
+Supprimer l'élément
+Info
+Le nom de l'avion pour lequel vous souhaitez créer une livrée. # Doit être unique dans tous vos projets. # Si vous travaillez sur plusieurs livrées pour cet avion, assurez-vous que le nom est cohérent dans tous vos projets.
+Les noms de tous les avions sur lesquels vous travaillez.
+Parcourir les répertoires.
+Parcourir les fichiers.
+Marquer l'albédo HQ
+Marquer le décalque HQ
+Marquer « forcer l'albédo sans alpha »
+Marquer « forcer le décalque sans alpha »
+Répertoire ImageToMSFSKTX2
+Exécutable de l'outil Layoutgenerator. # Comme il est simplement placé n'importe où dans votre système de fichiers
+Le nom du projet de livrée sur lequel vous travaillez. # Doit être unique pour toutes les livrées d'un avion.
+Langue
+Le répertoire racine de votre bibliothèque principale d'extensions # ou l'emplacement où vous stockez vos paquets finaux pour la livraison. # Il sert de répertoire de départ pour les sélecteurs de fichiers.
+Le répertoire des textures de votre projet Blender (ou tout autre logiciel que vous utilisez). # C'est le répertoire où se trouvent les textures de vos modèles sous forme de fichiers PNG.
+Exécutable NVIDIA Texture Tool. # Ceci est obligatoire et nécessaire pour convertir les textures de n'importe quel format de simulation au format PNG. # La valeur par défaut est C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe
+Ouvrir dans l'Explorateur.
+Le répertoire racine de la structure des extensions au sein de votre bibliothèque principale.
+Le répertoire du dossier de textures au sein de votre paquet.
+Répertoire racine de vos projets Blender # ou l'emplacement où vous stockez vos livrées. # Il sert de répertoire de départ pour les sélecteurs de fichiers.
+Ce champ n'est pas modifiable.
+Répertoire racine du SDK MSFS. # Si vous avez utilisé ImageToMSFSKTX auparavant, celui-ci est également importé lorsque vous cliquez sur le bouton Importer. # Le SDK est obligatoire si vous travaillez sur des projets utilisant KTX2, car les images converties # avec l'outil NVIDIA ne fonctionneront pas dans le simulateur. # La valeur par défaut est C:/MSFS 2024 SDK
+La boutique que vous utilisez. # Microsoft ou Steam. # La valeur par défaut est Microsoft.
+Le format de texture utilisé par votre projet dans MSFS 2024. # DDS ou KTX2. # Cette valeur est calculée automatiquement à partir du répertoire de textures du package.
+Les types de textures que vous souhaitez inclure dans les conversions. # Les paquets MSFS peuvent contenir de nombreuses textures et, en général, nous ne travaillons que sur #  les fichiers albedo (ALBD) et composition (COMP). # Vous devrez donc la plupart du temps sélectionner ALBD et COMP. # Si votre projet n'utilise pas de couleurs métalliques, vous pouvez choisir ALBD uniquement en toute sécurité.
+Vrai
+Voulez-vous vraiment supprimer cet élément ?
+Aucun projet.

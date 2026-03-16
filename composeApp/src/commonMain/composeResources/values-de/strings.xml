@@ -53,11 +53,14 @@
   <string name="label_textureTypes">Texturtypen</string>
   <string name="language_de">Deutsch</string>
   <string name="language_en">Englisch</string>
+  <string name="language_es">Spanisch</string>
+  <string name="language_fr">Französisch</string>
+  <string name="language_it">Italienisch</string>
+  <string name="language_tr">Türkisch</string>
   <string name="menu_about">Über</string>
   <string name="menu_help">Hilfe</string>
   <string name="menu_language">Sprache</string>
   <string name="new_project_hint">Neues Projekt...</string>
-  <string name="warning_no_results">Keine Projekte.</string>
   <string name="ok">Ok</string>
   <string name="search">Suchen</string>
   <string name="search_hint">Suchen...</string>
@@ -95,4 +98,5 @@
   <string name="tooltip_textureTypes">Die Texturtypen, die Du in die Konvertierungen einbeziehen möchtest.\nMSFS-Pakete können viele Texturen enthalten, und normalerweise arbeiten wir nur mit\n Albedo- (ALBD) und Kompositionsdateien (COMP).\nIn den meisten Fällen sollten Du also ALBD und COMP auswählen.\nWenn dein Projekt keine Metallic-Farben verwendet, können Du getrost nur ALBD auswählen.</string>
   <string name="true">True</string>
   <string name="warning_delete">Möchtest Du diesen Eintrag wirklich löschen?</string>
+  <string name="warning_no_results">Keine Projekte.</string>
 </resources>

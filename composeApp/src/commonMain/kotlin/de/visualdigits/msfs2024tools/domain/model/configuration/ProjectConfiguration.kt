@@ -27,7 +27,7 @@ import kotlin.reflect.KClass
 
 data class ProjectConfiguration(
 
-    var globalConfiguration: GlobalConfiguration?,
+    var settings: Settings?,
 
     var airplaneName: String? = null,
 
@@ -122,7 +122,7 @@ data class ProjectConfiguration(
     @Suppress("UNCHECKED_CAST")
     override fun <T : Any> getFieldValues(key: String, clazz: KClass<T>): List<Pair<String, T>> {
         return when (key) {
-            "airplaneName" -> globalConfiguration?.airplanes?.sorted()?.map { a -> Pair(a, a) } as List<Pair<String, T>>
+            "airplaneName" -> settings?.airplanes?.sorted()?.map { a -> Pair(a, a) } as List<Pair<String, T>>
             "textureFormat" -> TextureFormat.entries.map { e -> Pair(e.name, e.name) } as List<Pair<String, T>>
             "textureTypes" -> TextureType.entries.map { e -> Pair(e.name, e.name) }.sortedBy { e -> e.first } as List<Pair<String, T>>
             "thumbnailFile" -> listOf(Pair("jpg", "jpg"), Pair("png", "png")) as List<Pair<String, T>>
@@ -162,7 +162,7 @@ data class ProjectConfiguration(
 
     override fun clone(): ProjectConfiguration {
         return ProjectConfiguration(
-            globalConfiguration,
+            settings,
             airplaneName,
             liveryName,
             packageDir,
@@ -175,7 +175,7 @@ data class ProjectConfiguration(
 
     override fun update(other: ProjectConfiguration): ProjectConfiguration {
         return ProjectConfiguration(
-            other.globalConfiguration,
+            other.settings,
             airplaneName?:other.airplaneName,
             liveryName?:other.liveryName,
             packageDir?:other.packageDir,
@@ -232,9 +232,9 @@ data class ProjectConfiguration(
 
     override fun startDirectory(key: String): File {
         val rootFolder = when (key) {
-            "packageDir" -> globalConfiguration?.mainLibraryRootFolder
-            "packageTextureDir" -> packageDir ?: globalConfiguration?.mainLibraryRootFolder
-            "modelTexturesDir" -> globalConfiguration?.projectRootFolder
+            "packageDir" -> settings?.mainLibraryRootFolder
+            "packageTextureDir" -> packageDir ?: settings?.mainLibraryRootFolder
+            "modelTexturesDir" -> settings?.projectRootFolder
             else -> null
         }
         return rootFolder ?: File(System.getProperty("user.home"))
@@ -246,7 +246,7 @@ data class ProjectConfiguration(
 
         other as ProjectConfiguration
 
-        if (globalConfiguration != other.globalConfiguration) return false
+        if (settings != other.settings) return false
         if (airplaneName != other.airplaneName) return false
         if (liveryName != other.liveryName) return false
         if (packageDir != other.packageDir) return false
@@ -260,7 +260,7 @@ data class ProjectConfiguration(
     }
 
     override fun hashCode(): Int {
-        var result = globalConfiguration?.hashCode() ?: 0
+        var result = settings?.hashCode() ?: 0
         result = 31 * result + (airplaneName?.hashCode() ?: 0)
         result = 31 * result + (liveryName?.hashCode() ?: 0)
         result = 31 * result + (packageDir?.hashCode() ?: 0)

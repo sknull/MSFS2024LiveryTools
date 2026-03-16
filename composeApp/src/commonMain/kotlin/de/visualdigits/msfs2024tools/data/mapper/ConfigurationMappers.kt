@@ -1,14 +1,14 @@
 package de.visualdigits.msfs2024tools.data.mapper
 
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import java.io.File
 
-fun ProjectConfigurationDto.toProjectConfiguration(globalConfiguration: GlobalConfiguration): ProjectConfiguration {
+fun ProjectConfigurationDto.toProjectConfiguration(settings: Settings): ProjectConfiguration {
     return ProjectConfiguration(
-        globalConfiguration = globalConfiguration,
+        settings = settings,
         airplaneName = airplaneName,
         liveryName = liveryName,
         packageDir = packageDir?.let { File(it) },
@@ -31,8 +31,8 @@ fun ProjectConfiguration.toProjectConfigurationDto(): ProjectConfigurationDto {
     )
 }
 
-fun GlobalConfigurationDto.toGlobalConfiguration(): GlobalConfiguration {
-    val globalConfiguration = GlobalConfiguration(
+fun SettingsDto.toSettings(): Settings {
+    val settings = Settings(
         language = language,
         simType = simType,
         sdkRoot = File(sdkRoot),
@@ -42,11 +42,11 @@ fun GlobalConfigurationDto.toGlobalConfiguration(): GlobalConfiguration {
         projectRootFolder = projectRootFolder?.let { p -> File(p) },
         airplanes = airplanes
     )
-    return globalConfiguration
+    return settings
 }
 
-fun GlobalConfiguration.toGlobalConfigurationDto(): GlobalConfigurationDto {
-    val globalConfigurationDto = GlobalConfigurationDto(
+fun Settings.toSettingsDto(): SettingsDto {
+    val settingsDto = SettingsDto(
         language = language,
         simType = simType,
         sdkRoot = sdkRoot.canonicalPath,
@@ -56,5 +56,5 @@ fun GlobalConfiguration.toGlobalConfigurationDto(): GlobalConfigurationDto {
         projectRootFolder = projectRootFolder?.canonicalPath,
         airplanes = airplanes
     )
-    return globalConfigurationDto
+    return settingsDto
 }

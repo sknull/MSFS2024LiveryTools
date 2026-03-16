@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.data.datasource
 
 import de.visualdigits.common.domain.util.writeValueAsJsonFile
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
 import java.nio.file.Paths
 
@@ -9,40 +9,40 @@ class FilesystemConfigurationDataSource : ConfigurationDataSource {
 
     private val configurationFile = Paths.get(System.getProperty("user.home"), ".msfs2024liverytools", "configuration.json").toFile()
 
-    private var currentGlobalConfiguration: GlobalConfigurationDto = GlobalConfigurationDto()
+    private var currentSettings: SettingsDto = SettingsDto()
 
-    override fun loadConfiguration(): GlobalConfigurationDto {
-        currentGlobalConfiguration = if (configurationFile.exists()) {
-            GlobalConfigurationDto.readValue(configurationFile)
+    override fun loadSettings(): SettingsDto {
+        currentSettings = if (configurationFile.exists()) {
+            SettingsDto.readValue(configurationFile)
         } else {
-            GlobalConfigurationDto()
+            SettingsDto()
         }
 
-        return currentGlobalConfiguration
+        return currentSettings
     }
 
-    override suspend fun saveGlobalConfiguration(globalConfigurationDto: GlobalConfigurationDto) {
-        globalConfigurationDto.projects.clear()
-        globalConfigurationDto.projects.addAll(currentGlobalConfiguration.projects)
-        currentGlobalConfiguration = globalConfigurationDto
-        globalConfigurationDto.writeValueAsJsonFile(configurationFile)
+    override suspend fun saveSettings(settingsDto: SettingsDto) {
+        settingsDto.projects.clear()
+        settingsDto.projects.addAll(currentSettings.projects)
+        currentSettings = settingsDto
+        settingsDto.writeValueAsJsonFile(configurationFile)
     }
 
     override suspend fun saveProjectConfiguration(projectConfigurationDto: ProjectConfigurationDto) {
-        currentGlobalConfiguration.projects
+        currentSettings.projects
             .removeIf { p -> p.airplaneName == projectConfigurationDto.airplaneName && p.liveryName == projectConfigurationDto.liveryName }
-        currentGlobalConfiguration.projects.add(projectConfigurationDto)
-        currentGlobalConfiguration.writeValueAsJsonFile(configurationFile)
+        currentSettings.projects.add(projectConfigurationDto)
+        currentSettings.writeValueAsJsonFile(configurationFile)
     }
 
     override suspend fun updateProjectConfiguration(projectConfigurationDtos: List<ProjectConfigurationDto>) {
-        currentGlobalConfiguration.projects.clear()
-        currentGlobalConfiguration.projects.addAll(projectConfigurationDtos)
-        currentGlobalConfiguration.writeValueAsJsonFile(configurationFile)
+        currentSettings.projects.clear()
+        currentSettings.projects.addAll(projectConfigurationDtos)
+        currentSettings.writeValueAsJsonFile(configurationFile)
     }
 
     override suspend fun deleteProjectConfiguration(projectConfigurationDto: ProjectConfigurationDto) {
-        currentGlobalConfiguration.projects.remove(projectConfigurationDto)
-        currentGlobalConfiguration.writeValueAsJsonFile(configurationFile)
+        currentSettings.projects.remove(projectConfigurationDto)
+        currentSettings.writeValueAsJsonFile(configurationFile)
     }
 }

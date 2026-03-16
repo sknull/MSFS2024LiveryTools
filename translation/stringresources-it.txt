@@ -1,0 +1,99 @@
+Aggiungi
+Aggiungi...
+OCCUPATO...
+Annulla
+Scegli directory
+Scegli file
+Chiudi
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Elimina
+Modifica
+Modifica...
+È necessario impostare almeno il tipo di simulazione.
+Il disco è pieno
+File non trovato
+Impossibile analizzare il risultato
+Si è verificato un errore sconosciuto durante un'operazione locale
+Nessuna configurazione specificata
+È necessario impostare almeno il nome dell'aereo e il nome del livey.
+Connessione Internet persa
+Timeout della richiesta
+Impossibile analizzare il risultato
+Si è verificato un errore sconosciuto in un'operazione remota
+Campo sconosciuto nella configurazione
+Falso
+Il campo non è impostato.
+Importa impostazioni dallo strumento immagine
+Foo bar baz
+Nome dell'aereo
+Aerei
+Prova generale
+Contrassegna albedo HQ
+Contrassegna decalcomania HQ
+Contrassegna forza albedo senza alfa
+Contrassegna forza decalcomania senza alfa
+Directory ImageToMSFSKTX2
+Eseguibile dello strumento Layoutgenerator
+Nome livrea
+Lingua
+Directory principale della libreria
+Directory delle texture del modello
+Eseguibile di NVIDIA TextureTool
+Directory del pacchetto
+Directory texture pacchetto
+Directory principale del progetto
+Directory principale MSFS SDK
+Tipo di simulazione
+Formato texture
+Tipi di texture
+Tedesco
+Inglese
+Spagnolo
+Francese
+Italiano
+Turco
+Informazioni
+Aiuto
+Lingua
+Nuovo progetto...
+Ok
+Cerca
+Cerca...
+Mostra dettagli...
+Output errori
+Output
+Aerei
+Configurazione
+Progetti
+Elimina elemento
+Info
+Il nome dell'aereo per cui vuoi creare una livrea. # Deve essere univoco in tutti i tuoi progetti. # Se lavori su più livree per lo stesso aereo, assicurati che il nome sia coerente in tutti i tuoi progetti.
+I nomi di tutti gli aerei su cui lavori.
+Sfoglia directory.
+Sfoglia file.
+Contrassegna albedo HQ
+Contrassegna decalcomania HQ
+Contrassegna forza albedo senza alfa
+Contrassegna forza decalcomania senza alfa
+Directory ImageToMSFSKTX2
+Eseguibile dello strumento Layoutgenerator. # Poiché questo viene semplicemente inserito in un punto qualsiasi del tuo filesystem
+Il nome del progetto di livrea su cui stai lavorando. # Deve essere univoco in tutte le livree per un aereo.
+Lingua
+La directory principale della tua libreria di add-on # o dove conservi i pacchetti finali per la distribuzione. # Viene utilizzata come directory di partenza per i selettori di file.
+La directory delle texture del tuo progetto Blender (o qualunque programma tu utilizzi). # È la directory in cui risiedono le texture dei tuoi modelli sotto forma di file png.
+Eseguibile NVIDIA Texture Tool. # È obbligatorio e necessario per convertire le texture da qualsiasi formato di simulatore in PNG. # Il valore predefinito è C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe
+Apri in Esplora risorse.
+La directory principale della struttura dei componenti aggiuntivi all'interno della tua libreria principale.
+La directory della cartella delle texture all'interno del tuo pacchetto.
+La directory principale dei tuoi progetti Blender # o ovunque tu salvi le tue livree. # Viene utilizzata come directory di partenza per i selettori di file.
+Il campo non è modificabile.
+Directory principale dell'SDK di MSFS. # Se hai utilizzato ImageToMSFSKTX in precedenza, anche questo viene importato quando clicchi sul pulsante di importazione. # L'SDK è obbligatorio se lavori su progetti che utilizzano KTX2, poiché le immagini convertite # con lo strumento NVIDIA non funzioneranno nel simulatore. # Il valore predefinito è C:/MSFS 2024 SDK
+Lo store che stai utilizzando. # Microsoft o Steam. # Il valore predefinito è Microsoft.
+Il formato di texture con cui il tuo progetto funziona in MSFS2024. # DDS o KTX2. # Questo valore viene calcolato automaticamente dalla directory delle texture del pacchetto.
+I tipi di texture che si desidera includere nelle conversioni. # I pacchetti MSFS possono contenere molte texture e normalmente lavoriamo solo su #  file albedo (ALBD) e composizione (COMP). # Quindi nella maggior parte dei casi si desidera selezionare ALBD e COMP. # Se il progetto non utilizza colori metallici, è possibile scegliere tranquillamente solo ALBD.
+Vero
+Si desidera davvero eliminare questo elemento?
+Nessun progetto.

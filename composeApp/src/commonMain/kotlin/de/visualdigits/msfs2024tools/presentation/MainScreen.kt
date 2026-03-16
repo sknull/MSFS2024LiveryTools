@@ -39,7 +39,7 @@ import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.MsfsTabButt
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
 import de.visualdigits.msfs2024tools.presentation.components.tab.AirplanesTab
 import de.visualdigits.msfs2024tools.presentation.components.tab.MsfsTabButton
-import de.visualdigits.msfs2024tools.presentation.components.tab.GlobalConfigurationTab
+import de.visualdigits.msfs2024tools.presentation.components.tab.SettingsTab
 import de.visualdigits.msfs2024tools.presentation.components.tab.ProjectsTab
 import dev.chrisbanes.haze.HazeStyle
 import dev.chrisbanes.haze.HazeTint
@@ -190,7 +190,7 @@ private fun ProjectListScreen(
                     )
                 },
                 Res.string.tab_configuration to {
-                    GlobalConfigurationTab(
+                    SettingsTab(
                         state = state,
                         onProjectListAction = { action ->
                             msfs2024ToolsViewModel.onAction(action)

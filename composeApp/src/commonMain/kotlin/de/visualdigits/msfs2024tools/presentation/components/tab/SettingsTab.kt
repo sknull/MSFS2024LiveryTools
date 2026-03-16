@@ -27,7 +27,7 @@ import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.SpaceBetwee
 
 
 @Composable
-fun GlobalConfigurationTab(
+fun SettingsTab(
     state: Msfs2024ToolsState,
     onProjectListAction: (Msfs2024ToolsAction) -> Unit,
 ) {
@@ -53,7 +53,7 @@ fun GlobalConfigurationTab(
                 Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
             }
 
-            if (state.isEditingGlobalConfiguration) {
+            if (state.isEditingSettings) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize(),
@@ -70,41 +70,41 @@ fun GlobalConfigurationTab(
                         space = SpaceBetweenComponents,
                         onValueChange = { keyValue ->
                             onProjectListAction(
-                                Msfs2024ToolsAction.OnGlobalConfigurationValueChanged(
-                                    globalConfiguration = state.globalConfiguration,
+                                Msfs2024ToolsAction.OnSettingsValueChanged(
+                                    settings = state.settings,
                                     keyValue = keyValue
                                 )
                             )
                         },
                         onCancelClick = {
                             onProjectListAction(
-                                Msfs2024ToolsAction.OnEditGlobalConfigurationCancelClick()
+                                Msfs2024ToolsAction.OnEditSettingsCancelClick()
                             )
                         },
                         onOkClick = {
                             onProjectListAction(
-                                Msfs2024ToolsAction.OnSaveGlobalConfigurationClick(
-                                    globalConfiguration = state.globalConfiguration,
+                                Msfs2024ToolsAction.OnSaveSettingsClick(
+                                    settings = state.settings,
                                     projectConfigurations = state.projectConfigurations
                                 )
                             )
                         },
-                        configuration = state.globalConfiguration,
+                        configuration = state.settings,
                         state = state
                     )
                 }
             } else {
                 ConfigurationPanel(
-                    configuration = state.globalConfiguration,
+                    configuration = state.settings,
                     onEditClick = {
                         onProjectListAction(
-                            Msfs2024ToolsAction.OnEditGlobalConfigurationClick()
+                            Msfs2024ToolsAction.OnEditSettingsClick()
                         )
                     },
                     onOkClick = {
                         onProjectListAction(
                             Msfs2024ToolsAction.OnPanelOkClick(
-                                configuration = state.globalConfiguration
+                                configuration = state.settings
                             )
                         )
                     },

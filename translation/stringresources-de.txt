@@ -51,6 +51,10 @@ Texturformat
 Texturtypen
 Deutsch
 Englisch
+Spanisch
+Französisch
+Italienisch
+Türkisch
 Über
 Hilfe
 Sprache

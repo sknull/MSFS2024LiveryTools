@@ -154,7 +154,7 @@ fun ProjectsTab(
                                 )
                             },
                             onOkClick = {
-                                onProjectListAction(Msfs2024ToolsAction.OnPanelOkClick(state.globalConfiguration))
+                                onProjectListAction(Msfs2024ToolsAction.OnPanelOkClick(state.settings))
                             },
                             iconTint = ColorIcon,
                             space = SpaceBetweenComponents,

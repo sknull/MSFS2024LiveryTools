@@ -51,6 +51,10 @@ label_textureFormat
 label_textureTypes
 language_de
 language_en
+language_es
+language_fr
+language_it
+language_tr
 menu_about
 menu_help
 menu_language

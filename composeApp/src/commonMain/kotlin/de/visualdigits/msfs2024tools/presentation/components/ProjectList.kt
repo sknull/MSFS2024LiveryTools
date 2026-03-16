@@ -28,7 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.presentation.components.bevelBorder
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
@@ -92,7 +91,7 @@ fun ProjectList(
                     key = { project -> "body_${project.airplaneName}_${project.liveryName}" }
                 ) { project ->
                     ProjectListItem(
-                        globalConfiguration = state.globalConfiguration,
+                        settings = state.settings,
                         project = project,
                         hazeState = hazeState,
                         onClick = {

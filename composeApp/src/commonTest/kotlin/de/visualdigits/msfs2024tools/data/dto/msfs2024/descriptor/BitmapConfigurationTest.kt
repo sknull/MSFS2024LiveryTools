@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.data.dto.msfs2024.descriptor
 
 import de.visualdigits.common.domain.util.writeValueAsXmlString
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -9,7 +9,7 @@ import java.io.File
 
 class BitmapConfigurationTest {
 
-    private val globalConfiguration = GlobalConfigurationDto.readValue(File(ClassLoader.getSystemResource("msfs2024/msfs2024Tools.json").toURI()))
+    private val settings = SettingsDto.readValue(File(ClassLoader.getSystemResource("msfs2024/msfs2024Tools.json").toURI()))
 
     @Test
     fun testDefaultAlbd() {

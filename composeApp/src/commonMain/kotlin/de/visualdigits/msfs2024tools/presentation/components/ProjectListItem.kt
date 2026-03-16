@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorCardBackground
@@ -28,7 +28,7 @@ import dev.chrisbanes.haze.hazeEffect
 
 @Composable
 fun ProjectListItem(
-    globalConfiguration: GlobalConfiguration?,
+    settings: Settings?,
     project: ProjectConfiguration,
     hazeState: HazeState,
     onClick: () -> Unit,
@@ -64,7 +64,7 @@ fun ProjectListItem(
             ItemText(modifier = modifier, project = project)
             ItemButtons(
                 modifier = modifier,
-                globalConfiguration = globalConfiguration,
+                settings = settings,
                 project = project,
                 onProjectListAction = onProjectListAction
             )

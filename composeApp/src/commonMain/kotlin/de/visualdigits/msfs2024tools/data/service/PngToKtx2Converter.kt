@@ -6,7 +6,7 @@ import de.visualdigits.common.domain.util.WindowsUtils.runCommand
 import de.visualdigits.common.domain.util.copyToIfNotExists
 import de.visualdigits.common.domain.util.createDirectoryIfNotExists
 import de.visualdigits.common.domain.util.writeValueAsXmlFile
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.Project
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.assetpackage.AssetPackage
@@ -29,7 +29,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
      * Converts all png textures in the given sourceDir to ktx2.
      */
     override suspend fun convert(
-        globalConfiguration: GlobalConfigurationDto,
+        settingsDto: SettingsDto,
         projectConfiguration: ProjectConfigurationDto,
         progress: (Float) -> Unit,
         logger: (LogMessage) -> Unit,
@@ -56,7 +56,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
         if (!dryRun) {
             if (modifiedFiles.isNotEmpty()) {
                 runPackageTool(
-                    globalConfiguration = globalConfiguration,
+                    settingsDto = settingsDto,
                     projectConfiguration = projectConfiguration,
                     progress = progress,
                     logger = logger,
@@ -77,7 +77,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
 
         if (!dryRun && modifiedFiles.isNotEmpty()) {
             generateLayoutJsonFile(
-                globalConfiguration = globalConfiguration,
+                settingsDto = settingsDto,
                 projectConfiguration = projectConfiguration,
                 logger = logger,
             )
@@ -151,14 +151,14 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
     }
 
     private suspend fun runPackageTool(
-        globalConfiguration: GlobalConfigurationDto,
+        settingsDto: SettingsDto,
         projectConfiguration: ProjectConfigurationDto,
         progress: (Float) -> Unit,
         logger: (LogMessage) -> Unit = { },
         numberOfFiles: Float,
         tempDir: File
     ) = withContext(Dispatchers.IO) {
-        val msfsPackageToolPath = Paths.get(globalConfiguration.sdkRoot,"Tools", "bin", "fspackagetool.exe").absolutePathString()
+        val msfsPackageToolPath = Paths.get(settingsDto.sdkRoot,"Tools", "bin", "fspackagetool.exe").absolutePathString()
         check(File(msfsPackageToolPath).exists()) { "Package tool '$msfsPackageToolPath' does not exist - terminating" }
 
         val command = mutableListOf(
@@ -166,7 +166,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
             "-nopause",
             "-rebuild"
         )
-        if (globalConfiguration.simType == SimType.STEAM){
+        if (settingsDto.simType == SimType.STEAM){
             command.add("-forcesteam")
         }
         command.addAll(listOf(

@@ -1,13 +1,13 @@
 package de.visualdigits.msfs2024tools.data.datasource
 
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
 
 interface ConfigurationDataSource {
 
-    fun loadConfiguration(): GlobalConfigurationDto
+    fun loadSettings(): SettingsDto
 
-    suspend fun saveGlobalConfiguration(globalConfigurationDto: GlobalConfigurationDto)
+    suspend fun saveSettings(settingsDto: SettingsDto)
 
     suspend fun saveProjectConfiguration(projectConfigurationDto: ProjectConfigurationDto)
 

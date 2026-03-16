@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.data.dto.configuration
 
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration.Companion.NVIDIA_TEXTURETOOL_PATH_DEFAULT
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration.Companion.SDK_ROOT_DEFAULT
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings.Companion.NVIDIA_TEXTURETOOL_PATH_DEFAULT
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings.Companion.SDK_ROOT_DEFAULT
 import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.domain.model.type.SimType
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
@@ -13,7 +13,7 @@ import java.io.File
  * Global model valid for all projects.
  */
 @Serializable
-data class GlobalConfigurationDto(
+data class SettingsDto(
 
     var language: Language? = Language.EN,
 
@@ -50,15 +50,15 @@ data class GlobalConfigurationDto(
             encodeDefaults = true
         }
 
-        fun readValue(file: File): GlobalConfigurationDto {
+        fun readValue(file: File): SettingsDto {
             return if (file.exists()) {
                 try {
-                    mapper.decodeFromString<GlobalConfigurationDto>(file.readText())
+                    mapper.decodeFromString<SettingsDto>(file.readText())
                 } catch (e: Exception) {
                     throw IllegalStateException("Could not parse file '$file'", e)
                 }
             } else {
-                GlobalConfigurationDto()
+                SettingsDto()
             }
         }
     }

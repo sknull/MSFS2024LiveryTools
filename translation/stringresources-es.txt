@@ -1,0 +1,99 @@
+Añadir
+Añadir...
+OCUPADO...
+Cancelar
+Seleccionar directorio
+Seleccionar archivo
+Cerrar
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Eliminar
+Editar
+Editar...
+Se debe especificar al menos el tipo de simulación.
+El disco está lleno
+Archivo no encontrado
+No se pudo analizar el resultado
+Se ha producido un error desconocido en una operación local
+No se ha proporcionado ninguna configuración
+Al menos se debe establecer el nombre del avión y el nombre del livey.
+Se ha perdido la conexión a Internet
+La solicitud ha expirado
+No se pudo analizar el resultado
+Se ha producido un error desconocido en una operación remota
+Campo desconocido en la configuración
+Falso
+El campo no está establecido.
+Importar ajustes desde la herramienta de imagen
+Foo bar baz
+Nombre del avión
+Aviones
+Simulación
+Marcar albedo HQ
+Marcar calcomanía HQ
+Marcar albedo sin alfa
+Marcar calcomanía sin alfa
+Directorio ImageToMSFSKTX2
+Ejecutable de la herramienta Layoutgenerator
+Nombre de la librea
+Idioma
+Directorio raíz de la biblioteca principal
+Directorio de texturas del modelo
+Ejecutable de NVIDIA TextureTool
+Directorio del paquete
+Directorio de texturas del paquete
+Directorio raíz del proyecto
+Directorio raíz del SDK de MSFS
+Tipo de simulación
+Formato de textura
+Tipos de textura
+Alemán
+Inglés
+Español
+Francés
+Italiano
+Turco
+Acerca de
+Ayuda
+Idioma
+Nuevo proyecto...
+Aceptar
+Buscar
+Buscar...
+Mostrar detalles...
+Salida de errores
+Salida
+Aviones
+Configuración
+Proyectos
+Eliminar elemento
+Información
+El nombre del avión para el que desea crear una librea. # Debe ser único en todos sus proyectos. # Si trabaja en varias libreas para el avión, asegúrese de que el nombre sea coherente en todos sus proyectos.
+Los nombres de todos los aviones en los que trabaja.
+Explorar directorios.
+Explorar archivos.
+Marcar albedo HQ
+Marcar calcomanía HQ
+Marcar forzar albedo sin alfa
+Marcar forzar calcomanía sin alfa
+Directorio ImageToMSFSKTX2
+Ejecutable de la herramienta Layoutgenerator. # Ya que esto se coloca en cualquier lugar de tu sistema de archivos
+El nombre del proyecto de librea en el que estás trabajando. # Debe ser único en todas las libreas de un avión.
+Idioma
+El directorio raíz de tu biblioteca principal de complementos # o donde guardas tus paquetes finales para su entrega. # Se utiliza como directorio de inicio para los selectores de archivos.
+El directorio de texturas de tu proyecto de Blender (o cualquier otro programa con el que trabajes). # Este es el directorio donde se encuentran las texturas de tus modelos en forma de archivos PNG.
+Ejecutable de NVIDIA Texture Tool. # Es obligatorio y necesario para convertir texturas de cualquier formato de simulación a PNG. # El valor predeterminado es C:/Archivos de programa/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe
+Abrir en el Explorador.
+El directorio raíz de la estructura de complementos dentro de tu biblioteca principal.
+El directorio de la carpeta de texturas dentro de tu paquete.
+El directorio raíz de tus proyectos de Blender # o dondequiera que guardes tus libreas. # Se utiliza como directorio de inicio para los selectores de archivos.
+El campo no es editable.
+Directorio raíz del SDK de MSFS. # Si has utilizado ImageToMSFSKTX anteriormente, esto también se importará al hacer clic en el botón de importación. # El SDK es obligatorio si trabajas en proyectos que utilizan KTX2, ya que las imágenes convertidas # con la herramienta de NVIDIA no funcionarán en el simulador. # El valor predeterminado es C:/MSFS 2024 SDK
+La tienda que estás utilizando. # Microsoft o Steam. # El valor predeterminado es Microsoft.
+El formato de textura con el que funciona tu proyecto en MSFS 2024. # DDS o KTX2. # Este valor se calcula automáticamente a partir del directorio de texturas del paquete.
+Los tipos de textura que deseas incluir en las conversiones. # Los paquetes de MSFS pueden contener muchas texturas y, normalmente, solo trabajamos con #  archivos de albedo (ALBD) y composición (COMP). # Por lo tanto, en la mayoría de los casos querrás seleccionar ALBD y COMP. # Si tu proyecto no utiliza colores metálicos, puedes elegir solo ALBD sin problema.
+Verdadero
+¿De verdad quieres eliminar este elemento?
+No hay proyectos.

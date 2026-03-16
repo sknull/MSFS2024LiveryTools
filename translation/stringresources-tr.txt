@@ -1,0 +1,99 @@
+Ekle
+Ekle...
+MEŞGUL...
+İptal
+Dizini Seç
+Dosyayı Seç
+Kapat
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Sil
+Düzenle
+Düzenle...
+En azından sim türü ayarlanmalıdır.
+Disk dolu
+Dosya bulunamadı
+Sonuç çözümlenemedi
+Yerel işlemde bilinmeyen bir hata oluştu
+Yapılandırma belirtilmedi
+En azından uçak adı ve canlı adı ayarlanmalıdır.
+İnternet bağlantısı kesildi
+İstek zaman aşımına uğradı
+Sonuç çözümlenemedi
+Uzak işlemde bilinmeyen bir hata oluştu
+Yapılandırmada bilinmeyen alan
+Yanlış
+Alan ayarlanmadı.
+Görüntü Aracından Ayarları İçe Aktar
+Foo bar baz
+Uçak adı
+Uçaklar
+Deneme Çalıştırması
+HQ albedo bayrağı
+HQ çıkartma bayrağı
+Alfa albedo yok bayrağı
+Alfa çıkartma yok bayrağı
+ImageToMSFSKTX2 dizini
+Layoutgenerator aracı yürütülebilir dosyası
+Livery adı
+Dil
+Ana kütüphane kök dizini
+Model doku dizini
+NVIDIA texturetool yürütülebilir dosyası
+Paket dizini
+Paket doku dizini
+Proje kök dizini
+MSFS SDK kök dizini
+Simülasyon türü
+Doku biçimi
+Doku türleri
+Almanca
+İngilizce
+İspanyolca
+Fransızca
+İtalyanca
+Türkçe
+Hakkında
+Yardım
+Dil
+Yeni proje...
+Tamam
+Ara
+Ara...
+Ayrıntıları göster...
+Hata Çıktısı
+Çıktı
+Uçaklar
+Yapılandırma
+Projeler
+Öğeyi sil
+Bilgi
+Livery oluşturmak istediğiniz uçağın adı. # Tüm projelerinizde benzersiz olmalıdır. # Uçak için birden fazla livery üzerinde çalışıyorsanız, adın tüm projelerinizde tutarlı olduğundan emin olun.
+Üzerinde çalıştığınız tüm uçakların adları.
+Dizinlere göz at.
+Dosyalara göz at.
+HQ albedo işaretle
+HQ Decal işaretle
+Alfa albedo yok zorla işaretle
+Alfa decal yok zorla işaretle
+ImageToMSFSKTX2 dizini
+Layoutgenerator aracı yürütülebilir dosyası. # Bu, dosya sisteminizin herhangi bir yerine atıldığından
+Üzerinde çalıştığınız livery projesinin adı. # Bir uçak için tüm livery'lerde benzersiz olmalıdır.
+Dil
+Eklentilerinizin ana kütüphanesinin kök dizini # veya teslimat için son paketlerinizi sakladığınız yer. # Bu, dosya seçiciler için başlangıç dizini olarak kullanılır.
+Blender (veya çalıştığınız her neyse) projenizin doku dizini. # Bu, modellerinizin dokularının png dosyaları şeklinde bulunduğu dizindir.
+NVIDIA texturetool yürütülebilir dosyası. # Bu zorunludur ve dokuları herhangi bir sim formatından png'ye dönüştürmek için gereklidir. # Varsayılan değer C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe'dir.
+Explorer'da aç.
+Ana kütüphanenizdeki eklenti yapısının kök dizini.
+Paketinizdeki doku klasörünün dizini.
+Blender projelerinizin kök dizini # veya livery'lerinizi sakladığınız yer. # Bu, dosya seçiciler için başlangıç dizini olarak kullanılır.
+Alan düzenlenemez.
+MSFS SDK kök dizini. # Daha önce ImageToMSFSKTX kullandıysanız, bu da içe aktarma düğmesine tıkladığınızda içe aktarılır. # Görüntüler nvidia aracıyla dönüştürüldüğü için simülasyonda çalışmayacağından, KTX2 kullanan projelerde çalışıyorsanız sdk zorunludur. # Varsayılan değer C:/MSFS 2024 SDK'dır
+Kullandığınız mağaza. # Microsoft veya Steam'den biri. # Varsayılan değer Microsoft'tur.
+Projenizin MSFS2024'te çalıştığı doku biçimi. # DDS veya KTX2. # Bu değer, paket doku dizininden otomatik olarak hesaplanır.
+Dönüştürmelere dahil etmek istediğiniz doku türleri. # MSFS paketleri çok sayıda doku içerebilir ve normalde sadece #  albedo (ALBD) ve kompozisyon (COMP) dosyaları üzerinde çalışırız. # Bu nedenle çoğu zaman ALBD ve COMP'yi seçmek istersiniz. # Projeniz metalik renkler kullanmıyorsa, güvenle sadece ALBD'yi seçebilirsiniz.
+Doğru
+Bu öğeyi gerçekten silmek istiyor musunuz?
+Proje yok.

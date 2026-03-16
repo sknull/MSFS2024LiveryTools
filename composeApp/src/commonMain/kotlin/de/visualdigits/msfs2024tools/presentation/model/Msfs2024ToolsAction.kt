@@ -2,11 +2,11 @@ package de.visualdigits.msfs2024tools.presentation.model
 
 import de.visualdigits.common.domain.model.Configuration
 import de.visualdigits.common.domain.model.KeyValue
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
+import de.visualdigits.msfs2024tools.domain.model.type.Language
 import org.jetbrains.compose.resources.StringResource
-import java.util.Locale
 
 sealed interface Msfs2024ToolsAction {
 
@@ -17,7 +17,7 @@ sealed interface Msfs2024ToolsAction {
 
 
     data class OnLanguageSelected(
-        val locale: Locale,
+        val language: Language,
     ): Msfs2024ToolsAction
 
 
@@ -25,22 +25,22 @@ sealed interface Msfs2024ToolsAction {
     // Global Configuration
     //
 
-    class OnEditGlobalConfigurationClick : Msfs2024ToolsAction
+    class OnEditSettingsClick : Msfs2024ToolsAction
 
-    data class OnGlobalConfigurationValueChanged(
-        val globalConfiguration: GlobalConfiguration?,
+    data class OnSettingsValueChanged(
+        val settings: Settings?,
         val keyValue: KeyValue,
     ): Msfs2024ToolsAction
 
-    class OnEditGlobalConfigurationCancelClick : Msfs2024ToolsAction
+    class OnEditSettingsCancelClick : Msfs2024ToolsAction
 
-    data class OnSaveGlobalConfigurationClick(
-        val globalConfiguration: GlobalConfiguration?,
+    data class OnSaveSettingsClick(
+        val settings: Settings?,
         val projectConfigurations: List<ProjectConfiguration>
     ) : Msfs2024ToolsAction
 
     data class OnSaveAirplanesClick(
-        val globalConfiguration: GlobalConfiguration?,
+        val settings: Settings?,
         val projectConfigurations: List<ProjectConfiguration>
     ) : Msfs2024ToolsAction
 
@@ -79,7 +79,7 @@ sealed interface Msfs2024ToolsAction {
     ) : Msfs2024ToolsAction
 
     data class OnConversionClick(
-        val globalConfiguration: GlobalConfiguration?,
+        val settings: Settings?,
         val currentProjectConfiguration: ProjectConfiguration,
         val conversion: Conversion,
         val dryRun: Boolean

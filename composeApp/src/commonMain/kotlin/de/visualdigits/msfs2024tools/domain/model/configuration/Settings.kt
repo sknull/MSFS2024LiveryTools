@@ -23,7 +23,7 @@ import org.jetbrains.compose.resources.StringResource
 import java.io.File
 import kotlin.reflect.KClass
 
-data class GlobalConfiguration(
+data class Settings(
 
     var language: Language? = Language.EN,
 
@@ -47,7 +47,7 @@ data class GlobalConfiguration(
 
     /** The known airplanes */
     val airplanes: MutableList<String> = mutableListOf(),
-): Configuration<GlobalConfiguration> {
+): Configuration<Settings> {
 
     companion object {
 
@@ -60,8 +60,8 @@ data class GlobalConfiguration(
         return asMap().toList().joinToString(", ") { e -> "${e.first}=\"${e.second}\"" }
     }
 
-    override fun clone(): GlobalConfiguration {
-        return GlobalConfiguration(
+    override fun clone(): Settings {
+        return Settings(
             language,
             simType,
             sdkRoot,
@@ -73,8 +73,8 @@ data class GlobalConfiguration(
         )
     }
 
-    override fun update(other: GlobalConfiguration): GlobalConfiguration {
-        return GlobalConfiguration(
+    override fun update(other: Settings): Settings {
+        return Settings(
             language,
             simType?:other.simType,
             other.sdkRoot,
@@ -123,7 +123,7 @@ data class GlobalConfiguration(
         }
     }
 
-    override operator fun set(key: String, value: String): GlobalConfiguration {
+    override operator fun set(key: String, value: String): Settings {
         when (key) {
             "language" -> language = Language.valueOf(value)
             "simType" -> simType = SimType.valueOf(value)
@@ -142,7 +142,7 @@ data class GlobalConfiguration(
         return this
     }
 
-    override fun copy(key: String?, value: String?): GlobalConfiguration {
+    override fun copy(key: String?, value: String?): Settings {
         val newConfiguration = clone()
         when (key) {
             "language" -> newConfiguration.language = value?.let { v -> Language.valueOf(v)}

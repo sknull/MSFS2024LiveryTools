@@ -3,10 +3,16 @@ package de.visualdigits.msfs2024tools.presentation.components
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.FrameWindowScope
 import androidx.compose.ui.window.MenuBar
+import androidx.compose.ui.window.MenuScope
 import co.touchlab.kermit.Logger
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.domain.service.ConfigurationRepository
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
@@ -21,28 +27,38 @@ import msfs2024liverytools.composeapp.generated.resources.icon_language_24px
 import msfs2024liverytools.composeapp.generated.resources.menu_about
 import msfs2024liverytools.composeapp.generated.resources.menu_help
 import msfs2024liverytools.composeapp.generated.resources.menu_language
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.viewmodel.koinViewModel
 import java.util.Locale
 
 
 @Composable
 fun FrameWindowScope.Msfs2024MenuBar(
     scope: CoroutineScope,
+    msfs2024ToolsViewModel: Msfs2024ToolsViewModel,
     showInfoDialog: (Boolean) -> Unit,
     snackbarHostState: SnackbarHostState,
-    languageTrigger: (Locale) -> Unit
+    languageTrigger: (Language) -> Unit,
+    currentLanguage: Language
 ) {
+    var helpText by remember { mutableStateOf("") }
+    var aboutText by remember { mutableStateOf("") }
+    var langText by remember { mutableStateOf("") }
 
-    val msfs2024ToolsViewModel = koinViewModel<Msfs2024ToolsViewModel>()
+    LaunchedEffect(currentLanguage) {
+        helpText = getStringWithLocale(Res.string.menu_help, currentLanguage)
+        aboutText = getStringWithLocale(Res.string.menu_about, currentLanguage)
+        langText = getStringWithLocale(Res.string.menu_language, currentLanguage)
+    }
 
     MenuBar {
         Menu(
-            text = stringResource(Res.string.menu_help),
+            text = helpText,
         ) {
             Item(
-                text = stringResource(Res.string.menu_about),
+                text = aboutText,
                 icon = painterResource(Res.drawable.icon_info_24px),
                 onClick = {
                     showInfoDialog(true)
@@ -51,60 +67,72 @@ fun FrameWindowScope.Msfs2024MenuBar(
         }
 
         Menu(
-            text = stringResource(Res.string.menu_language),
+            text = langText,
         ) {
-            Item(
-                text = stringResource(Language.DE.resourceId),
-                icon = painterResource(Res.drawable.icon_language_24px),
-                onClick = {
-                    updateLanguage(
-                        scope,
-                        Language.DE,
-                        msfs2024ToolsViewModel.state.value.globalConfiguration?:error("No global configuration loaded"),
-                        msfs2024ToolsViewModel.configurationRepository,
-                        snackbarHostState
-                    ) {
-                        languageTrigger(it)
-                        msfs2024ToolsViewModel.onAction(Msfs2024ToolsAction.OnLanguageSelected(it))
-                    }
-                }
-            )
-
-            Item(
-                text = stringResource(Language.EN.resourceId),
-                icon = painterResource(Res.drawable.icon_language_24px),
-                onClick = {
-                    updateLanguage(
-                        scope,
-                        Language.EN,
-                        msfs2024ToolsViewModel.state.value.globalConfiguration?:error("No global configuration loaded"),
-                        msfs2024ToolsViewModel.configurationRepository,
-                        snackbarHostState
-                    ) {
-                        languageTrigger(it)
-                    }
-                }
-            )
+            Language.entries.forEach { language ->
+                LanguageItem(
+                    scope = scope,
+                    msfs2024ToolsViewModel = msfs2024ToolsViewModel,
+                    snackbarHostState = snackbarHostState,
+                    languageTrigger = languageTrigger,
+                    language = language,
+                    label= language.resourceId
+                )
+            }
         }
     }
+}
+
+suspend fun getStringWithLocale(resource: StringResource, locale: Language): String {
+    // Wir setzen die Default-Locale kurzzeitig fest, um den String zu laden,
+    // falls die Library nicht direkt auf Parameter reagiert.
+    // Da dies in einer Coroutine (suspend) läuft, blockiert es die UI nicht.
+    return getString(resource)
+}
+
+@Composable
+private fun MenuScope.LanguageItem(
+    scope: CoroutineScope,
+    msfs2024ToolsViewModel: Msfs2024ToolsViewModel,
+    snackbarHostState: SnackbarHostState,
+    language: Language,
+    label: StringResource,
+    languageTrigger: (Language) -> Unit
+) {
+    Item(
+        text = stringResource(label),
+        icon = painterResource(Res.drawable.icon_language_24px),
+        onClick = {
+            updateLanguage(
+                scope,
+                language,
+                msfs2024ToolsViewModel.state.value.settings ?: error("No global configuration loaded"),
+                msfs2024ToolsViewModel.configurationRepository,
+                snackbarHostState
+            ) {
+                languageTrigger(it)
+                msfs2024ToolsViewModel.onAction(Msfs2024ToolsAction.OnLanguageSelected(it))
+            }
+        }
+    )
 }
 
 private fun updateLanguage(
     scope: CoroutineScope,
     language: Language,
-    globalConfiguration: GlobalConfiguration,
+    settings: Settings,
     configurationRepository: ConfigurationRepository,
     snackbarHostState: SnackbarHostState,
-    onSuccess: (Locale) -> Unit
+    onSuccess: (Language) -> Unit
 ) {
     scope.launch {
         try {
             Locale.setDefault(language.locale)
-            globalConfiguration.set("language", language.name)
+            settings.set("language", language.name)
             withContext((Dispatchers.IO)) {
-                configurationRepository.saveGlobalConfiguration(globalConfiguration)
+                configurationRepository.saveSettings(settings)
             }
-            onSuccess(language.locale)
+            onSuccess(language)
         } catch (e: Exception) {
             snackbarHostState.showSnackbar(
                 message = "Fehler beim Speichern der Konfiguration: ${e.localizedMessage}",

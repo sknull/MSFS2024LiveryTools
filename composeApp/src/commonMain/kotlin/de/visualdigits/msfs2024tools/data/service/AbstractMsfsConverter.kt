@@ -2,7 +2,7 @@ package de.visualdigits.msfs2024tools.data.service
 
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.util.WindowsUtils.runCommand
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
@@ -32,7 +32,7 @@ abstract class AbstractMsfsConverter(
     }
 
     suspend fun convertWithNvidiaTextureTool(
-        globalConfiguration: GlobalConfigurationDto,
+        settingsDto: SettingsDto,
         sourceDirectory: File,
         suffixesSource: List<String>,
         targetDirectory: File,
@@ -58,7 +58,7 @@ abstract class AbstractMsfsConverter(
                     logger(log(Severity.Info, "Converting texture file '${f.name}'"))
                     val targetFile = File(targetDirectory, "${f.name.dropLast(charsToDrop)}$extensionToAdd")
                     val command = listOf(
-                        "\"${globalConfiguration.nvidiaTextureToolPath}\"",
+                        "\"${settingsDto.nvidiaTextureToolPath}\"",
                         "-o",
                         "\"${targetFile.canonicalPath}\"",
                         "\"${f.canonicalPath}\""
@@ -67,7 +67,7 @@ abstract class AbstractMsfsConverter(
                     if (!dryRun) {
                         runCommand(
                             command = command,
-                            workingDir = File(globalConfiguration.nvidiaTextureToolPath).parentFile?:error("No nvidia texture tool given"),
+                            workingDir = File(settingsDto.nvidiaTextureToolPath).parentFile?:error("No nvidia texture tool given"),
                             logger = logger,
                         )
                     } else {
@@ -106,11 +106,11 @@ abstract class AbstractMsfsConverter(
     }
 
     suspend fun generateLayoutJsonFile(
-        globalConfiguration: GlobalConfigurationDto,
+        settingsDto: SettingsDto,
         projectConfiguration: ProjectConfigurationDto,
         logger: (LogMessage) -> Unit,
     ) = withContext(dispatcher) {
-        val layoutGeneratorToolPath = globalConfiguration.layoutGeneratorToolPath
+        val layoutGeneratorToolPath = settingsDto.layoutGeneratorToolPath
         if (layoutGeneratorToolPath != null && File(layoutGeneratorToolPath).exists()) {
             logger(log(Severity.Info, "Generating ${projectConfiguration.packageDir}/layout.json"))
             val layoutFile = File(projectConfiguration.packageDir, "layout.json")

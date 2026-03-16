@@ -51,6 +51,10 @@ Texture format
 Texture types
 German
 English
+Spanish
+French
+Italian
+Turkish
 About
 Help
 Language

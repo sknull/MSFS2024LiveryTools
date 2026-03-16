@@ -1,18 +1,18 @@
 package de.visualdigits.msfs2024tools.presentation.model
 
 import de.visualdigits.common.domain.model.UiText
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
+import de.visualdigits.msfs2024tools.domain.model.type.Language
 import org.jetbrains.compose.resources.StringResource
-import java.util.Locale
 
 
 data class Msfs2024ToolsState(
-    val globalConfiguration: GlobalConfiguration? = null,
+    val settings: Settings? = null,
     val projectConfigurations: List<ProjectConfiguration> = listOf(),
 
-    val originalGlobalConfiguration: GlobalConfiguration? = null,
+    val originalSettings: Settings? = null,
 
     val originalProjectConfiguration: ProjectConfiguration? = null,
     val currentProjectConfiguration: ProjectConfiguration? = null,
@@ -22,9 +22,9 @@ data class Msfs2024ToolsState(
     val selectedTabIndex: Int = 0,
     val selectedTabLabel: StringResource? = null,
 
-    val selectedLocale: Locale? = null,
+    val language: Language? = null,
 
-    val isEditingGlobalConfiguration: Boolean = false,
+    val isEditingSettings: Boolean = false,
     val isEditingProjectConfiguration: Boolean = false,
 
     val isLoading: Boolean = false,

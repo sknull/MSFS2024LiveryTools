@@ -5,8 +5,8 @@ import de.visualdigits.msfs2024tools.data.datasource.FilesystemConfigurationData
 import de.visualdigits.msfs2024tools.data.dto.configuration.SetupProjectTest.Companion.setupProject
 import de.visualdigits.msfs2024tools.data.repository.DefaultConfigurationRepository
 import de.visualdigits.msfs2024tools.data.service.PngToKtx2Converter
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration.Companion.NVIDIA_TEXTURETOOL_PATH_DEFAULT
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration.Companion.SDK_ROOT_DEFAULT
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings.Companion.NVIDIA_TEXTURETOOL_PATH_DEFAULT
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings.Companion.SDK_ROOT_DEFAULT
 import de.visualdigits.msfs2024tools.domain.model.type.SimType
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import kotlinx.coroutines.runBlocking
@@ -52,7 +52,7 @@ class SetupGlobalTest {
         )
         runBlocking {
             PngToKtx2Converter.convert(
-                globalConfiguration = config,
+                settingsDto = config,
                 projectConfiguration = config["Boom XB1", "Nasa"]!!,
                 progress = { p -> println("#### PROGRESS: $p") },
                 logger = { lm -> println("#### $lm") },
@@ -192,8 +192,8 @@ class SetupGlobalTest {
         sdkRoot: String = SDK_ROOT_DEFAULT,
         nvidiaTextureToolPath: String = NVIDIA_TEXTURETOOL_PATH_DEFAULT,
         configFile: File,
-    ): GlobalConfigurationDto {
-        val config = GlobalConfigurationDto.readValue(configFile)
+    ): SettingsDto {
+        val config = SettingsDto.readValue(configFile)
         config.nvidiaTextureToolPath = nvidiaTextureToolPath
         config.simType = simType
         config.sdkRoot = sdkRoot

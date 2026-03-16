@@ -12,7 +12,7 @@ class SetupProjectTest {
     companion object {
 
         fun setupProject(
-            config: GlobalConfigurationDto,
+            config: SettingsDto,
             airplaneName: String,
             liveryName: String,
             packageDir: String,
@@ -43,7 +43,7 @@ class SetupProjectTest {
     fun testSetupProject() {
         val configFile = File(ClassLoader.getSystemResource("msfs2024/msfs2024Tools.json").toURI())
         val currentDir = configFile.parentFile.parentFile.canonicalPath
-        val config = GlobalConfigurationDto.readValue(configFile)
+        val config = SettingsDto.readValue(configFile)
 
         setupProject(
             config = config,

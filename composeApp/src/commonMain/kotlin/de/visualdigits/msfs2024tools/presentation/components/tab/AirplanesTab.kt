@@ -42,10 +42,10 @@ fun AirplanesTab(
             key = "airplaneName",
             label = stringResource(Res.string.label_airplanes),
             clazz = String::class.java,
-            options = state.globalConfiguration?.airplanes?.map { a -> Pair(a, a) }?:listOf(),
-            values = state.globalConfiguration?.airplanes?:listOf(),
+            options = state.settings?.airplanes?.map { a -> Pair(a, a) }?:listOf(),
+            values = state.settings?.airplanes?:listOf(),
             onValueChange = { keyValue ->
-                if (state.globalConfiguration?.airplanes != keyValue.value?.split(",")?.toMutableList()) {
+                if (state.settings?.airplanes != keyValue.value?.split(",")?.toMutableList()) {
                     val projectConfigurations = state.projectConfigurations
                     projectConfigurations.filter { p ->
                         p.airplaneName == keyValue.previousValue
@@ -57,7 +57,7 @@ fun AirplanesTab(
                     }
                     onProjectListAction(
                         Msfs2024ToolsAction.OnSaveAirplanesClick(
-                            globalConfiguration = state.globalConfiguration?.copy(key = "airplanes", value = keyValue.value),
+                            settings = state.settings?.copy(key = "airplanes", value = keyValue.value),
                             projectConfigurations = projectConfigurations
                         )
                     )

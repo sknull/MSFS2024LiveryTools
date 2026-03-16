@@ -21,7 +21,7 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.FlexibleTextButton
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
@@ -45,7 +45,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun RowScope.ItemButtons(
     modifier: Modifier,
-    globalConfiguration: GlobalConfiguration?,
+    settings: Settings?,
     project: ProjectConfiguration,
     onProjectListAction: (Msfs2024ToolsAction) -> Unit
 ) {
@@ -82,7 +82,7 @@ fun RowScope.ItemButtons(
                     onClick = {
                         onProjectListAction(
                             Msfs2024ToolsAction.OnConversionClick(
-                                globalConfiguration = globalConfiguration,
+                                settings = settings,
                                 currentProjectConfiguration = project,
                                 conversion = Conversion.PNG_TO_DDS,
                                 dryRun = isCheckedDryRun
@@ -109,7 +109,7 @@ fun RowScope.ItemButtons(
                     onClick = {
                         onProjectListAction(
                             Msfs2024ToolsAction.OnConversionClick(
-                                globalConfiguration = globalConfiguration,
+                                settings = settings,
                                 currentProjectConfiguration = project,
                                 conversion = Conversion.DDS_TO_PNG,
                                 dryRun = isCheckedDryRun
@@ -139,7 +139,7 @@ fun RowScope.ItemButtons(
                     onClick = {
                         onProjectListAction(
                             Msfs2024ToolsAction.OnConversionClick(
-                                globalConfiguration = globalConfiguration,
+                                settings = settings,
                                 currentProjectConfiguration = project,
                                 conversion = Conversion.PNG_TO_KTX2,
                                 dryRun = isCheckedDryRun
@@ -166,7 +166,7 @@ fun RowScope.ItemButtons(
                     onClick = {
                         onProjectListAction(
                             Msfs2024ToolsAction.OnConversionClick(
-                                globalConfiguration = globalConfiguration,
+                                settings = settings,
                                 currentProjectConfiguration = project,
                                 conversion = Conversion.KTX2_TO_PNG,
                                 dryRun = isCheckedDryRun

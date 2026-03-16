@@ -7,7 +7,7 @@ import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.onError
 import de.visualdigits.common.domain.model.onSuccess
 import de.visualdigits.common.domain.util.toUiText
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
@@ -39,7 +39,7 @@ class Msfs2024ToolsViewModel(
     private val _state = MutableStateFlow(Msfs2024ToolsState())
     val state: StateFlow<Msfs2024ToolsState> = _state
         .onStart {
-            if (_state.value.globalConfiguration == null ) {
+            if (_state.value.settings == null ) {
                 loadConfiguration()
             }
         }
@@ -59,49 +59,49 @@ class Msfs2024ToolsViewModel(
             //
             // Global Configuration
             //
-            is Msfs2024ToolsAction.OnEditGlobalConfigurationClick -> {
+            is Msfs2024ToolsAction.OnEditSettingsClick -> {
                 _state.update {
                     it.copy(
-                        originalGlobalConfiguration = it.globalConfiguration,
-                        isEditingGlobalConfiguration = true,
+                        originalSettings = it.settings,
+                        isEditingSettings = true,
                         errorMessage = null
                     )
                 }
             }
 
-            is Msfs2024ToolsAction.OnGlobalConfigurationValueChanged -> {
+            is Msfs2024ToolsAction.OnSettingsValueChanged -> {
                 _state.update {
-                    val globalConfiguration = action.globalConfiguration?.copy(
+                    val settings = action.settings?.copy(
                         key = action.keyValue.key,
                         value = action.keyValue.value
                     )
                     it.copy(
-                        globalConfiguration = globalConfiguration,
+                        settings = settings,
                     )
                 }
             }
 
-            is Msfs2024ToolsAction.OnEditGlobalConfigurationCancelClick -> {
+            is Msfs2024ToolsAction.OnEditSettingsCancelClick -> {
                 _state.update {
                     it.copy(
-                        globalConfiguration = it.originalGlobalConfiguration?.clone(),
-                        isEditingGlobalConfiguration = false,
+                        settings = it.originalSettings?.clone(),
+                        isEditingSettings = false,
                         errorMessage = null
                     )
                 }
             }
 
-            is Msfs2024ToolsAction.OnSaveGlobalConfigurationClick -> {
-                saveGlobalConfiguration(
-                    globalConfiguration = action.globalConfiguration,
+            is Msfs2024ToolsAction.OnSaveSettingsClick -> {
+                saveSettings(
+                    settings = action.settings,
                     projectConfigurations = action.projectConfigurations
                 )
             }
 
             is Msfs2024ToolsAction.OnSaveAirplanesClick -> {
-                action.globalConfiguration?.airplanes?.removeIf { a -> a.isBlank() }
-                saveGlobalConfiguration(
-                    globalConfiguration = action.globalConfiguration,
+                action.settings?.airplanes?.removeIf { a -> a.isBlank() }
+                saveSettings(
+                    settings = action.settings,
                     projectConfigurations = action.projectConfigurations
                 )
 
@@ -116,7 +116,7 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         currentProjectConfiguration = action.projectConfiguration,
-                        isEditingGlobalConfiguration = false,
+                        isEditingSettings = false,
                         isEditingProjectConfiguration = false,
                         errorMessage = null
                     )
@@ -125,7 +125,7 @@ class Msfs2024ToolsViewModel(
 
             is Msfs2024ToolsAction.OnNewProjectClick -> {
                 _state.update {
-                    val project = ProjectConfiguration(it.globalConfiguration)
+                    val project = ProjectConfiguration(it.settings)
                     it.copy(
                         originalProjectConfiguration = null,
                         currentProjectConfiguration = project,
@@ -191,7 +191,7 @@ class Msfs2024ToolsViewModel(
                     it.copy(
                         selectedTabIndex = action.index,
                         selectedTabLabel = action.label,
-                        isEditingGlobalConfiguration = false,
+                        isEditingSettings = false,
                         isEditingProjectConfiguration = false,
                         errorMessage = null
                     )
@@ -201,7 +201,7 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnLanguageSelected -> {
                 _state.update {
                     it.copy(
-                        selectedLocale = action.locale
+                        language = action.language
                     )
                 }
             }
@@ -210,7 +210,7 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         currentProjectConfiguration = null,
-                        isEditingGlobalConfiguration = false
+                        isEditingSettings = false
                     )
                 }
             }
@@ -226,7 +226,7 @@ class Msfs2024ToolsViewModel(
 
             is Msfs2024ToolsAction.OnConversionClick -> {
                 executeConversion(
-                    globalConfiguration = action.globalConfiguration?.clone(),
+                    settings = action.settings?.clone(),
                     projectConfiguration = action.currentProjectConfiguration.clone(),
                     conversion = action.conversion,
                     dryRun = action.dryRun,
@@ -256,10 +256,10 @@ class Msfs2024ToolsViewModel(
             )
         }
         configurationRepository.loadConfiguration()
-            .onSuccess { (globalConfiguration, projectConfigurations) ->
+            .onSuccess { (settings, projectConfigurations) ->
                 _state.update {
                     it.copy(
-                        globalConfiguration = globalConfiguration,
+                        settings = settings,
                         projectConfigurations = projectConfigurations,
                         isLoading = false
                     )
@@ -276,7 +276,7 @@ class Msfs2024ToolsViewModel(
     }
 
     private fun executeConversion(
-        globalConfiguration: GlobalConfiguration?,
+        settings: Settings?,
         projectConfiguration: ProjectConfiguration?,
         conversion: Conversion,
         dryRun: Boolean,
@@ -292,7 +292,7 @@ class Msfs2024ToolsViewModel(
             )
         }
         msfs2024Service.executeConversion(
-            configuration = globalConfiguration,
+            configuration = settings,
             project = projectConfiguration,
             conversion = conversion,
             dryRun = dryRun,
@@ -317,11 +317,11 @@ class Msfs2024ToolsViewModel(
             }
     }
 
-    private fun saveGlobalConfiguration(
-        globalConfiguration: GlobalConfiguration?,
+    private fun saveSettings(
+        settings: Settings?,
         projectConfigurations: List<ProjectConfiguration>
     ) = viewModelScope.launch {
-        if (globalConfiguration == null || globalConfiguration.simType == null) {
+        if (settings == null || settings.simType == null) {
             _state.update {
                 it.copy(
                     errorMessage = UiText.StringResourceId(Res.string.error_global_configuration_invalid),
@@ -331,9 +331,9 @@ class Msfs2024ToolsViewModel(
             return@launch
         }
 
-        // update globalConfiguration in all projects
+        // update settings in all projects
         projectConfigurations.forEach { p ->
-            p.globalConfiguration = globalConfiguration
+            p.settings = settings
         }
 
         _state.update {
@@ -342,13 +342,13 @@ class Msfs2024ToolsViewModel(
             )
         }
 
-        configurationRepository.saveGlobalConfiguration(globalConfiguration)
+        configurationRepository.saveSettings(settings)
             .onSuccess {
                 _state.update {
                     it.copy(
-                        globalConfiguration = globalConfiguration,
+                        settings = settings,
                         isLoading = false,
-                        isEditingGlobalConfiguration = false,
+                        isEditingSettings = false,
                         errorMessage = null
                     )
                 }
@@ -466,7 +466,7 @@ class Msfs2024ToolsViewModel(
                         projectConfigurations = (it.projectConfigurations - projectConfiguration),
                         isLoading = false,
                         errorMessage = null,
-                        isEditingGlobalConfiguration = false,
+                        isEditingSettings = false,
                         isEditingProjectConfiguration = false,
                     )
                 }

@@ -125,13 +125,14 @@ object TranslationUtil {
     ) {
         val sourceDir = Paths.get(rootDir.canonicalPath, "translation").toFile()
         val targetFile = File(sourceDir, "stringresources.csv")
-        val languages = targetFile.readLines().take(1).first().split(";").drop(1)
         val resourceKeys = File(sourceDir, "keys.txt").readLines()
         val expectedNumberOfRows = resourceKeys.size
 
         val sb = StringBuilder()
-        val data = sourceDir
+        val sourceFiles = sourceDir
             .listFiles { f -> f.isFile && f.name.startsWith("stringresources") && f.name.endsWith(".txt") }
+        val languages = sourceFiles.map { f -> f.name.replace("stringresources-", "").replace(".txt", "") }
+        val data = sourceFiles
             ?.associate { f ->
                 val language = f.name
                     .replace("stringresources-", "")
@@ -159,7 +160,7 @@ object TranslationUtil {
 
         return this
             // Special chars for KMP
-            .replace("'", "\\'")      // Apostroph -> \'
+//            .replace("'", "\\'")      // Apostroph -> \'
             .replace("\"", "\\\"")    // Anführungszeichen -> \"
             .replace("%", "%%")       // Prozent -> %% (wegen String.format)
             .replace("\n", "\\n")

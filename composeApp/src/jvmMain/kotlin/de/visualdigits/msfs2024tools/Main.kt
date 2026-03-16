@@ -6,6 +6,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -22,14 +23,15 @@ import androidx.compose.ui.window.rememberWindowState
 import com.formdev.flatlaf.FlatDarculaLaf
 import de.visualdigits.di.initKoin
 import de.visualdigits.msfs2024tools.data.datasource.FilesystemConfigurationDataSource
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
-import de.visualdigits.msfs2024tools.domain.model.configuration.GlobalConfiguration
+import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.presentation.components.Msfs2024InfoDialog
 import de.visualdigits.msfs2024tools.presentation.components.Msfs2024MenuBar
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
 import kotlinx.coroutines.cancel
 import msfs2024liverytools.composeapp.generated.resources.Msfs2024Tools
 import msfs2024liverytools.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 import java.util.Locale
 import javax.swing.UIManager
 
@@ -49,10 +51,9 @@ fun main() {
 
         UIManager.setLookAndFeel(FlatDarculaLaf())
 
-        val globalConfiguration = FilesystemConfigurationDataSource().loadConfiguration()
-        val locale = globalConfiguration.language?.locale?: Locale.ENGLISH
-        Locale.setDefault(locale)
-
+        val settingsDto = FilesystemConfigurationDataSource().loadSettings()
+        val language = settingsDto.language ?: Language.EN
+        Locale.setDefault(language.locale)
 
         Window(
             onCloseRequest = {
@@ -63,15 +64,37 @@ fun main() {
             icon = painterResource(Res.drawable.Msfs2024Tools),
             state = state
         ) {
-            val snackbarHostState = remember { SnackbarHostState() }
-            val scope = rememberCoroutineScope()
-            var languageTrigger by remember { mutableStateOf(locale) }
+            val msfs2024ToolsViewModel = koinViewModel<Msfs2024ToolsViewModel>()
+
+            var languageTrigger by remember { mutableStateOf(language) }
+            var menuVisible by remember { mutableStateOf(true) }
             var showInfoDialog by remember { mutableStateOf(false) }
+
+            if (menuVisible) {
+                Msfs2024MenuBar(
+                    scope = rememberCoroutineScope(),
+                    msfs2024ToolsViewModel = msfs2024ToolsViewModel,
+                    showInfoDialog = { showInfoDialog = it },
+                    snackbarHostState = remember { SnackbarHostState() },
+                    languageTrigger = {
+                        languageTrigger = it
+                        menuVisible = false
+                    },
+                    currentLanguage = languageTrigger
+                )
+            }
+
+            LaunchedEffect(menuVisible) {
+                if (!menuVisible) {
+                    kotlinx.coroutines.yield()
+                    menuVisible = true
+                }
+            }
 
             key(languageTrigger) {
                 MaterialTheme {
                     Scaffold(
-                        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+                        snackbarHost = { SnackbarHost(hostState = remember { SnackbarHostState() }) }
                     ) { padding ->
                         Box(
                             modifier = Modifier
@@ -87,13 +110,6 @@ fun main() {
                     )
                 }
             }
-
-            Msfs2024MenuBar(
-                scope = scope,
-                showInfoDialog = { showInfoDialog = it },
-                snackbarHostState = snackbarHostState,
-                languageTrigger = { languageTrigger = it }
-            )
         }
     }
 }

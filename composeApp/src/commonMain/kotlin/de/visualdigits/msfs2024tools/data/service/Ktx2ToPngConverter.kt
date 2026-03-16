@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.data.service
 
 import co.touchlab.kermit.Severity
-import de.visualdigits.msfs2024tools.data.dto.configuration.GlobalConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
@@ -12,7 +12,7 @@ import java.io.File
 object Ktx2ToPngConverter : AbstractMsfsConverter() {
 
     override suspend fun convert(
-        globalConfiguration: GlobalConfigurationDto,
+        settingsDto: SettingsDto,
         projectConfiguration: ProjectConfigurationDto,
         progress: (Float) -> Unit,
         logger: (LogMessage) -> Unit,
@@ -24,7 +24,7 @@ object Ktx2ToPngConverter : AbstractMsfsConverter() {
         if (checkDirectories(projectConfiguration, logger)) return@withContext false
 
         val files = convertWithNvidiaTextureTool(
-            globalConfiguration = globalConfiguration,
+            settingsDto = settingsDto,
             sourceDirectory = File(projectConfiguration.packageTextureDir),
             suffixesSource = projectConfiguration.textureTypes.map { tt -> "$tt.png.ktx2" },
             targetDirectory = File(projectConfiguration.modelTexturesDir),
