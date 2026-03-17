@@ -27,14 +27,6 @@ data class LogMessage(
             throwable: Throwable? = null
         ): LogMessage = LogMessage(severity, message, throwable)
 
-        inline fun logError(
-            message: String,
-            throwable: Throwable? = null
-        ): Nothing {
-            log(Severity.Error, message, throwable)
-            error(message)
-        }
-
         inline fun log(logMessage: LogMessage) {
             when (logMessage.severity) {
                 Severity.Info -> Logger.i(logMessage.message, logMessage.throwable)

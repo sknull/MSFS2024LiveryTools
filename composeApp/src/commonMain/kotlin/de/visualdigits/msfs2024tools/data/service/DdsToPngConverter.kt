@@ -1,8 +1,8 @@
 package de.visualdigits.msfs2024tools.data.service
 
 import co.touchlab.kermit.Severity
-import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
 import kotlinx.coroutines.Dispatchers
@@ -25,9 +25,9 @@ object DdsToPngConverter : AbstractMsfsConverter() {
 
         val files = convertWithNvidiaTextureTool(
             settingsDto = settingsDto,
-            sourceDirectory = File(projectConfiguration.packageTextureDir),
+            sourceDirectory = projectConfiguration.packageTextureDir?.let { f -> File(f) }?:error("No package texture directory"),
             suffixesSource = projectConfiguration.textureTypes.map { tt -> "$tt.png.dds" },
-            targetDirectory = File(projectConfiguration.modelTexturesDir),
+            targetDirectory = projectConfiguration.modelTexturesDir?.let { f -> File(f) }?:error("No model texture directory"),
             suffixesTarget = listOf(".png"),
             extensionToDrop = ".dds",
             progress = progress,

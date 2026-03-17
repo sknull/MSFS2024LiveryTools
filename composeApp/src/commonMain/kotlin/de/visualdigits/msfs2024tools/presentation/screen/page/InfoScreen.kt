@@ -1,5 +1,6 @@
-package de.visualdigits.msfs2024tools.presentation.screen
+package de.visualdigits.msfs2024tools.presentation.screen.page
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -15,12 +16,8 @@ import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
 import de.visualdigits.generated.AppConfig
-import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
+import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
-import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.HazeStyle
-import dev.chrisbanes.haze.HazeTint
-import dev.chrisbanes.haze.hazeEffect
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.title_info
 import org.jetbrains.compose.resources.stringResource
@@ -30,8 +27,6 @@ import java.time.temporal.ChronoField
 
 @Composable
 fun InfoScreen(
-    state: Msfs2024ToolsState,
-    hazeState: HazeState,
     modifier: Modifier = Modifier,
 ) {
     ScreenFrame(
@@ -42,16 +37,7 @@ fun InfoScreen(
         contentModifier = Modifier
             .fillMaxSize(fraction = 0.97f)
             .clip(ShapeContainer)
-            .hazeEffect(
-                state = hazeState,
-                style = HazeStyle(
-                    blurRadius = 10.dp,
-                    backgroundColor = Color.Unspecified,
-                    tint = HazeTint(Color.Black.copy(alpha = 0.4f))
-                )
-            ),
-        state = state,
-        hazeState = hazeState,
+            .background(Color.Black.copy(alpha = 0.4f)),
         label = stringResource(Res.string.title_info)
     ) {
         val linkColor = MaterialTheme.colorScheme.primary

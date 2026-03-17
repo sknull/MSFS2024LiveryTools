@@ -1,8 +1,8 @@
 package de.visualdigits.msfs2024tools.data.datasource
 
 import de.visualdigits.common.domain.util.writeValueAsJsonFile
-import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import java.nio.file.Paths
 
 class FilesystemConfigurationDataSource : ConfigurationDataSource {

@@ -34,6 +34,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import de.visualdigits.common.domain.util.value
 
 @Composable
 fun FlexibleTextButton(
@@ -54,7 +55,7 @@ fun FlexibleTextButton(
     buttonBrush: Brush? = null,
     buttonShape: Shape,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
-    hoverColor: Color? = Color.Red,
+    hoverColor: Color? = buttonColor?.value(factor = 1.7f),
     enabled: Boolean = true,
     border: BorderStroke? = null,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Center,
@@ -64,11 +65,12 @@ fun FlexibleTextButton(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
-    when {
+
+    val finalColor = when {
         !enabled -> colors.disabledContainerColor
         isHovered && hoverColor != null -> hoverColor
         isHovered -> (buttonColor ?: colors.containerColor).copy(alpha = 0.8f)
-        else -> Color.Transparent
+        else -> buttonColor?:Color.Unspecified
     }
 
     var boxModifier = modifier
@@ -93,7 +95,7 @@ fun FlexibleTextButton(
     if (buttonColor != null){
         boxModifier = boxModifier
             .background(
-                color = buttonColor
+                color = finalColor
             )
     }
 

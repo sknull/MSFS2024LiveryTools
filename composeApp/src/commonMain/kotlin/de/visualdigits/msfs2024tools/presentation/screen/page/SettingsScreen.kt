@@ -1,5 +1,6 @@
-package de.visualdigits.msfs2024tools.presentation.screen
+package de.visualdigits.msfs2024tools.presentation.screen.page
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,9 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.ErrorCard
-import de.visualdigits.msfs2024tools.presentation.components.common.BusyPanel
+import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
+import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorFocused
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
@@ -24,10 +26,6 @@ import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.PaddingCont
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeButton
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.SpaceBetweenComponents
-import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.HazeStyle
-import dev.chrisbanes.haze.HazeTint
-import dev.chrisbanes.haze.hazeEffect
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.label_configuration
 import org.jetbrains.compose.resources.stringResource
@@ -36,7 +34,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun SettingsScreen(
     state: Msfs2024ToolsState,
-    hazeState: HazeState,
     modifier: Modifier = Modifier,
     onAction: (Msfs2024ToolsAction) -> Unit,
 ) {
@@ -48,16 +45,7 @@ fun SettingsScreen(
         contentModifier = Modifier
             .fillMaxSize(fraction = 0.97f)
             .clip(ShapeContainer)
-            .hazeEffect(
-                state = hazeState,
-                style = HazeStyle(
-                    blurRadius = 10.dp,
-                    backgroundColor = Color.Unspecified,
-                    tint = HazeTint(Color.Black.copy(alpha = 0.4f))
-                )
-            ),
-        state = state,
-        hazeState = hazeState,
+            .background(Color.Black.copy(alpha = 0.4f)),
         label = stringResource(Res.string.label_configuration)
     ) {
         if (state.isLoading) {

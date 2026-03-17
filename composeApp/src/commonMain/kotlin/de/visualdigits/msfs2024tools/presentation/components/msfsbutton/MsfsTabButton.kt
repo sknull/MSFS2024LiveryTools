@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components.tab
+package de.visualdigits.msfs2024tools.presentation.components.msfsbutton
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,13 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.FlexibleTextButton
+import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.MsfsTabButtonSelectedBgColor
+import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.MsfsTabButtonSelectedFgColor
+import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.MsfsTabButtonUnselectedBrush
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeButton
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.icon_checkmark
@@ -30,9 +31,6 @@ fun MsfsTabButton(
     text: String,
     width: Dp = 160.dp,
     height: Dp = 50.dp,
-    selectedFgColor: Color,
-    selectedBgColor: Color,
-    unselectedBrush: Brush,
     paddingStart: Dp = 8.dp,
     paddingTop: Dp = 5.dp,
     paddingEnd: Dp = 0.dp,
@@ -44,7 +42,7 @@ fun MsfsTabButton(
         Box(
             modifier = modifier
                 .clip(ShapeButton)
-                .background(selectedBgColor)
+                .background(MsfsTabButtonSelectedBgColor)
                 .width(width)
                 .height(height),
         ) {
@@ -71,7 +69,7 @@ fun MsfsTabButton(
                 modifier = Modifier
                     .clip(ShapeButton)
                     .pointerHoverIcon(PointerIcon.Hand),
-                buttonColor = selectedFgColor,
+                buttonColor = MsfsTabButtonSelectedFgColor,
                 buttonShape = buttonShape,
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.Top
@@ -92,7 +90,7 @@ fun MsfsTabButton(
             modifier = Modifier
                 .clip(ShapeButton)
                 .pointerHoverIcon(PointerIcon.Hand),
-            buttonBrush = unselectedBrush,
+            buttonBrush = MsfsTabButtonUnselectedBrush,
             buttonShape = ShapeButton,
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.Top

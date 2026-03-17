@@ -2,13 +2,12 @@ package de.visualdigits.msfs2024tools.presentation.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.touchlab.kermit.Logger
 import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.onError
 import de.visualdigits.common.domain.model.onSuccess
 import de.visualdigits.common.domain.util.toUiText
-import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
@@ -50,10 +49,6 @@ class Msfs2024ToolsViewModel(
             SharingStarted.WhileSubscribed(5000L),
             _state.value
         )
-
-    init {
-        Logger.i("Application initialized")
-    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun onAction(action: Msfs2024ToolsAction) {

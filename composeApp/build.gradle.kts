@@ -1,11 +1,5 @@
 import de.visualdigits.common.util.TranslationUtil
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.gradle.api.DefaultTask
-import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.provider.Property
-import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.OutputDirectory
-import org.gradle.api.tasks.TaskAction
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -15,7 +9,7 @@ plugins {
     alias(libs.plugins.gradle.pdf)
 }
 
-version = "1.0.2"
+version = "1.0.3"
 
 buildscript {
     dependencies {
@@ -61,15 +55,11 @@ kotlin {
             implementation(libs.bundles.compose)
             implementation(libs.bundles.coil)
             implementation(libs.bundles.ktor)
-            implementation(libs.bundles.haze)
+            implementation(libs.bundles.koin)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.jetbrains.compose.navigation)
-
-            implementation(libs.koin.compose)
-            implementation(libs.koin.compose.viewmodel)
-            api(libs.koin.core)
 
             implementation(libs.kotlin.xml.util)
             implementation(libs.kotlin.xml.serialization)

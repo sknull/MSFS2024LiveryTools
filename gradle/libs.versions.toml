@@ -12,7 +12,6 @@ version-navigation-compose = "2.9.2"
 
 version-coil3 = "3.4.0"
 version-deskit = "1.4.1"
-version-haze = "1.7.2"
 version-koin = "4.1.1"
 version-ktor = "3.4.1"
 version-flatlaf = "3.7"
@@ -50,9 +49,6 @@ compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "version-je
 compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "version-jetbrains-kotlin" }
 
 deskit = { module = "com.github.zahid4kh:deskit", version.ref = "version-deskit" }
-
-haze = { module = "dev.chrisbanes.haze:haze", version.ref = "version-haze" }
-haze-materials = { module = "dev.chrisbanes.haze:haze-materials", version.ref = "version-haze" }
 
 jetbrains-compose-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref= "version-navigation-compose" }
 
@@ -116,8 +112,4 @@ coil = [
     "coil-network",
     "coil-network-ktor2",
     "coil-network-ktor3"
-]
-haze = [
-    "haze",
-    "haze-materials"
 ]

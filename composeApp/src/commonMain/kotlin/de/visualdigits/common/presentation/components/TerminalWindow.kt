@@ -31,7 +31,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
-import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.color
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 

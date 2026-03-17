@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.data.service
 
-import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Disabled

@@ -1,9 +1,9 @@
 package de.visualdigits.msfs2024tools.data.mapper
 
-import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
-import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import java.io.File
 
 fun ProjectConfigurationDto.toProjectConfiguration(settings: Settings): ProjectConfiguration {

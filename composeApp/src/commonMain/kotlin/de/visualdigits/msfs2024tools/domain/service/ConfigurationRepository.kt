@@ -1,8 +1,8 @@
 package de.visualdigits.msfs2024tools.domain.service
 
 import de.visualdigits.common.domain.model.Result
-import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.DataError
 
 interface ConfigurationRepository {

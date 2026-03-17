@@ -11,13 +11,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.background_arrows_title
-import msfs2024liverytools.composeapp.generated.resources.background_lufthansa_100
+import msfs2024liverytools.composeapp.generated.resources.background_lufthansa_100_baked
 
 abstract class StyleMSFS2024 {
 
-    val BackgroundImageMain = Res.drawable.background_lufthansa_100
-    val BackgroundArrows = Res.drawable.background_arrows_title
+    val BackgroundImageMain = Res.drawable.background_lufthansa_100_baked
     val BackgroundArrowsScale = 5.0f
     val BackgroundArrowsTranslationX = 0.13f
     val BackgroundArrowsTranslationy = 0.02f

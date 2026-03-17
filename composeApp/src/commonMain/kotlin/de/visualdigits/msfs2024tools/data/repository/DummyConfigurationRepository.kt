@@ -2,10 +2,10 @@ package de.visualdigits.msfs2024tools.data.repository
 
 import de.visualdigits.common.domain.model.Result
 import de.visualdigits.msfs2024tools.data.datasource.ConfigurationDataSource
-import de.visualdigits.msfs2024tools.data.mapper.toSettings
 import de.visualdigits.msfs2024tools.data.mapper.toProjectConfiguration
-import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
+import de.visualdigits.msfs2024tools.data.mapper.toSettings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.DataError
 import de.visualdigits.msfs2024tools.domain.service.ConfigurationRepository
 

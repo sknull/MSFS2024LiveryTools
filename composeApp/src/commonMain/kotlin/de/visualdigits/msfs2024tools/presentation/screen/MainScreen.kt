@@ -20,7 +20,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import de.visualdigits.common.presentation.components.SquaredIconButton
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
-import dev.chrisbanes.haze.rememberHazeState
+import de.visualdigits.msfs2024tools.presentation.screen.page.InfoScreen
+import de.visualdigits.msfs2024tools.presentation.screen.page.ProjectListScreen
+import de.visualdigits.msfs2024tools.presentation.screen.page.SettingsScreen
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.icon_info_24px
 import msfs2024liverytools.composeapp.generated.resources.icon_menu_24px
@@ -45,8 +47,6 @@ private fun MainScreen(
     viewModel: Msfs2024ToolsViewModel,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-
-    val hazeState = rememberHazeState(blurEnabled = true)
 
     Row(
         modifier = Modifier
@@ -119,18 +119,14 @@ private fun MainScreen(
             when {
                 state.isEditingSettings -> SettingsScreen(
                     state = state,
-                    hazeState = hazeState,
                     onAction = { action ->
                         viewModel.onAction(action)
                     }
                 )
                 state.isShowInfos -> InfoScreen(
-                    state = state,
-                    hazeState = hazeState
                 )
                 else -> ProjectListScreen(
                     state = state,
-                    hazeState = hazeState,
                     onAction = { action ->
                         viewModel.onAction(action)
                     }

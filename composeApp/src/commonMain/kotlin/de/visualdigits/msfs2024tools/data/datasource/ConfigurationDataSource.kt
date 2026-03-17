@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.data.datasource
 
-import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 
 interface ConfigurationDataSource {
 

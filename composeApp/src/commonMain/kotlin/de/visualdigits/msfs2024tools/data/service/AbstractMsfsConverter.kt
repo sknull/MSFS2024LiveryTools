@@ -2,8 +2,8 @@ package de.visualdigits.msfs2024tools.data.service
 
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.util.WindowsUtils.runCommand
-import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
 import kotlinx.coroutines.CoroutineDispatcher

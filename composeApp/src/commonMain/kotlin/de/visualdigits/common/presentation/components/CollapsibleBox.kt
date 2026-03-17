@@ -2,18 +2,27 @@ package de.visualdigits.common.presentation.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.input.pointer.PointerIcon
@@ -40,6 +50,7 @@ fun CollapsibleBox(
     title: String,
     unfocusedBorderColor: Color,
     focusedBorderColor: Color,
+    backgroundColor: Color,
     buttonShape: Shape,
     onStateChange: (Boolean) -> Unit = { },
     isExpanded: Boolean = false,
@@ -51,8 +62,15 @@ fun CollapsibleBox(
     BasicTextField(
         modifier = modifier
             .fillMaxWidth()
-            .animateContentSize()
-            .padding(top = 8.dp),
+            .padding(0.dp)
+            .clip(buttonShape)
+            .background(backgroundColor)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioNoBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            ),
         value = "",
         onValueChange = { },
         readOnly = true,
@@ -62,45 +80,48 @@ fun CollapsibleBox(
                 innerTextField = {
                     Column(
                         modifier = Modifier
+                            .fillMaxSize()
+                            .clip(buttonShape)
+                            .padding(8.dp)
                             .pointerHoverIcon(PointerIcon.Hand)
                             .clickable {
                                 isExpanded = !isExpanded
                                 onStateChange(isExpanded)
-                            }
-                            .fillMaxWidth(),
+                            },
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        if (isExpanded) {
-                            Icon(
-                                modifier = Modifier
-                                    .align(Alignment.End),
-                                painter = painterResource(Res.drawable.icon_arrow_drop_down_24px),
-                                contentDescription = null,
-                                tint = Color.White
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 8.dp)
+                        ) {
+                            Text(
+                                text = title,
+                                style = MaterialTheme.typography.titleSmall
                             )
 
-                            AnimatedVisibility(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                visible = isExpanded,
-                                enter = expandVertically() + fadeIn(),
-                                exit = shrinkVertically() + fadeOut()
-                            ) {
-                                content()
+                            Spacer(modifier = Modifier.weight(1f))
+                            if (isExpanded) {
+                                Icon(
+                                    painter = painterResource(Res.drawable.icon_arrow_drop_down_24px),
+                                    contentDescription = null,
+                                    tint = Color.White
+                                )
+                            } else {
+                                Icon(
+                                    painter = painterResource(Res.drawable.icon_arrow_right_24px),
+                                    contentDescription = null,
+                                    tint = Color.White
+                                )
                             }
-                        } else {
-                            Icon(
-                                modifier = Modifier
-                                    .align(Alignment.End),
-                                painter = painterResource(Res.drawable.icon_arrow_right_24px),
-                                contentDescription = null,
-                                tint = Color.White
-                            )
+                        }
+
+                        if (isExpanded) {
+                            content()
                         }
                     }
                 },
                 visualTransformation = VisualTransformation.None,
-                label = { Text(title) },
                 value = "",
                 singleLine = false,
                 enabled = true,
@@ -108,21 +129,21 @@ fun CollapsibleBox(
                 interactionSource = interactionSource,
                 colors = OutlinedTextFieldDefaults.colors(
                     unfocusedBorderColor = unfocusedBorderColor,
-                    focusedBorderColor = focusedBorderColor
+                    focusedBorderColor = focusedBorderColor,
                 ),
-                container = {
-                    OutlinedTextFieldDefaults.Container(
-                        enabled = true,
-                        isError = false,
-                        interactionSource = interactionSource,
-                        colors = OutlinedTextFieldDefaults.colors(
-                            unfocusedBorderColor = unfocusedBorderColor,
-                            focusedBorderColor = focusedBorderColor
-                        ),
-                        shape = buttonShape,
-                    )
-                }
-            )
+                contentPadding = PaddingValues(top = 8.dp, end = 0.dp, bottom = 0.dp, start = 0.dp)
+            ) {
+                OutlinedTextFieldDefaults.Container(
+                    enabled = true,
+                    isError = false,
+                    interactionSource = interactionSource,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedBorderColor = unfocusedBorderColor,
+                        focusedBorderColor = focusedBorderColor
+                    ),
+                    shape = buttonShape,
+                )
+            }
         }
     )
 }

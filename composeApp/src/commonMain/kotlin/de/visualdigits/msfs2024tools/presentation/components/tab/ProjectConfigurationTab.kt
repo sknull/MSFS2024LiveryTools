@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,19 +18,17 @@ import de.visualdigits.common.presentation.components.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.ConfigurationPanel
 import de.visualdigits.common.presentation.components.ErrorCard
 import de.visualdigits.common.presentation.components.FlexibleTextButton
-import de.visualdigits.msfs2024tools.presentation.components.ProjectList
-import de.visualdigits.msfs2024tools.presentation.components.common.BusyPanel
+import de.visualdigits.msfs2024tools.presentation.components.project.ProjectList
+import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorFocused
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorUnfocused
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.PaddingContainer
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeButton
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.SpaceBetweenComponents
-import dev.chrisbanes.haze.HazeState
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.icon_create_new_folder_24px
 import msfs2024liverytools.composeapp.generated.resources.new_project_hint
@@ -43,7 +40,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun ProjectsTab(
     state: Msfs2024ToolsState,
-    hazeState: HazeState,
     onProjectListAction: (Msfs2024ToolsAction) -> Unit
 ) {
     if (state.isLoading || state.isConverting) {
@@ -169,8 +165,7 @@ fun ProjectsTab(
             else -> {
                 ProjectList(
                     onProjectListAction = onProjectListAction,
-                    state = state,
-                    hazeState = hazeState
+                    state = state
                 )
             }
         }

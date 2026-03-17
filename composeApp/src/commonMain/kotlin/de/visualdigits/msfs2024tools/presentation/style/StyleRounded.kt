@@ -11,14 +11,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.background_arrows_title_round
-import msfs2024liverytools.composeapp.generated.resources.background_lufthansa_100
+import msfs2024liverytools.composeapp.generated.resources.background_lufthansa_100_baked
 
 
 abstract class StyleRounded {
 
-    val BackgroundImageMain = Res.drawable.background_lufthansa_100
-    val BackgroundArrows = Res.drawable.background_arrows_title_round
+    val BackgroundImageMain = Res.drawable.background_lufthansa_100_baked
     val BackgroundArrowsScale = 2.5f
     val BackgroundArrowsTranslationX = 0.3f
     val BackgroundArrowsTranslationy = 0.1f

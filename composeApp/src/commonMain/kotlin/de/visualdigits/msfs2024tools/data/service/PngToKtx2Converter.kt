@@ -6,8 +6,8 @@ import de.visualdigits.common.domain.util.WindowsUtils.runCommand
 import de.visualdigits.common.domain.util.copyToIfNotExists
 import de.visualdigits.common.domain.util.createDirectoryIfNotExists
 import de.visualdigits.common.domain.util.writeValueAsXmlFile
-import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
+import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.Project
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.assetpackage.AssetPackage
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.descriptor.BitmapConfiguration
@@ -40,6 +40,9 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
 
         if (checkDirectories(projectConfiguration, logger)) return@withContext false
 
+        val sourceDirectory = projectConfiguration.modelTexturesDir?.let { f -> File(f) }?:error("No model texture directory")
+        val targetDirectory = projectConfiguration.packageTextureDir?.let { f -> File(f) }?:error("No package texture directory")
+
         val tempDir = File(projectConfiguration.modelTexturesDir, "TempPackage")
             .createDirectoryIfNotExists(
                 logger = logger,
@@ -50,6 +53,8 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
         )
         val modifiedFiles = preprocessTextures(
             projectConfiguration = projectConfiguration,
+            sourceDirectory = sourceDirectory,
+            targetDirectory = targetDirectory,
             logger = logger,
             dryRun = dryRun
         )
@@ -57,14 +62,15 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
             if (modifiedFiles.isNotEmpty()) {
                 runPackageTool(
                     settingsDto = settingsDto,
-                    projectConfiguration = projectConfiguration,
+                    sourceDirectory = sourceDirectory,
                     progress = progress,
                     logger = logger,
                     numberOfFiles = modifiedFiles.size.toFloat(),
                     tempDir = tempDir
                 )
                 collectConvertedTextures(
-                    projectConfiguration = projectConfiguration,
+                    sourceDirectory = sourceDirectory,
+                    targetDirectory = targetDirectory,
                     logger = logger,
                 )
             } else {
@@ -110,6 +116,8 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
      */
     private suspend fun preprocessTextures(
         projectConfiguration: ProjectConfigurationDto,
+        sourceDirectory: File,
+        targetDirectory: File,
         logger: (LogMessage) -> Unit,
         dryRun: Boolean = false
     ): List<File> = withContext(Dispatchers.IO) {
@@ -121,9 +129,9 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
                     logger = logger,
                 )
         val modifiedFiles = determineModifiedFiles(
-            sourceDirectory = File(projectConfiguration.modelTexturesDir),
+            sourceDirectory = sourceDirectory,
             sourceSuffixes = projectConfiguration.textureTypes.map { tt -> "$tt.png" },
-            targetDirectory = File(projectConfiguration.packageTextureDir),
+            targetDirectory = targetDirectory,
             targetSuffixes = listOf(".ktx2")
         )
         modifiedFiles
@@ -154,7 +162,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
 
     private suspend fun runPackageTool(
         settingsDto: SettingsDto,
-        projectConfiguration: ProjectConfigurationDto,
+        sourceDirectory: File,
         progress: (Float) -> Unit,
         logger: (LogMessage) -> Unit = { },
         numberOfFiles: Float,
@@ -184,7 +192,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
             logger = logger,
         )
         var tasks = WindowsUtils.getRunningTasks()
-        val finalTexturesDir = File(projectConfiguration.modelTexturesDir)
+        val finalTexturesDir = sourceDirectory
             .resolve("TempPackage/Packages/png-2-ktx2/SimObjects/Airplanes/png-2-ktx2/common/texture")
 
         val detectedFiles = mutableSetOf<String>()
@@ -209,14 +217,15 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
     }
 
     private suspend fun collectConvertedTextures(
-        projectConfiguration: ProjectConfigurationDto,
+        sourceDirectory: File,
+        targetDirectory: File,
         logger: (LogMessage) -> Unit,
     ) = withContext(Dispatchers.IO) {
         logger(log(Severity.Info, "Copy ktx2 textures with descriptors..."))
-        val finalTexturesDir = File(projectConfiguration.modelTexturesDir)
+        val finalTexturesDir = sourceDirectory
             .resolve("TempPackage/Packages/png-2-ktx2/SimObjects/Airplanes/png-2-ktx2/common/texture")
         findFiles(finalTexturesDir, listOf(".ktx2", ".json"))
-            .forEach { f -> f.copyTo(File(projectConfiguration.packageTextureDir, f.name), overwrite = true) }
+            .forEach { f -> f.copyTo(File(targetDirectory, f.name), overwrite = true) }
     }
 
     fun findFiles(dir: File, suffixes: List<String>): List<File> {

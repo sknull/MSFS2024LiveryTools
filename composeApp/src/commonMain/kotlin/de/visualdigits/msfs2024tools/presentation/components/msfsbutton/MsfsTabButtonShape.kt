@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components.tab
+package de.visualdigits.msfs2024tools.presentation.components.msfsbutton
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -51,7 +51,7 @@ class MsfsTabButtonShape(
             // 5. Zurück nach oben links abrunden
             lineTo(0f, radiusF)
             arcTo(
-                rect = Rect(Offset.Zero, Size(2 * radiusF, 2 * radiusF)),
+                rect = Rect(Offset.Companion.Zero, Size(2 * radiusF, 2 * radiusF)),
                 startAngleDegrees = 180f,
                 sweepAngleDegrees = 90f,
                 forceMoveTo = false

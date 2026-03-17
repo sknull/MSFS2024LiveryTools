@@ -1,17 +1,15 @@
 package de.visualdigits.common.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,32 +60,24 @@ fun ConfigurationEditForm(
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(space)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(space),
-                horizontalArrangement = Arrangement.spacedBy(space)
-            ) {
-                items(
-                    items = configuration?.asMap()?.toList()?:listOf(),
-                    key = { item -> item.first }
-                ) { (key, value) ->
-                    val label = configuration?.labelResource(key)?.let { sr -> stringResource(sr) } ?: key
-                    val toolTip = configuration?.toolTipResource(key)?.let { sr -> stringResource(sr) }
-                    val startDirectory = configuration?.startDirectory(key)
-                    val clazz = configuration?.fieldClass(key)
-                    val fieldClass = clazz?.first?:Any::class.java
-                    val collectionClass = clazz?.second?:Any::class.java
-                    val isEditable = configuration?.fieldIsEditable(key)?:true
-                    if (configuration?.valid(key) == true) Color.Unspecified else Severity.Error.color()
-
-                    when {
-                        List::class.java.isAssignableFrom(collectionClass) -> {
-                            EditableList(
-                                height = fieldHeight,
+        configuration
+            ?.asMap()
+            ?.toList()
+            ?.chunked(2)
+            ?.forEach { rowItems ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(space)
+                ) {
+                    rowItems.forEach { (key, value) ->
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                        ) {
+                            EditableListField(
+                                configuration = configuration,
+                                key = key,
+                                fieldHeight = fieldHeight,
                                 space = space,
                                 unfocusedBorderColor = unfocusedBorderColor,
                                 focusedBorderColor = focusedBorderColor,
@@ -95,77 +85,18 @@ fun ConfigurationEditForm(
                                 buttonColor = buttonColor,
                                 buttonShape = buttonShape,
                                 containerShape = containerShape,
-                                key = key,
-                                label = label,
-                                clazz = fieldClass,
-                                fileMode = configuration?.fileMode(key),
-                                startDirectory = startDirectory,
-                                options = when {
-                                    StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
-                                        configuration
-                                            ?.fieldValues<StringResource>(key)
-                                            ?.map { (id, resorceId) -> Pair(id, stringResource(resorceId)) }
-                                            ?: listOf()
-                                    }
-
-                                    else -> {
-                                        configuration
-                                            ?.fieldValues<String>(key)
-                                            ?: listOf()
-                                    }
-                                },
-                                values = if (value?.isNotEmpty() == true) value.split(",").map { v -> v.trim() } else listOf(),
+                                value = value,
                                 onValueChange = onValueChange,
-                                enabled = isEditable,
-                                valid = {
-                                    configuration?.valid(key)
-                                },
                                 deleteAllowed = deleteAllowed
                             )
                         }
-                        else -> {
-                            val options = when {
-                                StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
-                                    configuration
-                                        ?.fieldValues<StringResource>(key)
-                                        ?.map { (id, resorceId) -> Pair(id, stringResource(resorceId)) }
-                                        ?: listOf()
-                                }
+                    }
 
-                                else -> {
-                                    configuration
-                                        ?.fieldValues<String>(key)
-                                        ?: listOf()
-                                }
-                            }
-                            TypeAwareEditableField(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                height = fieldHeight,
-                                clazz = fieldClass,
-                                fileMode = configuration?.fileMode(key),
-                                startDirectory = startDirectory,
-                                options = options,
-                                key = key,
-                                label = label,
-                                toolTip = toolTip,
-                                value = value,
-                                enabled = isEditable,
-                                unfocusedBorderColor = unfocusedBorderColor,
-                                focusedBorderColor = focusedBorderColor,
-                                iconTint = iconTint,
-                                buttonShape = buttonShape,
-                                buttonColor = buttonColor,
-                                onValueChange = onValueChange,
-                                valid = {
-                                    configuration?.valid(key)
-                                }
-                            )
-                        }
+                    repeat(2 - rowItems.size) {
+                        Spacer(modifier = Modifier.weight(1f))
                     }
                 }
             }
-        }
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(space),
@@ -209,6 +140,113 @@ fun ConfigurationEditForm(
                         contentDescription = null,
                         tint = iconTint
                     )
+                }
+            )
+        }
+    }
+}
+
+@Composable
+private fun EditableListField(
+    configuration: Configuration<*>?,
+    key: String,
+    fieldHeight: Dp,
+    space: Dp,
+    unfocusedBorderColor: Color,
+    focusedBorderColor: Color,
+    iconTint: Color,
+    buttonColor: Color,
+    buttonShape: Shape,
+    containerShape: Shape,
+    value: String?,
+    onValueChange: (KeyValue) -> Unit,
+    deleteAllowed: (String, String) -> Boolean
+) {
+    val label = configuration?.labelResource(key)?.let { sr -> stringResource(sr) } ?: key
+    val toolTip = configuration?.toolTipResource(key)?.let { sr -> stringResource(sr) }
+    val startDirectory = configuration?.startDirectory(key)
+    val clazz = configuration?.fieldClass(key)
+    val fieldClass = clazz?.first ?: Any::class.java
+    val collectionClass = clazz?.second ?: Any::class.java
+    val isEditable = configuration?.fieldIsEditable(key) ?: true
+    if (configuration?.valid(key) == true) Color.Unspecified else Severity.Error.color()
+
+    when {
+        List::class.java.isAssignableFrom(collectionClass) -> {
+            EditableList(
+                fieldHeight = fieldHeight,
+                space = space,
+                unfocusedBorderColor = unfocusedBorderColor,
+                focusedBorderColor = focusedBorderColor,
+                iconTint = iconTint,
+                buttonColor = buttonColor,
+                buttonShape = buttonShape,
+                containerShape = containerShape,
+                key = key,
+                label = label,
+                clazz = fieldClass,
+                fileMode = configuration?.fileMode(key),
+                startDirectory = startDirectory,
+                options = when {
+                    StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
+                        configuration
+                            ?.fieldValues<StringResource>(key)
+                            ?.map { (id, resorceId) -> Pair(id, stringResource(resorceId)) }
+                            ?: listOf()
+                    }
+
+                    else -> {
+                        configuration
+                            ?.fieldValues<String>(key)
+                            ?: listOf()
+                    }
+                },
+                values = if (value?.isNotEmpty() == true) value.split(",").map { v -> v.trim() } else listOf(),
+                onValueChange = onValueChange,
+                enabled = isEditable,
+                valid = {
+                    configuration?.valid(key)
+                },
+                deleteAllowed = deleteAllowed
+            )
+        }
+
+        else -> {
+            val options = when {
+                StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
+                    configuration
+                        ?.fieldValues<StringResource>(key)
+                        ?.map { (id, resorceId) -> Pair(id, stringResource(resorceId)) }
+                        ?: listOf()
+                }
+
+                else -> {
+                    configuration
+                        ?.fieldValues<String>(key)
+                        ?: listOf()
+                }
+            }
+            TypeAwareEditableField(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                height = fieldHeight,
+                clazz = fieldClass,
+                fileMode = configuration?.fileMode(key),
+                startDirectory = startDirectory,
+                options = options,
+                key = key,
+                label = label,
+                toolTip = toolTip,
+                value = value,
+                enabled = isEditable,
+                unfocusedBorderColor = unfocusedBorderColor,
+                focusedBorderColor = focusedBorderColor,
+                iconTint = iconTint,
+                buttonShape = buttonShape,
+                buttonColor = buttonColor,
+                onValueChange = onValueChange,
+                valid = {
+                    configuration?.valid(key)
                 }
             )
         }

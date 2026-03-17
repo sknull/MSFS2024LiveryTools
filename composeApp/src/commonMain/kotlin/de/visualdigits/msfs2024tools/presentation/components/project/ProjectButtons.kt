@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components
+package de.visualdigits.msfs2024tools.presentation.components.project
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,8 +21,8 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.FlexibleTextButton
-import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
@@ -43,7 +43,7 @@ import org.jetbrains.compose.resources.stringResource
 
 
 @Composable
-fun RowScope.ItemButtons(
+fun RowScope.ProjectButtons(
     modifier: Modifier,
     settings: Settings?,
     project: ProjectConfiguration,

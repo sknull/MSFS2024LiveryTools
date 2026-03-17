@@ -1,18 +1,24 @@
 package de.visualdigits.common.presentation.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.defaultScrollbarStyle
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.rememberScrollbarAdapter
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -26,6 +32,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.input.pointer.PointerIcon
@@ -53,7 +60,7 @@ import java.io.File
 @Composable
 fun EditableList(
     modifier: Modifier = Modifier,
-    height: Dp = Dp.Unspecified,
+    fieldHeight: Dp = Dp.Unspecified,
     space: Dp,
     unfocusedBorderColor: Color,
     focusedBorderColor: Color,
@@ -69,38 +76,36 @@ fun EditableList(
     options: List<Pair<String, String>>,
     values: List<String>,
     enabled: Boolean = true,
+    scrollable: Boolean = false,
     onValueChange: (KeyValue) -> Unit,
     valid: () -> Boolean? = { true },
     deleteAllowed: (String, String) -> Boolean = { _, _ -> true }
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+
     val previousItems = remember(values) { values.toMutableStateList() }
     val items = remember(values) { values.toMutableStateList() }
     var showDialog by remember { mutableStateOf(false) }
     var editingIndex by remember { mutableStateOf<Int?>(null) }
     var currentText by remember { mutableStateOf<String?>(null) }
 
-    Card(
+    Box(
         modifier = modifier
-            .padding(top = 8.dp)
-            .border(1.dp, unfocusedBorderColor, containerShape)
-            .fillMaxWidth(),
-        shape = containerShape,
-        colors = CardColors(
-            containerColor = Color.Transparent,
-            contentColor = Color.Transparent,
-            disabledContainerColor = Color.Transparent,
-            disabledContentColor = Color.Transparent
-        )
+            .fillMaxWidth()
+            .padding(8.dp)
+            .border(1.dp, unfocusedBorderColor, buttonShape)
     ) {
+        val scrollState = rememberScrollState(0)
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(space)
         ) {
             Text(
-                modifier = Modifier
-                    .offset(0.dp, (-5).dp),
+                modifier = Modifier,
                 text = label,
                 style = MaterialTheme.typography.bodySmall,
             )
@@ -110,8 +115,8 @@ fun EditableList(
 
                 Surface(
                     modifier = Modifier
-                        .height(height * 0.75f)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .height(fieldHeight * 0.75f),
                     shape = buttonShape,
                     color = Color.Transparent,
                     border = BorderStroke(
@@ -121,9 +126,9 @@ fun EditableList(
                 ) {
                     Row(
                         modifier = Modifier
+                            .fillMaxWidth()
                             .background(Color.Transparent)
-                            .padding(start = 8.dp, end = 0.dp)
-                            .fillMaxWidth(),
+                            .padding(start = 8.dp, end = 0.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(1.dp)
                     ) {
@@ -172,30 +177,52 @@ fun EditableList(
             }
 
             if (enabled) {
-                FlexibleTextButton(
-                    text = stringResource(Res.string.add_hint),
-                    height = 30.dp,
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
-                    onClick = {
-                        editingIndex = null
-                        currentText = ""
-                        showDialog = true
-                    },
+                Box(
                     modifier = Modifier
-                        .pointerHoverIcon(PointerIcon.Hand)
-                        .align(Alignment.End),
-                    buttonColor = buttonColor,
-                    buttonShape = buttonShape,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_add_24px),
-                            contentDescription = stringResource(Res.string.add_hint),
-                            tint = iconTint
-                        )
-                    },
-                )
+                        .fillMaxWidth()
+                ) {
+                    FlexibleTextButton(
+                        text = stringResource(Res.string.add_hint),
+                        height = 30.dp,
+                        paddingStart = 0.dp,
+                        paddingTop = 0.dp,
+                        onClick = {
+                            editingIndex = null
+                            currentText = ""
+                            showDialog = true
+                        },
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .pointerHoverIcon(PointerIcon.Hand),
+                        buttonColor = buttonColor,
+                        buttonShape = buttonShape,
+                        leadingIcon = {
+                            Icon(
+                                painter = painterResource(Res.drawable.icon_add_24px),
+                                contentDescription = stringResource(Res.string.add_hint),
+                                tint = iconTint
+                            )
+                        },
+                    )
+                }
             }
+        }
+
+        if (scrollable) {
+            VerticalScrollbar(
+                adapter = rememberScrollbarAdapter(scrollState = scrollState),
+                interactionSource = interactionSource,
+                modifier = Modifier
+                    .clip(containerShape)
+                    .align(Alignment.CenterEnd)
+                    .fillMaxHeight()
+                    .background(Color.Black.copy(alpha = 0.4f))
+                    .width(8.dp),
+                style = defaultScrollbarStyle().copy(
+                    unhoverColor = Color.White.copy(alpha = 0.6f),
+                    hoverColor = Color.White.copy(alpha = 0.8f)
+                )
+            )
         }
     }
 
@@ -214,7 +241,7 @@ fun EditableList(
                     modifier = Modifier
                         .fillMaxWidth(),
                     enabled = enabled,
-                    height = height,
+                    height = fieldHeight,
                     clazz = clazz,
                     fileMode = fileMode,
                     startDirectory = startDirectory,
