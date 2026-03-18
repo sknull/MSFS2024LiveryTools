@@ -1,30 +1,20 @@
 package de.visualdigits.msfs2024tools.presentation.components.project
 
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.defaultScrollbarStyle
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -69,13 +59,14 @@ fun ProjectList(
                     Pair(airplaneName, projects.sortedBy { p -> p.liveryName })
                 }
 
-            projects.forEach { (airplaneName, projects) ->
+            projects.forEach { (airplaneName, liveries) ->
                 CollapsibleBox(
                     title = airplaneName!!,
                     unfocusedBorderColor = ColorUnfocused,
                     focusedBorderColor = ColorFocused,
                     backgroundColor = Color.Black.copy(alpha = 0.2f),
                     buttonShape = ShapeButton,
+                    isExpanded = projects.size == 1
                 ) {
                     Column(
                         modifier = Modifier
@@ -83,7 +74,7 @@ fun ProjectList(
                             .clip(ShapeContainer),
                         verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
                     ) {
-                        projects.forEach { project ->
+                        liveries.forEach { project ->
                             ProjectItem(
                                 settings = state.settings,
                                 project = project,

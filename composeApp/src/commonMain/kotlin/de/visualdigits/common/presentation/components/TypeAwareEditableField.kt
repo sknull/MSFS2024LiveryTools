@@ -15,6 +15,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Severity
@@ -42,7 +43,7 @@ fun TypeAwareEditableField(
     clazz: Class<out Any>,
     fileMode: FileMode? = null,
     startDirectory: File?,
-    options: List<Pair<String, String>>,
+    options: List<Triple<String, String, Painter?>>,
     key: String,
     label: String,
     toolTip: String? = null,

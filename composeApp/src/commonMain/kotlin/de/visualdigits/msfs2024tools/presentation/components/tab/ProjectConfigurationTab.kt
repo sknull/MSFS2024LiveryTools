@@ -18,8 +18,8 @@ import de.visualdigits.common.presentation.components.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.ConfigurationPanel
 import de.visualdigits.common.presentation.components.ErrorCard
 import de.visualdigits.common.presentation.components.FlexibleTextButton
-import de.visualdigits.msfs2024tools.presentation.components.project.ProjectList
 import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
+import de.visualdigits.msfs2024tools.presentation.components.project.ProjectList
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton

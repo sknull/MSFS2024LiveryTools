@@ -51,11 +51,28 @@ Directory principale MSFS SDK
 Tipo di simulazione
 Formato texture
 Tipi di texture
+
+
 Tedesco
+
 Inglese
 Spagnolo
+
 Francese
+
+
+
+
 Italiano
+
+
+
+
+
+
+
+
+
 Turco
 Informazioni
 Aiuto

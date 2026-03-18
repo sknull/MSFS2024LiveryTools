@@ -1,0 +1,116 @@
+Přidat
+Přidat...
+ZABRÁNO...
+Zrušit
+Vybrat adresář
+Vybrat soubor
+Zavřít
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Odstranit
+Upravit
+Upravit...
+Je nutné zadat alespoň typ simulátoru.
+Pevný disk je plný.
+Soubor nebyl nalezen.
+Výsledek nebylo možné analyzovat.
+Při lokální operaci došlo k neznámé chybě.
+Není zadána žádná konfigurace.
+Musí být nastaven alespoň název letadla a název lakování.
+Přerušení internetového připojení.
+Požadavek vypršel.
+Výsledek nebylo možné analyzovat.
+Při vzdálené operaci došlo k neznámé chybě.
+Pole v konfiguraci není známo.
+Chybné.
+Pole není zadáno.
+Importovat nastavení z nástroje pro obrázky
+Foo bar baz
+Název letadla
+Letadla
+Konfigurace
+Suchý běh
+Příznak HQ Albedo
+Příznak HQ Decal
+Příznak force no alpha albedo
+Příznak force no alpha decal
+Adresář ImageToMSFSKTX2
+Jazyk
+Spustitelný nástroj pro generování rozvržení
+Název lakování
+Jazyk
+Kořenová složka knihovny
+Kořenová složka textur modelu
+Spustitelný nástroj pro textury NVIDIA
+Adresář balíčku
+Adresář textur balíčku
+Kořenový adresář projektu
+Kořenový adresář MSFS SDK
+Typ simulace
+Formát textury
+Typy textur
+Bulharština
+Čeština
+Němčina
+Dánština
+Angličtina
+Španělština
+Finština
+Francouzština
+Řečtina
+Chorvatština
+Maďarština
+Irština
+Italština
+Nizozemština
+Norština
+Polština
+Portugalština
+Rumunština
+Srbština
+Švédština
+Slovenština
+Slovinština
+Turečtina
+O aplikaci
+Nápověda
+Nový projekt...
+OK
+Hledat
+Hledat...
+Zobrazit podrobnosti...
+Výpis chyb
+Výstup
+Letadla
+Projekty
+Odstranit prvek
+Info
+Název letadla, pro které chcete vytvořit lakování. # Měl by být jedinečný ve všech vašich projektech. # Pokud pracujete na více lakováních pro dané letadlo, ujistěte se, že název je ve všech vašich projektech konzistentní.
+Názvy všech letadel, na kterých pracujete.
+Prohledat adresáře.
+Prohledat soubory.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+Adresář ImageToMSFSKTX2
+Spustitelný soubor nástroje pro generování rozvržení. # Jelikož je tento soubor uložen kdekoli ve vašem souborovém systému
+Název projektu lakování, na kterém pracujete. # Měl by být jedinečný pro všechna lakování daného letadla.
+Jazyk
+Kořenová složka vaší hlavní knihovny s doplňky # nebo místo, kde ukládáte své finální balíčky pro distribuci. # Toto se používá jako výchozí adresář pro Filechoose.
+Adresář textur vašeho projektu Blender (nebo projektu, na kterém pracujete). # Toto je adresář, ve kterém jsou uloženy textury vašich modelů ve formě souborů PNG.
+Spustitelný soubor „NVIDIA Texturetool“. # Toto je povinné a nezbytné pro převod textur z jakéhokoli simulačního formátu do formátu PNG. # Výchozí cesta je C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Otevřít v Průzkumníku.
+Kořenová složka struktury doplňků ve vaší hlavní knihovně.
+Adresář složky textur ve vašem balíčku.
+Kořenová složka vašich projektů Blenderu # nebo kdekoli jinde, kde ukládáte své laky. # Toto se používá jako výchozí adresář pro výběr souborů.
+Pole nelze upravovat.
+Kořenová složka MSFS SDK. # Pokud jste dříve používali ImageToMSFSKTX2, bude toto také importováno, když kliknete na tlačítko „Importovat“. # SDK je povinné, pokud pracujete na projektech, které používají formát KTX2, protože obrázky převedené nástrojem NVIDIA v simulátoru nefungují. # Výchozí hodnota je C:/MSFS 2024 SDK
+Obchod, který používáš. # Buď Microsoft, nebo Steam. # Výchozí nastavení je Microsoft.
+Formát textur, se kterým tvůj projekt v MSFS2024 pracuje. # DDS nebo KTX2. # Tato hodnota se automaticky vypočítá z adresáře textur balíčku.
+Typy textur, které chceš zahrnout do konverzí. # Balíčky MSFS mohou obsahovat mnoho textur a obvykle pracujeme pouze s #  albedovými (ALBD) a kompozičními soubory (COMP). # Ve většině případů byste tedy měli vybrat ALBD a COMP. # Pokud váš projekt nepoužívá metalické barvy, můžete bez obav vybrat pouze ALBD.
+True
+Opravdu chcete tento záznam smazat?
+Žádné projekty.

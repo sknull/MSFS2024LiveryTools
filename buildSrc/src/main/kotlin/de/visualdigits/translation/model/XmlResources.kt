@@ -1,4 +1,4 @@
-package de.visualdigits.common.util
+package de.visualdigits.translation.model
 
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlSerialName

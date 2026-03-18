@@ -51,11 +51,28 @@ MSFS SDK kök dizini
 Simülasyon türü
 Doku biçimi
 Doku türleri
+
+
 Almanca
+
 İngilizce
 İspanyolca
+
 Fransızca
+
+
+
+
 İtalyanca
+
+
+
+
+
+
+
+
+
 Türkçe
 Hakkında
 Yardım

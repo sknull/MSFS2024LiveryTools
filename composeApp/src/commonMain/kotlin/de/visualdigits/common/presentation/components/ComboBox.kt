@@ -1,5 +1,6 @@
 package de.visualdigits.common.presentation.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
@@ -21,9 +22,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.KeyValue
 import de.visualdigits.common.domain.model.color
@@ -39,7 +42,7 @@ fun ComboBox(
     height: Dp = Dp.Unspecified,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    options: List<Pair<String, String>>,
+    options: List<Triple<String, String, Painter?>>,
     key: String,
     label: String,
     toolTip: String? = null,
@@ -79,10 +82,21 @@ fun ComboBox(
                             textFieldState.setTextAndPlaceCursorAtEnd(option.first)
                             expanded = false
                         },
+                        leadingIcon = {
+                            option.third?.let { icon ->
+                                Image(
+                                    painter = icon,
+                                    contentDescription = option.first,
+                                    modifier = Modifier
+                                        .height(30.dp)
+                                )
+                            }
+                        },
                         text = {
                             Text(text = option.second)
                         },
                         modifier = Modifier
+                            .height(30.dp)
                             .pointerHoverIcon(PointerIcon.Hand)
                     )
                 }
@@ -170,8 +184,8 @@ fun BooleanComboBox(
         enabled = enabled,
         height = height,
         options = listOf(
-            Pair("true", stringResource(Res.string.`true`)),
-            Pair("false", stringResource(Res.string.`false`))
+            Triple("true", stringResource(Res.string.`true`), null),
+            Triple("false", stringResource(Res.string.`false`), null)
         ),
         key = key,
         label = label,

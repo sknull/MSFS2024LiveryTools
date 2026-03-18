@@ -66,6 +66,32 @@ To use this tool you need these tools (which you might have already from working
 
 This document in form of a PDF file can be found link:docs/README.pdf[here]
 
+== Supported Languages
+
+image:composeApp/src/commonMain/composeResources/drawable/flag_bg.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_cz.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_de.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_dk.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_en.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_es.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_fi.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_fr.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_gr.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_hr.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_hu.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_ir.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_it.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_nl.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_no.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_pl.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_pt.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_ro.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_rs.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_se.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_sk.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_sl.png[]
+image:composeApp/src/commonMain/composeResources/drawable/flag_tr.png[]
+
 == Setup
 
 === Installation
@@ -177,6 +203,9 @@ The finished configuration will look something like this:
 image::resources/screen-10.png[]
 
 When you click "OK" you should see something like this - your first project configuration:
+If you have only one airplane the group is automatically expanded.
+When you work on more projects all groups are collapsed when the app is started.
+Just click on the group header to expand it or collapse it again.
 
 image::resources/screen-11.png[]
 
@@ -205,9 +234,11 @@ Finally a setup with dozens of livery projects can look like this.
 
 image::resources/screen-15.png[]
 
+image::resources/screen-16.png[]
+
 When you click ion the info button on the left panel you will see the current version and some useful links.
 
-image::resources/screen-16.png[]
+image::resources/screen-17.png[]
 
 Voilá
 

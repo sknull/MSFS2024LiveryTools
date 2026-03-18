@@ -1,8 +1,9 @@
-package de.visualdigits.common.util
+package de.visualdigits.translation.util
 
 import nl.adaptivity.xmlutil.XmlDeclMode
 import nl.adaptivity.xmlutil.core.XmlVersion
 import nl.adaptivity.xmlutil.serialization.XML
+import java.io.File
 
 inline fun <reified T> T.writeValueAsXmlString(
     indent: Boolean = true,
@@ -33,7 +34,7 @@ inline fun <reified T> T.writeValueAsXmlString(
 }
 
 inline fun <reified T> T.writeValueAsXmlFile(
-    file: java.io.File, indent: Boolean = true,
+    file: File, indent: Boolean = true,
     writeXmlDeclaration: Boolean = true,
     expandSelfClosingTags: Boolean = false
 ) {

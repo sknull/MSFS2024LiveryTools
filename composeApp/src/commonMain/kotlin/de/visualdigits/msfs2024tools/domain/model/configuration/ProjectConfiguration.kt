@@ -120,13 +120,13 @@ data class ProjectConfiguration(
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : Any> getFieldValues(key: String, clazz: KClass<T>): List<Pair<String, T>> {
+    override fun <S : Any, D : Any> getFieldValues(key: String, sKlass: KClass<S>, dClass: KClass<D>): List<Triple<String, S, D?>?> {
         return when (key) {
-            "airplaneName" -> settings?.airplanes?.sorted()?.map { a -> Pair(a, a) } as List<Pair<String, T>>
-            "textureFormat" -> TextureFormat.entries.map { e -> Pair(e.name, e.name) } as List<Pair<String, T>>
-            "textureTypes" -> TextureType.entries.map { e -> Pair(e.name, e.name) }.sortedBy { e -> e.first } as List<Pair<String, T>>
-            "thumbnailFile" -> listOf(Pair("jpg", "jpg"), Pair("png", "png")) as List<Pair<String, T>>
-            else -> listOf<Pair<String, T>>()
+            "airplaneName" -> settings?.airplanes?.sorted()?.map { a -> Triple(a, a, null) } as List<Triple<String, S, D>>
+            "textureFormat" -> TextureFormat.entries.map { e -> Triple(e.name, e.name, null) } as List<Triple<String, S, D>>
+            "textureTypes" -> TextureType.entries.map { e -> Triple(e.name, e.name, null) }.sortedBy { e -> e.first } as List<Triple<String, S, D>>
+            "thumbnailFile" -> listOf(Triple("jpg", "jpg", null), Triple("png", "png", null)) as List<Triple<String, S, D>>
+            else -> listOf<Triple<String, S, D>>()
         }
     }
 

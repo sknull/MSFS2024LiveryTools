@@ -33,7 +33,7 @@ fun AirplanesTab(
         key = "airplaneName",
         label = stringResource(Res.string.label_airplanes),
         clazz = String::class.java,
-        options = state.settings?.airplanes?.map { a -> Pair(a, a) }?:listOf(),
+        options = state.settings?.airplanes?.map { a -> Triple(a, a, null) }?:listOf(),
         values = state.settings?.airplanes?:listOf(),
         scrollable = true,
         onValueChange = { keyValue ->

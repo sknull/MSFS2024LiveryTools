@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
@@ -31,6 +32,7 @@ import msfs2024liverytools.composeapp.generated.resources.cancel
 import msfs2024liverytools.composeapp.generated.resources.icon_cancel_24px
 import msfs2024liverytools.composeapp.generated.resources.icon_check_small_24px
 import msfs2024liverytools.composeapp.generated.resources.ok
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -170,6 +172,21 @@ private fun EditableListField(
     val collectionClass = clazz?.second ?: Any::class.java
     val isEditable = configuration?.fieldIsEditable(key) ?: true
     if (configuration?.valid(key) == true) Color.Unspecified else Severity.Error.color()
+    val options = when {
+        StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
+            configuration
+                ?.fieldValues<StringResource, DrawableResource>(key)
+                ?.mapNotNull { triple -> triple?.let { t -> Triple(t.first, stringResource(t.second), t.third?.let { d -> painterResource(d) }) }  }
+                ?: listOf()
+        }
+
+        else -> {
+            configuration
+                ?.fieldValues<String, Painter>(key)
+                ?.mapNotNull { e -> e }
+                ?: listOf()
+        }
+    }
 
     when {
         List::class.java.isAssignableFrom(collectionClass) -> {
@@ -187,20 +204,7 @@ private fun EditableListField(
                 clazz = fieldClass,
                 fileMode = configuration?.fileMode(key),
                 startDirectory = startDirectory,
-                options = when {
-                    StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
-                        configuration
-                            ?.fieldValues<StringResource>(key)
-                            ?.map { (id, resorceId) -> Pair(id, stringResource(resorceId)) }
-                            ?: listOf()
-                    }
-
-                    else -> {
-                        configuration
-                            ?.fieldValues<String>(key)
-                            ?: listOf()
-                    }
-                },
+                options = options,
                 values = if (value?.isNotEmpty() == true) value.split(",").map { v -> v.trim() } else listOf(),
                 onValueChange = onValueChange,
                 enabled = isEditable,
@@ -212,20 +216,6 @@ private fun EditableListField(
         }
 
         else -> {
-            val options = when {
-                StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
-                    configuration
-                        ?.fieldValues<StringResource>(key)
-                        ?.map { (id, resorceId) -> Pair(id, stringResource(resorceId)) }
-                        ?: listOf()
-                }
-
-                else -> {
-                    configuration
-                        ?.fieldValues<String>(key)
-                        ?: listOf()
-                }
-            }
             TypeAwareEditableField(
                 modifier = Modifier
                     .fillMaxWidth(),

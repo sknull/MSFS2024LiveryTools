@@ -1,0 +1,116 @@
+Cuir
+Cuir...
+GLAOFTHA...
+Sceit
+Roghnaigh eolaire
+Roghnaigh comhad
+Dún
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Scrios
+Cuir in eagar
+Cuir in eagar...
+Ní mór an cineál sim ar a laghad a shocrú.
+Tá an tiomáint chrua lán.
+Comhad nár aimsíodh.
+Níorbh fhéidir an toradh a anailísiú.
+Tharla earráid anaithnid le linn oibríocht áitiúil.
+Níl aon chumraíocht sonraithe.
+Ní mór ainm an aerárthaigh agus ainm an chulaithigh a shocrú ar a laghad.
+Cuireadh isteach ar an nasc idirlín.
+Tá an t-iarratas imithe in éag.
+Níorbh fhéidir an toradh a anailísiú.
+Tharla earráid anaithnid le linn oibríocht chian.
+Réimse anaithnid sa chumraíocht.
+Mícheart.
+Níl an réimse sainithe.
+Iompórtáil socruithe ón uirlis íomhá
+Foo bar baz
+Ainm an aerárthaigh
+Aerárthach
+Cumraíocht
+Rith thirim
+Bratach HQ Albedo
+Bratach HQ Dearthán
+Bratach fórsa gan alfa albedo
+Bratach fórsa gan alfa dearthán
+Eolaire ImageToMSFSKTX2
+Teanga
+Infheidhmithe gineadóra leagan amach
+Ainm an chulaith
+Teanga
+Fólder fréimhe na leabharlainne
+Fólder fréimhe uigeachtaí an mhúnla
+Infheidhmithe uirlise uigeachta NVIDIA
+Eolaire an phacáiste
+Eolaire uigeachtaí an phacáiste
+Eolaire fréimhe an tionscadail
+Eolaire fréimhe SDK MSFS
+Cineál insamhalta
+Formáid uigeachta
+Cineálacha uigeachta
+Bulgáiris
+Seicis
+Gearmáinis
+Danmhairgis
+Béarla
+Spáinnis
+Fionlainnis
+Fraincis
+Gréigis
+Cróitis
+Ungáiris
+Gaeilge
+Iodáilis
+Ísiltíreach
+Nua-Aeirgneach
+Polainnis
+Portaingéilis
+Rómáinis
+Seirbis
+Sualannais
+Slovacais
+Slóivéinis
+Tuircis
+Maidir le
+Cabhair
+Tionscadal nua...
+OK
+Cuardaigh
+Cuardaigh...
+Taispeáin sonraí...
+Aschur earráide
+Aschur
+Aerárthach
+Tionscadail
+Scrios eilimint
+Faisnéis
+Ainm an aerárthaigh ar mian leat liobairí a chruthú dó. # Ba chóir go mbeadh sé uathúil ar fud do chuid tionscadal go léir. # Má tá tú ag obair ar liobairí iolracha don aerárthach, cinntigh go bhfuil an t-ainm comhsheasmhach ar fud do chuid tionscadal go léir.
+Ainmneacha na n-eitleán go léir atá tú ag obair orthu.
+Brabhsáil eolai.
+Brabhsáil comhaid.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+Eolaire ImageToMSFSKTX2
+Comhad inbhainte de chuid an uirlis Ghinireora Leagan Amach. # Ós rud é go stóráiltear an comhad seo áit ar bith i do chóras comhad
+Ainm an tionscadail lonnú atá á úsáid agat. # Ba chóir go mbeadh sé uathúil do lonnuithe uile aerárthaigh.
+Teanga
+Fólder fréimhe do phríomhleabharlann breiseán # nó an suíomh ina stórálann tú do chuid pacáistí deiridh le dáileadh. # Úsáidtear é seo mar an t-eolaire tosaigh do Filechoose.
+Eolaire uigeachtaí do thionscadail Blender (nó an tionscadal atá á oibriú agat). # Seo an t-eolaire ina stóráiltear uigeachtaí do mhúnla mar chomhaid PNG.
+Comhad in-fhorghníomhaithe "NVIDIA Texturetool". # Tá sé seo éigeantach agus is gá é chun uigeachtaí a thiontú ó fhormáid insamhalta ar bith go PNG. # Is é an cosán réamhshocraithe ná C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Oscail in Explorer.
+Fólder fréimhe struchtúr an bhreiseáin i do phríomhleabharlann.
+Eolaire an fhóldair uigeachta i do phacáiste.
+Fólder fréimhe do thionscadal Blender # nó cibé áit a sábhálann tú do lúbhairí. # Úsáidtear é seo mar an t-eolaire tosaigh le haghaidh roghnuithe comhad.
+Ní féidir an réimse a chur in eagar.
+Fólder fréimhe SDK MSFS. # Má tá ImageToMSFSKTX2 in úsáid agat cheana, iompórtálfar é seo freisin nuair a chliceálann tú ar an gcnaipe 'Iompórtáil'. # Tá an SDK éigeantach má tá tú ag obair ar thionscadail a úsáideann an fhormáid KTX2, mar ní oibríonn íomhánna a tiontaíodh le huirlis NVIDIA sa tsamhail. # Is é an réamhshocrú ná C:/MSFS 2024 SDK
+An siopa atá á úsáid agat. # Microsoft nó Steam. # Is é Microsoft an réamhshocrú.
+An fhormáid uigeachta a úsáideann do thionscadal in MSFS2024. # DDS nó KTX2. # Ríomhtar an luach seo go huathoibríoch ó eolaire uigeachta an phacáiste.
+Na cineálacha uigeachta ar mian leat a chur san áireamh sna tiontuithe. # Is féidir le pacáistí MSFS go leor uigeachtaí a bheith iontu, agus de ghnáth ní oibrímid ach le comhaid # albeide (ALBD) agus comhdhéanta (COMP). # I bhformhór na gcásanna, ba cheart duit ALBD agus COMP a roghnú dá bhrí sin. # Mura n-úsáideann do thionscadal dathanna miotalacha, is féidir leat ALBD amháin a roghnú go sábháilte.
+Fíor
+An bhfuil tú cinnte gur mian leat an iontráil seo a scriosadh?
+Gan tionscadail.

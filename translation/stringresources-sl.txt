@@ -1,0 +1,116 @@
+Dodaj
+Dodaj...
+ZAPOSLENO...
+Prekini
+Izberi mapo
+Izberi datoteko
+Zapri
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Izbriši
+Uredi
+Uredi...
+Nastaviti je treba vsaj tip simulacije.
+Trdi disk je poln.
+Datoteke ni bilo mogoče najti.
+Rezultat ni bilo mogoče analizirati.
+Pri lokalnem postopku je prišlo do neznane napake.
+Konfiguracija ni bila navedena.
+Nastavljen mora biti vsaj ime letala in ime barve.
+Prekinjena internetna povezava.
+Zahteva je potekla.
+Rezultat ni bilo mogoče analizirati.
+Pri oddaljenem postopku je prišlo do neznane napake.
+Polje v konfiguraciji ni znano.
+Napačno.
+Polje ni določeno.
+Uvozi nastavitve iz orodja za slike
+Foo bar baz
+Ime letala
+Letala
+Konfiguracija
+Suho delovanje
+Zastavica HQ Albedo
+Zastavica HQ Decal
+Zastavica force no alpha albedo
+Zastavica force no alpha decal
+Imenik ImageToMSFSKTX2
+Jezik
+Izvedljivo orodje za ustvarjanje postavitve
+Ime barve
+Jezik
+Korenjska mapa knjižnice
+Korenjska mapa tekstur modela
+Izvedljivo orodje za teksture NVIDIA
+Mapa paketa
+Mapa tekstur paketa
+Korenjska mapa projekta
+Korenjska mapa MSFS SDK
+Vrsta simulacije
+Format teksture
+Vrste tekstur
+Bolgarščina
+Češčina
+Nemščina
+Danska
+Angleščina
+Španščina
+Finska
+Francoščina
+Grščina
+Hrvaščina
+Madžarščina
+Irščina
+Italijanščina
+Nizozemščina
+Norveščina
+Poljščina
+Portugalščina
+Romunščina
+Srbščina
+Švedščina
+Slovaščina
+Sloveneščina
+Turščina
+O
+Pomoč
+Nov projekt...
+Ok
+Iskanje
+Iskanje...
+Pokaži podrobnosti...
+Prikaz napak
+Izpis
+Letala
+Projekti
+Izbriši element
+Info
+Ime letala, za katerega želiš ustvariti barvno shemo. # Mora biti edinstveno v vseh tvojih projektih. # Če delaš na več barvnih shemah za letalo, poskrbi, da je ime v vseh tvojih projektih enako.
+Imena vseh letal, na katerih delate.
+Iskanje po mapah.
+Iskanje po datotekah.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+Mapa ImageToMSFSKTX2
+Izvedljiva datoteka orodja za ustvarjanje postavitev. # Ker je ta datoteka shranjena kjerkoli v vašem datotečnem sistemu
+Ime projekta barvne sheme, na katerem delate. # Mora biti edinstveno za vse barvne sheme letala.
+Jezik
+Korenjska mapa vaše glavne knjižnice z dodatki # ali mesto, kjer shranjujete končne pakete za dostavo. # To se uporablja kot začetna mapa za Filechoose.
+Imenik tekstur vašega projekta Blender (ali projekta, na katerem delate). # To je imenik, v katerem so shranjene teksture vaših modelov v obliki datotek PNG.
+Izvedljiva datoteka „NVIDIA Texturetool“. # To je obvezno in potrebno za pretvorbo tekstur iz katerega koli simulacijskega formata v PNG. # Privzeta pot je C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Odpri v Raziskovalcu.
+Korenjska mapa strukture dodatkov v vaši glavni knjižnici.
+Mapa mape tekstur v vašem paketu.
+Korenjska mapa vaših projektov Blender # ali kjerkoli shranjujete svoje barvne sheme. # To se uporablja kot začetna mapa za izbiro datotek.
+Polje ni urejljivo.
+Koren mape MSFS SDK. # Če ste prej uporabljali ImageToMSFSKTX2, se bo to prav tako uvozilo, ko kliknete gumb »Uvozi«. # SDK je obvezen, če delate na projektih, ki uporabljajo format KTX2, saj slike, pretvorjene z orodjem NVIDIA, v simulaciji ne delujejo. # Privzeto je C:/MSFS 2024 SDK
+Trgovina, ki jo uporabljate. # Microsoft ali Steam. # Privzeto je Microsoft.
+Format tekstur, s katerim deluje vaš projekt v MSFS2024. # DDS ali KTX2. # Ta vrednost se samodejno izračuna iz imenika tekstur paketa.
+Vrste tekstur, ki jih želite vključiti v pretvorbe. # Paketi MSFS lahko vsebujejo veliko tekstur, običajno pa delamo samo z #  datotekami albedo (ALBD) in kompozicijskimi datotekami (COMP). # V večini primerov bi torej morali izbrati ALBD in COMP. # Če vaš projekt ne uporablja kovinskih barv, lahko brez skrbi izberete samo ALBD.
+True
+Ali res želite izbrisati ta vnos?
+Ni projektov.

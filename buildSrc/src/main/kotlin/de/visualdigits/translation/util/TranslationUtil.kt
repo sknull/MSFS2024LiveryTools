@@ -1,10 +1,16 @@
-package de.visualdigits.common.util
+package de.visualdigits.translation.util
 
+import co.touchlab.kermit.Logger
+import de.visualdigits.translation.model.ResourceString
+import de.visualdigits.translation.model.XmlResources
 import nl.adaptivity.xmlutil.serialization.XML
 import java.io.File
 import java.nio.file.Paths
 
+
 object TranslationUtil {
+
+    private const val CSV_FILE = "stringresources.csv"
 
     /**
      * Extracts translations in <PROJECT_ROOT>/composeApp/src/composeResources
@@ -17,12 +23,13 @@ object TranslationUtil {
      *
      * The sister method joinUpdateTranslation() will join those single files back to the csv and then
      * trigger the update of translations.
+     *
+     * The [rootDir] must point to the directory containing the composeApp folder.
      */
     fun extractTranslation(
         rootDir: File
     ) {
         val stringResourcesDir = Paths.get(rootDir.canonicalPath, "composeApp", "src", "commonMain", "composeResources").toFile()
-
         val stringResources = stringResourcesDir
             .listFiles { f -> f.isDirectory && f.name.startsWith("values") }
             ?.associate { d ->
@@ -47,41 +54,55 @@ object TranslationUtil {
             }
         }
 
+        val newLanguages = allKeys
+            .filter { k -> k.startsWith("language_") }
+            .map { k -> k.replace("language_", "") }
+            .filter { k -> !languages.contains(k) }
+
         val targetDir = Paths.get(rootDir.canonicalPath, "translation").toFile()
-        if (!targetDir.exists()) {
-            if(!targetDir.mkdirs()) error("Could not create targetDirectory '${targetDir.canonicalPath}'")
-        }
+        if (!targetDir.exists() && !targetDir.mkdirs()) error("Could not create targetDirectory '${targetDir.canonicalPath}'")
 
         val keysFile = File(targetDir, "keys.txt")
-        println("Writing keys to file: $keysFile ")
+        Logger.i("Writing keys to file: $keysFile ")
         keysFile.writeText(allKeys.joinToString("\n"))
 
         val missingEntriesFile = File(targetDir, "missing-entries.txt")
-        println("Writing report to file: $missingEntriesFile ")
+        Logger.i("Writing report to file: $missingEntriesFile ")
         missingEntriesFile.writeText("Missing Keys\n${"=".repeat(40)}\n\n${missingEntries.toList().joinToString("\n\n") { (language, keys) -> "$language\n${"-".repeat(40)}\n${keys.joinToString("\n")}" }}")
 
         val csv = "key;${languages.joinToString(";")}\n${rows.joinToString("\n") { row -> row.joinToString(";") } }"
-        val csvFile = File(targetDir, "stringresources.csv")
-        println("Writing string resources.csv: ${csvFile.canonicalPath}")
+        val csvFile = File(targetDir, CSV_FILE)
+        Logger.i("Writing string resources.csv: ${csvFile.canonicalPath}")
         csvFile.writeText(csv)
 
         languageLists.forEach { (language, values) ->
             val targetFile = File(targetDir, "stringresources-$language.txt")
-            println("Writing string resources for langugae '$language' to file: ${targetFile.canonicalPath}")
+            Logger.i("Writing string resources for langugae '$language' to file: ${targetFile.canonicalPath}")
             targetFile.writeText(values.joinToString("\n"))
+        }
+
+        if (newLanguages.isNotEmpty()) {
+            Logger.i("Writing language files for new languages: ${newLanguages.joinToString(", ")}")
+            newLanguages.forEach { language ->
+                val targetFile = File(targetDir, "stringresources-$language.txt")
+                if (!targetFile.exists()) {
+                    targetFile.writeText("") // touch
+                }
+            }
         }
     }
 
     /**
      * Grabs the csv file stored under <PROJECT_ROOT>/translations and writes them back to valid
      * resource files for KMP.
-     * When [overwriteExisting] is set to false (default is true) only empty entries are updated.
+     *
+     * The [rootDir] must point to the directory containing the composeApp folder.
      */
     fun updateTranslation(
         rootDir: File
     ) {
         val stringResourcesDir = Paths.get(rootDir.canonicalPath, "composeApp", "src", "commonMain", "composeResources").toFile()
-        val sourceFile = Paths.get(rootDir.canonicalPath, "translation", "stringresources.csv").toFile()
+        val sourceFile = Paths.get(rootDir.canonicalPath, "translation", CSV_FILE).toFile()
         val table = sourceFile
             .readLines()
             .map { line ->
@@ -98,21 +119,21 @@ object TranslationUtil {
             .forEach { row ->
                 val key = row.take(1).first()
                 val values = row.drop(1)
+                val default = languages.zip(values).toMap()["default"]?:"?"
                 values.mapIndexed{ index, v ->
-                    resources[index].strings.add(ResourceString(name = key, value = v.escapeStringResource()))
+                    val value = v.ifBlank { default }
+                    resources[index].strings.add(ResourceString(name = key, value = value.escapeStringResource()))
                 }
             }
         resources.forEachIndexed { index, resource ->
             val language = languages[index]
             val dirName = if (language == "default") "values" else "values-$language"
             val targetDir = Paths.get(stringResourcesDir.canonicalPath, dirName).toFile()
-            if (!targetDir.exists()) {
-                if (!targetDir.mkdirs()) {
-                    error("Could not create target directory: ${targetDir.canonicalPath}")
-                }
+            if (!targetDir.exists() && !targetDir.mkdirs()) {
+                error("Could not create target directory: ${targetDir.canonicalPath}")
             }
             val targetFile = File(targetDir, "strings.xml")
-            println("Writing resource file: ${targetFile.canonicalPath}")
+            Logger.i("Writing resource file: ${targetFile.canonicalPath}")
             targetFile.writeText(resource.writeValueAsXmlString(expandSelfClosingTags = true))
         }
     }
@@ -121,13 +142,14 @@ object TranslationUtil {
      * Grabs the single text files stored under <PROJECT_ROOT>/translations and synthesizes them back
      * to the csv file which joins all translations.
      * Afterward method updateTranslation() is called to update the translations for KMP.
-     * When [overwriteExisting] is set to false (default is true) only empty entries are updated.
+     *
+     * The [rootDir] must point to the directory containing the composeApp folder.
      */
     fun joinUpdateTranslation(
         rootDir: File
     ) {
         val sourceDir = Paths.get(rootDir.canonicalPath, "translation").toFile()
-        val targetFile = File(sourceDir, "stringresources.csv")
+        val targetFile = File(sourceDir, CSV_FILE)
         val resourceKeys = File(sourceDir, "keys.txt").readLines()
         val expectedNumberOfRows = resourceKeys.size
 
@@ -150,55 +172,8 @@ object TranslationUtil {
                 data[language]?.get(resourceKey)?.replace(" # ", "\\n")?:""
             }).joinToString(";")).append("\n")
         }
-        println("Writing string resources.csv: ${targetFile.canonicalPath}")
+        Logger.i("Writing string resources.csv: ${targetFile.canonicalPath}")
         targetFile.writeText(sb.toString())
         updateTranslation(rootDir)
-    }
-
-    /**
-     * Takes care about some special chars before serialize them back to xml.
-     */
-    private fun String.escapeStringResource(): String {
-        if (this.isEmpty()) return ""
-
-        return this
-            // Special chars for KMP
-//            .replace("'", "\\'")      // Apostroph -> \'
-            .replace("\"", "\\\"")    // Anführungszeichen -> \"
-            .replace("%", "%%")       // Prozent -> %% (wegen String.format)
-            .replace("\n", "\\n")
-
-            // Special cases for KMP at the string start
-            .let { s ->
-                if (s.startsWith("?") || s.startsWith("@")) {
-                    "\\" + s          // ? -> \? and @ -> \@
-                } else s
-            }
-
-            // White space protection
-            .let { s ->
-                if (s.startsWith(" ") || s.endsWith(" ")) {
-                    "\"$s\""          // Trailing and leading spaces -> " string "
-                } else s
-            }
-    }
-
-    /**
-     * Takes care about some special chars before deserializing from xml.
-     */
-    private fun String.unescapeStringResource(): String {
-        return this
-            // Remove Android-Backslashes
-            .replace("\\'", "'")
-            .replace("\\\"", "\"")
-            .replace("\\?", "?")
-            .replace("\\@", "@")
-            .replace("\n", "\\n")
-
-            // resolve double quotes
-            .replace("%%", "%")
-
-            // Remove white space protectionn
-            .let { if (it.startsWith("\"") && it.endsWith("\"")) it.removeSurrounding("\"") else it }
     }
 }

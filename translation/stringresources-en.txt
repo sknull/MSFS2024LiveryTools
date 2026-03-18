@@ -2,8 +2,8 @@ Add
 Add...
 BUSY...
 Cancel
-Choose Directory
-Choose File
+Select directory
+Select file
 Close
 DDS > PNG
 KTX2 > DDS
@@ -12,88 +12,105 @@ PNG > KTX2
 Delete
 Edit
 Edit...
-At least the sim type must be set.
-The disk is full
-File not found
-Could not parse result
-An unknown error occured in a local operation
-No configuration given
-At least the airplane name and the livey name must be set.
-Lost internet connection
-The request timed out
-Could not parse result
-An unknown error occured in a remote operation
-Field not known in configuration
-False
-Field is not set.
-Import Settings From Image Tool
+At least the sim type must be specified.
+The hard drive is full.
+File not found.
+Result could not be analyzed.
+An unknown error occurred during a local operation.
+No configuration specified.
+At least the aircraft name and the livery name must be set.
+Internet connection interrupted.
+The request has timed out.
+Result could not be analyzed.
+An unknown error occurred during a remote operation.
+Field unknown in configuration.
+Invalid.
+Field is not defined.
+Import settings from image tool
 Foo bar baz
-Airplane name
-Airplanes
+Aircraft name
+Aircrafts
 Configuration
-Dry Run
-Flag HQ albedo
+Dry run
+Flag HQ Albedo
 Flag HQ Decal
 Flag force no alpha albedo
 Flag force no alpha decal
 ImageToMSFSKTX2 directory
 Language
-Layoutgenerator tool executable
-Livery name
+Layout Generator Tool executable
+Skin name
 Language
-Main library root directory
-Model textures directory
-NVIDIA texturetool executable
+Library root folder
+Model textures root folder
+NVIDIA Texture Tool executable
 Package directory
-Package texture directory
+Package textures directory
 Project root directory
 MSFS SDK root directory
 Simulation type
 Texture format
 Texture types
+Bulgarian
+Czech
 German
+Danish
 English
 Spanish
+Finnish
 French
+Greek
+Croatian
+Hungarian
+Irish
 Italian
+Dutch
+Norwegian
+Polish
+Portuguese
+Romanian
+Serbian
+Swedish
+Slovak
+Slovenian
 Turkish
 About
 Help
-New project...
-Ok
+New Project...
+OK
 Search
 Search...
-Show details...
+Show Details...
 Error Output
 Output
-Airplanes
+Aircraft
 Projects
-Delete item
+Delete Element
 Info
-The name of the airplane you want to create a livery. # Should be unique across all your projects. # If you work on multiple liveries for the airplane make sure that the name is consistent across your projects.
-The names of all airplanes you work on.
+The name of the aircraft for which you want to create a paint scheme. # Must be unique across all your projects. # If you are working on multiple paint schemes for the aircraft, make sure the name is consistent across all your projects.
+The names of all aircraft you are working on.
 Browse directories.
 Browse files.
-Flag HQ albedo
+Flag HQ Albedo
 Flag HQ Decal
-Flag force no alpha albedo
-Flag force no alpha decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
 ImageToMSFSKTX2 directory
-Layoutgenerator tool executable. # As this is just thrown anywhere in your filesystem
-The name of the livery project you are working on. # Should be unique across all liveries for an airplane.
+Executable file of the Layout Generator tool. # Since this file is stored anywhere in your file system
+The name of the livery project you are working on. # Should be unique for all liveries of an aircraft.
 Language
-The root directory of your main library of addons # or where you store your final packages for delivery. # This is used as start directory for file choosers.
-The texture directory of your blender (or whatever you work with) project. # This is the directory where your models textures live in form of png files.
-NVIDIA texturetool executable. # This is mandatory and needed to convert textures from any sim format to png. # Default is C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe
-Open in explorer.
-The root directory of the add on structure within you main library.
-The directory of the texture folder within your package.
-The root directory of your blender projects # or where ever you story your liveries. # This is used as start directory for file choosers.
-Field is not editable.
-MSFS SDK root directory. # If you used ImageToMSFSKTX2 before this is also imported when you click the import button. # The sdk is mandatory if you work on projects using KTX2 as images converted # with the nvidia tool will not work in the sim. # Default is C:/MSFS 2024 SDK
-The store you are using. # One of microsoft or steam. # The default is microsoft.
-The texture format your project works with in MSFS2024. # DDS or KTX2. # This value is calculated automatically from the package texture directory.
-The texture types you want to include in the conversions. # MSFS packages can contain a lot of textures and normally we only work on #  albedo (ALBD) and composition (COMP) files. # So most times you want to select ALBD and COMP. # If your project does not make use of metallic colors you can safely choose ALBD only.
+The root folder of your main add-on library # or the location where you store your final packages for distribution. # This is used as the starting directory for Filechoose.
+The texture directory of your Blender project (or the project you are working on). # This is the directory where your model textures are stored as PNG files.
+“NVIDIA Texturetool” executable file. # This is mandatory and required to convert textures from any simulation format to PNG. # The default path is C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Open in Explorer.
+The root folder of the add-on structure in your main library.
+The directory of the texture folder in your package.
+The root folder of your Blender projects # or wherever you save your liveries. # This is used as the starting directory for file selections.
+The field is not editable.
+MSFS SDK root folder. # If you previously used ImageToMSFSKTX2, this will also be imported when you click the “Import” button. # The SDK is mandatory if you are working on projects that use the KTX2 format, as images converted with the NVIDIA tool do not work in the sim. # Default is C:/MSFS 2024 SDK
+The store you are using. # Either Microsoft or Steam. # The default is Microsoft.
+The texture format your project uses in MSFS 2024. # DDS or KTX2. # This value is automatically calculated from the package’s texture directory.
+The texture types you want to include in the conversions. # MSFS packages can contain many textures, and we usually only work with #  albedo (ALBD) and composition (COMP) files. # In most cases, you should therefore select ALBD and COMP. # If your project does not use metallic colors, you can safely select only ALBD.
 True
-Do you really want to delete this item?.
+Do you really want to delete this entry?
 No projects.

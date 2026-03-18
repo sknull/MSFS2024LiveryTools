@@ -1,0 +1,116 @@
+Adăugare
+Adăugare...
+SE PROCESEAZĂ...
+Anulare
+Selectare director
+Selectare fișier
+Închidere
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Ștergere
+Editare
+Editare...
+Trebuie setat cel puțin tipul de simulator.
+Hard disk-ul este plin.
+Fișierul nu a fost găsit.
+Rezultatul nu a putut fi analizat.
+A apărut o eroare necunoscută în timpul unei operațiuni locale.
+Nu a fost specificată nicio configurație.
+Trebuie setate cel puțin numele avionului și numele vopselei.
+Conexiunea la internet a fost întreruptă.
+Solicitarea a expirat.
+Rezultatul nu a putut fi analizat.
+A apărut o eroare necunoscută în timpul unei operațiuni la distanță.
+Câmp necunoscut în configurație.
+Greșit.
+Câmpul nu este definit.
+Importați setările din Instrumentul de imagine
+Foo bar baz
+Numele aeronavei
+Aeronave
+Configurație
+Rulare în gol
+Flag HQ Albedo
+Flag HQ Decal
+Flag force no alpha albedo
+Flag force no alpha decal
+Director ImageToMSFSKTX2
+Limba
+Instrument de generare a layout-ului executabil
+Numele schemei de vopsire
+Limba
+Directorul rădăcină al bibliotecii
+Directorul rădăcină al texturilor modelului
+Instrument de texturi NVIDIA executabil
+Directorul pachetului
+Directorul de texturi al pachetului
+Directorul rădăcină al proiectului
+Directorul rădăcină al MSFS SDK
+Tipul de simulare
+Formatul texturii
+Tipuri de texturi
+Bulgară
+Cehă
+Germană
+Daneză
+Engleză
+Spaniolă
+Finlandeză
+Franceză
+Greacă
+Croată
+Maghiară
+Irlandeză
+Italiană
+Olandeză
+Norvegiană
+Poloneză
+Portugheză
+Română
+Sârbă
+Suedeză
+Slovacă
+Slovenă
+Turcă
+Despre
+Ajutor
+Proiect nou...
+Ok
+Căutare
+Căutare...
+Afișează detalii...
+Afișare erori
+Afișare
+Avioane
+Proiecte
+Șterge element
+Info
+Numele avionului pentru care dorești să creezi o schemă de vopsire. # Trebuie să fie unic în toate proiectele tale. # Dacă lucrezi la mai multe scheme de vopsire pentru același avion, asigură-te că numele este consistent în toate proiectele tale.
+Numele tuturor avioanelor la care lucrezi.
+Căutare în directoare.
+Căutare în fișiere.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+Directorul ImageToMSFSKTX2
+Fișier executabil al instrumentului de generare a layout-ului. # Deoarece acest fișier este stocat în orice loc din sistemul tău de fișiere
+Numele proiectului de vopsire la care lucrezi. # Ar trebui să fie unic pentru toate vopselele unui avion.
+Limba
+Dosarul rădăcină al bibliotecii tale principale cu add-on-uri # sau locul în care îți salvezi pachetele finale pentru livrare. # Acesta este folosit ca director de pornire pentru Filechoose.
+Directorul de texturi al proiectului dvs. Blender (sau al proiectului la care lucrați). # Acesta este directorul în care sunt stocate texturile modelului dvs. sub formă de fișiere PNG.
+Fișierul executabil „NVIDIA Texturetool”. # Acesta este obligatoriu și necesar pentru a converti texturile din orice format de simulare în PNG. # Calea implicită este C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Deschideți în Explorer.
+Directorul rădăcină al structurii add-on-ului din biblioteca principală.
+Directorul folderului de texturi din pachetul dvs.
+Directorul rădăcină al proiectelor dvs. Blender # sau oriunde salvați vopselele. # Acesta este utilizat ca director de pornire pentru selectarea fișierelor.
+Câmpul nu este editabil.
+Dosarul rădăcină al SDK-ului MSFS. # Dacă ați folosit anterior ImageToMSFSKTX2, acesta va fi importat, de asemenea, atunci când faceți clic pe butonul „Import”. # SDK-ul este obligatoriu dacă lucrați la proiecte care utilizează formatul KTX2, deoarece imaginile convertite cu instrumentul NVIDIA nu funcționează în simulator. # Implicit este C:/MSFS 2024 SDK
+Magazinul pe care îl folosești. # Fie Microsoft, fie Steam. # Implicit este Microsoft.
+Formatul de textură cu care proiectul tău funcționează în MSFS2024. # DDS sau KTX2. # Această valoare este calculată automat din directorul de texturi al pachetului.
+Tipurile de texturi pe care dorești să le incluzi în conversii. # Pachetele MSFS pot conține multe texturi, iar de obicei lucrăm doar cu #  fișiere Albedo (ALBD) și de compoziție (COMP). # În majoritatea cazurilor, ar trebui să selectezi ALBD și COMP. # Dacă proiectul tău nu folosește culori metalice, poți selecta cu încredere doar ALBD.
+Adevărat
+Vrei cu adevărat să ștergi această intrare?
+Nu există proiecte.

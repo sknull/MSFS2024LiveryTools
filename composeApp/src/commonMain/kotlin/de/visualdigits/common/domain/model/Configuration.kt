@@ -40,7 +40,7 @@ interface Configuration<T : Configuration<T>> {
     /**
      * Returns the possible values as strings for an enum field or the allowed extensions for a file field or an empty list for other fields.
      */
-    fun <T : Any> getFieldValues(key: String, clazz: KClass<T>): List<Pair<String, T>>
+    fun <S : Any, D : Any> getFieldValues(key: String, sKlass: KClass<S>, dClass: KClass<D>): List<Triple<String, S, D?>?>
 
     /**
      * Specifies the file mode for a File field (either directory or file).
@@ -55,6 +55,6 @@ interface Configuration<T : Configuration<T>> {
     fun valid(key: String): Boolean?
 }
 
-inline fun <reified T : Any> Configuration<*>.fieldValues(key: String): List<Pair<String, T>> {
-    return getFieldValues(key, T::class)
+inline fun <reified S : Any, reified D : Any> Configuration<*>.fieldValues(key: String): List<Triple<String, S, D?>?> {
+    return getFieldValues(key, S::class, D::class)
 }

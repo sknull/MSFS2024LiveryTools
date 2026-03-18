@@ -170,15 +170,15 @@ data class Settings(
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : Any> getFieldValues(key: String, clazz: KClass<T>): List<Pair<String, T>> {
+    override fun <S : Any, D : Any> getFieldValues(key: String, sKlass: KClass<S>, dClass: KClass<D>): List<Triple<String, S, D?>?> {
         return when (key) {
-            "language" -> Language.entries.map { e -> Pair(e.name, e.resourceId) }.sortedBy { e -> e.first } as List<Pair<String, T>>
-            "simType" -> SimType.entries.map { e -> Pair(e.name, e.name) }.sortedBy { e -> e.first } as List<Pair<String, T>>
-            "layoutGeneratorToolPath" -> listOf(Pair("exe", "exe")) as List<Pair<String, T>>
-            "nvidiaTextureToolPath" -> listOf(Pair("exe", "exe")) as List<Pair<String, T>>
-            "airplanes" -> airplanes.sorted().map { a -> Pair(a, a) } as List<Pair<String, T>>
-            "airplaneName" -> airplanes.sorted().map { a -> Pair(a, a) } as List<Pair<String, T>> // needed for airplanes tab
-            else -> listOf<Pair<String, T>>()
+            "language" -> Language.entries.map { e -> Triple(e.name, e.stringResourceId, e.drawableResourceId) }.sortedBy { e -> e.first } as List<Triple<String, S, D>>
+            "simType" -> SimType.entries.map { e -> Triple(e.name, e.name, null) }.sortedBy { e -> e.first } as List<Triple<String, S, D>>
+            "layoutGeneratorToolPath" -> listOf(Triple("exe", "exe", null)) as List<Triple<String, S, D>>
+            "nvidiaTextureToolPath" -> listOf(Triple("exe", "exe", null)) as List<Triple<String, S, D>>
+            "airplanes" -> airplanes.sorted().map { a -> Triple(a, a, null) } as List<Triple<String, S, D>>
+            "airplaneName" -> airplanes.sorted().map { a -> Triple(a, a, null) } as List<Triple<String, S, D>> // needed for airplanes tab
+            else -> listOf<Triple<String, S, D>>()
         }
     }
 

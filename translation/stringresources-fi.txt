@@ -1,0 +1,116 @@
+Lisää
+Lisää...
+KÄYTTÖKÄYNNISSÄ...
+Peruuta
+Valitse kansio
+Valitse tiedosto
+Sulje
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Poista
+Muokkaa
+Muokkaa...
+Ainakin sim-tyyppi on määritettävä.
+Kiintolevy on täynnä.
+Tiedostoa ei löydy.
+Tulosta ei voitu analysoida.
+Paikallisessa prosessissa on tapahtunut tuntematon virhe.
+Määrityksiä ei ole annettu.
+Ainakin lentokoneen nimi ja maalausnimi on määritettävä.
+Internet-yhteys katkennut.
+Pyyntö on vanhentunut.
+Tulosta ei voitu analysoida.
+Etäprosessissa on tapahtunut tuntematon virhe.
+Kenttä konfiguraatiossa tuntematon.
+Väärä.
+Kenttää ei ole määritetty.
+Tuo asetukset kuvatyökalusta
+Foo bar baz
+Lentokoneen nimi
+Lentokoneet
+Konfiguraatio
+Kuivakäynti
+Flag HQ Albedo
+Flag HQ Decal
+Flag force no alpha albedo
+Flag force no alpha decal
+ImageToMSFSKTX2-hakemisto
+Kieli
+Layoutgenerator-työkalu suoritettavissa
+Maalauksen nimi
+Kieli
+Kirjaston juurikansio
+Mallitekstuurien juurikansio
+NVIDIA-tekstuurityökalu suoritettavissa
+Pakettikansio
+Paketin tekstuurikansio
+Projektin juurikansio
+MSFS SDK:n juurikansio
+Simulaatiotyyppi
+Tekstuuriformaatti
+Tekstuurityypit
+bulgaria
+tšekki
+saksa
+tanska
+englanti
+espanja
+suomi
+ranska
+kreikka
+kroatia
+unkari
+irlanti
+italia
+hollanti
+norja
+puola
+portugali
+romania
+serbia
+ruotsi
+slovakia
+slovenia
+turkki
+Tietoja
+Ohje
+Uusi projekti...
+Ok
+Hae
+Hae...
+Näytä tiedot...
+Virheilmoitus
+Tulostus
+Lentokoneet
+Projektit
+Poista elementti
+Info
+Sen lentokoneen nimi, jolle haluat luoda maalauksen. # Sen tulisi olla yksilöllinen kaikissa projekteissasi. # Jos työskentelet useiden maalauksien parissa samalle lentokoneelle, varmista, että nimi on yhdenmukainen kaikissa projekteissasi.
+Kaikkien lentokoneiden nimet, joiden parissa työskentelet.
+Selaa kansioita.
+Selaa tiedostoja.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+ImageToMSFSKTX2-kansio
+Layoutgenerator-työkalun suoritustiedosto. # Koska tämä tiedosto tallennetaan mihin tahansa kohtaan tiedostojärjestelmässäsi
+Sen maalausprojektin nimi, jonka parissa työskentelet. # Sen tulisi olla yksilöllinen kaikille lentokoneen maalauksille.
+Kieli
+Pääkirjastosi juurikansio, jossa on lisäosat # tai paikka, johon tallennat lopulliset pakettisi toimitusta varten. # Tätä käytetään Filechoose-työkalun aloituskansiona.
+Blender-projektisi (tai sen projektin, jonka parissa työskentelet) tekstuurikansio. # Tämä on kansio, johon mallisi tekstuurit on tallennettu PNG-tiedostoina.
+Suoritustiedosto „NVIDIA Texturetool“. # Tämä on pakollinen ja tarvitaan tekstuurien muuntamiseen PNG-muotoon mistä tahansa simulointimuodosta. # Oletuspolku on C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Avaa Explorerissa.
+Lisäosarakenteen juurikansio pääkirjastossasi.
+Pakettisi tekstuurikansion hakemisto.
+Blender-projektiesi juurikansio # tai missä tahansa tallennat maalauksesi. # Tätä käytetään tiedostojen valinnan aloituskansiona.
+Kenttää ei voi muokata.
+MSFS SDK:n juurikansio. # Jos olet aiemmin käyttänyt ImageToMSFSKTX2-työkalua, se tuodaan myös, kun napsautat ”Tuo”-painiketta. # SDK on pakollinen, jos työskentelet projekteissa, jotka käyttävät KTX2-muotoa, koska NVIDIA-työkalulla muunnettuja kuvia ei voi käyttää simulaattorissa. # Oletusarvo on C:/MSFS 2024 SDK
+Käyttämäsi kauppa. # Joko Microsoft tai Steam. # Oletusarvo on Microsoft.
+Tekstuuriformaatti, jota projektisi käyttää MSFS2024:ssä. # DDS tai KTX2. # Tämä arvo lasketaan automaattisesti paketin tekstuurihakemistosta.
+Tekstuurityypit, jotka haluat sisällyttää muunnoksiin. # MSFS-paketit voivat sisältää monia tekstuureja, ja yleensä käytämme vain #  albedo- (ALBD) ja kompositio- (COMP) tiedostoja. # Useimmissa tapauksissa sinun tulisi siis valita ALBD ja COMP. # Jos projektissasi ei käytetä metallivärejä, voit huoletta valita vain ALBD:n.
+Totta
+Haluatko todella poistaa tämän merkinnän?
+Ei projekteja.

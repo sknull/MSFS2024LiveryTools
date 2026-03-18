@@ -1,0 +1,116 @@
+Dodaj
+Dodaj...
+ZANIMLJENO...
+Otkaži
+Odaberi direktorij
+Odaberi datoteku
+Zatvori
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Izbriši
+Uredi
+Uredi...
+Najmanje tip sima mora biti postavljen.
+Čvrsti disk je pun.
+Datoteka nije pronađena.
+Rezultat nije mogao biti analiziran.
+Došlo je do nepoznate pogreške tijekom lokalne operacije.
+Nije navedena konfiguracija.
+Moraju biti postavljeni naziv zrakoplova i naziv liveryja.
+Prekinuta je internetska veza.
+Zahtjev je istekao.
+Rezultat nije mogao biti analiziran.
+Došlo je do nepoznate pogreške tijekom udaljene operacije.
+Polje nepoznato u konfiguraciji.
+Netočno.
+Polje nije definirano.
+Uvoz postavki iz alata za slike
+Foo bar baz
+Ime zrakoplova
+Zrakoplov
+Konfiguracija
+Suho pokretanje
+Zastava HQ Albedo
+Zastava HQ Naljepnica
+Zastava force no alpha albedo
+Zastava force no alpha naljepnica
+Directory ImageToMSFSKTX2
+Jezik
+Izvršna datoteka generatora rasporeda
+Naziv liveryja
+Jezik
+Korisnički direktorij biblioteke
+Korisnički direktorij tekstura modela
+Izvršna datoteka NVIDIA alata za teksture
+Direktorij paketa
+Direktorij tekstura paketa
+Korisnički direktorij projekta
+Korisnički direktorij MSFS SDK-a
+Vrsta simulacije
+Format teksture
+Vrste tekstura
+Bugarski
+Češki
+Njemački
+Danski
+Engleski
+Španjolski
+Finski
+Francuski
+Grčki
+Hrvatski
+Mađarski
+Irski
+Talijanski
+Nizozemski
+Norveški
+Poljski
+Portugalski
+Rumunjski
+Serbijski
+Švedski
+Slovački
+Slovenski
+Turski
+O programu
+Pomoć
+Novi projekt...
+OK
+Pretraži
+Pretraži...
+Prikaži detalje...
+Izlazna poruka o pogrešci
+Izlazna poruka
+Zrakoplovi
+Projekti
+Izbriši element
+Informacije
+Naziv zrakoplova za koji želite stvoriti livery. # Mora biti jedinstven u svim vašim projektima. # Ako radite na više liveryja za zrakoplov, osigurajte da je naziv dosljedan u svim vašim projektima.
+Nazivi svih zrakoplova na kojima radite.
+Pregledaj direktorije.
+Pregledaj datoteke.
+Zastavi HQ Albedo
+Zastavi HQ Decal
+Zastavi Force No Alpha Albedo
+Zastavi Force No Alpha Decal
+Direktorij ImageToMSFSKTX2
+Izvršna datoteka alata Layout Generator. # Budući da se ova datoteka pohranjuje bilo gdje u vašem sustavu datoteka
+Naziv projekta liveryja na kojem radite. # Trebao bi biti jedinstven za sve liveryje zrakoplova.
+Jezik
+Korisnički direktorij vaše glavne biblioteke dodataka # ili lokacija na kojoj pohranjujete svoje konačne pakete za distribuciju. # Ovo se koristi kao početni direktorij za Filechoose.
+Direktorij s teksturama vašeg Blender projekta (ili projekta na kojem radite). # To je direktorij u kojem su pohranjene teksture vašeg modela kao PNG datoteke.
+Izvršna datoteka "NVIDIA Texturetool". # Ovo je obavezno i potrebno za pretvaranje tekstura iz bilo kojeg simulacijskog formata u PNG. # Zadana putanja je C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Otvori u Upravitelju datoteka.
+Korisnički direktorij strukture dodatka u vašoj glavnoj biblioteci.
+Direktorij mape s teksturama u vašem paketu.
+Korisnički direktorij vaših Blender projekata # ili bilo gdje gdje spremate svoje liverije. # Ovo se koristi kao početni direktorij za odabir datoteka.
+Ovo polje nije uređivano.
+Korisnički direktorij MSFS SDK-a. # Ako ste prethodno koristili ImageToMSFSKTX2, on će se također uvesti kada kliknete gumb 'Uvezi'. # SDK je obavezan ako radite na projektima koji koriste KTX2 format, jer slike pretvorene pomoću NVIDIA alata ne rade u simulatoru. # Zadano je C:/MSFS 2024 SDK
+Trgovina koju koristite. # Ili Microsoft ili Steam. # Zadano je Microsoft.
+Format teksture koji vaš projekt koristi u MSFS2024. # DDS ili KTX2. # Ova se vrijednost automatski izračunava iz direktorija s teksturama paketa.
+Vrste tekstura koje želite uključiti u konverzije. # MSFS paketi mogu sadržavati mnogo tekstura, a obično radimo samo s # datotekama albedo (ALBD) i kompozicije (COMP). # Stoga biste u većini slučajeva trebali odabrati ALBD i COMP. # Ako vaš projekt ne koristi metalik boje, možete sigurno odabrati samo ALBD.
+Istina
+Jeste li sigurni da želite izbrisati ovaj unos?
+Nema projekata.

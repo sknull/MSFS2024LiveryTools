@@ -1,4 +1,4 @@
-import de.visualdigits.common.util.TranslationUtil
+import de.visualdigits.translation.util.TranslationUtil
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {

@@ -8,7 +8,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,9 +34,9 @@ import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfigura
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorCardBackground
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.PaddingContainer
+import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.icon_arrow_forward_ios_24px
 import msfs2024liverytools.composeapp.generated.resources.icon_emergency_home_24px

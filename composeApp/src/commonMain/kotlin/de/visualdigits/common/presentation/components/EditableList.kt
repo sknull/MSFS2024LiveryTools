@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
@@ -73,7 +74,7 @@ fun EditableList(
     clazz: Class<out Any>,
     fileMode: FileMode? = null,
     startDirectory: File? = null,
-    options: List<Pair<String, String>>,
+    options: List<Triple<String, String, Painter?>>,
     values: List<String>,
     enabled: Boolean = true,
     scrollable: Boolean = false,

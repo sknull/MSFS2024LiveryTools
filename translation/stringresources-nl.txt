@@ -1,0 +1,116 @@
+Toevoegen
+Toevoegen...
+BEZIG...
+Annuleren
+Map selecteren
+Bestand selecteren
+Sluiten
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Verwijderen
+Bewerken
+Bewerken...
+Er moet ten minste het simulatietype zijn ingesteld.
+De harde schijf is vol.
+Bestand niet gevonden.
+Resultaat kon niet worden geanalyseerd.
+Er is een onbekende fout opgetreden tijdens een lokale bewerking.
+Geen configuratie opgegeven.
+Er moet ten minste de vliegtuignaam en de naam van de kleurstelling zijn ingesteld.
+Internetverbinding verbroken.
+Het verzoek is verlopen.
+Resultaat kon niet worden geanalyseerd.
+Er is een onbekende fout opgetreden tijdens een bewerking op afstand.
+Veld in de configuratie onbekend.
+Onjuist.
+Veld is niet ingesteld.
+Instellingen importeren uit afbeeldingstool
+Foo bar baz
+Vliegtuignaam
+Vliegtuigen
+Configuratie
+Droogloop
+Vlag HQ Albedo
+Vlag HQ Decal
+Vlag force no alpha albedo
+Vlag force no alpha decal
+ImageToMSFSKTX2-map
+Taal
+Layoutgenerator-tool uitvoerbaar
+Naam van de livery
+Taal
+Hoofdmap van de bibliotheek
+Hoofdmap van de modeltexturen
+NVIDIA-textuurtool uitvoerbaar
+Pakketmap
+Pakket-textuurmap
+Hoofdmap van het project
+Hoofdmap van de MSFS SDK
+Simulatietype
+Textuurformaat
+Textuurtypes
+Bulgaars
+Tsjechisch
+Duits
+Deens
+Engels
+Spaans
+Fins
+Frans
+Grieks
+Kroatisch
+Hongaars
+Iers
+Italiaans
+Nederlands
+Noors
+Pools
+Portugees
+Roemeens
+Servisch
+Zweeds
+Slowaaks
+Sloveens
+Turks
+Over
+Help
+Nieuw project...
+Ok
+Zoeken
+Zoeken...
+Details weergeven...
+Foutmelding
+Uitvoer
+Vliegtuigen
+Projecten
+Element verwijderen
+Info
+De naam van het vliegtuig waarvoor je een livery wilt maken. # Moet uniek zijn in al je projecten. # Als je aan meerdere liveries voor het vliegtuig werkt, zorg er dan voor dat de naam in al je projecten consistent is.
+De namen van alle vliegtuigen waaraan je werkt.
+Mappen doorzoeken.
+Bestanden doorzoeken.
+Vlag HQ Albedo
+Vlag HQ Decal
+Vlag Force No Alpha Albedo
+Vlag Force No Alpha Decal
+ImageToMSFSKTX2-map
+Uitvoerbaar bestand van de Layoutgenerator-tool. # Aangezien dit bestand op een willekeurige locatie in je bestandssysteem wordt opgeslagen
+De naam van het lakproject waaraan je werkt. # Moet uniek zijn voor alle lakken van een vliegtuig.
+Taal
+De hoofdmap van je hoofdbibliotheek met add-ons # of de locatie waar je je definitieve pakketten opslaat voor levering. # Dit wordt gebruikt als startmap voor Filechoose.
+De textuurmap van je Blender-project (of het project waaraan je werkt). # Dit is de map waarin je modeltexturen in de vorm van PNG-bestanden zijn opgeslagen.
+Uitvoerbaar bestand “NVIDIA Texturetool”. # Dit is verplicht en nodig om texturen van elk simulatieformaat naar PNG te converteren. # Het standaardpad is C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Openen in Verkenner.
+De hoofdmap van de add-on-structuur in uw hoofdbibliotheek.
+De map van de texturenmap in uw pakket.
+De hoofdmap van uw Blender-projecten # of waar u uw liveries ook opslaat. # Dit wordt gebruikt als startmap voor bestandsselecties.
+Het veld is niet bewerkbaar.
+MSFS SDK-hoofdmap. # Als je eerder ImageToMSFSKTX2 hebt gebruikt, wordt dit ook geïmporteerd wanneer je op de knop “Importeren” klikt. # De SDK is verplicht als je aan projecten werkt die het KTX2-formaat gebruiken, omdat afbeeldingen die met de NVIDIA-tool zijn geconverteerd niet werken in de sim. # Standaard is C:/MSFS 2024 SDK
+De store die je gebruikt. # Ofwel Microsoft of Steam. # De standaard is Microsoft.
+Het textuurformaat waarmee je project in MSFS2024 werkt. # DDS of KTX2. # Deze waarde wordt automatisch berekend op basis van de textuurmap van het pakket.
+De textuurtypes die je in de conversies wilt opnemen. # MSFS-pakketten kunnen veel texturen bevatten, en normaal gesproken werken we alleen met #  albedo- (ALBD) en compositiebestanden (COMP). # In de meeste gevallen moet je dus ALBD en COMP selecteren. # Als je project geen metallic kleuren gebruikt, kun je gerust alleen ALBD selecteren.
+True
+Wil je dit item echt verwijderen?
+Geen projecten.

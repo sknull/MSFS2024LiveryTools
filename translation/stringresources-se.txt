@@ -1,0 +1,116 @@
+Lägg till
+Lägg till...
+BEHANDLAR...
+Avbryt
+Välj katalog
+Välj fil
+Stäng
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Ta bort
+Redigera
+Redigera...
+Åtminstone simulatortypen måste anges.
+Hårddisken är full.
+Filen hittades inte.
+Resultatet kunde inte analyseras.
+Ett okänt fel har uppstått vid en lokal operation.
+Ingen konfiguration angiven.
+Åtminstone flygplansnamnet och lackeringsnamnet måste anges.
+Internetanslutningen har avbrutits.
+Förfrågan har gått ut.
+Resultatet kunde inte analyseras.
+Ett okänt fel har uppstått vid en fjärroperation.
+Okänt fält i konfigurationen.
+Fel.
+Fältet är inte angivet.
+Importera inställningar från bildverktyget
+Foo bar baz
+Flygplansnamn
+Flygplan
+Konfiguration
+Torrkörning
+Flagga HQ Albedo
+Flagga HQ Decal
+Flagga force no alpha albedo
+Flagga force no alpha decal
+ImageToMSFSKTX2-katalog
+Språk
+Layoutgenerator-verktyg körbart
+Namn på lackeringen
+Språk
+Rotmapp för biblioteket
+Rotmapp för modelltexturer
+NVIDIA Textur-verktyg körbart
+Paketkatalog
+Paket-texturkatalog
+Projektets rotkatalog
+MSFS SDK-rotkatalog
+Simuleringstyp
+Texturformat
+Texturtyper
+Bulgariska
+Tjeckiska
+Tyska
+Danska
+Engelska
+Spanska
+Finska
+Franska
+Grekiska
+Kroatiska
+Ungerska
+Iriska
+Italienska
+Nederländska
+Norska
+Polska
+Portugisiska
+Rumänska
+Serbiska
+Svenska
+Slovakiska
+Slovenska
+Turkiska
+Om
+Hjälp
+Nytt projekt...
+Ok
+Sök
+Sök...
+Visa detaljer...
+Felmeddelande
+Utmatning
+Flygplan
+Projekt
+Ta bort element
+Info
+Namnet på det flygplan som du vill skapa en lackering för. # Bör vara unikt i alla dina projekt. # Om du arbetar med flera lackeringar för flygplanet, se till att namnet är konsekvent i alla dina projekt.
+Namnen på alla flygplan som du arbetar med.
+Sök i kataloger.
+Sök i filer.
+Flagga HQ Albedo
+Flagga HQ Decal
+Flagga Force No Alpha Albedo
+Flagga Force No Alpha Decal
+ImageToMSFSKTX2-katalog
+Körbar fil för layoutgeneratorverktyget. # Eftersom denna fil kan placeras var som helst i ditt filsystem
+Namnet på det lackeringsprojekt du arbetar med. # Bör vara unikt för alla lackeringar av ett flygplan.
+Språk
+Rotmappen för ditt huvudbibliotek med tillägg # eller den plats där du sparar dina slutgiltiga paket för leverans. # Detta används som startkatalog för Filechoose.
+Texturkatalogen för ditt Blender-projekt (eller det projekt du arbetar med). # Detta är katalogen där dina modelltexturer sparas i form av PNG-filer.
+Körbar fil ”NVIDIA Texturetool”. # Detta är obligatoriskt och krävs för att konvertera texturer från alla simuleringsformat till PNG. # Standardvägen är C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Öppna i Utforskaren.
+Rotmappen för tilläggsstrukturen i ditt huvudbibliotek.
+Katalogen för texturmappen i ditt paket.
+Rotmappen för dina Blender-projekt # eller var du än sparar dina lackeringar. # Detta används som startkatalog för filval.
+Fältet är inte redigerbart.
+MSFS SDK-rotmapp. # Om du tidigare har använt ImageToMSFSKTX2 importeras även detta när du klickar på knappen ”Importera”. # SDK är obligatoriskt om du arbetar med projekt som använder KTX2-formatet, eftersom bilder som konverterats med NVIDIA-verktyget inte fungerar i simulatorn. # Standard är C:/MSFS 2024 SDK
+Den butik du använder. # Antingen Microsoft eller Steam. # Standard är Microsoft.
+Det texturformat som ditt projekt arbetar med i MSFS2024. # DDS eller KTX2. # Detta värde beräknas automatiskt från paketets texturkatalog.
+De texturtyper som du vill inkludera i konverteringarna. # MSFS-paket kan innehålla många texturer, och normalt arbetar vi bara med #  albedo- (ALBD) och kompositionsfiler (COMP). # I de flesta fall bör du alltså välja ALBD och COMP. # Om ditt projekt inte använder metalliska färger kan du tryggt välja endast ALBD.
+True
+Vill du verkligen ta bort denna post?
+Inga projekt.

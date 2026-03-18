@@ -420,13 +420,11 @@ class Msfs2024ToolsViewModel(
         configurationRepository.saveProjectConfiguration(projectConfiguration)
             .onSuccess {
                 _state.update { state ->
-                    val projectConfigurations1 = state.projectConfigurations
-                    val filterNot = projectConfigurations1
+                    val projectConfigurations = state.projectConfigurations
                         .filterNot { p ->
                             (p.airplaneName == projectConfiguration.airplaneName && p.liveryName == projectConfiguration.liveryName)
                                     || (p.airplaneName == null && p.liveryName == null)
-                        }
-                    val projectConfigurations = filterNot + projectConfiguration
+                        } + projectConfiguration
                     state.copy(
                         currentProjectConfiguration = projectConfiguration,
                         projectConfigurations = projectConfigurations,

@@ -14,8 +14,8 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.TabButtonRow
-import de.visualdigits.msfs2024tools.presentation.components.tab.AirplanesTab
 import de.visualdigits.msfs2024tools.presentation.components.msfsbutton.MsfsTabButton
+import de.visualdigits.msfs2024tools.presentation.components.tab.AirplanesTab
 import de.visualdigits.msfs2024tools.presentation.components.tab.ProjectsTab
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState

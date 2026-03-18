@@ -51,8 +51,25 @@ Répertoire racine du SDK MSFS
 Type de simulation
 Format de texture
 Types de textures
+
+
 Allemand
+
 Anglais
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

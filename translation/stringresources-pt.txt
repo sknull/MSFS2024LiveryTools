@@ -1,0 +1,116 @@
+Adicionar
+Adicionar...
+A OCUPAR...
+Cancelar
+Selecionar diretório
+Selecionar ficheiro
+Fechar
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Apagar
+Editar
+Editar...
+É necessário definir, pelo menos, o tipo de simulador.
+O disco rígido está cheio.
+Ficheiro não encontrado.
+Não foi possível analisar o resultado.
+Ocorreu um erro desconhecido durante uma operação local.
+Não foi especificada nenhuma configuração.
+É necessário definir, no mínimo, o nome da aeronave e o nome da pintura.
+Ligação à Internet interrompida.
+O pedido expirou.
+Não foi possível analisar o resultado.
+Ocorreu um erro desconhecido durante uma operação remota.
+Campo desconhecido na configuração.
+Incorreto.
+Campo não definido.
+Importar definições da ferramenta de imagem
+Foo bar baz
+Nome da aeronave
+Aeronaves
+Configuração
+Simulação a seco
+Sinalizador HQ Albedo
+Sinalizador HQ Decal
+Sinalizador force no alpha albedo
+Sinalizador force no alpha decal
+Diretório ImageToMSFSKTX2
+Idioma
+Ferramenta geradora de layout executável
+Nome da pintura
+Idioma
+Pasta raiz da biblioteca
+Pasta raiz das texturas do modelo
+Ferramenta de texturas NVIDIA executável
+Diretório do pacote
+Diretório de texturas do pacote
+Diretório raiz do projeto
+Diretório raiz do MSFS SDK
+Tipo de simulação
+Formato de textura
+Tipos de textura
+Búlgaro
+Checo
+Alemão
+Dinamarquês
+Inglês
+Espanhol
+Finlandês
+Francês
+Grego
+Croata
+Húngaro
+Irlandês
+Italiano
+Neerlandês
+Norueguês
+Polaco
+Português
+Romeno
+Sérvio
+Sueco
+Eslovaco
+Esloveno
+Turco
+Sobre
+Ajuda
+Novo projeto...
+Ok
+Pesquisar
+Pesquisar...
+Mostrar detalhes...
+Saída de erros
+Saída
+Aeronaves
+Projetos
+Apagar elemento
+Informações
+O nome da aeronave para a qual pretende criar uma pintura. # Deve ser único em todos os seus projetos. # Se estiver a trabalhar em várias pinturas para a aeronave, certifique-se de que o nome é consistente em todos os seus projetos.
+Os nomes de todas as aeronaves em que está a trabalhar.
+Pesquisar diretórios.
+Pesquisar ficheiros.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+Diretório ImageToMSFSKTX2
+Ficheiro executável da ferramenta Layout Generator. # Uma vez que este ficheiro é guardado em qualquer local do seu sistema de ficheiros
+O nome do projeto de pintura em que está a trabalhar. # Deve ser único para todas as pinturas de uma aeronave.
+Idioma
+A pasta raiz da sua biblioteca principal de add-ons # ou o local onde guarda os seus pacotes finais para distribuição. # Isto é utilizado como diretório inicial para o Filechoose.
+O diretório de texturas do seu projeto do Blender (ou do projeto em que está a trabalhar). # Este é o diretório onde as texturas do seu modelo estão guardadas na forma de ficheiros PNG.
+Ficheiro executável «NVIDIA Texturetool». # Isto é obrigatório e necessário para converter texturas de qualquer formato de simulação para PNG. # O caminho padrão é C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Abrir no Explorador.
+A pasta raiz da estrutura do add-on na sua biblioteca principal.
+O diretório da pasta de texturas no seu pacote.
+A pasta raiz dos seus projetos do Blender # ou onde quer que guarde as suas pinturas. # Isto é utilizado como diretório inicial para a seleção de ficheiros.
+O campo não é editável.
+Pasta raiz do MSFS SDK. # Se já utilizou o ImageToMSFSKTX2 anteriormente, este também será importado quando clicar no botão «Importar». # O SDK é obrigatório se estiver a trabalhar em projetos que utilizem o formato KTX2, uma vez que as imagens convertidas com a ferramenta NVIDIA não funcionam no simulador. # O padrão é C:/MSFS 2024 SDK
+A loja que utiliza. # Microsoft ou Steam. # O padrão é Microsoft.
+O formato de textura com que o seu projeto trabalha no MSFS2024. # DDS ou KTX2. # Este valor é calculado automaticamente a partir do diretório de texturas do pacote.
+Os tipos de textura que pretende incluir nas conversões. # Os pacotes MSFS podem conter muitas texturas e, normalmente, trabalhamos apenas com #  ficheiros de albedo (ALBD) e de composição (COMP). # Na maioria dos casos, deve selecionar ALBD e COMP. # Se o seu projeto não utilizar cores metálicas, pode selecionar apenas ALBD.
+Verdadeiro
+Deseja mesmo eliminar esta entrada?
+Sem projetos.

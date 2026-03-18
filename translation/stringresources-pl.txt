@@ -1,0 +1,116 @@
+Dodaj
+Dodaj...
+TRWA...
+Anuluj
+Wybierz katalog
+Wybierz plik
+Zamknij
+DDS > PNG
+KTX2 > DDS
+PNG > DDS
+PNG > KTX2
+Usuń
+Edytuj
+Edytuj...
+Należy ustawić przynajmniej typ symulatora.
+Dysk jest pełny.
+Nie znaleziono pliku.
+Nie można było przeanalizować wyniku.
+Wystąpił nieznany błąd podczas operacji lokalnej.
+Nie podano konfiguracji.
+Należy ustawić co najmniej nazwę samolotu i nazwę malowania.
+Przerwane połączenie internetowe.
+Żądanie wygasło.
+Nie można było przeanalizować wyniku.
+Wystąpił nieznany błąd podczas operacji zdalnej.
+Nieznane pole w konfiguracji.
+Błędne.
+Pole nie jest zdefiniowane.
+Importuj ustawienia z narzędzia obrazowego
+Foo bar baz
+Nazwa samolotu
+Samoloty
+Konfiguracja
+Próba na sucho
+Flag HQ Albedo
+Flag HQ Decal
+Flag force no alpha albedo
+Flag force no alpha decal
+Katalog ImageToMSFSKTX2
+Język
+Narzędzie do generowania układu gotowe do uruchomienia
+Nazwa schematu malowania
+Język
+Katalog główny biblioteki
+Katalog główny tekstur modelu
+Narzędzie do tekstur NVIDIA gotowe do uruchomienia
+Katalog pakietu
+Katalog tekstur pakietu
+Katalog główny projektu
+Katalog główny MSFS SDK
+Typ symulacji
+Format tekstury
+Typy tekstur
+Bułgarski
+Czeski
+Niemiecki
+Duński
+Angielski
+Hiszpański
+Fiński
+Francuski
+Grecki
+Chorwacki
+Węgierski
+Irlandzki
+Włoski
+Holenderski
+Norweski
+Polski
+Portugalski
+Rumuński
+Serbski
+Szwedzki
+Słowacki
+Słoweński
+Turecki
+O programie
+Pomoc
+Nowy projekt...
+OK
+Wyszukaj
+Wyszukaj...
+Pokaż szczegóły...
+Wynik błędu
+Wynik
+Samoloty
+Projekty
+Usuń element
+Informacje
+Nazwa samolotu, dla którego chcesz stworzyć malowanie. # Powinna być unikalna we wszystkich Twoich projektach. # Jeśli pracujesz nad kilkoma malowaniami dla tego samolotu, upewnij się, że nazwa jest spójna we wszystkich Twoich projektach.
+Nazwy wszystkich samolotów, nad którymi pracujesz.
+Przeszukaj katalogi.
+Przeszukaj pliki.
+Flag HQ Albedo
+Flag HQ Decal
+Flag Force No Alpha Albedo
+Flag Force No Alpha Decal
+Katalog ImageToMSFSKTX2
+Plik wykonywalny narzędzia do generowania układów. # Ponieważ ten plik jest umieszczany w dowolnym miejscu w systemie plików
+Nazwa projektu malowania, nad którym pracujesz. # Powinna być unikalna dla wszystkich malowań samolotu.
+Język
+Katalog główny Twojej biblioteki dodatków # lub miejsce, w którym przechowujesz ostateczne pakiety do dystrybucji. # Jest to używane jako katalog startowy dla Filechoose.
+Katalog tekstur Twojego projektu w Blenderze (lub projektu, nad którym pracujesz). # Jest to katalog, w którym przechowywane są tekstury modeli w postaci plików PNG.
+Plik wykonywalny „NVIDIA Texturetool”. # Jest to obowiązkowe i niezbędne do konwersji tekstur z dowolnego formatu symulacyjnego do formatu PNG. # Domyślna ścieżka to C:/Program Files/NVIDIA Corporation/NVIDIA Texture Tools/nvtt_export.exe.
+Otwórz w Eksploratorze.
+Katalog główny struktury dodatków w głównej bibliotece.
+Katalog tekstur w pakiecie.
+Katalog główny projektów Blender # lub miejsce, w którym przechowujesz swoje malowania. # Jest to katalog startowy dla wyboru plików.
+Pole nie jest edytowalne.
+Katalog główny MSFS SDK. # Jeśli wcześniej korzystałeś z ImageToMSFSKTX2, zostanie on również zaimportowany po kliknięciu przycisku „Importuj”. # SDK jest obowiązkowe, jeśli pracujesz nad projektami wykorzystującymi format KTX2, ponieważ obrazy przekonwertowane za pomocą narzędzia NVIDIA nie działają w symulatorze. # Domyślnie jest to C:/MSFS 2024 SDK
+Sklep, z którego korzystasz. # Albo Microsoft, albo Steam. # Domyślnie jest to Microsoft.
+Format tekstur, z którym pracuje Twój projekt w MSFS2024. # DDS lub KTX2. # Ta wartość jest automatycznie obliczana na podstawie katalogu tekstur pakietu.
+Typy tekstur, które chcesz uwzględnić w konwersjach. # Pakiety MSFS mogą zawierać wiele tekstur, a zazwyczaj pracujemy tylko z #  plikami albedo (ALBD) i kompozycji (COMP). # W większości przypadków należy więc wybrać ALBD i COMP. # Jeśli Twój projekt nie wykorzystuje kolorów metalicznych, możesz śmiało wybrać tylko ALBD.
+True
+Czy na pewno chcesz usunąć ten wpis?
+Brak projektów.
