@@ -1,5 +1,6 @@
 package de.visualdigits.msfs2024tools.data.repository
 
+import co.touchlab.kermit.Logger
 import de.visualdigits.common.domain.model.Result
 import de.visualdigits.msfs2024tools.data.datasource.ConfigurationDataSource
 import de.visualdigits.msfs2024tools.data.mapper.toProjectConfiguration
@@ -21,6 +22,7 @@ class DefaultConfigurationRepository(
             val settings = settingsDto.toSettings()
             Result.Success(Pair(settings, settingsDto.projects.map { p -> p.toProjectConfiguration(settings)}))
         } catch (e: Exception) {
+            Logger.e("Could not load configuration", e)
             Result.Error(DataError.Local.SERIALIZATION)
         }
 

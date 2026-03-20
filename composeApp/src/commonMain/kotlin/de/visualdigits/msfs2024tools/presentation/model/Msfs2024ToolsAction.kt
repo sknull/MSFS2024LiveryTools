@@ -1,6 +1,6 @@
 package de.visualdigits.msfs2024tools.presentation.model
 
-import de.visualdigits.common.domain.model.Configuration
+import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
 import de.visualdigits.common.domain.model.KeyValue
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
@@ -86,7 +86,7 @@ sealed interface Msfs2024ToolsAction {
     ) : Msfs2024ToolsAction
 
     data class OnPanelOkClick(
-        val configuration: Configuration<*>?,
+        val configuration: AbstractConfiguration<*>?,
     ) : Msfs2024ToolsAction
 
     data class OnConversionClick(

@@ -15,25 +15,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Severity
-import de.visualdigits.common.domain.model.Configuration
+import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
+import de.visualdigits.common.domain.model.configuration.Field
 import de.visualdigits.common.domain.model.KeyValue
-import de.visualdigits.common.domain.model.StringResourceEnumerable
+import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
 import de.visualdigits.common.domain.model.color
-import de.visualdigits.common.domain.model.fieldValues
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.cancel
 import msfs2024liverytools.composeapp.generated.resources.icon_cancel_24px
 import msfs2024liverytools.composeapp.generated.resources.icon_check_small_24px
 import msfs2024liverytools.composeapp.generated.resources.ok
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -54,7 +51,7 @@ fun ConfigurationEditForm(
     onCancelClick: () -> Unit,
     onOkClick: () -> Unit,
     deleteAllowed: (String, String) -> Boolean = { _,_ -> true },
-    configuration: Configuration<*>?,
+    configuration: AbstractConfiguration<*>?,
     state: Msfs2024ToolsState
 ) {
     Column(
@@ -63,22 +60,22 @@ fun ConfigurationEditForm(
         verticalArrangement = Arrangement.spacedBy(space)
     ) {
         configuration
-            ?.asMap()
-            ?.toList()
+            ?.fields
+            ?.filter { (key, field) -> field.descriptor.visible }
+            ?.values
             ?.chunked(2)
             ?.forEach { rowItems ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(space)
                 ) {
-                    rowItems.forEach { (key, value) ->
+                    rowItems.forEach { field ->
                         Box(
                             modifier = Modifier
                                 .weight(1f)
                         ) {
                             EditableListField(
-                                configuration = configuration,
-                                key = key,
+                                field = field,
                                 fieldHeight = fieldHeight,
                                 space = space,
                                 unfocusedBorderColor = unfocusedBorderColor,
@@ -87,7 +84,6 @@ fun ConfigurationEditForm(
                                 buttonColor = buttonColor,
                                 buttonShape = buttonShape,
                                 containerShape = containerShape,
-                                value = value,
                                 onValueChange = onValueChange,
                                 deleteAllowed = deleteAllowed
                             )
@@ -150,8 +146,7 @@ fun ConfigurationEditForm(
 
 @Composable
 private fun EditableListField(
-    configuration: Configuration<*>?,
-    key: String,
+    field: Field<*,*,*>,
     fieldHeight: Dp,
     space: Dp,
     unfocusedBorderColor: Color,
@@ -160,37 +155,16 @@ private fun EditableListField(
     buttonColor: Color,
     buttonShape: Shape,
     containerShape: Shape,
-    value: String?,
     onValueChange: (KeyValue) -> Unit,
     deleteAllowed: (String, String) -> Boolean
 ) {
-    val label = configuration?.labelResource(key)?.let { sr -> stringResource(sr) } ?: key
-    val toolTip = configuration?.toolTipResource(key)?.let { sr -> stringResource(sr) }
-    val startDirectory = configuration?.startDirectory(key)
-    val clazz = configuration?.fieldClass(key)
-    val fieldClass = clazz?.first ?: Any::class.java
-    val collectionClass = clazz?.second ?: Any::class.java
-    val isEditable = configuration?.fieldIsEditable(key) ?: true
-    if (configuration?.valid(key) == true) Color.Unspecified else Severity.Error.color()
-    val options = when {
-        StringResourceEnumerable::class.java.isAssignableFrom(fieldClass) -> {
-            configuration
-                ?.fieldValues<StringResource, DrawableResource>(key)
-                ?.mapNotNull { triple -> triple?.let { t -> Triple(t.first, stringResource(t.second), t.third?.let { d -> painterResource(d) }) }  }
-                ?: listOf()
-        }
+    val isEditable = !field.descriptor.readOnly
+    if (field.valid()) Color.Unspecified else Severity.Error.color()
 
-        else -> {
-            configuration
-                ?.fieldValues<String, Painter>(key)
-                ?.mapNotNull { e -> e }
-                ?: listOf()
-        }
-    }
-
-    when {
-        List::class.java.isAssignableFrom(collectionClass) -> {
+    when(field.descriptor) {
+        is ListFieldDescriptor<*> -> {
             EditableList(
+                field = field as Field<ListFieldDescriptor<Any>, MutableList<Any>, Any>,
                 fieldHeight = fieldHeight,
                 space = space,
                 unfocusedBorderColor = unfocusedBorderColor,
@@ -199,17 +173,9 @@ private fun EditableListField(
                 buttonColor = buttonColor,
                 buttonShape = buttonShape,
                 containerShape = containerShape,
-                key = key,
-                label = label,
-                clazz = fieldClass,
-                fileMode = configuration?.fileMode(key),
-                startDirectory = startDirectory,
-                options = options,
-                values = if (value?.isNotEmpty() == true) value.split(",").map { v -> v.trim() } else listOf(),
                 onValueChange = onValueChange,
-                enabled = isEditable,
                 valid = {
-                    configuration?.valid(key)
+                    field.valid()
                 },
                 deleteAllowed = deleteAllowed
             )
@@ -219,15 +185,8 @@ private fun EditableListField(
             TypeAwareEditableField(
                 modifier = Modifier
                     .fillMaxWidth(),
+                field = field,
                 height = fieldHeight,
-                clazz = fieldClass,
-                fileMode = configuration?.fileMode(key),
-                startDirectory = startDirectory,
-                options = options,
-                key = key,
-                label = label,
-                toolTip = toolTip,
-                value = value,
                 enabled = isEditable,
                 unfocusedBorderColor = unfocusedBorderColor,
                 focusedBorderColor = focusedBorderColor,
@@ -236,7 +195,7 @@ private fun EditableListField(
                 buttonColor = buttonColor,
                 onValueChange = onValueChange,
                 valid = {
-                    configuration?.valid(key)
+                    field.valid()
                 }
             )
         }

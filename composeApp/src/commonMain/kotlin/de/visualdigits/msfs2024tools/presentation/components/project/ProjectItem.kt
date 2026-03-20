@@ -32,6 +32,8 @@ import coil3.request.ImageRequest
 import coil3.size.Size
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
+import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
+import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorCardBackground
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
@@ -101,19 +103,19 @@ fun ProjectItem(
             verticalArrangement = Arrangement.Top,
         ) {
             Text(
-                text = "${project.airplaneName} - ${project.liveryName}",
+                text = "${project.get<String>("airplaneName")} - ${project.get<String>("liveryName")}",
                 style = MaterialTheme.typography.titleLarge,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = project.textureTypes.joinToString(", "),
+                text = project.get<MutableList<TextureType>>("textureTypes")?.joinToString(", ")?:"",
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = project.textureFormat?.toString() ?: "",
+                text = project.get<TextureFormat>("textureFormat")?.toString() ?: "",
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,

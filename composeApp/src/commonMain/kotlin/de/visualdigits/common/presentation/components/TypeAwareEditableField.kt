@@ -15,14 +15,15 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.Enumerable
+import de.visualdigits.common.domain.model.configuration.EnumFieldDescriptor
+import de.visualdigits.common.domain.model.configuration.Field
+import de.visualdigits.common.domain.model.configuration.FileFieldDescriptor
 import de.visualdigits.common.domain.model.FileMode
 import de.visualdigits.common.domain.model.KeyValue
-import de.visualdigits.common.domain.model.StringResourceEnumerable
 import de.visualdigits.common.domain.model.color
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,15 +40,9 @@ import javax.swing.filechooser.FileNameExtensionFilter
 @Composable
 fun TypeAwareEditableField(
     modifier: Modifier = Modifier,
+    field: Field<*,*,*>,
+    currentValue: String? = null,
     height: Dp = Dp.Unspecified,
-    clazz: Class<out Any>,
-    fileMode: FileMode? = null,
-    startDirectory: File?,
-    options: List<Triple<String, String, Painter?>>,
-    key: String,
-    label: String,
-    toolTip: String? = null,
-    value: String?,
     unfocusedBorderColor: Color,
     focusedBorderColor: Color,
     iconTint: Color,
@@ -60,6 +55,7 @@ fun TypeAwareEditableField(
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
+    val value = currentValue?:field.value?.toString()
     val scope = rememberCoroutineScope()
     val focusRequester = remember { FocusRequester() }
     val finalUnfocusedBorderColor = if (valid() == false) {
@@ -71,49 +67,41 @@ fun TypeAwareEditableField(
     }
 
     when {
-        StringResourceEnumerable::class.java.isAssignableFrom(clazz)
-                || Enumerable::class.java.isAssignableFrom(clazz) -> {
-            ComboBox(
-                modifier = modifier
-                    .focusRequester(focusRequester),
-                enabled = enabled,
-                height = height,
-                options = options,
-                key = key,
-                label = label,
-                toolTip = toolTip,
-                initialValue = value?:"",
-                unfocusedBorderColor = finalUnfocusedBorderColor,
-                focusedBorderColor = focusedBorderColor,
-                buttonShape = buttonShape,
-                onValueChange = onValueChange,
-                valid = valid
-            )
+        field.descriptor is EnumFieldDescriptor<out Any>
+                || field.descriptor.singleItemClass?.java?.let { fc -> Enumerable::class.java.isAssignableFrom(fc) } == true -> {
+            if (field.descriptor.fieldClass == Boolean::class) {
+                BooleanComboBox(
+                    modifier = modifier
+                        .focusRequester(focusRequester),
+                    field = field,
+                    initialValue = value?:"",
+                    height = height,
+                    unfocusedBorderColor = finalUnfocusedBorderColor,
+                    focusedBorderColor = focusedBorderColor,
+                    buttonShape = buttonShape,
+                    onValueChange = onValueChange,
+                )
+            } else {
+                ComboBox(
+                    modifier = modifier
+                        .focusRequester(focusRequester),
+                    field = field,
+                    enabled = enabled,
+                    height = height,
+                    initialValue = value?:"",
+                    unfocusedBorderColor = finalUnfocusedBorderColor,
+                    focusedBorderColor = focusedBorderColor,
+                    buttonShape = buttonShape,
+                    onValueChange = onValueChange,
+                )
+            }
         }
 
-        Boolean::class.java == clazz -> {
-            BooleanComboBox(
-                modifier = modifier
-                    .focusRequester(focusRequester),
-                enabled = enabled,
-                height = height,
-                key = key,
-                label = label,
-                toolTip = toolTip,
-                initialValue = value?:"",
-                unfocusedBorderColor = finalUnfocusedBorderColor,
-                focusedBorderColor = focusedBorderColor,
-                buttonShape = buttonShape,
-                onValueChange = onValueChange,
-                valid = valid
-            )
-        }
-
-        File::class.java == clazz -> {
+        field.descriptor is FileFieldDescriptor -> {
             val titleDirectories = stringResource((Res.string.choose_directory))
             val titleFiles = stringResource((Res.string.choose_file))
 
-            ToolTip(toolTip) {
+            ToolTip(field.descriptor.toolTip?.let { t -> stringResource(t) }) {
                 OutlinedTextField(
                     modifier = modifier
                         .focusRequester(focusRequester)
@@ -121,7 +109,7 @@ fun TypeAwareEditableField(
                         .height(height),
                     enabled = enabled,
                     value = value?:"",
-                    label = { Text(text = label) },
+                    label = { Text(text = stringResource(field.descriptor.label)) },
                     leadingIcon = leadingIcon,
                     trailingIcon = {
                         trailingIcon?.let { ti -> ti() }
@@ -137,15 +125,18 @@ fun TypeAwareEditableField(
                                 onClick = {
                                     scope.launch(Dispatchers.IO) {
                                         val chooser = JFileChooser().apply {
-                                            if (fileMode == FileMode.FILES_ONLY) {
+                                            if (field.descriptor.fileMode == FileMode.FILES_ONLY) {
                                                 val filter =
-                                                    FileNameExtensionFilter(options.map { o -> o.first } .joinToString(", ") { o -> "*.$o" }, *options.map { o -> o.first }.toTypedArray())
+                                                    FileNameExtensionFilter(
+                                                        field.descriptor.options().map { o -> o.first }.joinToString(", ") { o -> "*.$o" },
+                                                        *field.descriptor.options().map { o -> o.first }.toTypedArray()
+                                                    )
                                                 this.fileFilter = filter
                                                 this.isAcceptAllFileFilterUsed = false
                                             }
-                                            currentDirectory = value?.let { v -> File(v) }?:startDirectory
-                                            fileSelectionMode = fileMode?.jFileChooserMode ?: JFileChooser.FILES_AND_DIRECTORIES
-                                            dialogTitle = when (fileMode) {
+                                            currentDirectory = (field as Field<FileFieldDescriptor, File, File>).value?:field.descriptor.startDirectory()
+                                            fileSelectionMode = field.descriptor.fileMode.jFileChooserMode
+                                            dialogTitle = when (field.descriptor.fileMode) {
                                                 FileMode.DIRECTORIES_ONLY -> titleDirectories
                                                 FileMode.FILES_ONLY -> titleFiles
                                                 else -> titleFiles
@@ -153,7 +144,7 @@ fun TypeAwareEditableField(
                                         }
                                         val result = chooser.showOpenDialog(null)
                                         if (result == JFileChooser.APPROVE_OPTION) {
-                                            onValueChange(KeyValue(key, chooser.selectedFile.canonicalPath))
+                                            onValueChange(KeyValue(field.descriptor.key, chooser.selectedFile.canonicalPath))
                                         }
                                     }
                                 }
@@ -163,7 +154,7 @@ fun TypeAwareEditableField(
                     readOnly = true,
                     shape = buttonShape,
                     onValueChange = { value ->
-                        onValueChange(KeyValue(key, value))
+                        onValueChange(KeyValue(field.descriptor.key, value))
                     },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
@@ -175,7 +166,8 @@ fun TypeAwareEditableField(
         }
 
         else -> {
-            ToolTip(toolTip) {
+            val label = stringResource(field.descriptor.label)
+            ToolTip(field.descriptor.toolTip?.let { t -> stringResource(t) }) {
                 OutlinedTextField(
                     modifier = modifier
                         .focusRequester(focusRequester)
@@ -186,7 +178,7 @@ fun TypeAwareEditableField(
                     value = value?:"",
                     shape = buttonShape,
                     onValueChange = { value ->
-                        onValueChange(KeyValue(key, value))
+                        onValueChange(KeyValue(field.descriptor.key, value))
                     },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(

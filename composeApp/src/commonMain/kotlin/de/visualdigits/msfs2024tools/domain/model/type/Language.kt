@@ -56,7 +56,8 @@ enum class Language(
     override val stringResourceId: StringResource,
     override val drawableResourceId: DrawableResource,
     val locale: Locale
-) : StringResourceEnumerable {
+) : StringResourceEnumerable<Language> {
+
     BG(Res.string.language_bg, Res.drawable.flag_bg, Locale.Builder().setLanguage("bg").setLanguageTag("BG").build()),
     CZ(Res.string.language_cz, Res.drawable.flag_cz, Locale.Builder().setLanguage("cz").setLanguageTag("CZ").build()),
     DE(Res.string.language_de, Res.drawable.flag_de, Locale.GERMANY),
@@ -80,4 +81,9 @@ enum class Language(
     SK(Res.string.language_sk, Res.drawable.flag_sk, Locale.Builder().setLanguage("sk").setLanguageTag("SK").build()),
     SL(Res.string.language_sl, Res.drawable.flag_sl, Locale.Builder().setLanguage("sl").setLanguageTag("SL").build()),
     TR(Res.string.language_tr, Res.drawable.flag_tr, Locale.Builder().setLanguage("tr").setLanguageTag("TR").build()),
+    ;
+
+    override fun fromString(value: String): Language? {
+        return Language.valueOf(value)
+    }
 }

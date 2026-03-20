@@ -53,10 +53,10 @@ fun ProjectList(
             verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
         ) {
             val projects = state.projectConfigurations
-                .sortedBy { p -> p.airplaneName }
-                .groupBy { p -> p.airplaneName }
+                .sortedBy { p -> p.get<String>("airplaneName") }
+                .groupBy { p -> p.get<String>("airplaneName") }
                 .map { (airplaneName, projects) ->
-                    Pair(airplaneName, projects.sortedBy { p -> p.liveryName })
+                    Pair(airplaneName, projects.sortedBy { p -> p.get<String>("liveryName") })
                 }
 
             projects.forEach { (airplaneName, liveries) ->

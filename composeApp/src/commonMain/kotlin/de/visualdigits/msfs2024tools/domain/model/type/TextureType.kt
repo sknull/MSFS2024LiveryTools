@@ -5,7 +5,7 @@ import de.visualdigits.common.domain.model.Enumerable
 enum class TextureType(
     val bitmapSlot: String,
     val forceNoAlpha: Boolean,
-): Enumerable {
+): Enumerable<TextureType> {
 
     ALBD(
         bitmapSlot = "MTL_BITMAP_DECAL0",
@@ -26,4 +26,9 @@ enum class TextureType(
         bitmapSlot = "MTL_BITMAP_NORMAL",
         forceNoAlpha = false
     );
+    ;
+
+    override fun fromString(value: String): TextureType? {
+        return TextureType.valueOf(value)
+    }
 }

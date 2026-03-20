@@ -73,7 +73,7 @@ fun RowScope.ProjectButtons(
                 }
             )
         }
-        when (project.textureFormat) {
+        when (project.get<TextureFormat>("textureFormat")) {
             TextureFormat.DDS -> {
                 FlexibleTextButton(
                     text = stringResource(Res.string.conversion_png_to_dds),

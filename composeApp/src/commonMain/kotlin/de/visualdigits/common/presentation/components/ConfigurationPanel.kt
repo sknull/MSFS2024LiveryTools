@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -33,7 +32,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Severity
-import de.visualdigits.common.domain.model.Configuration
+import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
+import de.visualdigits.common.domain.model.configuration.Field
+import de.visualdigits.common.domain.model.configuration.FileFieldDescriptor
 import de.visualdigits.common.domain.model.FileMode
 import de.visualdigits.common.domain.model.color
 import kotlinx.coroutines.Dispatchers
@@ -65,7 +66,7 @@ import java.io.File
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ConfigurationPanel(
-    configuration: Configuration<*>?,
+    configuration: AbstractConfiguration<*>?,
     onEditClick: () -> Unit,
     onDeleteClick: (() -> Unit)? = null,
     onOkClick: () -> Unit,
@@ -135,14 +136,14 @@ fun ConfigurationPanel(
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(
-                items = configuration?.asMap()?.toList() ?: listOf(),
-                key = { (key, _) -> key }
-            ) { (key, value) ->
-                Row(
-                    modifier = Modifier
-                        .height(30.dp)
-                        .fillMaxWidth()
+            configuration?.fields
+                ?.filter { (key, field) -> field.descriptor.visible }
+                ?.forEach { (key, field) ->
+                    item(key = key) {
+                        Row(
+                            modifier = Modifier
+                                .height(30.dp)
+                                .fillMaxWidth()
 //                        .drawBehind {
 //                            val strokeWidth = 1.dp.toPx()
 //                            val y = size.height - strokeWidth / 2
@@ -153,73 +154,69 @@ fun ConfigurationPanel(
 //                                strokeWidth = strokeWidth
 //                            )
 //                        },
-                ) {
-                    val color = if (configuration?.valid(key) == true) {
-                        if (value != null) {
-                            Color.Unspecified
-                        } else {
-                            Severity.Warn.color()
-                        }
-                    } else {
-                        Severity.Error.color()
-                    }
-                    val label = configuration?.labelResource(key)?.let { sr -> stringResource(sr) } ?: key
-                    val unset = stringResource(Res.string.field_unset)
-                    val clazz = configuration?.fieldClass(key)
-                    val fileMode = configuration?.fileMode(key)
-                    val isEditable = configuration?.fieldIsEditable(key)?:true
-
-                    Text(
-                        text = label,
-                        style = MaterialTheme.typography.titleSmall,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier
-                            .fillParentMaxWidth(0.3f)
-                    )
-
-                    Text(
-                        text = value?:unset,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = color,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier
-                            .fillParentMaxWidth(0.67f)
-                    )
-
-                    if (!isEditable) {
-                        SquaredIconButton(
-                            icon = painterResource(Res.drawable.icon_info_24px),
-                            iconTint = iconTint,
-                            modifier = Modifier.padding(start = 5.dp),
-                            size = 30.dp,
-                            toolTip = stringResource(Res.string.tooltip_readonly),
-                            buttonShape = buttonShape,
-                            buttonColor = buttonColor
-                        )
-                    }
-
-                    if (File::class.java == clazz?.first && fileMode == FileMode.DIRECTORIES_ONLY) {
-                        val file = value?.let { v -> File(v) }
-                        SquaredIconButton(
-                            icon = painterResource(Res.drawable.icon_folder_open_24px),
-                            iconTint = iconTint,
-                            modifier = Modifier.padding(start = 5.dp),
-                            size = 30.dp,
-                            toolTip = stringResource(Res.string.tooltip_openInExplorer),
-                            buttonShape = buttonShape,
-                            buttonColor = buttonColor,
-                            enabled = file?.exists() == true,
-                            onClick = {
-                                buttonScope.launch(Dispatchers.IO) {
-                                    Desktop.getDesktop().open(file)
+                        ) {
+                            val color = if (field.valid()) {
+                                if (field.value != null) {
+                                    Color.Unspecified
+                                } else {
+                                    Severity.Warn.color()
                                 }
+                            } else {
+                                Severity.Error.color()
                             }
-                        )
+                            val unset = stringResource(Res.string.field_unset)
+
+                            Text(
+                                text = stringResource(field.descriptor.label),
+                                style = MaterialTheme.typography.titleSmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier
+                                    .fillParentMaxWidth(0.3f)
+                            )
+
+                            Text(
+                                text = field.value?.toString()?:unset,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = color,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier
+                                    .fillParentMaxWidth(0.67f)
+                            )
+
+                            if (!field.descriptor.readOnly) {
+                                SquaredIconButton(
+                                    icon = painterResource(Res.drawable.icon_info_24px),
+                                    iconTint = iconTint,
+                                    modifier = Modifier.padding(start = 5.dp),
+                                    size = 30.dp,
+                                    toolTip = stringResource(Res.string.tooltip_readonly),
+                                    buttonShape = buttonShape,
+                                    buttonColor = buttonColor
+                                )
+                            }
+
+                            if (field.descriptor is FileFieldDescriptor && field.descriptor.fileMode == FileMode.DIRECTORIES_ONLY) {
+                                SquaredIconButton(
+                                    icon = painterResource(Res.drawable.icon_folder_open_24px),
+                                    iconTint = iconTint,
+                                    modifier = Modifier.padding(start = 5.dp),
+                                    size = 30.dp,
+                                    toolTip = stringResource(Res.string.tooltip_openInExplorer),
+                                    buttonShape = buttonShape,
+                                    buttonColor = buttonColor,
+                                    enabled = (field as Field<FileFieldDescriptor, File, List<File>>).value?.exists() == true,
+                                    onClick = {
+                                        buttonScope.launch(Dispatchers.IO) {
+                                            Desktop.getDesktop().open(field.value)
+                                        }
+                                    }
+                                )
+                            }
+                        }
                     }
                 }
-            }
         }
 
         if (showOkButton) {

@@ -24,7 +24,7 @@ class DummyMsfs2024Service: Msfs2024Service {
         logger: (LogMessage) -> Unit
     ): Result<Unit, DataError.Local> = withContext(Dispatchers.IO) {
         if(configuration != null) {
-            logger(log(Severity.Info, "#### TEST - [dryRun=$dryRun] converting $conversion for project '${project.airplaneName}_${project.liveryName}' ####"))
+            logger(log(Severity.Info, "#### TEST - [dryRun=$dryRun] converting $conversion for project '${project.get<String>("airplaneName")}_${project.get<String>("liveryName")}' ####"))
             logger(log(Severity.Assert, "Test Assert"))
             logger(log(Severity.Verbose, "Test Verbose"))
             logger(log(Severity.Debug, "Test Debug"))

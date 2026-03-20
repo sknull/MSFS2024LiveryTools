@@ -7,7 +7,9 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import co.touchlab.kermit.Logger
 import com.formdev.flatlaf.FlatDarculaLaf
+import de.visualdigits.common.domain.service.getPlatformLogWriters
 import de.visualdigits.di.initKoin
 import kotlinx.coroutines.cancel
 import msfs2024liverytools.composeapp.generated.resources.Msfs2024Tools
@@ -18,6 +20,10 @@ import javax.swing.UIManager
 fun main() {
 
     initKoin()
+
+    val writers = getPlatformLogWriters()
+    Logger.setLogWriters(writers)
+    Logger.setTag("MSFS2024LiveryTools")
 
     application {
         val ioScope = rememberCoroutineScope()

@@ -35,13 +35,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.domain.model.FileMode
 import de.visualdigits.common.domain.model.KeyValue
+import de.visualdigits.common.domain.model.configuration.Field
+import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.add
 import msfs2024liverytools.composeapp.generated.resources.add_hint
@@ -56,11 +56,11 @@ import msfs2024liverytools.composeapp.generated.resources.icon_file_save_24px
 import msfs2024liverytools.composeapp.generated.resources.ok
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import java.io.File
 
 @Composable
 fun EditableList(
     modifier: Modifier = Modifier,
+    field: Field<ListFieldDescriptor<Any>, MutableList<Any>, Any>,
     fieldHeight: Dp = Dp.Unspecified,
     space: Dp,
     unfocusedBorderColor: Color,
@@ -69,14 +69,6 @@ fun EditableList(
     buttonShape: Shape,
     containerShape: Shape,
     buttonColor: Color,
-    key: String,
-    label: String,
-    clazz: Class<out Any>,
-    fileMode: FileMode? = null,
-    startDirectory: File? = null,
-    options: List<Triple<String, String, Painter?>>,
-    values: List<String>,
-    enabled: Boolean = true,
     scrollable: Boolean = false,
     onValueChange: (KeyValue) -> Unit,
     valid: () -> Boolean? = { true },
@@ -84,6 +76,7 @@ fun EditableList(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
+    val values = field.stringValue()?.split(",")?:listOf()
     val previousItems = remember(values) { values.toMutableStateList() }
     val items = remember(values) { values.toMutableStateList() }
     var showDialog by remember { mutableStateOf(false) }
@@ -107,12 +100,12 @@ fun EditableList(
         ) {
             Text(
                 modifier = Modifier,
-                text = label,
+                text = stringResource(field.descriptor.label),
                 style = MaterialTheme.typography.bodySmall,
             )
 
             items.forEachIndexed { index, item ->
-                val allowDelete = deleteAllowed(key, item)
+                val allowDelete = deleteAllowed(field.descriptor.key, item.toString())
 
                 Surface(
                     modifier = Modifier
@@ -134,12 +127,12 @@ fun EditableList(
                         horizontalArrangement = Arrangement.spacedBy(1.dp)
                     ) {
                         Text(
-                            text = item,
+                            text = item.toString(),
                             style = MaterialTheme.typography.bodySmall,
                             modifier = Modifier.weight(1f)
                         )
 
-                        if (enabled) {
+                        if (field.enabled) {
                             SquaredIconButton(
                                 icon = painterResource(Res.drawable.icon_edit_24px),
                                 iconTint = iconTint,
@@ -150,7 +143,7 @@ fun EditableList(
                                 buttonColor = buttonColor,
                                 onClick = {
                                     editingIndex = index
-                                    currentText = item
+                                    currentText = item.toString()
                                     showDialog = true
                                 }
                             )
@@ -169,7 +162,7 @@ fun EditableList(
                                     currentText = null
                                     items.removeAt(index)
                                     showDialog = false
-                                    onValueChange(KeyValue(key, items.joinToString(",")))
+                                    onValueChange(KeyValue(field.descriptor.key, items.joinToString(",")))
                                 }
                             )
                         }
@@ -177,7 +170,7 @@ fun EditableList(
                 }
             }
 
-            if (enabled) {
+            if (field.enabled) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -241,15 +234,10 @@ fun EditableList(
                 TypeAwareEditableField(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    enabled = enabled,
+                    enabled = field.enabled,
                     height = fieldHeight,
-                    clazz = clazz,
-                    fileMode = fileMode,
-                    startDirectory = startDirectory,
-                    options = options,
-                    key = key,
-                    label = label,
-                    value = currentText,
+                    field = field,
+                    currentValue = currentText,
                     unfocusedBorderColor = unfocusedBorderColor,
                     focusedBorderColor = focusedBorderColor,
                     iconTint = iconTint,
@@ -258,7 +246,7 @@ fun EditableList(
                     valid = valid,
                     hasFocus = true,
                     onValueChange = { keyValue ->
-                        currentText = keyValue.value?:""
+                        currentText = keyValue.value?.toString()?:""
                     }
                 )
             },
@@ -277,7 +265,7 @@ fun EditableList(
                             currentText?.also { ct -> items.add(ct) }
                         }
                         onValueChange(KeyValue(
-                            key = key,
+                            key = field.descriptor.key,
                             value = items.joinToString(","),
                             previousValue = previousValue,
                             newValue = currentText
@@ -305,7 +293,7 @@ fun EditableList(
                     paddingTop = 0.dp,
                     onClick = {
                         items.update(previousItems)
-                        onValueChange(KeyValue(key, items.joinToString(",")))
+                        onValueChange(KeyValue(field.descriptor.key, items.joinToString(",")))
                         showDialog = false
                     },
                     modifier = Modifier
@@ -325,7 +313,7 @@ fun EditableList(
     }
 }
 
-private fun <T> SnapshotStateList<T>.update(values: List<T>) {
+private fun <T> SnapshotStateList<T>.update(values: MutableList<T>) {
     clear()
     addAll(values)
 }
