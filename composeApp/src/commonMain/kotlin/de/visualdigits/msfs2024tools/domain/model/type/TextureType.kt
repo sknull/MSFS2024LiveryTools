@@ -1,6 +1,7 @@
 package de.visualdigits.msfs2024tools.domain.model.type
 
 import de.visualdigits.common.domain.model.Enumerable
+import de.visualdigits.common.domain.model.configuration.KeyFactory
 
 enum class TextureType(
     val bitmapSlot: String,
@@ -25,10 +26,15 @@ enum class TextureType(
     NORM(
         bitmapSlot = "MTL_BITMAP_NORMAL",
         forceNoAlpha = false
-    );
+    )
     ;
 
-    override fun fromString(value: String): TextureType? {
-        return TextureType.valueOf(value)
+    companion object : KeyFactory<TextureType> {
+
+        override fun fromString(value: String?): TextureType? {
+            return TextureType.entries.find { e -> e.name == value }
+        }
+
+        override fun stringValue(value: Any?): String? = (value as? TextureType)?.name
     }
 }

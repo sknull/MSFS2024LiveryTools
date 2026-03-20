@@ -5,7 +5,7 @@ import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 
 interface ConfigurationDataSource {
 
-    fun loadSettings(): SettingsDto
+    suspend fun loadSettings(): SettingsDto
 
     suspend fun saveSettings(settingsDto: SettingsDto)
 

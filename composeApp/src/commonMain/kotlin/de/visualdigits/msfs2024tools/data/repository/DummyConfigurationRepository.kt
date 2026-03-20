@@ -7,13 +7,15 @@ import de.visualdigits.msfs2024tools.data.mapper.toSettings
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.DataError
+import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.domain.service.ConfigurationRepository
+import java.io.File
 
 class DummyConfigurationRepository(
     val configurationDataSource: ConfigurationDataSource
 ): ConfigurationRepository {
 
-    override fun loadConfiguration(): Result<Pair<Settings, List<ProjectConfiguration>>, DataError.Local> {
+    override suspend fun loadConfiguration(): Result<Pair<Settings, List<ProjectConfiguration>>, DataError.Local> {
         val settingsDto = configurationDataSource.loadSettings()
         val settings = settingsDto.toSettings()
 
@@ -48,5 +50,13 @@ class DummyConfigurationRepository(
         println("#### deleting projectConfiguration: $projectConfiguration")
 
         return Result.Success(Unit)
+    }
+
+    override suspend fun determineTextureFormat(
+        textureDir: File
+    ): Result<TextureFormat, DataError.Local> {
+        println("#### determine texture format for directory: $textureDir")
+
+        return Result.Success(TextureFormat.DDS)
     }
 }

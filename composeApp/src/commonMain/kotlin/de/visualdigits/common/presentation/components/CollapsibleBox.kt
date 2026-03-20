@@ -40,7 +40,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun CollapsibleBox(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String?,
     unfocusedBorderColor: Color,
     focusedBorderColor: Color,
     backgroundColor: Color,
@@ -88,10 +88,12 @@ fun CollapsibleBox(
                                 .fillMaxWidth()
                                 .padding(start = 8.dp)
                         ) {
-                            Text(
-                                text = title,
-                                style = MaterialTheme.typography.titleSmall
-                            )
+                            title?.let { t ->
+                                Text(
+                                    text = t,
+                                    style = MaterialTheme.typography.titleSmall
+                                )
+                            }
 
                             Spacer(modifier = Modifier.weight(1f))
                             if (isExpanded) {

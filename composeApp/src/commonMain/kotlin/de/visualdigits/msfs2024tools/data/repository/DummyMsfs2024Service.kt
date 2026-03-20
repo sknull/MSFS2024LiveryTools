@@ -2,6 +2,7 @@ package de.visualdigits.msfs2024tools.data.repository
 
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.Result
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.DataError
@@ -24,7 +25,8 @@ class DummyMsfs2024Service: Msfs2024Service {
         logger: (LogMessage) -> Unit
     ): Result<Unit, DataError.Local> = withContext(Dispatchers.IO) {
         if(configuration != null) {
-            logger(log(Severity.Info, "#### TEST - [dryRun=$dryRun] converting $conversion for project '${project.get<String>("airplaneName")}_${project.get<String>("liveryName")}' ####"))
+            logger(log(Severity.Info, "#### TEST - [dryRun=$dryRun] converting $conversion for project '${project.get<String>(
+                PK.airplaneName)}_${project.get<String>(PK.liveryName)}' ####"))
             logger(log(Severity.Assert, "Test Assert"))
             logger(log(Severity.Verbose, "Test Verbose"))
             logger(log(Severity.Debug, "Test Debug"))

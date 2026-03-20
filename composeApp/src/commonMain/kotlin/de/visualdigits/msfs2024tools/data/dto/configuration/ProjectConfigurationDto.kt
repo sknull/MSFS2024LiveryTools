@@ -5,7 +5,7 @@ import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfigura
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import kotlinx.serialization.Serializable
-import java.io.File
+import kotlinx.serialization.Transient
 
 /**
  * Project specific model.
@@ -29,23 +29,51 @@ data class ProjectConfigurationDto(
     val modelTexturesDir: String? = null,
 
     /** Determines with which texture flavor the project is working [KTX2, DDS] */
-    var textureFormat: TextureFormat? = null,
+    var textureFormatPackage: TextureFormat? = null,
+
+    /** Determines with which texture flavor the project is working [KTX2, DDS] */
+    var textureFormatModel: TextureFormat? = null,
 
     /** Optional coma separated list of texture types to process [ALBD,COMP,DECAL,NORM], default is all. */
-    val textureTypes: List<TextureType> = TEXTURETYPES_DEFAULT
+    val textureTypes: List<TextureType> = TEXTURETYPES_DEFAULT,
+
+    //
+    // Backward compatibility
+    //
+    /** since 1.0.5 is now split up to textureFormatPackage and textureFormatModel */
+    var textureFormat: TextureFormat? = null,
 ): Comparable<ProjectConfigurationDto> {
 
+    @Transient
+    var migrated: Boolean = false
+
     init {
-        if (textureFormat == null) {
-            val dir = packageTextureDir?.let { File(it) }
-            textureFormat = if (dir?.listFiles { file -> file.name.endsWith(".dds", ignoreCase = true) }?.isNotEmpty() == true) {
-                TextureFormat.DDS
-            } else if (dir?.listFiles { file -> file.name.endsWith(".ktx2", ignoreCase = true) }?.isNotEmpty() == true) {
-                TextureFormat.KTX2
-            } else {
-                null
-            }
+        // migrate deprecated field textureFormat
+        if (textureFormatPackage == null) {
+            migrated = true
+            textureFormatPackage = textureFormat
         }
+        if (textureFormatModel == null) {
+            migrated = true
+            textureFormatModel = TextureFormat.PNG
+        }
+        if (migrated) {
+            textureFormat = null
+        }
+    }
+
+    fun clone(): ProjectConfigurationDto {
+        return ProjectConfigurationDto(
+            airplaneName = airplaneName,
+            liveryName = liveryName,
+            packageDir = packageDir,
+            packageTextureDir = packageTextureDir,
+            modelTexturesDir = modelTexturesDir,
+            textureFormatPackage = textureFormatPackage,
+            textureFormatModel = textureFormatModel,
+            textureTypes = textureTypes.toList(),
+            textureFormat = textureFormat
+        )
     }
 
     override fun compareTo(other: ProjectConfigurationDto): Int = compareBy<ProjectConfigurationDto>(
@@ -64,7 +92,7 @@ data class ProjectConfigurationDto(
         if (packageDir != other.packageDir) return false
         if (packageTextureDir != other.packageTextureDir) return false
         if (modelTexturesDir != other.modelTexturesDir) return false
-        if (textureFormat != other.textureFormat) return false
+        if (textureFormatPackage != other.textureFormatPackage) return false
         if (textureTypes != other.textureTypes) return false
 
         return true
@@ -76,7 +104,7 @@ data class ProjectConfigurationDto(
         result = 31 * result + (packageDir?.hashCode() ?: 0)
         result = 31 * result + (packageTextureDir?.hashCode() ?: 0)
         result = 31 * result + (modelTexturesDir?.hashCode() ?: 0)
-        result = 31 * result + (textureFormat?.hashCode() ?: 0)
+        result = 31 * result + (textureFormatPackage?.hashCode() ?: 0)
         result = 31 * result + textureTypes.hashCode()
         return result
     }

@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.CollapsibleBox
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorFocused
@@ -53,15 +54,15 @@ fun ProjectList(
             verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
         ) {
             val projects = state.projectConfigurations
-                .sortedBy { p -> p.get<String>("airplaneName") }
-                .groupBy { p -> p.get<String>("airplaneName") }
+                .sortedBy { p -> p.get<String>(PK.airplaneName) }
+                .groupBy { p -> p.get<String>(PK.airplaneName) }
                 .map { (airplaneName, projects) ->
-                    Pair(airplaneName, projects.sortedBy { p -> p.get<String>("liveryName") })
+                    Pair(airplaneName, projects.sortedBy { p -> p.get<String>(PK.liveryName) })
                 }
 
             projects.forEach { (airplaneName, liveries) ->
                 CollapsibleBox(
-                    title = airplaneName!!,
+                    title = airplaneName,
                     unfocusedBorderColor = ColorUnfocused,
                     focusedBorderColor = ColorFocused,
                     backgroundColor = Color.Black.copy(alpha = 0.2f),

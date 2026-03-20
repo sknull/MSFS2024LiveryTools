@@ -4,11 +4,14 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import kotlin.reflect.KClass
 
+/**
+ * Represents a field which is rendered as an editable list in the UI.
+ */
 @Suppress("UNCHECKED_CAST")
-open class ListFieldDescriptor<F : Any>(
+open class ListFieldDescriptor<F : Any, K : FieldKey<K>>(
     fieldClass: KClass<F>,
 
-    key: String,
+    key: K,
 
     label: StringResource,
     toolTip: StringResource? = null,
@@ -17,15 +20,29 @@ open class ListFieldDescriptor<F : Any>(
     readOnly: Boolean = false,
 
     options: () -> List<Triple<String, StringResource?, DrawableResource?>> = { listOf() },
-    sorted: Boolean = false
-): AbstractFieldDescriptor<ListFieldDescriptor<F>, MutableList<F>, F>(
+
+    keyFactory: KeyFactory<MutableList<F>>
+): AbstractFieldDescriptor<MutableList<F>, F, K>(
     fieldClass = MutableList::class as KClass<MutableList<F>>,
-    singleItemClass = fieldClass,
+    itemClass = fieldClass,
     key = key,
     label = label,
     toolTip = toolTip,
     visible = visible,
     readOnly = readOnly,
     options = options,
-    sorted = sorted
+    keyFactory = keyFactory
 )
+
+class StringListKeyFactory {
+
+    companion object : KeyFactory<MutableList<String>> {
+
+        override fun fromString(value: String?): MutableList<String>  = value?.split(",")?.map { v -> v.trim() }?.toMutableList()?:mutableListOf()
+
+        override fun stringValue(value: Any?): String? {
+            val s = (value as? List<String>)?.joinToString(",")
+            return s
+        }
+    }
+}

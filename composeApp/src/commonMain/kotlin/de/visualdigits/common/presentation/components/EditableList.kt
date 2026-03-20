@@ -40,8 +40,9 @@ import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.domain.model.KeyValue
+import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
+import de.visualdigits.common.domain.model.configuration.AbstractFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.Field
-import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.add
 import msfs2024liverytools.composeapp.generated.resources.add_hint
@@ -60,7 +61,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun EditableList(
     modifier: Modifier = Modifier,
-    field: Field<ListFieldDescriptor<Any>, MutableList<Any>, Any>,
+    configuration: AbstractConfiguration<*,*>?,
+    field: Field<MutableList<*>,*,*>,
     fieldHeight: Dp = Dp.Unspecified,
     space: Dp,
     unfocusedBorderColor: Color,
@@ -71,8 +73,7 @@ fun EditableList(
     buttonColor: Color,
     scrollable: Boolean = false,
     onValueChange: (KeyValue) -> Unit,
-    valid: () -> Boolean? = { true },
-    deleteAllowed: (String, String) -> Boolean = { _, _ -> true }
+    deleteAllowed: (AbstractFieldDescriptor<*,*,*>, String) -> Boolean = { _, _ -> true }
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -105,7 +106,7 @@ fun EditableList(
             )
 
             items.forEachIndexed { index, item ->
-                val allowDelete = deleteAllowed(field.descriptor.key, item.toString())
+                val allowDelete = deleteAllowed(field.descriptor, item)
 
                 Surface(
                     modifier = Modifier
@@ -162,7 +163,7 @@ fun EditableList(
                                     currentText = null
                                     items.removeAt(index)
                                     showDialog = false
-                                    onValueChange(KeyValue(field.descriptor.key, items.joinToString(",")))
+                                    onValueChange(KeyValue(field.descriptor, items.joinToString(",")))
                                 }
                             )
                         }
@@ -234,20 +235,20 @@ fun EditableList(
                 TypeAwareEditableField(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    enabled = field.enabled,
-                    height = fieldHeight,
+                    configuration = configuration,
                     field = field,
                     currentValue = currentText,
+                    height = fieldHeight,
                     unfocusedBorderColor = unfocusedBorderColor,
                     focusedBorderColor = focusedBorderColor,
                     iconTint = iconTint,
                     buttonShape = buttonShape,
                     buttonColor = buttonColor,
-                    valid = valid,
-                    hasFocus = true,
+                    enabled = field.enabled,
                     onValueChange = { keyValue ->
                         currentText = keyValue.value?.toString()?:""
-                    }
+                    },
+                    hasFocus = true
                 )
             },
             confirmButton = {
@@ -265,7 +266,7 @@ fun EditableList(
                             currentText?.also { ct -> items.add(ct) }
                         }
                         onValueChange(KeyValue(
-                            key = field.descriptor.key,
+                            descriptor = field.descriptor,
                             value = items.joinToString(","),
                             previousValue = previousValue,
                             newValue = currentText
@@ -293,7 +294,7 @@ fun EditableList(
                     paddingTop = 0.dp,
                     onClick = {
                         items.update(previousItems)
-                        onValueChange(KeyValue(field.descriptor.key, items.joinToString(",")))
+                        onValueChange(KeyValue(field.descriptor, items.joinToString(",")))
                         showDialog = false
                     },
                     modifier = Modifier

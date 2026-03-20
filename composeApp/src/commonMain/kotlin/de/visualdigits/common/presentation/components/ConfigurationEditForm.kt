@@ -20,11 +20,13 @@ import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Severity
-import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
-import de.visualdigits.common.domain.model.configuration.Field
 import de.visualdigits.common.domain.model.KeyValue
-import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
 import de.visualdigits.common.domain.model.color
+import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
+import de.visualdigits.common.domain.model.configuration.AbstractFieldDescriptor
+import de.visualdigits.common.domain.model.configuration.Field
+import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
+import de.visualdigits.common.domain.model.configuration.SpacerFieldDescriptor
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.cancel
@@ -48,10 +50,11 @@ fun ConfigurationEditForm(
     containerShape: Shape,
     space: Dp,
     onValueChange: (KeyValue) -> Unit,
+    configuration: AbstractConfiguration<*,*>?,
+    currentValue: (Field<*,*,*>) -> String?,
     onCancelClick: () -> Unit,
     onOkClick: () -> Unit,
-    deleteAllowed: (String, String) -> Boolean = { _,_ -> true },
-    configuration: AbstractConfiguration<*>?,
+    deleteAllowed: (AbstractFieldDescriptor<*,*,*>, String) -> Boolean = { _,_ -> true },
     state: Msfs2024ToolsState
 ) {
     Column(
@@ -75,6 +78,7 @@ fun ConfigurationEditForm(
                                 .weight(1f)
                         ) {
                             EditableListField(
+                                configuration = configuration,
                                 field = field,
                                 fieldHeight = fieldHeight,
                                 space = space,
@@ -146,6 +150,7 @@ fun ConfigurationEditForm(
 
 @Composable
 private fun EditableListField(
+    configuration: AbstractConfiguration<*,*>,
     field: Field<*,*,*>,
     fieldHeight: Dp,
     space: Dp,
@@ -156,47 +161,51 @@ private fun EditableListField(
     buttonShape: Shape,
     containerShape: Shape,
     onValueChange: (KeyValue) -> Unit,
-    deleteAllowed: (String, String) -> Boolean
+    deleteAllowed: (AbstractFieldDescriptor<*,*,*>, String) -> Boolean
 ) {
     val isEditable = !field.descriptor.readOnly
-    if (field.valid()) Color.Unspecified else Severity.Error.color()
+    if (field.valid(field.value)) Color.Unspecified else Severity.Error.color()
 
     when(field.descriptor) {
-        is ListFieldDescriptor<*> -> {
+        is ListFieldDescriptor -> {
             EditableList(
-                field = field as Field<ListFieldDescriptor<Any>, MutableList<Any>, Any>,
+                configuration = configuration,
+                field = field as Field<MutableList<*>, *, *>,
                 fieldHeight = fieldHeight,
                 space = space,
                 unfocusedBorderColor = unfocusedBorderColor,
                 focusedBorderColor = focusedBorderColor,
                 iconTint = iconTint,
-                buttonColor = buttonColor,
                 buttonShape = buttonShape,
                 containerShape = containerShape,
+                buttonColor = buttonColor,
                 onValueChange = onValueChange,
-                valid = {
-                    field.valid()
-                },
                 deleteAllowed = deleteAllowed
             )
         }
+
+        is SpacerFieldDescriptor ->
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+
+            }
 
         else -> {
             TypeAwareEditableField(
                 modifier = Modifier
                     .fillMaxWidth(),
+                configuration = configuration,
                 field = field,
                 height = fieldHeight,
-                enabled = isEditable,
                 unfocusedBorderColor = unfocusedBorderColor,
                 focusedBorderColor = focusedBorderColor,
                 iconTint = iconTint,
                 buttonShape = buttonShape,
                 buttonColor = buttonColor,
-                onValueChange = onValueChange,
-                valid = {
-                    field.valid()
-                }
+                enabled = isEditable,
+                onValueChange = onValueChange
             )
         }
     }

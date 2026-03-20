@@ -37,6 +37,7 @@ import de.visualdigits.common.domain.model.configuration.Field
 import de.visualdigits.common.domain.model.configuration.FileFieldDescriptor
 import de.visualdigits.common.domain.model.FileMode
 import de.visualdigits.common.domain.model.color
+import de.visualdigits.common.domain.model.configuration.SpacerFieldDescriptor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import msfs2024liverytools.composeapp.generated.resources.Res
@@ -66,7 +67,7 @@ import java.io.File
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ConfigurationPanel(
-    configuration: AbstractConfiguration<*>?,
+    configuration: AbstractConfiguration<*,*>?,
     onEditClick: () -> Unit,
     onDeleteClick: (() -> Unit)? = null,
     onOkClick: () -> Unit,
@@ -137,7 +138,9 @@ fun ConfigurationPanel(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             configuration?.fields
-                ?.filter { (key, field) -> field.descriptor.visible }
+                ?.filter { (key, field) ->
+                    field.descriptor.visible && field.descriptor !is SpacerFieldDescriptor
+                }
                 ?.forEach { (key, field) ->
                     item(key = key) {
                         Row(
@@ -155,7 +158,7 @@ fun ConfigurationPanel(
 //                            )
 //                        },
                         ) {
-                            val color = if (field.valid()) {
+                            val color = if (field.valid(field.value)) {
                                 if (field.value != null) {
                                     Color.Unspecified
                                 } else {
@@ -176,16 +179,16 @@ fun ConfigurationPanel(
                             )
 
                             Text(
-                                text = field.value?.toString()?:unset,
+                                text = field.stringValue() ?: unset,
                                 style = MaterialTheme.typography.bodySmall,
                                 color = color,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                                 modifier = Modifier
-                                    .fillParentMaxWidth(0.67f)
+                                    .fillParentMaxWidth(0.6f)
                             )
 
-                            if (!field.descriptor.readOnly) {
+                            if (field.descriptor.readOnly) {
                                 SquaredIconButton(
                                     icon = painterResource(Res.drawable.icon_info_24px),
                                     iconTint = iconTint,
@@ -206,7 +209,7 @@ fun ConfigurationPanel(
                                     toolTip = stringResource(Res.string.tooltip_openInExplorer),
                                     buttonShape = buttonShape,
                                     buttonColor = buttonColor,
-                                    enabled = (field as Field<FileFieldDescriptor, File, List<File>>).value?.exists() == true,
+                                    enabled = (field as Field<File, List<File>,*>).value?.exists() == true,
                                     onClick = {
                                         buttonScope.launch(Dispatchers.IO) {
                                             Desktop.getDesktop().open(field.value)

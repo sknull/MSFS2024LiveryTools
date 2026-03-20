@@ -42,7 +42,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun ComboBox(
-    field: Field<*, *,*>,
+    field: Field<*,*,*>,
     height: Dp = Dp.Unspecified,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -77,7 +77,7 @@ fun ComboBox(
                 options?: options1.forEach { option ->
                     DropdownMenuItem(
                         onClick = {
-                            onValueChange(KeyValue(field.descriptor.key, option.first))
+                            onValueChange(KeyValue(field.descriptor, option.first))
                             textFieldState.setTextAndPlaceCursorAtEnd(option.first)
                             expanded = false
                         },
@@ -121,7 +121,7 @@ fun ComboBox(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun InnerTextField(
-    field: Field<*, *,*>,
+    field: Field<*,*,*>,
     modifier: Modifier,
     enabled: Boolean = true,
     height: Dp = Dp.Unspecified,
@@ -150,7 +150,7 @@ private fun InnerTextField(
                 }
             } else null,
             colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = if (field.valid()) unfocusedBorderColor else Severity.Error.color(),
+                unfocusedBorderColor = if (field.valid(field.value)) unfocusedBorderColor else Severity.Error.color(),
                 focusedBorderColor = focusedBorderColor,
                 disabledTextColor = focusedBorderColor,
                 disabledLabelColor = focusedBorderColor,
@@ -164,7 +164,7 @@ private fun InnerTextField(
 @OptIn(ExperimentalMaterial3Api::class)
 fun BooleanComboBox(
     modifier: Modifier = Modifier,
-    field: Field<*, *,*>,
+    field: Field<*,*,*>,
     height: Dp = Dp.Unspecified,
     initialValue: String,
     unfocusedBorderColor: Color,

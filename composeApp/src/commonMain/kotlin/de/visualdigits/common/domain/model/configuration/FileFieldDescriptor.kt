@@ -5,8 +5,11 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import java.io.File
 
-open class FileFieldDescriptor(
-    key: String,
+/**
+ * Represents a field which should provide a file or directory picker.
+ */
+class FileFieldDescriptor<K : FieldKey<K>>(
+    key: K,
 
     label: StringResource,
     toolTip: StringResource? = null,
@@ -15,15 +18,28 @@ open class FileFieldDescriptor(
     readOnly: Boolean = false,
 
     val fileMode: FileMode,
-    var startDirectory: () -> File = { File(System.getProperty("user.home")) },
+    var startDirectory: (AbstractConfiguration<*,*>?) -> File = {
+        File(System.getProperty("user.home"))
+    },
 
-    options: () -> List<Triple<String, StringResource?, DrawableResource?>> = { listOf() }
-): AbstractFieldDescriptor<FileFieldDescriptor, File, File>(
+    options: () -> List<Triple<String, StringResource?, DrawableResource?>> = { listOf() },
+): AbstractFieldDescriptor<File, File, K>(
     fieldClass = File::class,
     key = key,
     label = label,
     toolTip = toolTip,
     visible = visible,
     readOnly = readOnly,
-    options = options
+    options = options,
+    keyFactory = FileKeyFactory
 )
+
+class FileKeyFactory {
+
+    companion object : KeyFactory<File> {
+
+        override fun fromString(value: String?): File?  = value?.let { v -> File(v) }
+
+        override fun stringValue(value: Any?): String? = (value as? File)?.canonicalPath
+    }
+}

@@ -1,6 +1,7 @@
 package de.visualdigits.msfs2024tools.domain.model.type
 
 import de.visualdigits.common.domain.model.StringResourceEnumerable
+import de.visualdigits.common.domain.model.configuration.KeyFactory
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.flag_bg
 import msfs2024liverytools.composeapp.generated.resources.flag_cz
@@ -83,7 +84,12 @@ enum class Language(
     TR(Res.string.language_tr, Res.drawable.flag_tr, Locale.Builder().setLanguage("tr").setLanguageTag("TR").build()),
     ;
 
-    override fun fromString(value: String): Language? {
-        return Language.valueOf(value)
+    companion object : KeyFactory<Language> {
+
+        override fun fromString(value: String?): Language? {
+            return entries.find { e -> e.name == value }
+        }
+
+        override fun stringValue(value: Any?): String? = (value as? Language)?.name
     }
 }

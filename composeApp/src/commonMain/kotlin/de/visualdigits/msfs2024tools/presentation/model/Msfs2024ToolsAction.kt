@@ -86,7 +86,7 @@ sealed interface Msfs2024ToolsAction {
     ) : Msfs2024ToolsAction
 
     data class OnPanelOkClick(
-        val configuration: AbstractConfiguration<*>?,
+        val configuration: AbstractConfiguration<*,*>?,
     ) : Msfs2024ToolsAction
 
     data class OnConversionClick(

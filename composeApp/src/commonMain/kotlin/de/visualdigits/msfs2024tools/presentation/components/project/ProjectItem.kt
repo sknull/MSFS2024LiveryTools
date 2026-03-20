@@ -30,6 +30,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
@@ -103,19 +104,19 @@ fun ProjectItem(
             verticalArrangement = Arrangement.Top,
         ) {
             Text(
-                text = "${project.get<String>("airplaneName")} - ${project.get<String>("liveryName")}",
+                text = "${project.get<String>(PK.airplaneName)} - ${project.get<String>(PK.liveryName)}",
                 style = MaterialTheme.typography.titleLarge,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = project.get<MutableList<TextureType>>("textureTypes")?.joinToString(", ")?:"",
+                text = project.get<MutableList<TextureType>>(PK.textureTypes)?.joinToString(", ")?:"",
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = project.get<TextureFormat>("textureFormat")?.toString() ?: "",
+                text = project.get<TextureFormat>(PK.textureFormatPackage)?.toString() ?: "",
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,

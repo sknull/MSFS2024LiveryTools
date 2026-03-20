@@ -18,6 +18,7 @@ import de.visualdigits.common.presentation.components.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.ConfigurationPanel
 import de.visualdigits.common.presentation.components.ErrorCard
 import de.visualdigits.common.presentation.components.FlexibleTextButton
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.components.project.ProjectList
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
@@ -116,6 +117,9 @@ fun ProjectsTab(
                                     projectConfiguration = state.currentProjectConfiguration,
                                     keyValue = keyValue
                                 ))
+                        },
+                        currentValue = { field ->
+                            state.currentProjectConfiguration.get(field.descriptor.key as PK)
                         },
                         onCancelClick = {
                             onProjectListAction(

@@ -25,6 +25,8 @@ import de.visualdigits.common.domain.model.configuration.FileFieldDescriptor
 import de.visualdigits.common.domain.model.FileMode
 import de.visualdigits.common.domain.model.KeyValue
 import de.visualdigits.common.domain.model.color
+import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
+import de.visualdigits.common.domain.model.configuration.ReferenceListFieldDescriptor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import msfs2024liverytools.composeapp.generated.resources.Res
@@ -40,6 +42,7 @@ import javax.swing.filechooser.FileNameExtensionFilter
 @Composable
 fun TypeAwareEditableField(
     modifier: Modifier = Modifier,
+    configuration: AbstractConfiguration<*,*>?,
     field: Field<*,*,*>,
     currentValue: String? = null,
     height: Dp = Dp.Unspecified,
@@ -49,16 +52,16 @@ fun TypeAwareEditableField(
     buttonShape: Shape,
     buttonColor: Color,
     enabled: Boolean = true,
-    valid: () -> Boolean?,
     onValueChange: (KeyValue) -> Unit,
     hasFocus: Boolean = false,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
-    val value = currentValue?:field.value?.toString()
+    val value = currentValue?:field.stringValue()
     val scope = rememberCoroutineScope()
     val focusRequester = remember { FocusRequester() }
-    val finalUnfocusedBorderColor = if (valid() == false) {
+    val valid = field.valid(field.value)
+    val finalUnfocusedBorderColor = if (!valid) {
         Severity.Error.color()
     } else if (value == null) {
         Severity.Warn.color()
@@ -67,8 +70,9 @@ fun TypeAwareEditableField(
     }
 
     when {
-        field.descriptor is EnumFieldDescriptor<out Any>
-                || field.descriptor.singleItemClass?.java?.let { fc -> Enumerable::class.java.isAssignableFrom(fc) } == true -> {
+        field.descriptor is EnumFieldDescriptor
+                || field.descriptor is ReferenceListFieldDescriptor
+                || field.descriptor.itemClass?.java?.let { fc -> Enumerable::class.java.isAssignableFrom(fc) } == true -> {
             if (field.descriptor.fieldClass == Boolean::class) {
                 BooleanComboBox(
                     modifier = modifier
@@ -134,27 +138,25 @@ fun TypeAwareEditableField(
                                                 this.fileFilter = filter
                                                 this.isAcceptAllFileFilterUsed = false
                                             }
-                                            currentDirectory = (field as Field<FileFieldDescriptor, File, File>).value?:field.descriptor.startDirectory()
+                                            currentDirectory = (field.value as? File)?:field.descriptor.startDirectory(configuration)
                                             fileSelectionMode = field.descriptor.fileMode.jFileChooserMode
                                             dialogTitle = when (field.descriptor.fileMode) {
                                                 FileMode.DIRECTORIES_ONLY -> titleDirectories
                                                 FileMode.FILES_ONLY -> titleFiles
-                                                else -> titleFiles
                                             }
                                         }
                                         val result = chooser.showOpenDialog(null)
                                         if (result == JFileChooser.APPROVE_OPTION) {
-                                            onValueChange(KeyValue(field.descriptor.key, chooser.selectedFile.canonicalPath))
+                                            onValueChange(KeyValue(field.descriptor, chooser.selectedFile.canonicalPath))
                                         }
                                     }
                                 }
                             )
                         }
                     },
-                    readOnly = true,
                     shape = buttonShape,
                     onValueChange = { value ->
-                        onValueChange(KeyValue(field.descriptor.key, value))
+                        onValueChange(KeyValue(field.descriptor, value))
                     },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
@@ -178,7 +180,7 @@ fun TypeAwareEditableField(
                     value = value?:"",
                     shape = buttonShape,
                     onValueChange = { value ->
-                        onValueChange(KeyValue(field.descriptor.key, value))
+                        onValueChange(KeyValue(field.descriptor, value))
                     },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(

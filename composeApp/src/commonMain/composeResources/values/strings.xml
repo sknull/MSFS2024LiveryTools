@@ -41,7 +41,7 @@
   <string name="label_imageToMSFSKTX2Path">ImageToMSFSKTX2 directory</string>
   <string name="label_language">Language</string>
   <string name="label_layoutGeneratorToolPath">Layout Generator Tool executable</string>
-  <string name="label_liveryName">Skin name</string>
+  <string name="label_liveryName">Livery name</string>
   <string name="label_locale">Language</string>
   <string name="label_mainLibraryRootFolder">Library root folder</string>
   <string name="label_modelTexturesDir">Model textures root folder</string>

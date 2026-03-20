@@ -21,6 +21,7 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.FlexibleTextButton
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
@@ -73,7 +74,7 @@ fun RowScope.ProjectButtons(
                 }
             )
         }
-        when (project.get<TextureFormat>("textureFormat")) {
+        when (project.get<TextureFormat>(PK.textureFormatPackage)) {
             TextureFormat.DDS -> {
                 FlexibleTextButton(
                     text = stringResource(Res.string.conversion_png_to_dds),

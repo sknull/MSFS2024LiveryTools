@@ -63,6 +63,20 @@ data class SettingsDto(
         }
     }
 
+    fun clone(): SettingsDto {
+        return SettingsDto(
+            language = language,
+            simType = simType,
+            sdkRoot = sdkRoot,
+            layoutGeneratorToolPath = layoutGeneratorToolPath,
+            nvidiaTextureToolPath = nvidiaTextureToolPath,
+            mainLibraryRootFolder = mainLibraryRootFolder,
+            projectRootFolder = projectRootFolder,
+            airplanes = airplanes.toMutableList(),
+            projects = projects.toMutableList()
+        )
+    }
+
     fun addProject(
         airplaneName: String,
         liveryName: String,

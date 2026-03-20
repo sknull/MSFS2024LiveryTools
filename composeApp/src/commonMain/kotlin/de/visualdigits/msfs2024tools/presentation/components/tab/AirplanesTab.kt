@@ -3,8 +3,9 @@ package de.visualdigits.msfs2024tools.presentation.components.tab
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.domain.model.configuration.Field
-import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
 import de.visualdigits.common.presentation.components.EditableList
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
+import de.visualdigits.msfs2024tools.domain.model.configuration.SK
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton
@@ -21,43 +22,44 @@ fun AirplanesTab(
     onProjectListAction: (Msfs2024ToolsAction) -> Unit
 ) {
     EditableList(
-        field = (state.settings?.fields["airplanes"] as? Field<ListFieldDescriptor<Any>, MutableList<Any>, Any>) ?: error("No settings"),
+        configuration = state.settings,
+        field = (state.settings?.fields[SK.airplanes] as? Field<MutableList<*>, *, *>) ?: error("No settings"),
         fieldHeight = 70.dp,
         space = SpaceBetweenComponents,
         unfocusedBorderColor = ColorUnfocused,
         focusedBorderColor = ColorFocused,
         iconTint = ColorIcon,
-        buttonColor = ColorButton,
         buttonShape = ShapeButton,
         containerShape = ShapeContainer,
+        buttonColor = ColorButton,
         scrollable = true,
         onValueChange = { keyValue ->
-            if (state.settings.get<List<String>>("airplanes") != keyValue.value?.split(",")) {
+            if (state.settings.get<List<String>>(SK.airplanes) != keyValue.value?.split(",")) {
                 val projectConfigurations = state.projectConfigurations
                 projectConfigurations.filter { p ->
-                    (p.get<List<String>>("airplaneName") ?: "") == (keyValue.previousValue ?: "")
+                    (p.get<List<String>>(PK.airplaneName) ?: "") == (keyValue.previousValue ?: "")
                 }.forEach { p ->
                     // prevent to rename unfinished edits
-                    if (p.get<List<String>>("airplaneName") != null && keyValue.newValue != null) {
-                        p.set("airplaneName", keyValue.newValue)
+                    if (p.get<List<String>>(PK.airplaneName) != null && keyValue.newValue != null) {
+                        p.set(PK.airplaneName, keyValue.newValue)
                     }
                 }
                 onProjectListAction(
                     Msfs2024ToolsAction.OnSaveAirplanesClick(
-                        settings = state.settings.copy(key = "airplanes", value = keyValue.value),
+                        settings = state.settings.copy(key = SK.airplanes, value = keyValue.value),
                         projectConfigurations = projectConfigurations
                     )
                 )
             }
-        },
-        deleteAllowed = { key, value ->
-            when (key) {
-                "airplanes" -> state.projectConfigurations.none { p ->
-                    val airplaneName = p.get<String>("airplaneName") ?: ""
-                    airplaneName == value
-                }
-                else -> true
-            }
         }
-    )
+    ) { descriptor, value ->
+        when (descriptor.key) {
+            SK.airplanes -> state.projectConfigurations.none { p ->
+                val airplaneName = p.get<String>(PK.airplaneName) ?: ""
+                airplaneName == value
+            }
+
+            else -> true
+        }
+    }
 }

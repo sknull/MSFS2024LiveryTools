@@ -1,16 +1,15 @@
 package de.visualdigits.common.domain.model.configuration
 
-abstract class AbstractConfiguration<T : AbstractConfiguration<T>>(
-    val fieldDescriptors: LinkedHashMap<String, AbstractFieldDescriptor<*,*,*>> = LinkedHashMap(),
-    val fields: LinkedHashMap<String, Field<*,*,*>> = LinkedHashMap()
+/**
+ * Base class for all configuration classes.
+ */
+abstract class AbstractConfiguration<T : AbstractConfiguration<T, K>, K : FieldKey<K>>(
+    val fields: LinkedHashMap<K, Field<*,*,K>> = LinkedHashMap()
 ) {
 
     init {
-        if (fieldDescriptors.isEmpty()) {
-            setupFieldDescriptors().forEach { fd ->
-                fieldDescriptors[fd.key] = fd
-            }
-            val setupFields = setupFields(fieldDescriptors)
+        if (fields.isEmpty()) {
+            val setupFields = setupFields()
             setupFields.forEach { f ->
                 fields[f.descriptor.key] = f
             }
@@ -21,20 +20,16 @@ abstract class AbstractConfiguration<T : AbstractConfiguration<T>>(
         return fields.toList().joinToString(", ") { e -> "${e.first}=\"${e.second}\"" }
     }
 
-    abstract fun setupFieldDescriptors(): List<AbstractFieldDescriptor<*,*,*>>
+    abstract fun setupFields(): List<Field<*,*,K>>
 
-    abstract fun setupFields(
-        fieldDescriptors: Map<String, AbstractFieldDescriptor<*,*,*>>
-    ): List<Field<*,*,*>>
+    protected abstract fun createInstance(newFields: LinkedHashMap<K, Field<*,*,K>>): T
 
-    protected abstract fun createInstance(fields: LinkedHashMap<String, Field<*,*,*>>): T
-
-    inline fun <reified V : Any> get(key: String): V? {
+    inline fun <reified V : Any> get(key: K): V? {
         return fields[key]?.value as? V
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun set(key: String, value: Any?) {
+    fun set(key: K, value: Any?) {
         fields[key]?.setUnsafe(value)
     }
 
@@ -43,12 +38,12 @@ abstract class AbstractConfiguration<T : AbstractConfiguration<T>>(
      * Returns a pair of <[true | false], description-resource-id>
      * When the [key] is not given it checks whether the entire configuration is valid or not.
      */
-    open fun valid(key: String): Boolean? {
-        return fields.values.all { field -> field.valid() }
+    open fun valid(key: K): Boolean? {
+        return fields.values.all { field -> field.valid(field.value) }
     }
 
-    fun copy(key: String? = null, value: String? = null): T {
-        val newFields = LinkedHashMap<String, Field<*,*,*>>()
+    fun copy(key: K? = null, value: String? = null): T {
+        val newFields = LinkedHashMap<K, Field<*,*,K>>()
         fields.values.forEach { f ->
             if (f.descriptor.key == key) {
                 newFields[f.descriptor.key] = f.copyUnsafe(f.fromString(value))

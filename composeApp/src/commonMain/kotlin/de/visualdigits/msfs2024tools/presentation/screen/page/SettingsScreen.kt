@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.ErrorCard
+import de.visualdigits.msfs2024tools.domain.model.configuration.SK
 import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
@@ -87,6 +88,7 @@ fun SettingsScreen(
                             )
                         )
                     },
+                    currentValue = { field -> state.settings?.get(field.descriptor.key as SK) },
                     onCancelClick = {
                         onAction(
                             Msfs2024ToolsAction.OnEditSettingsCancelClick()

@@ -6,8 +6,10 @@ import kotlin.reflect.KClass
 
 /**
  * Represents a field which is rendered as a combobox in the UI.
+ * Similar to EnumFieldDescriptor but has not an enum as value.
+ * Instead it can provide options from elsewhere.
  */
-class EnumFieldDescriptor<V : Any, K : FieldKey<K>>(
+class ReferenceListFieldDescriptor<V : Any, K : FieldKey<K>>(
     fieldClass: KClass<V>,
 
     key: K,

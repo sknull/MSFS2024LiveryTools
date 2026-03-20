@@ -2,11 +2,14 @@ package de.visualdigits.msfs2024tools.presentation.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.onError
 import de.visualdigits.common.domain.model.onSuccess
 import de.visualdigits.common.domain.util.toUiText
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.SK
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
@@ -26,6 +29,7 @@ import kotlinx.coroutines.launch
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.error_global_configuration_invalid
 import msfs2024liverytools.composeapp.generated.resources.error_project_configuration_invalid
+import java.io.File
 import java.util.Locale
 
 class Msfs2024ToolsViewModel(
@@ -36,6 +40,10 @@ class Msfs2024ToolsViewModel(
     companion object {
 
         private const val MAX_LOG_LINES = 200
+    }
+
+    init {
+        Logger.i("Application has started.")
     }
 
     private val _state = MutableStateFlow(Msfs2024ToolsState())
@@ -70,14 +78,14 @@ class Msfs2024ToolsViewModel(
             }
 
             is Msfs2024ToolsAction.OnSettingsValueChanged -> {
-                if (action.keyValue.key == "language") {
+                if (action.keyValue.descriptor.key == SK.language) {
                     action.keyValue.value?.also { l ->
                         Locale.setDefault(Language.valueOf(l).locale)
                     }
                 }
                 _state.update {
                     val settings = action.settings?.copy(
-                        key = action.keyValue.key,
+                        key = action.keyValue.descriptor.key as SK,
                         value = action.keyValue.value
                     )
                     it.copy(
@@ -104,14 +112,14 @@ class Msfs2024ToolsViewModel(
             }
 
             is Msfs2024ToolsAction.OnSaveAirplanesClick -> {
-                val newAirplanes = action.settings?.get<MutableList<String>>("airplanes")
+                val newAirplanes = action.settings?.get<MutableList<String>>(SK.airplanes)
                 newAirplanes?.removeIf { a -> a.isBlank() }
                 saveSettings(
-                    settings = action.settings?.copy("airplanes", newAirplanes?.joinToString(",")),
+                    settings = action.settings?.copy(SK.airplanes, newAirplanes?.joinToString(",")),
                     projectConfigurations = action.projectConfigurations
                 )
 
-                updateProjectConfigurations(action.projectConfigurations.filterNot { p -> p.get<String>("airplaneName") == null || p.get<String>("liveryName") == null })
+                updateProjectConfigurations(action.projectConfigurations.filterNot { p -> p.get<String>(PK.airplaneName) == null || p.get<String>(PK.liveryName) == null })
             }
 
 
@@ -156,11 +164,12 @@ class Msfs2024ToolsViewModel(
 
             is Msfs2024ToolsAction.OnProjectConfigurationValueChanged -> {
                 _state.update {
+                    val currentProjectConfiguration = action.projectConfiguration?.copy(
+                        key = action.keyValue.descriptor.key as PK,
+                        value = action.keyValue.value
+                    )
                     it.copy(
-                        currentProjectConfiguration = action.projectConfiguration?.copy(
-                            key = action.keyValue.key,
-                            value = action.keyValue.value
-                        )
+                        currentProjectConfiguration = currentProjectConfiguration
                     )
                 }
             }
@@ -233,7 +242,7 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnLanguageSelected -> {
                 _state.update {
                     it.copy(
-                        settings = it.settings?.copy(key = "language", value = action.language.name)
+                        settings = it.settings?.copy(key = SK.language, value = action.language.name)
                     )
                 }
             }
@@ -293,7 +302,7 @@ class Msfs2024ToolsViewModel(
         }
         configurationRepository.loadConfiguration()
             .onSuccess { (settings, projectConfigurations) ->
-                Locale.setDefault(settings.get<Language>("language")?.locale?: Language.EN.locale)
+                Locale.setDefault(settings.get<Language>(SK.language)?.locale?: Language.EN.locale)
                 _state.update {
                     it.copy(
                         settings = settings,
@@ -358,7 +367,7 @@ class Msfs2024ToolsViewModel(
         settings: Settings?,
         projectConfigurations: List<ProjectConfiguration>
     ) = viewModelScope.launch {
-        if (settings == null || settings.get<SimType>("simType") == null) {
+        if (settings == null || settings.get<SimType>(SK.simType) == null) {
             _state.update {
                 it.copy(
                     errorMessage = UiText.StringResourceId(Res.string.error_global_configuration_invalid),
@@ -403,7 +412,7 @@ class Msfs2024ToolsViewModel(
     private fun saveProjectConfiguration(
         projectConfiguration: ProjectConfiguration?,
     ) = viewModelScope.launch {
-        if (projectConfiguration == null || projectConfiguration.get<String>("airplaneName") == null || projectConfiguration.get<String>("liveryName") == null) {
+        if (projectConfiguration == null || projectConfiguration.get<String>(PK.airplaneName) == null || projectConfiguration.get<String>(PK.liveryName) == null) {
             _state.update {
                 it.copy(
                     errorMessage = UiText.StringResourceId(Res.string.error_project_configuration_invalid),
@@ -419,13 +428,43 @@ class Msfs2024ToolsViewModel(
             )
         }
 
+        projectConfiguration.get<File>(PK.packageTextureDir)?.also { dir ->
+            configurationRepository.determineTextureFormat(dir)
+                .onSuccess { textureFormat ->
+                    projectConfiguration.set(PK.textureFormatPackage, textureFormat)
+                }
+                .onError {error ->
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            errorMessage = error.toUiText()
+                        )
+                    }
+                }
+        }
+
+        projectConfiguration.get<File>(PK.modelTexturesDir)?.also { dir ->
+            configurationRepository.determineTextureFormat(dir)
+                .onSuccess { textureFormat ->
+                    projectConfiguration.set(PK.textureFormatModel, textureFormat)
+                }
+                .onError {error ->
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            errorMessage = error.toUiText()
+                        )
+                    }
+                }
+        }
+
         configurationRepository.saveProjectConfiguration(projectConfiguration)
             .onSuccess {
                 _state.update { state ->
                     val projectConfigurations = state.projectConfigurations
                         .filterNot { p ->
-                            (p.get<String>("airplaneName") == projectConfiguration.get<String>("airplaneName") && p.get<String>("liveryName") == projectConfiguration.get<String>("liveryName"))
-                                    || (p.get<String>("airplaneName") == null && p.get<String>("liveryName") == null)
+                            (p.get<String>(PK.airplaneName) == projectConfiguration.get<String>(PK.airplaneName) && p.get<String>(PK.liveryName) == projectConfiguration.get<String>(PK.liveryName))
+                                    || (p.get<String>(PK.airplaneName) == null && p.get<String>(PK.liveryName) == null)
                         } + projectConfiguration
                     state.copy(
                         currentProjectConfiguration = projectConfiguration,
