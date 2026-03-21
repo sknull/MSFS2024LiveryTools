@@ -68,32 +68,46 @@ This document in form of a PDF file can be found link:docs/README.pdf[here]
 
 == Supported Languages
 
-image:composeApp/src/commonMain/composeResources/drawable/flag_bg.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_cn.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_cz.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_de.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_dk.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_en.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_es.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_fi.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_fr.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_gr.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_hr.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_hu.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_ir.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_it.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_jp.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_nl.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_no.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_pl.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_pt.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_ro.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_ru.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_rs.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_se.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_sk.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_sl.png[]
-image:composeApp/src/commonMain/composeResources/drawable/flag_tr.png[]
+:flags: composeApp/src/commonMain/composeResources/drawable
+:flag-size: 2.0cm
+
+[cols="1,1,1,1,1,1", grid=none, frame=none, align="center"]
+|===
+| image:{flags}/flag_bg.png[Bulgarian, pdfwidth={flag-size}]
+| image:{flags}/flag_cn.png[Chinese, pdfwidth={flag-size}]
+| image:{flags}/flag_cz.png[Czech, pdfwidth={flag-size}]
+| image:{flags}/flag_de.png[German, pdfwidth={flag-size}]
+| image:{flags}/flag_dk.png[Danish, pdfwidth={flag-size}]
+| image:{flags}/flag_en.png[English, pdfwidth={flag-size}]
+
+| image:{flags}/flag_es.png[Spanish, pdfwidth={flag-size}]
+| image:{flags}/flag_fi.png[Finnish, pdfwidth={flag-size}]
+| image:{flags}/flag_fr.png[French, pdfwidth={flag-size}]
+| image:{flags}/flag_gr.png[Greek, pdfwidth={flag-size}]
+| image:{flags}/flag_hr.png[Croatian, pdfwidth={flag-size}]
+| image:{flags}/flag_hu.png[Hungarian, pdfwidth={flag-size}]
+
+| image:{flags}/flag_ir.png[Irish, pdfwidth={flag-size}]
+| image:{flags}/flag_it.png[Italian, pdfwidth={flag-size}]
+| image:{flags}/flag_jp.png[Japanese, pdfwidth={flag-size}]
+| image:{flags}/flag_nl.png[Dutch, pdfwidth={flag-size}]
+| image:{flags}/flag_no.png[Norwegian, pdfwidth={flag-size}]
+| image:{flags}/flag_pl.png[Polish, pdfwidth={flag-size}]
+
+| image:{flags}/flag_pt.png[Portuguese, pdfwidth={flag-size}]
+| image:{flags}/flag_ro.png[Romanian, pdfwidth={flag-size}]
+| image:{flags}/flag_ru.png[Serbian, pdfwidth={flag-size}]
+| image:{flags}/flag_rs.png[Russian, pdfwidth={flag-size}]
+| image:{flags}/flag_se.png[Swedish, pdfwidth={flag-size}]
+| image:{flags}/flag_sk.png[Slovak, pdfwidth={flag-size}]
+
+| image:{flags}/flag_sl.png[Slovenian, pdfwidth={flag-size}]
+| image:{flags}/flag_tr.png[Turkish, pdfwidth={flag-size}]
+|
+|
+|
+|
+|===
 
 == Setup
 

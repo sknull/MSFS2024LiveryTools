@@ -227,9 +227,9 @@ tasks.matching { it.name == "createDistributable" }.all {
     finalizedBy(copyPdfToDistribution, copyPdfToDocs)
 }
 
-tasks.register<Zip>("zipDesktopDistributable") {
+tasks.register<Zip>("zip") {
     group = "compose desktop"
-    description = "Zippt das von createDistributable erzeugte Artefakt"
+    description = "Writes the artifact created by createDistributable to a zip file"
 
     dependsOn("createDistributable", copyPdfToDistribution, copyPdfToDocs)
 
