@@ -52,6 +52,7 @@ Vrsta simulacije
 Format teksture
 Vrste tekstur
 Bolgarščina
+Kitajščina
 Češčina
 Nemščina
 Danska
@@ -64,12 +65,14 @@ Hrvaščina
 Madžarščina
 Irščina
 Italijanščina
+Japonščina
 Nizozemščina
 Norveščina
 Poljščina
 Portugalščina
 Romunščina
 Srbščina
+ruščina
 Švedščina
 Slovaščina
 Sloveneščina
@@ -113,4 +116,5 @@ Format tekstur, s katerim deluje vaš projekt v MSFS2024. # DDS ali KTX2. # Ta v
 Vrste tekstur, ki jih želite vključiti v pretvorbe. # Paketi MSFS lahko vsebujejo veliko tekstur, običajno pa delamo samo z #  datotekami albedo (ALBD) in kompozicijskimi datotekami (COMP). # V večini primerov bi torej morali izbrati ALBD in COMP. # Če vaš projekt ne uporablja kovinskih barv, lahko brez skrbi izberete samo ALBD.
 True
 Ali res želite izbrisati ta vnos?
+Tvoja konfiguracija je bila prenesena na najnovejšo različico. # Vrnitev na starejšo različico z novo konfiguracijo ni mogoča. # Iz stare konfiguracije je bila ustvarjena varnostna kopija.
 Ni projektov.

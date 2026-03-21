@@ -70,10 +70,9 @@ object TranslationUtil {
         Logger.i("Writing report to file: $missingEntriesFile ")
         missingEntriesFile.writeText("Missing Keys\n${"=".repeat(40)}\n\n${missingEntries.toList().joinToString("\n\n") { (language, keys) -> "$language\n${"-".repeat(40)}\n${keys.joinToString("\n")}" }}")
 
-        val csv = "key;${languages.joinToString(";")}\n${rows.joinToString("\n") { row -> row.joinToString(";") } }"
         val csvFile = File(targetDir, CSV_FILE)
         Logger.i("Writing string resources.csv: ${csvFile.canonicalPath}")
-        csvFile.writeText(csv)
+        csvFile.writeCsv(languages, rows)
 
         languageLists.forEach { (language, values) ->
             val targetFile = File(targetDir, "stringresources-$language.txt")
@@ -103,20 +102,10 @@ object TranslationUtil {
     ) {
         val stringResourcesDir = Paths.get(rootDir.canonicalPath, "composeApp", "src", "commonMain", "composeResources").toFile()
         val sourceFile = Paths.get(rootDir.canonicalPath, "translation", CSV_FILE).toFile()
-        val table = sourceFile
-            .readLines()
-            .map { line ->
-                line.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)".toRegex())
-                    .map { it.removeSurrounding("\"").replace("\"\"", "\"") }
-            }
-        val keys = table.take(1)
-        val data = table.drop(1).sortedBy { line -> line[0] }
-        val sortedTable = keys + data
-        val languages = sortedTable.take(1).first().drop(1)
+        val (keys, data) = sourceFile.readCsv()
+        val languages = keys.drop(1)
         val resources = languages.map { XmlResources() }
-        sortedTable
-            .drop(1)
-            .forEach { row ->
+        data.forEach { row ->
                 val key = row.take(1).first()
                 val values = row.drop(1)
                 val default = languages.zip(values).toMap()["default"]?:"?"
@@ -153,7 +142,6 @@ object TranslationUtil {
         val resourceKeys = File(sourceDir, "keys.txt").readLines()
         val expectedNumberOfRows = resourceKeys.size
 
-        val sb = StringBuilder()
         val sourceFiles = sourceDir
             .listFiles { f -> f.isFile && f.name.startsWith("stringresources") && f.name.endsWith(".txt") }
         val languages = sourceFiles.map { f -> f.name.replace("stringresources-", "").replace(".txt", "") }
@@ -166,14 +154,15 @@ object TranslationUtil {
                 if (lines.size != expectedNumberOfRows) error("Single file '${f.name}' has not the expected number of lines - not joining!")
                 Pair(language, resourceKeys.zip(lines).toMap())
             }?:mapOf()
-        sb.append("key;${languages.joinToString(";")}").append("\n")
+        val keys = listOf("key") + languages
+        val rows = mutableListOf<List<String>>()
         resourceKeys.forEach { resourceKey ->
-            sb.append((listOf(resourceKey) + languages.map { language ->
+            rows.add((listOf(resourceKey) + languages.map { language ->
                 data[language]?.get(resourceKey)?.replace(" # ", "\\n")?:""
-            }).joinToString(";")).append("\n")
+            }))
         }
         Logger.i("Writing string resources.csv: ${targetFile.canonicalPath}")
-        targetFile.writeText(sb.toString())
+        targetFile.writeCsv(keys, rows)
         updateTranslation(rootDir)
     }
 }

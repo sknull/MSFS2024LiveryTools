@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Tekstuuriformaatti</string>
   <string name="label_textureTypes">Tekstuurityypit</string>
   <string name="language_bg">bulgaria</string>
+  <string name="language_cn">kiina</string>
   <string name="language_cz">tšekki</string>
   <string name="language_de">saksa</string>
   <string name="language_dk">tanska</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">unkari</string>
   <string name="language_ir">irlanti</string>
   <string name="language_it">italia</string>
+  <string name="language_jp">japani</string>
   <string name="language_nl">hollanti</string>
   <string name="language_no">norja</string>
   <string name="language_pl">puola</string>
   <string name="language_pt">portugali</string>
   <string name="language_ro">romania</string>
   <string name="language_rs">serbia</string>
+  <string name="language_ru">venäjä</string>
   <string name="language_se">ruotsi</string>
   <string name="language_sk">slovakia</string>
   <string name="language_sl">slovenia</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Tekstuurityypit, jotka haluat sisällyttää muunnoksiin.\nMSFS-paketit voivat sisältää monia tekstuureja, ja yleensä käytämme vain\n albedo- (ALBD) ja kompositio- (COMP) tiedostoja.\nUseimmissa tapauksissa sinun tulisi siis valita ALBD ja COMP.\nJos projektissasi ei käytetä metallivärejä, voit huoletta valita vain ALBD:n.</string>
   <string name="true">Totta</string>
   <string name="warning_delete">Haluatko todella poistaa tämän merkinnän?</string>
+  <string name="warning_migration">Asetuksesi on siirretty uusimpaan versioon.\nPaluu vanhempaan versioon ei ole mahdollista uuden asetuksen kanssa.\nVanhasta asetuksesta on luotu varmuuskopio.</string>
   <string name="warning_no_results">Ei projekteja.</string>
 </resources>

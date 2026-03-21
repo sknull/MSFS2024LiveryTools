@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Texturformat</string>
   <string name="label_textureTypes">Texturtypen</string>
   <string name="language_bg">Bulgarisch</string>
+  <string name="language_cn">Chinesisch</string>
   <string name="language_cz">Tschechisch</string>
   <string name="language_de">Deutsch</string>
   <string name="language_dk">Dänisch</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Ungarisch</string>
   <string name="language_ir">Irisch</string>
   <string name="language_it">Italienisch</string>
+  <string name="language_jp">Japanisch</string>
   <string name="language_nl">Niederländisch</string>
   <string name="language_no">Norwegisch</string>
   <string name="language_pl">Polnisch</string>
   <string name="language_pt">Portugiesisch</string>
   <string name="language_ro">Rumänisch</string>
   <string name="language_rs">Serbisch</string>
+  <string name="language_ru">Russisch</string>
   <string name="language_se">Schwedisch</string>
   <string name="language_sk">Slowakisch</string>
   <string name="language_sl">Slowenisch</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Die Texturtypen, die Du in die Konvertierungen einbeziehen möchtest.\nMSFS-Pakete können viele Texturen enthalten, und normalerweise arbeiten wir nur mit\n Albedo- (ALBD) und Kompositionsdateien (COMP).\nIn den meisten Fällen sollten Du also ALBD und COMP auswählen.\nWenn dein Projekt keine Metallic-Farben verwendet, können Du getrost nur ALBD auswählen.</string>
   <string name="true">True</string>
   <string name="warning_delete">Möchtest Du diesen Eintrag wirklich löschen?</string>
+  <string name="warning_migration">Deine Konfiguration wurde auf die neueste Version migriert.\nEine Rückkehr zu einer älteren Version ist mit der neuen Konfiguration nicht möglich.\nVon der alten Konfiguration wurde ein Backup angelegt.</string>
   <string name="warning_no_results">Keine Projekte.</string>
 </resources>

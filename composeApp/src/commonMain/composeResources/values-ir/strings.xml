@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Formáid uigeachta</string>
   <string name="label_textureTypes">Cineálacha uigeachta</string>
   <string name="language_bg">Bulgáiris</string>
+  <string name="language_cn">Sínis</string>
   <string name="language_cz">Seicis</string>
   <string name="language_de">Gearmáinis</string>
   <string name="language_dk">Danmhairgis</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Ungáiris</string>
   <string name="language_ir">Gaeilge</string>
   <string name="language_it">Iodáilis</string>
+  <string name="language_jp">Seapáinis</string>
   <string name="language_nl">Ísiltíreach</string>
   <string name="language_no">Nua-Aeirgneach</string>
   <string name="language_pl">Polainnis</string>
   <string name="language_pt">Portaingéilis</string>
   <string name="language_ro">Rómáinis</string>
   <string name="language_rs">Seirbis</string>
+  <string name="language_ru">Rúiseach</string>
   <string name="language_se">Sualannais</string>
   <string name="language_sk">Slovacais</string>
   <string name="language_sl">Slóivéinis</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Na cineálacha uigeachta ar mian leat a chur san áireamh sna tiontuithe.\nIs féidir le pacáistí MSFS go leor uigeachtaí a bheith iontu, agus de ghnáth ní oibrímid ach le comhaid\nalbeide (ALBD) agus comhdhéanta (COMP).\nI bhformhór na gcásanna, ba cheart duit ALBD agus COMP a roghnú dá bhrí sin.\nMura n-úsáideann do thionscadal dathanna miotalacha, is féidir leat ALBD amháin a roghnú go sábháilte.</string>
   <string name="true">Fíor</string>
   <string name="warning_delete">An bhfuil tú cinnte gur mian leat an iontráil seo a scriosadh?</string>
+  <string name="warning_migration">Tá do chumraíocht aistrithe chuig an leagan is déanaí.\nNí féidir filleadh ar leagan níos sine leis an gcumraíocht nua.\nCruthaíodh cúltaca den tseanchumraíocht.</string>
   <string name="warning_no_results">Gan tionscadail.</string>
 </resources>

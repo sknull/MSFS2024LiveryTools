@@ -4,6 +4,7 @@ import de.visualdigits.common.domain.model.StringResourceEnumerable
 import de.visualdigits.common.domain.model.configuration.KeyFactory
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.flag_bg
+import msfs2024liverytools.composeapp.generated.resources.flag_cn
 import msfs2024liverytools.composeapp.generated.resources.flag_cz
 import msfs2024liverytools.composeapp.generated.resources.flag_de
 import msfs2024liverytools.composeapp.generated.resources.flag_dk
@@ -16,17 +17,20 @@ import msfs2024liverytools.composeapp.generated.resources.flag_hr
 import msfs2024liverytools.composeapp.generated.resources.flag_hu
 import msfs2024liverytools.composeapp.generated.resources.flag_ir
 import msfs2024liverytools.composeapp.generated.resources.flag_it
+import msfs2024liverytools.composeapp.generated.resources.flag_jp
 import msfs2024liverytools.composeapp.generated.resources.flag_nl
 import msfs2024liverytools.composeapp.generated.resources.flag_no
 import msfs2024liverytools.composeapp.generated.resources.flag_pl
 import msfs2024liverytools.composeapp.generated.resources.flag_pt
 import msfs2024liverytools.composeapp.generated.resources.flag_ro
 import msfs2024liverytools.composeapp.generated.resources.flag_rs
+import msfs2024liverytools.composeapp.generated.resources.flag_ru
 import msfs2024liverytools.composeapp.generated.resources.flag_se
 import msfs2024liverytools.composeapp.generated.resources.flag_sk
 import msfs2024liverytools.composeapp.generated.resources.flag_sl
 import msfs2024liverytools.composeapp.generated.resources.flag_tr
 import msfs2024liverytools.composeapp.generated.resources.language_bg
+import msfs2024liverytools.composeapp.generated.resources.language_cn
 import msfs2024liverytools.composeapp.generated.resources.language_cz
 import msfs2024liverytools.composeapp.generated.resources.language_de
 import msfs2024liverytools.composeapp.generated.resources.language_dk
@@ -39,12 +43,14 @@ import msfs2024liverytools.composeapp.generated.resources.language_hr
 import msfs2024liverytools.composeapp.generated.resources.language_hu
 import msfs2024liverytools.composeapp.generated.resources.language_ir
 import msfs2024liverytools.composeapp.generated.resources.language_it
+import msfs2024liverytools.composeapp.generated.resources.language_jp
 import msfs2024liverytools.composeapp.generated.resources.language_nl
 import msfs2024liverytools.composeapp.generated.resources.language_no
 import msfs2024liverytools.composeapp.generated.resources.language_pl
 import msfs2024liverytools.composeapp.generated.resources.language_pt
 import msfs2024liverytools.composeapp.generated.resources.language_ro
 import msfs2024liverytools.composeapp.generated.resources.language_rs
+import msfs2024liverytools.composeapp.generated.resources.language_ru
 import msfs2024liverytools.composeapp.generated.resources.language_se
 import msfs2024liverytools.composeapp.generated.resources.language_sk
 import msfs2024liverytools.composeapp.generated.resources.language_sl
@@ -61,6 +67,7 @@ enum class Language(
 
     BG(Res.string.language_bg, Res.drawable.flag_bg, Locale.Builder().setLanguage("bg").setLanguageTag("BG").build()),
     CZ(Res.string.language_cz, Res.drawable.flag_cz, Locale.Builder().setLanguage("cz").setLanguageTag("CZ").build()),
+    CN(Res.string.language_cn, Res.drawable.flag_cn, Locale.Builder().setLanguage("cn").setLanguageTag("CN").build()),
     DE(Res.string.language_de, Res.drawable.flag_de, Locale.GERMANY),
     DK(Res.string.language_dk, Res.drawable.flag_dk, Locale.Builder().setLanguage("dk").setLanguageTag("DK").build()),
     EN(Res.string.language_en, Res.drawable.flag_en, Locale.US),
@@ -72,12 +79,14 @@ enum class Language(
     HU(Res.string.language_hu, Res.drawable.flag_hu, Locale.Builder().setLanguage("hu").setLanguageTag("HU").build()),
     IR(Res.string.language_ir, Res.drawable.flag_ir, Locale.Builder().setLanguage("ir").setLanguageTag("IR").build()),
     IT(Res.string.language_it, Res.drawable.flag_it, Locale.ITALY),
+    JP(Res.string.language_jp, Res.drawable.flag_jp, Locale.Builder().setLanguage("jp").setLanguageTag("JP").build()),
     NL(Res.string.language_nl, Res.drawable.flag_nl, Locale.Builder().setLanguage("nl").setLanguageTag("NL").build()),
     NO(Res.string.language_no, Res.drawable.flag_no, Locale.Builder().setLanguage("no").setLanguageTag("NO").build()),
     PL(Res.string.language_pl, Res.drawable.flag_pl, Locale.Builder().setLanguage("pl").setLanguageTag("PL").build()),
     PT(Res.string.language_pt, Res.drawable.flag_pt, Locale.Builder().setLanguage("pt").setLanguageTag("PT").build()),
     RO(Res.string.language_ro, Res.drawable.flag_ro, Locale.Builder().setLanguage("ro").setLanguageTag("RO").build()),
     RS(Res.string.language_rs, Res.drawable.flag_rs, Locale.Builder().setLanguage("rs").setLanguageTag("RS").build()),
+    RU(Res.string.language_ru, Res.drawable.flag_ru, Locale.Builder().setLanguage("ru").setLanguageTag("RU").build()),
     SE(Res.string.language_se, Res.drawable.flag_se, Locale.Builder().setLanguage("se").setLanguageTag("SE").build()),
     SK(Res.string.language_sk, Res.drawable.flag_sk, Locale.Builder().setLanguage("sk").setLanguageTag("SK").build()),
     SL(Res.string.language_sl, Res.drawable.flag_sl, Locale.Builder().setLanguage("sl").setLanguageTag("SL").build()),

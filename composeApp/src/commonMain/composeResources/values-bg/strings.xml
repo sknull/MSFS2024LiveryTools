@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Формат на текстурата</string>
   <string name="label_textureTypes">Типове текстури</string>
   <string name="language_bg">Български</string>
+  <string name="language_cn">Китайски</string>
   <string name="language_cz">Чешки</string>
   <string name="language_de">Немски</string>
   <string name="language_dk">Датски</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Унгарски</string>
   <string name="language_ir">Ирландски</string>
   <string name="language_it">Италиански</string>
+  <string name="language_jp">Японски</string>
   <string name="language_nl">Холандски</string>
   <string name="language_no">Норвежки</string>
   <string name="language_pl">Полски</string>
   <string name="language_pt">Португалски</string>
   <string name="language_ro">Румънски</string>
   <string name="language_rs">Сръбски</string>
+  <string name="language_ru">Руски</string>
   <string name="language_se">Шведски</string>
   <string name="language_sk">Словашки</string>
   <string name="language_sl">Словенски</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Типовете текстури, които искате да включите в конвертирането.\nMSFS пакетите могат да съдържат много текстури и обикновено ние работим само с\n Albedo (ALBD) и композиционни файлове (COMP).\nВ повечето случаи трябва да изберете ALBD и COMP.\nАко проектът ви не използва метални цветове, можете спокойно да изберете само ALBD.</string>
   <string name="true">True</string>
   <string name="warning_delete">Наистина ли искате да изтриете този запис?</string>
+  <string name="warning_migration">Конфигурацията ти беше прехвърлена към най-новата версия.\nВръщане към по-стара версия не е възможно с новата конфигурация.\nБеше създаден архив на старата конфигурация.</string>
   <string name="warning_no_results">Няма проекти.</string>
 </resources>

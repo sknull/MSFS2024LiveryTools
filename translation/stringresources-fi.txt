@@ -52,6 +52,7 @@ Simulaatiotyyppi
 Tekstuuriformaatti
 Tekstuurityypit
 bulgaria
+kiina
 tšekki
 saksa
 tanska
@@ -64,12 +65,14 @@ kroatia
 unkari
 irlanti
 italia
+japani
 hollanti
 norja
 puola
 portugali
 romania
 serbia
+venäjä
 ruotsi
 slovakia
 slovenia
@@ -113,4 +116,5 @@ Tekstuuriformaatti, jota projektisi käyttää MSFS2024:ssä. # DDS tai KTX2. # 
 Tekstuurityypit, jotka haluat sisällyttää muunnoksiin. # MSFS-paketit voivat sisältää monia tekstuureja, ja yleensä käytämme vain #  albedo- (ALBD) ja kompositio- (COMP) tiedostoja. # Useimmissa tapauksissa sinun tulisi siis valita ALBD ja COMP. # Jos projektissasi ei käytetä metallivärejä, voit huoletta valita vain ALBD:n.
 Totta
 Haluatko todella poistaa tämän merkinnän?
+Asetuksesi on siirretty uusimpaan versioon. # Paluu vanhempaan versioon ei ole mahdollista uuden asetuksen kanssa. # Vanhasta asetuksesta on luotu varmuuskopio.
 Ei projekteja.

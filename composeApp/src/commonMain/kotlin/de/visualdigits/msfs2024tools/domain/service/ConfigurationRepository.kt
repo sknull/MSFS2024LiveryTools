@@ -5,12 +5,11 @@ import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfigura
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.DataError
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
-import kotlinx.coroutines.withContext
 import java.io.File
 
 interface ConfigurationRepository {
 
-    suspend fun loadConfiguration(): Result<Pair<Settings, List<ProjectConfiguration>>, DataError.Local>
+    suspend fun loadConfiguration(): Result<Triple<Settings, List<ProjectConfiguration>, Boolean>, DataError.Local>
 
     suspend fun saveSettings(
         settings: Settings

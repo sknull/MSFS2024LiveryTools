@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Formát textury</string>
   <string name="label_textureTypes">Typy textur</string>
   <string name="language_bg">Bulharština</string>
+  <string name="language_cn">Čínština</string>
   <string name="language_cz">Čeština</string>
   <string name="language_de">Němčina</string>
   <string name="language_dk">Dánština</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Maďarština</string>
   <string name="language_ir">Irština</string>
   <string name="language_it">Italština</string>
+  <string name="language_jp">Japonština</string>
   <string name="language_nl">Nizozemština</string>
   <string name="language_no">Norština</string>
   <string name="language_pl">Polština</string>
   <string name="language_pt">Portugalština</string>
   <string name="language_ro">Rumunština</string>
   <string name="language_rs">Srbština</string>
+  <string name="language_ru">ruština</string>
   <string name="language_se">Švédština</string>
   <string name="language_sk">Slovenština</string>
   <string name="language_sl">Slovinština</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Typy textur, které chceš zahrnout do konverzí.\nBalíčky MSFS mohou obsahovat mnoho textur a obvykle pracujeme pouze s\n albedovými (ALBD) a kompozičními soubory (COMP).\nVe většině případů byste tedy měli vybrat ALBD a COMP.\nPokud váš projekt nepoužívá metalické barvy, můžete bez obav vybrat pouze ALBD.</string>
   <string name="true">True</string>
   <string name="warning_delete">Opravdu chcete tento záznam smazat?</string>
+  <string name="warning_migration">Tvá konfigurace byla převedena na nejnovější verzi.\nS touto novou konfigurací není možné se vrátit ke starší verzi.\nZe staré konfigurace byla vytvořena záloha.</string>
   <string name="warning_no_results">Žádné projekty.</string>
 </resources>

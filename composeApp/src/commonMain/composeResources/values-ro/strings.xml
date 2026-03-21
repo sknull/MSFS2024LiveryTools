@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Formatul texturii</string>
   <string name="label_textureTypes">Tipuri de texturi</string>
   <string name="language_bg">Bulgară</string>
+  <string name="language_cn">Chineză</string>
   <string name="language_cz">Cehă</string>
   <string name="language_de">Germană</string>
   <string name="language_dk">Daneză</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Maghiară</string>
   <string name="language_ir">Irlandeză</string>
   <string name="language_it">Italiană</string>
+  <string name="language_jp">Japoneză</string>
   <string name="language_nl">Olandeză</string>
   <string name="language_no">Norvegiană</string>
   <string name="language_pl">Poloneză</string>
   <string name="language_pt">Portugheză</string>
   <string name="language_ro">Română</string>
   <string name="language_rs">Sârbă</string>
+  <string name="language_ru">Rusă</string>
   <string name="language_se">Suedeză</string>
   <string name="language_sk">Slovacă</string>
   <string name="language_sl">Slovenă</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Tipurile de texturi pe care dorești să le incluzi în conversii.\nPachetele MSFS pot conține multe texturi, iar de obicei lucrăm doar cu\n fișiere Albedo (ALBD) și de compoziție (COMP).\nÎn majoritatea cazurilor, ar trebui să selectezi ALBD și COMP.\nDacă proiectul tău nu folosește culori metalice, poți selecta cu încredere doar ALBD.</string>
   <string name="true">Adevărat</string>
   <string name="warning_delete">Vrei cu adevărat să ștergi această intrare?</string>
+  <string name="warning_migration">Configurația ta a fost migrată la cea mai recentă versiune.\nRevenirea la o versiune anterioară nu este posibilă cu noua configurație.\nS-a creat o copie de rezervă a vechii configurații.</string>
   <string name="warning_no_results">Nu există proiecte.</string>
 </resources>

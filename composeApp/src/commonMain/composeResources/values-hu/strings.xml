@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Textúraformátum</string>
   <string name="label_textureTypes">Textúratípusok</string>
   <string name="language_bg">Bolgár</string>
+  <string name="language_cn">kínai</string>
   <string name="language_cz">Cseh</string>
   <string name="language_de">Német</string>
   <string name="language_dk">Dán</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Magyar</string>
   <string name="language_ir">Ír</string>
   <string name="language_it">Olasz</string>
+  <string name="language_jp">japán</string>
   <string name="language_nl">Holland</string>
   <string name="language_no">Norvég</string>
   <string name="language_pl">Lengyel</string>
   <string name="language_pt">Portugál</string>
   <string name="language_ro">Román</string>
   <string name="language_rs">Szerb</string>
+  <string name="language_ru">Orosz</string>
   <string name="language_se">Svéd</string>
   <string name="language_sk">Szlovák</string>
   <string name="language_sl">Szlovén</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">A textúratípusok, amelyeket be akarsz vonni a konvertálásba.\nAz MSFS-csomagok sok textúrát tartalmazhatnak, és általában csak\n albedo (ALBD) és kompozíciós fájlokkal (COMP) dolgozunk.\nA legtöbb esetben tehát az ALBD-t és a COMP-ot kell kiválasztanod.\nHa a projekted nem használ fémes színeket, nyugodtan csak az ALBD-t választhatod.</string>
   <string name="true">True</string>
   <string name="warning_delete">Tényleg törölni szeretnéd ezt a bejegyzést?</string>
+  <string name="warning_migration">A konfigurációt átállítottuk a legújabb verzióra.\nAz új konfigurációval nem lehet visszatérni egy régebbi verzióra.\nA régi konfigurációról biztonsági másolatot készítettünk.</string>
   <string name="warning_no_results">Nincsenek projektek.</string>
 </resources>

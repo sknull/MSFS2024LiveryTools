@@ -5,7 +5,6 @@ import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfigura
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 /**
  * Project specific model.
@@ -43,24 +42,6 @@ data class ProjectConfigurationDto(
     /** since 1.0.5 is now split up to textureFormatPackage and textureFormatModel */
     var textureFormat: TextureFormat? = null,
 ): Comparable<ProjectConfigurationDto> {
-
-    @Transient
-    var migrated: Boolean = false
-
-    init {
-        // migrate deprecated field textureFormat
-        if (textureFormatPackage == null) {
-            migrated = true
-            textureFormatPackage = textureFormat
-        }
-        if (textureFormatModel == null) {
-            migrated = true
-            textureFormatModel = TextureFormat.PNG
-        }
-        if (migrated) {
-            textureFormat = null
-        }
-    }
 
     fun clone(): ProjectConfigurationDto {
         return ProjectConfigurationDto(

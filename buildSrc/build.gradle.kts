@@ -14,4 +14,12 @@ dependencies {
     implementation("com.deepl.api:deepl-java:1.14.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0")
     implementation("co.touchlab:kermit:2.1.0")
+    implementation("com.jsoizo:kotlin-csv-jvm:1.10.0")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.test {
+    useJUnitPlatform() // Wichtig für JUnit 5!
 }

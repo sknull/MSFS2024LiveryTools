@@ -39,7 +39,7 @@ Flag force no alpha decal
 ImageToMSFSKTX2 directory
 Language
 Layout Generator Tool executable
-Skin name
+Livery name
 Language
 Library root folder
 Model textures root folder
@@ -52,6 +52,7 @@ Simulation type
 Texture format
 Texture types
 Bulgarian
+Chinese
 Czech
 German
 Danish
@@ -64,12 +65,14 @@ Croatian
 Hungarian
 Irish
 Italian
+Japanese
 Dutch
 Norwegian
 Polish
 Portuguese
 Romanian
 Serbian
+Russian
 Swedish
 Slovak
 Slovenian
@@ -113,4 +116,5 @@ The texture format your project uses in MSFS 2024. # DDS or KTX2. # This value i
 The texture types you want to include in the conversions. # MSFS packages can contain many textures, and we usually only work with #  albedo (ALBD) and composition (COMP) files. # In most cases, you should therefore select ALBD and COMP. # If your project does not use metallic colors, you can safely select only ALBD.
 True
 Do you really want to delete this entry?
+Your configuration has been migrated to the latest version. # It is not possible to revert to an older version with the new configuration. # A backup of the old configuration has been created.
 No projects.

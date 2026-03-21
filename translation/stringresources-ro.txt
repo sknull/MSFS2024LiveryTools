@@ -52,6 +52,7 @@ Tipul de simulare
 Formatul texturii
 Tipuri de texturi
 Bulgară
+Chineză
 Cehă
 Germană
 Daneză
@@ -64,12 +65,14 @@ Croată
 Maghiară
 Irlandeză
 Italiană
+Japoneză
 Olandeză
 Norvegiană
 Poloneză
 Portugheză
 Română
 Sârbă
+Rusă
 Suedeză
 Slovacă
 Slovenă
@@ -113,4 +116,5 @@ Formatul de textură cu care proiectul tău funcționează în MSFS2024. # DDS s
 Tipurile de texturi pe care dorești să le incluzi în conversii. # Pachetele MSFS pot conține multe texturi, iar de obicei lucrăm doar cu #  fișiere Albedo (ALBD) și de compoziție (COMP). # În majoritatea cazurilor, ar trebui să selectezi ALBD și COMP. # Dacă proiectul tău nu folosește culori metalice, poți selecta cu încredere doar ALBD.
 Adevărat
 Vrei cu adevărat să ștergi această intrare?
+Configurația ta a fost migrată la cea mai recentă versiune. # Revenirea la o versiune anterioară nu este posibilă cu noua configurație. # S-a creat o copie de rezervă a vechii configurații.
 Nu există proiecte.

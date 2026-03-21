@@ -21,8 +21,10 @@ class SetupGlobalTest {
     @Test
     fun testRepository() {
         val repository = DefaultConfigurationRepository(FilesystemConfigurationDataSource())
-        val config = repository.loadConfiguration()
-        println(config)
+        runBlocking {
+            val config = repository.loadConfiguration()
+            println(config)
+        }
     }
 
     @Test

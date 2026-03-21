@@ -15,7 +15,7 @@ import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
-import de.visualdigits.generated.AppConfig
+import de.visualdigits.generated.AppVersion
 import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
 import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
 import msfs2024liverytools.composeapp.generated.resources.Res
@@ -46,7 +46,7 @@ fun InfoScreen(
             htmlToAnnotatedString(
                 html = """
                         <h1>MSFS 2024 Livery Tools</h1>
-                        <h3>Version ${AppConfig.VERSION}</h3>
+                        <h3>Version ${AppVersion().version}</h3>
                         <br/>
                         <div>© ${LocalDate.now().get(ChronoField.YEAR)} by Stephan Knull.<div>
                         <br/>

@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Format teksture</string>
   <string name="label_textureTypes">Vrste tekstura</string>
   <string name="language_bg">Bugarski</string>
+  <string name="language_cn">Kineski</string>
   <string name="language_cz">Češki</string>
   <string name="language_de">Njemački</string>
   <string name="language_dk">Danski</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Mađarski</string>
   <string name="language_ir">Irski</string>
   <string name="language_it">Talijanski</string>
+  <string name="language_jp">Japanski</string>
   <string name="language_nl">Nizozemski</string>
   <string name="language_no">Norveški</string>
   <string name="language_pl">Poljski</string>
   <string name="language_pt">Portugalski</string>
   <string name="language_ro">Rumunjski</string>
   <string name="language_rs">Serbijski</string>
+  <string name="language_ru">Ruski</string>
   <string name="language_se">Švedski</string>
   <string name="language_sk">Slovački</string>
   <string name="language_sl">Slovenski</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Vrste tekstura koje želite uključiti u konverzije.\nMSFS paketi mogu sadržavati mnogo tekstura, a obično radimo samo s\ndatotekama albedo (ALBD) i kompozicije (COMP).\nStoga biste u većini slučajeva trebali odabrati ALBD i COMP.\nAko vaš projekt ne koristi metalik boje, možete sigurno odabrati samo ALBD.</string>
   <string name="true">Istina</string>
   <string name="warning_delete">Jeste li sigurni da želite izbrisati ovaj unos?</string>
+  <string name="warning_migration">Vaša je konfiguracija migrirana na najnoviju verziju.\nNije moguće vratiti se na stariju verziju s novom konfiguracijom.\nNapravljena je sigurnosna kopija stare konfiguracije.</string>
   <string name="warning_no_results">Nema projekata.</string>
 </resources>

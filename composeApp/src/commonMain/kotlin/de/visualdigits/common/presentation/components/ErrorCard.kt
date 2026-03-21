@@ -20,10 +20,10 @@ import de.visualdigits.common.domain.model.color
 @Composable
 fun ErrorCard(
     errorMessage: String,
-    severity: Severity = Severity.Error,
+    severity: Severity? = Severity.Error,
     shapeContainer: Shape
 ) {
-    val color = severity.color()
+    val color = severity?.color()?:Severity.Error.color()
     Card(
         modifier = Modifier
             .padding(top = 8.dp)

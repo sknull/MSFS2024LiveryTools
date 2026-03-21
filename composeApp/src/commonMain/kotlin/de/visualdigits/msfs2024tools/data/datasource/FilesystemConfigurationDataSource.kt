@@ -1,12 +1,16 @@
 package de.visualdigits.msfs2024tools.data.datasource
 
 import de.visualdigits.common.domain.util.writeValueAsJsonFile
+import de.visualdigits.generated.AppVersion
 import de.visualdigits.msfs2024tools.data.dto.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.data.dto.configuration.SettingsDto
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.nio.file.Paths
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class FilesystemConfigurationDataSource() : ConfigurationDataSource {
 
@@ -30,7 +34,17 @@ class FilesystemConfigurationDataSource() : ConfigurationDataSource {
         val newSettings = settingsDto.clone()
         newSettings.projects.clear()
         newSettings.projects.addAll(currentSettings.projects)
+        newSettings.version = AppVersion().version
         currentSettings = newSettings
+
+        if (configurationFile.exists()) {
+            val backupDirectory = File(configurationFile.parentFile, "backup")
+            if (!backupDirectory.exists() && !backupDirectory.mkdirs()) {
+                error("Could not create backupDirectory: ${backupDirectory.canonicalPath}")
+            }
+            val now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"))
+            configurationFile.renameTo(File(backupDirectory, "${now}_configuration.json"))
+        }
         newSettings.writeValueAsJsonFile(configurationFile)
     }
 

@@ -52,6 +52,7 @@ Simuleringstyp
 Texturformat
 Texturtyper
 Bulgariska
+Kinesiska
 Tjeckiska
 Tyska
 Danska
@@ -64,12 +65,14 @@ Kroatiska
 Ungerska
 Iriska
 Italienska
+Japanska
 Nederländska
 Norska
 Polska
 Portugisiska
 Rumänska
 Serbiska
+Ryska
 Svenska
 Slovakiska
 Slovenska
@@ -113,4 +116,5 @@ Det texturformat som ditt projekt arbetar med i MSFS2024. # DDS eller KTX2. # De
 De texturtyper som du vill inkludera i konverteringarna. # MSFS-paket kan innehålla många texturer, och normalt arbetar vi bara med #  albedo- (ALBD) och kompositionsfiler (COMP). # I de flesta fall bör du alltså välja ALBD och COMP. # Om ditt projekt inte använder metalliska färger kan du tryggt välja endast ALBD.
 True
 Vill du verkligen ta bort denna post?
+Din konfiguration har migrerats till den senaste versionen. # Det går inte att återgå till en äldre version med den nya konfigurationen. # En säkerhetskopia av den gamla konfigurationen har skapats.
 Inga projekt.

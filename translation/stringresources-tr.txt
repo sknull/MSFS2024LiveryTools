@@ -51,28 +51,31 @@ MSFS SDK kök dizini
 Simülasyon türü
 Doku biçimi
 Doku türleri
-
-
+Bulgarian
+Çince
+Czech
 Almanca
-
+Danish
 İngilizce
 İspanyolca
-
+Finnish
 Fransızca
-
-
-
-
+Greek
+Croatian
+Hungarian
+Irish
 İtalyanca
-
-
-
-
-
-
-
-
-
+Japonca
+Dutch
+Norwegian
+Polish
+Portuguese
+Romanian
+Serbian
+Rusça
+Swedish
+Slovak
+Slovenian
 Türkçe
 Hakkında
 Yardım
@@ -113,4 +116,5 @@ Projenizin MSFS2024'te çalıştığı doku biçimi. # DDS veya KTX2. # Bu değe
 Dönüştürmelere dahil etmek istediğiniz doku türleri. # MSFS paketleri çok sayıda doku içerebilir ve normalde sadece #  albedo (ALBD) ve kompozisyon (COMP) dosyaları üzerinde çalışırız. # Bu nedenle çoğu zaman ALBD ve COMP'yi seçmek istersiniz. # Projeniz metalik renkler kullanmıyorsa, güvenle sadece ALBD'yi seçebilirsiniz.
 Doğru
 Bu öğeyi gerçekten silmek istiyor musunuz?
+Yapılandırmanız en son sürüme taşındı. # Yeni yapılandırma ile eski bir sürüme geri dönmek mümkün değildir. # Eski yapılandırmanın yedeği alınmıştır.
 Proje yok.

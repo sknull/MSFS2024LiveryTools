@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Texturformat</string>
   <string name="label_textureTypes">Texturtyper</string>
   <string name="language_bg">Bulgariska</string>
+  <string name="language_cn">Kinesiska</string>
   <string name="language_cz">Tjeckiska</string>
   <string name="language_de">Tyska</string>
   <string name="language_dk">Danska</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Ungerska</string>
   <string name="language_ir">Iriska</string>
   <string name="language_it">Italienska</string>
+  <string name="language_jp">Japanska</string>
   <string name="language_nl">Nederländska</string>
   <string name="language_no">Norska</string>
   <string name="language_pl">Polska</string>
   <string name="language_pt">Portugisiska</string>
   <string name="language_ro">Rumänska</string>
   <string name="language_rs">Serbiska</string>
+  <string name="language_ru">Ryska</string>
   <string name="language_se">Svenska</string>
   <string name="language_sk">Slovakiska</string>
   <string name="language_sl">Slovenska</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">De texturtyper som du vill inkludera i konverteringarna.\nMSFS-paket kan innehålla många texturer, och normalt arbetar vi bara med\n albedo- (ALBD) och kompositionsfiler (COMP).\nI de flesta fall bör du alltså välja ALBD och COMP.\nOm ditt projekt inte använder metalliska färger kan du tryggt välja endast ALBD.</string>
   <string name="true">True</string>
   <string name="warning_delete">Vill du verkligen ta bort denna post?</string>
+  <string name="warning_migration">Din konfiguration har migrerats till den senaste versionen.\nDet går inte att återgå till en äldre version med den nya konfigurationen.\nEn säkerhetskopia av den gamla konfigurationen har skapats.</string>
   <string name="warning_no_results">Inga projekt.</string>
 </resources>

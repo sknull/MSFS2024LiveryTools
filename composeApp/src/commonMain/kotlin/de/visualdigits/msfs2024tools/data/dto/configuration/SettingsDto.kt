@@ -1,5 +1,6 @@
 package de.visualdigits.msfs2024tools.data.dto.configuration
 
+import de.visualdigits.generated.AppVersion
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings.Companion.NVIDIA_TEXTURETOOL_PATH_DEFAULT
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings.Companion.SDK_ROOT_DEFAULT
 import de.visualdigits.msfs2024tools.domain.model.type.Language
@@ -14,6 +15,8 @@ import java.io.File
  */
 @Serializable
 data class SettingsDto(
+
+    var version: String? = null,
 
     var language: Language? = Language.EN,
 

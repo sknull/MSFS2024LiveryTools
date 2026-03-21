@@ -3,6 +3,7 @@ package de.visualdigits.msfs2024tools.presentation.model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.onError
 import de.visualdigits.common.domain.model.onSuccess
@@ -29,6 +30,7 @@ import kotlinx.coroutines.launch
 import msfs2024liverytools.composeapp.generated.resources.Res
 import msfs2024liverytools.composeapp.generated.resources.error_global_configuration_invalid
 import msfs2024liverytools.composeapp.generated.resources.error_project_configuration_invalid
+import msfs2024liverytools.composeapp.generated.resources.warning_migration
 import java.io.File
 import java.util.Locale
 
@@ -72,7 +74,8 @@ class Msfs2024ToolsViewModel(
                         originalSettings = it.settings,
                         isEditingSettings = action.isEditingSettings,
                         isShowInfos = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -95,11 +98,13 @@ class Msfs2024ToolsViewModel(
             }
 
             is Msfs2024ToolsAction.OnEditSettingsCancelClick -> {
-                _state.update {
-                    it.copy(
-                        settings = it.originalSettings?.copy(),
+                _state.update { state ->
+                    state.originalSettings?.get<Language>(SK.language)?.also { l -> Locale.setDefault(l.locale) }
+                    state.copy(
+                        settings = state.originalSettings?.copy(),
                         isEditingSettings = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -132,7 +137,8 @@ class Msfs2024ToolsViewModel(
                         currentProjectConfiguration = action.projectConfiguration,
                         isEditingSettings = false,
                         isEditingProjectConfiguration = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -146,7 +152,8 @@ class Msfs2024ToolsViewModel(
                         projectConfigurations = it.projectConfigurations + project,
                         isEditingProjectConfiguration = true,
                         isNewProject = true,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -157,7 +164,8 @@ class Msfs2024ToolsViewModel(
                         originalProjectConfiguration = it.currentProjectConfiguration?.copy(),
                         isEditingProjectConfiguration = true,
                         isNewProject = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -181,7 +189,8 @@ class Msfs2024ToolsViewModel(
                         projectConfigurations = if (it.isNewProject) it.currentProjectConfiguration?.let { pp -> it.projectConfigurations - pp }?:it.projectConfigurations else it.projectConfigurations,
                         originalProjectConfiguration = null,
                         isEditingProjectConfiguration = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -207,7 +216,8 @@ class Msfs2024ToolsViewModel(
                         originalSettings = it.settings,
                         isEditingSettings = false,
                         isShowInfos = action.isShowInfos,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -221,7 +231,8 @@ class Msfs2024ToolsViewModel(
                         isEditingSettings = false,
                         isShowInfos = false,
                         isEditingProjectConfiguration = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -234,7 +245,8 @@ class Msfs2024ToolsViewModel(
                         isEditingSettings = false,
                         isShowInfos = false,
                         isEditingProjectConfiguration = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -301,13 +313,15 @@ class Msfs2024ToolsViewModel(
             )
         }
         configurationRepository.loadConfiguration()
-            .onSuccess { (settings, projectConfigurations) ->
+            .onSuccess { (settings, projectConfigurations, migrated) ->
                 Locale.setDefault(settings.get<Language>(SK.language)?.locale?: Language.EN.locale)
                 _state.update {
                     it.copy(
                         settings = settings,
                         projectConfigurations = projectConfigurations,
-                        isLoading = false
+                        isLoading = false,
+                        uiMessage = if (migrated) UiText.StringResourceId(Res.string.warning_migration) else null,
+                        uiMessageSeverity = if (migrated) Severity.Info else null
                     )
                 }
             }
@@ -315,7 +329,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        errorMessage = error.toUiText()
+                        uiMessage = error.toUiText(),
+                        uiMessageSeverity = Severity.Error
                     )
                 }
             }
@@ -349,7 +364,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         currentProgress = 0.0f,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -357,7 +373,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         currentProgress = 0.0f,
-                        errorMessage = error.toUiText()
+                        uiMessage = error.toUiText(),
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -370,7 +387,8 @@ class Msfs2024ToolsViewModel(
         if (settings == null || settings.get<SimType>(SK.simType) == null) {
             _state.update {
                 it.copy(
-                    errorMessage = UiText.StringResourceId(Res.string.error_global_configuration_invalid),
+                    uiMessage = UiText.StringResourceId(Res.string.error_global_configuration_invalid),
+                    uiMessageSeverity = Severity.Error
                 )
             }
 
@@ -395,7 +413,8 @@ class Msfs2024ToolsViewModel(
                         settings = settings,
                         isLoading = false,
                         isEditingSettings = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -403,7 +422,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        errorMessage = error.toUiText()
+                        uiMessage = error.toUiText(),
+                        uiMessageSeverity = Severity.Error
                     )
                 }
             }
@@ -415,7 +435,8 @@ class Msfs2024ToolsViewModel(
         if (projectConfiguration == null || projectConfiguration.get<String>(PK.airplaneName) == null || projectConfiguration.get<String>(PK.liveryName) == null) {
             _state.update {
                 it.copy(
-                    errorMessage = UiText.StringResourceId(Res.string.error_project_configuration_invalid),
+                    uiMessage = UiText.StringResourceId(Res.string.error_project_configuration_invalid),
+                    uiMessageSeverity = Severity.Error
                 )
             }
 
@@ -437,7 +458,8 @@ class Msfs2024ToolsViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            errorMessage = error.toUiText()
+                            uiMessage = error.toUiText(),
+                            uiMessageSeverity = Severity.Error
                         )
                     }
                 }
@@ -452,7 +474,8 @@ class Msfs2024ToolsViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            errorMessage = error.toUiText()
+                            uiMessage = error.toUiText(),
+                            uiMessageSeverity = Severity.Error
                         )
                     }
                 }
@@ -471,7 +494,8 @@ class Msfs2024ToolsViewModel(
                         projectConfigurations = projectConfigurations,
                         isLoading = false,
                         isEditingProjectConfiguration = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -479,7 +503,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        errorMessage = error.toUiText()
+                        uiMessage = error.toUiText(),
+                        uiMessageSeverity = Severity.Error
                     )
                 }
             }
@@ -505,7 +530,8 @@ class Msfs2024ToolsViewModel(
                         projectConfigurations = projectConfigurations,
                         isLoading = false,
                         isEditingProjectConfiguration = false,
-                        errorMessage = null
+                        uiMessage = null,
+                        uiMessageSeverity = null
                     )
                 }
             }
@@ -513,7 +539,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        errorMessage = error.toUiText()
+                        uiMessage = error.toUiText(),
+                        uiMessageSeverity = Severity.Error
                     )
                 }
             }
@@ -539,7 +566,8 @@ class Msfs2024ToolsViewModel(
                         currentProjectConfiguration = null,
                         projectConfigurations = (it.projectConfigurations - projectConfiguration),
                         isLoading = false,
-                        errorMessage = null,
+                        uiMessage = null,
+                        uiMessageSeverity = null,
                         isEditingSettings = false,
                         isEditingProjectConfiguration = false,
                     )
@@ -549,7 +577,8 @@ class Msfs2024ToolsViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        errorMessage = error.toUiText()
+                        uiMessage = error.toUiText(),
+                        uiMessageSeverity = Severity.Error
                     )
                 }
             }

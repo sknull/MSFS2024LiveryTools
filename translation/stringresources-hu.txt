@@ -52,6 +52,7 @@ Szimulációtípus
 Textúraformátum
 Textúratípusok
 Bolgár
+kínai
 Cseh
 Német
 Dán
@@ -64,12 +65,14 @@ Horvát
 Magyar
 Ír
 Olasz
+japán
 Holland
 Norvég
 Lengyel
 Portugál
 Román
 Szerb
+Orosz
 Svéd
 Szlovák
 Szlovén
@@ -113,4 +116,5 @@ A textúraformátum, amellyel a projekted az MSFS2024-ben működik. # DDS vagy 
 A textúratípusok, amelyeket be akarsz vonni a konvertálásba. # Az MSFS-csomagok sok textúrát tartalmazhatnak, és általában csak #  albedo (ALBD) és kompozíciós fájlokkal (COMP) dolgozunk. # A legtöbb esetben tehát az ALBD-t és a COMP-ot kell kiválasztanod. # Ha a projekted nem használ fémes színeket, nyugodtan csak az ALBD-t választhatod.
 True
 Tényleg törölni szeretnéd ezt a bejegyzést?
+A konfigurációt átállítottuk a legújabb verzióra. # Az új konfigurációval nem lehet visszatérni egy régebbi verzióra. # A régi konfigurációról biztonsági másolatot készítettünk.
 Nincsenek projektek.

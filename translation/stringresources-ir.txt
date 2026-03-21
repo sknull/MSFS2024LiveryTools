@@ -52,6 +52,7 @@ Cineál insamhalta
 Formáid uigeachta
 Cineálacha uigeachta
 Bulgáiris
+Sínis
 Seicis
 Gearmáinis
 Danmhairgis
@@ -64,12 +65,14 @@ Cróitis
 Ungáiris
 Gaeilge
 Iodáilis
+Seapáinis
 Ísiltíreach
 Nua-Aeirgneach
 Polainnis
 Portaingéilis
 Rómáinis
 Seirbis
+Rúiseach
 Sualannais
 Slovacais
 Slóivéinis
@@ -113,4 +116,5 @@ An fhormáid uigeachta a úsáideann do thionscadal in MSFS2024. # DDS nó KTX2.
 Na cineálacha uigeachta ar mian leat a chur san áireamh sna tiontuithe. # Is féidir le pacáistí MSFS go leor uigeachtaí a bheith iontu, agus de ghnáth ní oibrímid ach le comhaid # albeide (ALBD) agus comhdhéanta (COMP). # I bhformhór na gcásanna, ba cheart duit ALBD agus COMP a roghnú dá bhrí sin. # Mura n-úsáideann do thionscadal dathanna miotalacha, is féidir leat ALBD amháin a roghnú go sábháilte.
 Fíor
 An bhfuil tú cinnte gur mian leat an iontráil seo a scriosadh?
+Tá do chumraíocht aistrithe chuig an leagan is déanaí. # Ní féidir filleadh ar leagan níos sine leis an gcumraíocht nua. # Cruthaíodh cúltaca den tseanchumraíocht.
 Gan tionscadail.

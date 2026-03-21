@@ -52,6 +52,7 @@ Typ simulace
 Formát textury
 Typy textur
 Bulharština
+Čínština
 Čeština
 Němčina
 Dánština
@@ -64,12 +65,14 @@ Chorvatština
 Maďarština
 Irština
 Italština
+Japonština
 Nizozemština
 Norština
 Polština
 Portugalština
 Rumunština
 Srbština
+ruština
 Švédština
 Slovenština
 Slovinština
@@ -113,4 +116,5 @@ Formát textur, se kterým tvůj projekt v MSFS2024 pracuje. # DDS nebo KTX2. # 
 Typy textur, které chceš zahrnout do konverzí. # Balíčky MSFS mohou obsahovat mnoho textur a obvykle pracujeme pouze s #  albedovými (ALBD) a kompozičními soubory (COMP). # Ve většině případů byste tedy měli vybrat ALBD a COMP. # Pokud váš projekt nepoužívá metalické barvy, můžete bez obav vybrat pouze ALBD.
 True
 Opravdu chcete tento záznam smazat?
+Tvá konfigurace byla převedena na nejnovější verzi. # S touto novou konfigurací není možné se vrátit ke starší verzi. # Ze staré konfigurace byla vytvořena záloha.
 Žádné projekty.

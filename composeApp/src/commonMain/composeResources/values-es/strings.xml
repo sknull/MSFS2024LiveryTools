@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Formato de textura</string>
   <string name="label_textureTypes">Tipos de textura</string>
   <string name="language_bg">Bulgarian</string>
+  <string name="language_cn">Chino</string>
   <string name="language_cz">Czech</string>
   <string name="language_de">Alemán</string>
   <string name="language_dk">Danish</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Hungarian</string>
   <string name="language_ir">Irish</string>
   <string name="language_it">Italiano</string>
+  <string name="language_jp">Japonés</string>
   <string name="language_nl">Dutch</string>
   <string name="language_no">Norwegian</string>
   <string name="language_pl">Polish</string>
   <string name="language_pt">Portuguese</string>
   <string name="language_ro">Romanian</string>
   <string name="language_rs">Serbian</string>
+  <string name="language_ru">Ruso</string>
   <string name="language_se">Swedish</string>
   <string name="language_sk">Slovak</string>
   <string name="language_sl">Slovenian</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Los tipos de textura que deseas incluir en las conversiones.\nLos paquetes de MSFS pueden contener muchas texturas y, normalmente, solo trabajamos con\n archivos de albedo (ALBD) y composición (COMP).\nPor lo tanto, en la mayoría de los casos querrás seleccionar ALBD y COMP.\nSi tu proyecto no utiliza colores metálicos, puedes elegir solo ALBD sin problema.</string>
   <string name="true">Verdadero</string>
   <string name="warning_delete">¿De verdad quieres eliminar este elemento?</string>
+  <string name="warning_migration">Tu configuración se ha migrado a la última versión.\nCon la nueva configuración no es posible volver a una versión anterior.\nSe ha creado una copia de seguridad de la configuración anterior.</string>
   <string name="warning_no_results">No hay proyectos.</string>
 </resources>

@@ -15,11 +15,11 @@ class DummyConfigurationRepository(
     val configurationDataSource: ConfigurationDataSource
 ): ConfigurationRepository {
 
-    override suspend fun loadConfiguration(): Result<Pair<Settings, List<ProjectConfiguration>>, DataError.Local> {
+    override suspend fun loadConfiguration(): Result<Triple<Settings, List<ProjectConfiguration>, Boolean>, DataError.Local> {
         val settingsDto = configurationDataSource.loadSettings()
         val settings = settingsDto.toSettings()
 
-        return Result.Success(Pair(settings, settingsDto.projects.map { p -> p.toProjectConfiguration(settings) }))
+        return Result.Success(Triple(settings, settingsDto.projects.map { p -> p.toProjectConfiguration(settings) }, false))
     }
 
     override suspend fun saveSettings(

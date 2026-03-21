@@ -51,28 +51,31 @@ Directory principale MSFS SDK
 Tipo di simulazione
 Formato texture
 Tipi di texture
-
-
+Bulgarian
+Cinese
+Czech
 Tedesco
-
+Danish
 Inglese
 Spagnolo
-
+Finnish
 Francese
-
-
-
-
+Greek
+Croatian
+Hungarian
+Irish
 Italiano
-
-
-
-
-
-
-
-
-
+Giapponese
+Dutch
+Norwegian
+Polish
+Portuguese
+Romanian
+Serbian
+Russo
+Swedish
+Slovak
+Slovenian
 Turco
 Informazioni
 Aiuto
@@ -113,4 +116,5 @@ Il formato di texture con cui il tuo progetto funziona in MSFS2024. # DDS o KTX2
 I tipi di texture che si desidera includere nelle conversioni. # I pacchetti MSFS possono contenere molte texture e normalmente lavoriamo solo su #  file albedo (ALBD) e composizione (COMP). # Quindi nella maggior parte dei casi si desidera selezionare ALBD e COMP. # Se il progetto non utilizza colori metallici, è possibile scegliere tranquillamente solo ALBD.
 Vero
 Si desidera davvero eliminare questo elemento?
+La tua configurazione è stata aggiornata all'ultima versione. # Con la nuova configurazione non è possibile tornare a una versione precedente. # È stato creato un backup della vecchia configurazione.
 Nessun progetto.

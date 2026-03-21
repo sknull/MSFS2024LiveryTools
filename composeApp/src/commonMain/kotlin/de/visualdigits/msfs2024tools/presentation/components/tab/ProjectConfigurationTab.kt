@@ -91,9 +91,10 @@ fun ProjectsTab(
             )
         }
 
-        if (state.errorMessage != null) {
+        if (state.uiMessage != null) {
             ErrorCard(
-                errorMessage = state.errorMessage.asString(),
+                errorMessage = state.uiMessage.asString(),
+                severity = state.uiMessageSeverity,
                 shapeContainer = ShapeContainer
             )
             Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())

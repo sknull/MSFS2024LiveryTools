@@ -1,5 +1,6 @@
 package de.visualdigits.msfs2024tools.presentation.model
 
+import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
@@ -29,7 +30,8 @@ data class Msfs2024ToolsState(
     val isLoading: Boolean = false,
     val isConverting: Boolean = false,
 
-    val errorMessage: UiText? = null,
+    val uiMessage: UiText? = null,
+    val uiMessageSeverity: Severity? = null,
 
     val currentProgress: Float = 0.0f,
     val logs: List<LogMessage> = listOf(),

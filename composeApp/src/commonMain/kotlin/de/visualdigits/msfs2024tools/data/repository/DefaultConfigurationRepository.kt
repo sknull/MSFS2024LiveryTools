@@ -3,6 +3,7 @@ package de.visualdigits.msfs2024tools.data.repository
 import co.touchlab.kermit.Logger
 import de.visualdigits.common.domain.model.Result
 import de.visualdigits.msfs2024tools.data.datasource.ConfigurationDataSource
+import de.visualdigits.msfs2024tools.data.dto.configuration.migration.Migration
 import de.visualdigits.msfs2024tools.data.mapper.toProjectConfiguration
 import de.visualdigits.msfs2024tools.data.mapper.toProjectConfigurationDto
 import de.visualdigits.msfs2024tools.data.mapper.toSettings
@@ -18,16 +19,18 @@ class DefaultConfigurationRepository(
     val configurationDataSource: ConfigurationDataSource
 ): ConfigurationRepository {
 
-    override suspend fun loadConfiguration(): Result<Pair<Settings, List<ProjectConfiguration>>, DataError.Local> {
+    override suspend fun loadConfiguration(): Result<Triple<Settings, List<ProjectConfiguration>, Boolean>, DataError.Local> {
         return try {
             val settingsDto = configurationDataSource.loadSettings()
-            val settings = settingsDto.toSettings()
-            val migrated = settingsDto.projects.any { p -> p.migrated }
+
+            val (migratedSettingsDto, migrated) = Migration.doMigrations(settingsDto)
             if (migrated) {
-                configurationDataSource.saveSettings(settingsDto)
+                configurationDataSource.saveSettings(migratedSettingsDto)
             }
 
-            Result.Success(Pair(settings, settingsDto.projects.map { p -> p.toProjectConfiguration(settings)}))
+            val settings = migratedSettingsDto.toSettings()
+
+            Result.Success(Triple(settings, settingsDto.projects.map { p -> p.toProjectConfiguration(settings)}, migrated))
         } catch (e: Exception) {
             Logger.e("Could not load configuration", e)
             Result.Error(DataError.Local.SERIALIZATION)

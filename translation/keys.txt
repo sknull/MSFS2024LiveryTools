@@ -52,6 +52,7 @@ label_simType
 label_textureFormat
 label_textureTypes
 language_bg
+language_cn
 language_cz
 language_de
 language_dk
@@ -64,12 +65,14 @@ language_hr
 language_hu
 language_ir
 language_it
+language_jp
 language_nl
 language_no
 language_pl
 language_pt
 language_ro
 language_rs
+language_ru
 language_se
 language_sk
 language_sl
@@ -113,4 +116,5 @@ tooltip_textureFormat
 tooltip_textureTypes
 true
 warning_delete
+warning_migration
 warning_no_results

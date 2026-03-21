@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Textuurformaat</string>
   <string name="label_textureTypes">Textuurtypes</string>
   <string name="language_bg">Bulgaars</string>
+  <string name="language_cn">Chinees</string>
   <string name="language_cz">Tsjechisch</string>
   <string name="language_de">Duits</string>
   <string name="language_dk">Deens</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Hongaars</string>
   <string name="language_ir">Iers</string>
   <string name="language_it">Italiaans</string>
+  <string name="language_jp">Japans</string>
   <string name="language_nl">Nederlands</string>
   <string name="language_no">Noors</string>
   <string name="language_pl">Pools</string>
   <string name="language_pt">Portugees</string>
   <string name="language_ro">Roemeens</string>
   <string name="language_rs">Servisch</string>
+  <string name="language_ru">Russisch</string>
   <string name="language_se">Zweeds</string>
   <string name="language_sk">Slowaaks</string>
   <string name="language_sl">Sloveens</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">De textuurtypes die je in de conversies wilt opnemen.\nMSFS-pakketten kunnen veel texturen bevatten, en normaal gesproken werken we alleen met\n albedo- (ALBD) en compositiebestanden (COMP).\nIn de meeste gevallen moet je dus ALBD en COMP selecteren.\nAls je project geen metallic kleuren gebruikt, kun je gerust alleen ALBD selecteren.</string>
   <string name="true">True</string>
   <string name="warning_delete">Wil je dit item echt verwijderen?</string>
+  <string name="warning_migration">Je configuratie is gemigreerd naar de nieuwste versie.\nTerugkeren naar een oudere versie is met de nieuwe configuratie niet mogelijk.\nEr is een back-up gemaakt van de oude configuratie.</string>
   <string name="warning_no_results">Geen projecten.</string>
 </resources>

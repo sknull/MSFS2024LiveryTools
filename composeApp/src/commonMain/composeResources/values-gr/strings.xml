@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Μορφή υφής</string>
   <string name="label_textureTypes">Τύποι υφών</string>
   <string name="language_bg">Βουλγαρικά</string>
+  <string name="language_cn">Κινέζικα</string>
   <string name="language_cz">Τσεχικά</string>
   <string name="language_de">Γερμανικά</string>
   <string name="language_dk">Δανικά</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Ουγγρικά</string>
   <string name="language_ir">Ιρλανδικά</string>
   <string name="language_it">Ιταλικά</string>
+  <string name="language_jp">Ιαπωνικά</string>
   <string name="language_nl">Ολλανδικά</string>
   <string name="language_no">Νορβηγικά</string>
   <string name="language_pl">Πολωνικά</string>
   <string name="language_pt">Πορτογαλικά</string>
   <string name="language_ro">Ρουμανικά</string>
   <string name="language_rs">Σερβικά</string>
+  <string name="language_ru">Ρωσικά</string>
   <string name="language_se">Σουηδικά</string>
   <string name="language_sk">Σλοβακικά</string>
   <string name="language_sl">Σλοβενικά</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Οι τύποι υφών που θέλετε να συμπεριλάβετε στις μετατροπές.\nΤα πακέτα MSFS μπορούν να περιέχουν πολλές υφές και συνήθως λειτουργούμε μόνο με\n αρχεία Albedo (ALBD) και σύνθεσης (COMP).\nΣτις περισσότερες περιπτώσεις, λοιπόν, θα πρέπει να επιλέξετε ALBD και COMP.\nΕάν το έργο σας δεν χρησιμοποιεί μεταλλικά χρώματα, μπορείτε να επιλέξετε με ασφάλεια μόνο ALBD.</string>
   <string name="true">True</string>
   <string name="warning_delete">Θέλετε πραγματικά να διαγράψετε αυτήν την καταχώριση</string>
+  <string name="warning_migration">Η διαμόρφωσή σου έχει μεταφερθεί στην πιο πρόσφατη έκδοση.\nΜε τη νέα διαμόρφωση δεν είναι δυνατή η επιστροφή σε παλαιότερη έκδοση.\nΈχει δημιουργηθεί αντίγραφο ασφαλείας της παλαιάς διαμόρφωσης.</string>
   <string name="warning_no_results">Δεν υπάρχουν έργα.</string>
 </resources>

@@ -26,14 +26,42 @@ abstract class GenerateVersionTask : DefaultTask() {
 
     @TaskAction
     fun generate() {
-        val outputFile = outputDirectory.file("AppConfig.kt").get().asFile
+        val outputFile = outputDirectory.file("AppVersion.kt").get().asFile
         outputFile.parentFile.mkdirs()
-        outputFile.writeText("""
-            package de.visualdigits.generated
-            object AppConfig {
-                const val VERSION = "${appVersion.get()}"
-            }
-        """.trimIndent())
+        outputFile.writeText("""package de.visualdigits.generated
+
+data class AppVersion(
+    val version: String = "1.0.5",
+) : Comparable<AppVersion> {
+
+    val coordinates: List<Int> = version
+        .split(".")
+        .map { v -> v.toInt() }
+
+    override fun compareTo(other: AppVersion): Int {
+        var c = coordinates[0].compareTo(other.coordinates[0])
+        var index = 1
+        while (c == 0 && index < 3) {
+            c = coordinates[index].compareTo(other.coordinates[index])
+            index++
+        }
+        
+        return c
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as AppVersion
+
+        return coordinates == other.coordinates
+    }
+
+    override fun hashCode(): Int {
+        return coordinates.hashCode()
+    }
+}""")
     }
 }
 

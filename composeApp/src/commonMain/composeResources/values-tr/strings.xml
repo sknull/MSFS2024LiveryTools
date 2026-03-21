@@ -54,6 +54,7 @@
   <string name="label_textureFormat">Doku biçimi</string>
   <string name="label_textureTypes">Doku türleri</string>
   <string name="language_bg">Bulgarian</string>
+  <string name="language_cn">Çince</string>
   <string name="language_cz">Czech</string>
   <string name="language_de">Almanca</string>
   <string name="language_dk">Danish</string>
@@ -66,12 +67,14 @@
   <string name="language_hu">Hungarian</string>
   <string name="language_ir">Irish</string>
   <string name="language_it">İtalyanca</string>
+  <string name="language_jp">Japonca</string>
   <string name="language_nl">Dutch</string>
   <string name="language_no">Norwegian</string>
   <string name="language_pl">Polish</string>
   <string name="language_pt">Portuguese</string>
   <string name="language_ro">Romanian</string>
   <string name="language_rs">Serbian</string>
+  <string name="language_ru">Rusça</string>
   <string name="language_se">Swedish</string>
   <string name="language_sk">Slovak</string>
   <string name="language_sl">Slovenian</string>
@@ -115,5 +118,6 @@
   <string name="tooltip_textureTypes">Dönüştürmelere dahil etmek istediğiniz doku türleri.\nMSFS paketleri çok sayıda doku içerebilir ve normalde sadece\n albedo (ALBD) ve kompozisyon (COMP) dosyaları üzerinde çalışırız.\nBu nedenle çoğu zaman ALBD ve COMP'yi seçmek istersiniz.\nProjeniz metalik renkler kullanmıyorsa, güvenle sadece ALBD'yi seçebilirsiniz.</string>
   <string name="true">Doğru</string>
   <string name="warning_delete">Bu öğeyi gerçekten silmek istiyor musunuz?</string>
+  <string name="warning_migration">Yapılandırmanız en son sürüme taşındı.\nYeni yapılandırma ile eski bir sürüme geri dönmek mümkün değildir.\nEski yapılandırmanın yedeği alınmıştır.</string>
   <string name="warning_no_results">Proje yok.</string>
 </resources>
