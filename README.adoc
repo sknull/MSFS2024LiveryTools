@@ -71,6 +71,42 @@ This document in form of a PDF file can be found link:docs/README.pdf[here]
 :flags: composeApp/src/commonMain/composeResources/drawable
 :flag-size: 2.0cm
 
+ifndef::backend-pdf[]
+// Avoid github grid line rendering
+image:{flags}/flag_bg.png[Bulgarian, pdfwidth={flag-size}]
+image:{flags}/flag_cn.png[Chinese, pdfwidth={flag-size}]
+image:{flags}/flag_cz.png[Czech, pdfwidth={flag-size}]
+image:{flags}/flag_de.png[German, pdfwidth={flag-size}]
+image:{flags}/flag_dk.png[Danish, pdfwidth={flag-size}]
+image:{flags}/flag_en.png[English, pdfwidth={flag-size}]
+
+image:{flags}/flag_es.png[Spanish, pdfwidth={flag-size}]
+image:{flags}/flag_fi.png[Finnish, pdfwidth={flag-size}]
+image:{flags}/flag_fr.png[French, pdfwidth={flag-size}]
+image:{flags}/flag_gr.png[Greek, pdfwidth={flag-size}]
+image:{flags}/flag_hr.png[Croatian, pdfwidth={flag-size}]
+image:{flags}/flag_hu.png[Hungarian, pdfwidth={flag-size}]
+
+image:{flags}/flag_ir.png[Irish, pdfwidth={flag-size}]
+image:{flags}/flag_it.png[Italian, pdfwidth={flag-size}]
+image:{flags}/flag_jp.png[Japanese, pdfwidth={flag-size}]
+image:{flags}/flag_nl.png[Dutch, pdfwidth={flag-size}]
+image:{flags}/flag_no.png[Norwegian, pdfwidth={flag-size}]
+image:{flags}/flag_pl.png[Polish, pdfwidth={flag-size}]
+
+image:{flags}/flag_pt.png[Portuguese, pdfwidth={flag-size}]
+image:{flags}/flag_ro.png[Romanian, pdfwidth={flag-size}]
+image:{flags}/flag_ru.png[Serbian, pdfwidth={flag-size}]
+image:{flags}/flag_rs.png[Russian, pdfwidth={flag-size}]
+image:{flags}/flag_se.png[Swedish, pdfwidth={flag-size}]
+image:{flags}/flag_sk.png[Slovak, pdfwidth={flag-size}]
+
+image:{flags}/flag_sl.png[Slovenian, pdfwidth={flag-size}]
+image:{flags}/flag_tr.png[Turkish, pdfwidth={flag-size}]
+endif::[]
+
+ifdef::backend-pdf[]
+// For PDF use an invisible table
 [cols="1,1,1,1,1,1", grid=none, frame=none, align="center"]
 |===
 | image:{flags}/flag_bg.png[Bulgarian, pdfwidth={flag-size}]
@@ -108,6 +144,8 @@ This document in form of a PDF file can be found link:docs/README.pdf[here]
 |
 |
 |===
+endif::[]
+
 
 == Setup
 
