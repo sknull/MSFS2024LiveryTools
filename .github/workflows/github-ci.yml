@@ -27,6 +27,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Build and zip package
-        run: ./gradlew.bat zipDesktopDistributable
+        run: ./gradlew.bat zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

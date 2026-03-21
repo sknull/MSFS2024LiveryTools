@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and Zip
         # Unter Windows nutzt man gradlew.bat
-        run: ./gradlew.bat zipDesktopDistributable
+        run: ./gradlew.bat zip
 
       - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v2
