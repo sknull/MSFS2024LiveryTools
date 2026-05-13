@@ -1,8 +1,8 @@
 package de.visualdigits.msfs2024tools.domain.model.errorhandling
 
-import de.visualdigits.common.domain.model.Error
+import de.visualdigits.common.domain.model.errorhandling.AppError
 
-sealed interface DataError: Error {
+sealed interface DataError: AppError {
 
     enum class Remote: DataError {
         REQUEST_TIMEOUT,

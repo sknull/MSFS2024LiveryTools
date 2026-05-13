@@ -1,6 +1,6 @@
 package de.visualdigits.msfs2024tools.data.repository
 
-import de.visualdigits.common.domain.model.Result
+import de.visualdigits.common.domain.model.errorhandling.Result
 import de.visualdigits.msfs2024tools.data.datasource.ConfigurationDataSource
 import de.visualdigits.msfs2024tools.data.mapper.toProjectConfiguration
 import de.visualdigits.msfs2024tools.data.mapper.toSettings
@@ -19,7 +19,7 @@ class DummyConfigurationRepository(
         val settingsDto = configurationDataSource.loadSettings()
         val settings = settingsDto.toSettings()
 
-        return Result.Success(Triple(settings, settingsDto.projects.map { p -> p.toProjectConfiguration(settings) }, false))
+        return Result.Success(Triple(settings, settingsDto.projects.map { p -> p.toProjectConfiguration() }, false))
     }
 
     override suspend fun saveSettings(

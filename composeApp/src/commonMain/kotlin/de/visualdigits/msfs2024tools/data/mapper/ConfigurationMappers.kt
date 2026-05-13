@@ -14,17 +14,17 @@ import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import java.io.File
 
-fun ProjectConfigurationDto.toProjectConfiguration(settings: Settings): ProjectConfiguration {
-    val projectConfiguration = ProjectConfiguration(settings = settings)
-
-    projectConfiguration.set(PK.airplaneName, airplaneName)
-    projectConfiguration.set(PK.liveryName, liveryName)
-    projectConfiguration.set(PK.packageDir, packageDir?.let { File(it) })
-    projectConfiguration.set(PK.packageTextureDir, packageTextureDir?.let { File(it) })
-    projectConfiguration.set(PK.modelTexturesDir, modelTexturesDir?.let { File(it) })
-    projectConfiguration.set(PK.textureFormatPackage, textureFormatPackage)
-    projectConfiguration.set(PK.textureFormatModel, textureFormatModel)
-    projectConfiguration.set(PK.textureTypes, textureTypes)
+fun ProjectConfigurationDto.toProjectConfiguration(): ProjectConfiguration {
+    val projectConfiguration = ProjectConfiguration(mapOf(
+        PK.airplaneName to airplaneName,
+        PK.liveryName to liveryName,
+        PK.packageDir to packageDir?.let { File(it) },
+        PK.packageTextureDir to packageTextureDir?.let { File(it) },
+        PK.modelTexturesDir to modelTexturesDir?.let { File(it) },
+        PK.textureFormatPackage to textureFormatPackage,
+        PK.textureFormatModel to textureFormatModel,
+        PK.textureTypes to textureTypes
+    ))
 
     return projectConfiguration
 }
@@ -43,16 +43,16 @@ fun ProjectConfiguration.toProjectConfigurationDto(): ProjectConfigurationDto {
 }
 
 fun SettingsDto.toSettings(): Settings {
-    val settings = Settings()
-
-    settings.set(SK.language, language)
-    settings.set(SK.simType, simType)
-    settings.set(SK.sdkRoot, File(sdkRoot))
-    settings.set(SK.layoutGeneratorToolPath, layoutGeneratorToolPath?.let { File(it) })
-    settings.set(SK.nvidiaTextureToolPath, File(nvidiaTextureToolPath))
-    settings.set(SK.mainLibraryRootFolder, mainLibraryRootFolder?.let { p -> File(p) })
-    settings.set(SK.projectRootFolder, projectRootFolder?.let { p -> File(p) })
-    settings.set(SK.airplanes, airplanes)
+    val settings = Settings(mapOf(
+        SK.language to language,
+        SK.simType to simType,
+        SK.sdkRoot to File(sdkRoot),
+        SK.layoutGeneratorToolPath to layoutGeneratorToolPath?.let { File(it) },
+        SK.nvidiaTextureToolPath to File(nvidiaTextureToolPath),
+        SK.mainLibraryRootFolder to mainLibraryRootFolder?.let { p -> File(p) },
+        SK.projectRootFolder to projectRootFolder?.let { p -> File(p) },
+        SK.airplanes to airplanes,
+    ))
 
     return settings
 }

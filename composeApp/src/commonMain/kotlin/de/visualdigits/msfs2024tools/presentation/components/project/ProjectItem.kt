@@ -36,14 +36,16 @@ import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorCardBackground
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.PaddingContainer
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
-import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.icon_arrow_forward_ios_24px
-import msfs2024liverytools.composeapp.generated.resources.icon_emergency_home_24px
-import msfs2024liverytools.composeapp.generated.resources.show_details_hint
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorCardBackground
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorUnfocused
+import de.visualdigits.common.presentation.style.ProjectStyle.PaddingContainer
+import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
+import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.icon_arrow_forward_ios_24px
+import de.visualdigits.compose.resources.icon_emergency_home_24px
+import de.visualdigits.compose.resources.show_details_hint
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -57,6 +59,17 @@ fun ProjectItem(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isHovered by interactionSource.collectIsHoveredAsState()
+
+    val textureFormatPackage = project.get<TextureFormat>(PK.textureFormatPackage)
+    val textureFormatModel = project.get<TextureFormat>(PK.textureFormatModel)
+//    val backgroundColor = if (
+//        textureFormatPackage == TextureFormat.KTX2 && textureFormatModel == TextureFormat.DDS
+//        || textureFormatPackage == TextureFormat.DDS && textureFormatModel == TextureFormat.KTX2
+//        ) {
+//        ColorUnfocused.copy(alpha = 0.5f)
+//    } else {
+//        Color.Black.copy(alpha = 0.2f)
+//    }
 
     Row(
         modifier = modifier
@@ -101,7 +114,7 @@ fun ProjectItem(
             modifier = modifier
                 .padding(horizontal = PaddingContainer)
                 .weight(1f),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Top
         ) {
             Text(
                 text = "${project.get<String>(PK.airplaneName)} - ${project.get<String>(PK.liveryName)}",
@@ -109,14 +122,18 @@ fun ProjectItem(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
+
             Text(
                 text = project.get<MutableList<TextureType>>(PK.textureTypes)?.joinToString(", ")?:"",
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
+
+            val formatPackage = project.get<TextureFormat>(PK.textureFormatPackage)?.toString()
+            val formatModel = project.get<TextureFormat>(PK.textureFormatModel)?.toString()
             Text(
-                text = project.get<TextureFormat>(PK.textureFormatPackage)?.toString() ?: "",
+                text = "$formatPackage <> $formatModel",
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -127,6 +144,8 @@ fun ProjectItem(
         ProjectButtons(
             modifier = modifier,
             settings = settings,
+            textureFormatPackage = textureFormatPackage,
+            textureFormatModel = textureFormatModel,
             project = project,
             onProjectListAction = onProjectListAction
         )

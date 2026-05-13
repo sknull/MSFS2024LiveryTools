@@ -4,8 +4,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
 import de.visualdigits.msfs2024tools.presentation.screen.MainScreenRoot
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorSchemeMsfs2024Tools
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.TypographyMsfs2024Tools
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorSchemeMsfs2024Tools
+import de.visualdigits.common.presentation.style.ProjectStyle.TypographyMsfs2024Tools
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

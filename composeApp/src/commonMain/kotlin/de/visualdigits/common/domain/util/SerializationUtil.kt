@@ -49,7 +49,6 @@ inline fun <reified T> T.writeValueAsJsonString(): String {
         encodeDefaults = false
         prettyPrint = true
         ignoreUnknownKeys = true
-        encodeDefaults = true
     }
 
     return mapper.encodeToString(this)

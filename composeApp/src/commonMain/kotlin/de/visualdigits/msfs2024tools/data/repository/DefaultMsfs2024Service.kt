@@ -1,6 +1,6 @@
 package de.visualdigits.msfs2024tools.data.repository
 
-import de.visualdigits.common.domain.model.Result
+import de.visualdigits.common.domain.model.errorhandling.Result
 import de.visualdigits.msfs2024tools.data.mapper.toProjectConfigurationDto
 import de.visualdigits.msfs2024tools.data.mapper.toSettingsDto
 import de.visualdigits.msfs2024tools.data.service.DdsToPngConverter
@@ -10,7 +10,7 @@ import de.visualdigits.msfs2024tools.data.service.PngToKtx2Converter
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.errorhandling.DataError
-import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
+import de.visualdigits.common.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
 import de.visualdigits.msfs2024tools.domain.service.Msfs2024Service
 
@@ -19,7 +19,7 @@ class DefaultMsfs2024Service: Msfs2024Service {
     override suspend fun executeConversion(
         configuration: Settings?,
         project: ProjectConfiguration,
-        conversion: Conversion,
+        conversion: Conversion?,
         dryRun: Boolean,
         progress: (Float) -> Unit,
         logger: (LogMessage) -> Unit
@@ -64,6 +64,9 @@ class DefaultMsfs2024Service: Msfs2024Service {
                         progress = progress,
                         logger = logger,
                     )
+                }
+                else -> {
+                    // nothing to do
                 }
             }
 

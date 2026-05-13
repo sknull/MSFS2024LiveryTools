@@ -2,6 +2,7 @@ package de.visualdigits.msfs2024tools.presentation.components.project
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,25 +21,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.presentation.components.FlexibleTextButton
-import de.visualdigits.msfs2024tools.domain.model.configuration.PK
+import de.visualdigits.common.presentation.components.button.FlexibleTextButton
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.PaddingContainer
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.SpaceBetweenComponents
-import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.conversion_dds_to_png
-import msfs2024liverytools.composeapp.generated.resources.conversion_ktx2_to_png
-import msfs2024liverytools.composeapp.generated.resources.conversion_png_to_dds
-import msfs2024liverytools.composeapp.generated.resources.conversion_png_to_ktx2
-import msfs2024liverytools.composeapp.generated.resources.icon_create2d_24px
-import msfs2024liverytools.composeapp.generated.resources.label_dryrun
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorButton
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
+import de.visualdigits.common.presentation.style.ProjectStyle.PaddingContainer
+import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
+import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.conversion_dds_to_png
+import de.visualdigits.compose.resources.conversion_ktx2_to_png
+import de.visualdigits.compose.resources.conversion_png_to_dds
+import de.visualdigits.compose.resources.conversion_png_to_ktx2
+import de.visualdigits.compose.resources.icon_create2d_24px
+import de.visualdigits.compose.resources.label_dryrun
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -47,6 +49,8 @@ import org.jetbrains.compose.resources.stringResource
 fun RowScope.ProjectButtons(
     modifier: Modifier,
     settings: Settings?,
+    textureFormatPackage: TextureFormat?,
+    textureFormatModel: TextureFormat?,
     project: ProjectConfiguration,
     onProjectListAction: (Msfs2024ToolsAction) -> Unit
 ) {
@@ -74,124 +78,124 @@ fun RowScope.ProjectButtons(
                 }
             )
         }
-        when (project.get<TextureFormat>(PK.textureFormatPackage)) {
-            TextureFormat.DDS -> {
-                FlexibleTextButton(
-                    text = stringResource(Res.string.conversion_png_to_dds),
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
-                    onClick = {
-                        onProjectListAction(
-                            Msfs2024ToolsAction.OnConversionClick(
-                                settings = settings,
-                                currentProjectConfiguration = project,
-                                conversion = Conversion.PNG_TO_DDS,
-                                dryRun = isCheckedDryRun
-                            )
-                        )
-                    },
-                    modifier = Modifier
-                        .pointerHoverIcon(PointerIcon.Hand)
-                        .align(Alignment.Start),
-                    buttonColor = ColorButton,
-                    buttonShape = ShapeButton,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_create2d_24px),
-                            contentDescription = null,
-                            tint = ColorIcon
-                        )
-                    }
+
+        when {
+//            textureFormatPackage == TextureFormat.KTX2 && textureFormatModel == TextureFormat.DDS
+//            || textureFormatPackage == TextureFormat.DDS && textureFormatModel == TextureFormat.KTX2 -> {
+//                ConversionButton(
+//                    label = Res.string.conversion_ktx2_to_dds,
+//                    icon = Res.drawable.icon_create2d_24px,
+//                    conversion = null,
+//                    onProjectListAction = onProjectListAction,
+//                    settings = settings,
+//                    project = project,
+//                    isCheckedDryRun = isCheckedDryRun
+//                )
+//                ConversionButton(
+//                    label = Res.string.conversion_dds_to_ktx2,
+//                    icon = Res.drawable.icon_create2d_24px,
+//                    conversion = null,
+//                    onProjectListAction = onProjectListAction,
+//                    settings = settings,
+//                    project = project,
+//                    isCheckedDryRun = isCheckedDryRun
+//                )
+//            }
+            textureFormatPackage == TextureFormat.DDS -> {
+                ConversionButton(
+                    label = Res.string.conversion_png_to_dds,
+                    icon = Res.drawable.icon_create2d_24px,
+                    leadingIcon = true,
+                    conversion = Conversion.PNG_TO_DDS,
+                    onProjectListAction = onProjectListAction,
+                    settings = settings,
+                    project = project,
+                    isCheckedDryRun = isCheckedDryRun
                 )
-                FlexibleTextButton(
-                    text = stringResource(Res.string.conversion_dds_to_png),
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
-                    onClick = {
-                        onProjectListAction(
-                            Msfs2024ToolsAction.OnConversionClick(
-                                settings = settings,
-                                currentProjectConfiguration = project,
-                                conversion = Conversion.DDS_TO_PNG,
-                                dryRun = isCheckedDryRun
-                            )
-                        )
-                    },
-                    modifier = Modifier
-                        .pointerHoverIcon(PointerIcon.Hand)
-                        .align(Alignment.Start),
-                    buttonColor = ColorButton,
-                    buttonShape = ShapeButton,
-                    trailingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_create2d_24px),
-                            contentDescription = null,
-                            tint = ColorIcon
-                        )
-                    }
+                ConversionButton(
+                    label = Res.string.conversion_dds_to_png,
+                    icon = Res.drawable.icon_create2d_24px,
+                    leadingIcon = false,
+                    conversion = Conversion.DDS_TO_PNG,
+                    onProjectListAction = onProjectListAction,
+                    settings = settings,
+                    project = project,
+                    isCheckedDryRun = isCheckedDryRun
                 )
             }
-
-            TextureFormat.KTX2 -> {
-                FlexibleTextButton(
-                    text = stringResource(Res.string.conversion_png_to_ktx2),
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
-                    onClick = {
-                        onProjectListAction(
-                            Msfs2024ToolsAction.OnConversionClick(
-                                settings = settings,
-                                currentProjectConfiguration = project,
-                                conversion = Conversion.PNG_TO_KTX2,
-                                dryRun = isCheckedDryRun
-                            )
-                        )
-                    },
-                    modifier = Modifier
-                        .pointerHoverIcon(PointerIcon.Hand)
-                        .align(Alignment.Start),
-                    buttonColor = ColorButton,
-                    buttonShape = ShapeButton,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_create2d_24px),
-                            contentDescription = null,
-                            tint = ColorIcon
-                        )
-                    }
+            textureFormatPackage == TextureFormat.KTX2 -> {
+                ConversionButton(
+                    label = Res.string.conversion_png_to_ktx2,
+                    icon = Res.drawable.icon_create2d_24px,
+                    leadingIcon = true,
+                    conversion = Conversion.PNG_TO_KTX2,
+                    onProjectListAction = onProjectListAction,
+                    settings = settings,
+                    project = project,
+                    isCheckedDryRun = isCheckedDryRun
                 )
-                FlexibleTextButton(
-                    text = stringResource(Res.string.conversion_ktx2_to_png),
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
-                    onClick = {
-                        onProjectListAction(
-                            Msfs2024ToolsAction.OnConversionClick(
-                                settings = settings,
-                                currentProjectConfiguration = project,
-                                conversion = Conversion.KTX2_TO_PNG,
-                                dryRun = isCheckedDryRun
-                            )
-                        )
-                    },
-                    modifier = Modifier
-                        .pointerHoverIcon(PointerIcon.Hand)
-                        .align(Alignment.Start),
-                    buttonColor = ColorButton,
-                    buttonShape = ShapeButton,
-                    trailingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_create2d_24px),
-                            contentDescription = null,
-                            tint = ColorIcon
-                        )
-                    }
+                ConversionButton(
+                    label = Res.string.conversion_ktx2_to_png,
+                    icon = Res.drawable.icon_create2d_24px,
+                    leadingIcon = false,
+                    conversion = Conversion.KTX2_TO_PNG,
+                    onProjectListAction = onProjectListAction,
+                    settings = settings,
+                    project = project,
+                    isCheckedDryRun = isCheckedDryRun
                 )
-            }
-
-            else -> {
-                // should not happen
             }
         }
     }
+}
+
+@Composable
+private fun ColumnScope.ConversionButton(
+    label: StringResource,
+    icon: DrawableResource,
+    leadingIcon: Boolean? = null,
+    conversion: Conversion?,
+    onProjectListAction: (Msfs2024ToolsAction) -> Unit,
+    settings: Settings?,
+    project: ProjectConfiguration,
+    isCheckedDryRun: Boolean
+) {
+    FlexibleTextButton(
+        text = stringResource(label),
+        paddingStart = 0.dp,
+        paddingTop = 0.dp,
+        onClick = {
+            onProjectListAction(
+                Msfs2024ToolsAction.OnConversionClick(
+                    settings = settings,
+                    currentProjectConfiguration = project,
+                    conversion = conversion,
+                    dryRun = isCheckedDryRun
+                )
+            )
+        },
+        modifier = Modifier
+            .pointerHoverIcon(PointerIcon.Hand)
+            .align(Alignment.Start),
+        buttonColor = ColorButton,
+        buttonShape = ShapeButton,
+        leadingIcon = if (leadingIcon != null && leadingIcon) {
+            {
+                Icon(
+                    painter = painterResource(icon),
+                    contentDescription = null,
+                    tint = ColorIcon
+                )
+            }
+        } else null,
+        trailingIcon = if (leadingIcon != null && !leadingIcon) {
+            {
+                Icon(
+                    painter = painterResource(icon),
+                    contentDescription = null,
+                    tint = ColorIcon
+                )
+            }
+        } else null
+    )
 }

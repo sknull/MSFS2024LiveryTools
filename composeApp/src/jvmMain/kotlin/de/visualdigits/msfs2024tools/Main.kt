@@ -12,8 +12,8 @@ import com.formdev.flatlaf.FlatDarculaLaf
 import de.visualdigits.common.domain.service.getPlatformLogWriters
 import de.visualdigits.di.initKoin
 import kotlinx.coroutines.cancel
-import msfs2024liverytools.composeapp.generated.resources.Msfs2024Tools
-import msfs2024liverytools.composeapp.generated.resources.Res
+import de.visualdigits.compose.resources.Msfs2024Tools
+import de.visualdigits.compose.resources.Res
 import org.jetbrains.compose.resources.painterResource
 import javax.swing.UIManager
 
@@ -21,7 +21,7 @@ fun main() {
 
     initKoin()
 
-    val writers = getPlatformLogWriters()
+    val writers = getPlatformLogWriters(System.getProperty("user.home"), "MSFS2024Tools.log")
     Logger.setLogWriters(writers)
     Logger.setTag("MSFS2024LiveryTools")
 
@@ -37,7 +37,7 @@ fun main() {
 
         Window(
             onCloseRequest = {
-                ioScope.cancel()
+                ioScope.cancel("Normal Exit")
                 exitApplication()
             },
             title = "MSFS 2024 Livery Tools",

@@ -12,8 +12,8 @@ import de.visualdigits.msfs2024tools.data.dto.msfs2024.Project
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.assetpackage.AssetPackage
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.descriptor.BitmapConfiguration
 import de.visualdigits.msfs2024tools.data.dto.msfs2024.usersettings.UserSettings
-import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
-import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
+import de.visualdigits.common.domain.model.errorhandling.LogMessage
+import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.log
 import de.visualdigits.msfs2024tools.domain.model.type.SimType
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import kotlinx.coroutines.Dispatchers

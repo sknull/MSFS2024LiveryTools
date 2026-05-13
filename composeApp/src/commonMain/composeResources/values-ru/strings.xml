@@ -11,6 +11,8 @@
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Удалить</string>
   <string name="edit">Редактировать</string>
   <string name="edit_hint">Редактировать...</string>

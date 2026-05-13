@@ -17,18 +17,18 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import de.visualdigits.common.presentation.components.SquaredIconButton
+import de.visualdigits.common.presentation.components.button.IndicatorButton
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.icon_info_24px
+import de.visualdigits.compose.resources.icon_menu_24px
+import de.visualdigits.compose.resources.icon_settings_24px
+import de.visualdigits.compose.resources.label_configuration
+import de.visualdigits.compose.resources.title_info
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
-import de.visualdigits.msfs2024tools.presentation.screen.page.InfoScreen
-import de.visualdigits.msfs2024tools.presentation.screen.page.ProjectListScreen
-import de.visualdigits.msfs2024tools.presentation.screen.page.SettingsScreen
-import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.icon_info_24px
-import msfs2024liverytools.composeapp.generated.resources.icon_menu_24px
-import msfs2024liverytools.composeapp.generated.resources.icon_settings_24px
-import msfs2024liverytools.composeapp.generated.resources.label_configuration
-import msfs2024liverytools.composeapp.generated.resources.title_info
+import de.visualdigits.msfs2024tools.presentation.screen.page.InfoPage
+import de.visualdigits.msfs2024tools.presentation.screen.page.ProjectListPage
+import de.visualdigits.msfs2024tools.presentation.screen.page.SettingsPage
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -72,38 +72,41 @@ private fun MainScreen(
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
-                SquaredIconButton(
+                IndicatorButton(
                     modifier = Modifier
                         .padding(top = 10.dp)
                         .align(Alignment.CenterHorizontally),
-                    icon = painterResource(Res.drawable.icon_menu_24px),
-                    iconTint = Color.White,
-                    size = 30.dp,
+                    leadingIcon = painterResource(Res.drawable.icon_menu_24px),
+                    leadingIconTint = Color.White,
+                    width = 30.dp,
+                    height = 30.dp,
                     onClick = {
                         viewModel.onAction(Msfs2024ToolsAction.OnTabSelected(0))
                     }
                 )
 
-                SquaredIconButton(
+                IndicatorButton(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 30.dp),
-                    icon = painterResource(Res.drawable.icon_settings_24px),
-                    iconTint = Color.White,
+                    leadingIcon = painterResource(Res.drawable.icon_settings_24px),
+                    leadingIconTint = Color.White,
                     toolTip = stringResource(Res.string.label_configuration),
-                    size = 30.dp,
+                    width = 30.dp,
+                    height = 30.dp,
                     onClick = {
                         viewModel.onAction(Msfs2024ToolsAction.OnEditSettingsClick(!state.isEditingSettings))
                     }
                 )
 
-                SquaredIconButton(
+                IndicatorButton(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally),
-                    icon = painterResource(Res.drawable.icon_info_24px),
-                    iconTint = Color.White,
+                    leadingIcon = painterResource(Res.drawable.icon_info_24px),
+                    leadingIconTint = Color.White,
                     toolTip = stringResource(Res.string.title_info),
-                    size = 30.dp,
+                    width = 30.dp,
+                    height = 30.dp,
                     onClick = {
                         viewModel.onAction(Msfs2024ToolsAction.OnShowInfosClick(!state.isShowInfos))
                     }
@@ -117,15 +120,15 @@ private fun MainScreen(
                 .fillMaxSize()
         ) {
             when {
-                state.isEditingSettings -> SettingsScreen(
+                state.isEditingSettings -> SettingsPage(
                     state = state,
                     onAction = { action ->
                         viewModel.onAction(action)
                     }
                 )
-                state.isShowInfos -> InfoScreen(
+                state.isShowInfos -> InfoPage(
                 )
-                else -> ProjectListScreen(
+                else -> ProjectListPage(
                     state = state,
                     onAction = { action ->
                         viewModel.onAction(action)

@@ -7,9 +7,19 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.gradle.pdf)
+    alias(libs.plugins.sqlDelight)
+    id("com.google.devtools.ksp") version "2.3.6"
+    `maven-publish`
 }
 
-version = "1.0.5"
+
+val version = "1.0.0-SNAPSHOT"
+val buildNumber = System.getenv("GITHUB_RUN_NUMBER") ?: "9999"
+val installerVersion = if (buildNumber == "9999") {
+    version
+} else {
+    "$version.$buildNumber"
+}
 
 buildscript {
     dependencies {
@@ -31,19 +41,23 @@ abstract class GenerateVersionTask : DefaultTask() {
         outputFile.writeText("""package de.visualdigits.generated
 
 data class AppVersion(
-    val version: String = "1.0.5",
+    val version: String = "${appVersion.get()}",
 ) : Comparable<AppVersion> {
 
-    val coordinates: List<Int> = version
+    val numericParts: List<Int> = version
+        .substringBefore("-")
         .split(".")
         .map { v -> v.toInt() }
 
     override fun compareTo(other: AppVersion): Int {
-        var c = coordinates[0].compareTo(other.coordinates[0])
+        var c = numericParts[0].compareTo(other.numericParts[0])
         var index = 1
         while (c == 0 && index < 3) {
-            c = coordinates[index].compareTo(other.coordinates[index])
+            c = numericParts[index].compareTo(other.numericParts[index])
             index++
+        }
+        if (c == 0 && version.contains("-")) {
+            c = -1
         }
         
         return c
@@ -55,18 +69,21 @@ data class AppVersion(
 
         other as AppVersion
 
-        return coordinates == other.coordinates
+        return numericParts == other.numericParts
     }
 
     override fun hashCode(): Int {
-        return coordinates.hashCode()
+        return numericParts.hashCode()
     }
 }""")
     }
 }
 
 val generateVersionClass = tasks.register<GenerateVersionTask>("generateVersionClass") {
-    appVersion.set(project.version.toString())
+    group = "other"
+    description = "Generates a version class to be used within the code"
+    notCompatibleWithConfigurationCache("No caching supported.")
+    appVersion.set(installerVersion)
     outputDirectory.set(layout.buildDirectory.dir("generated/version"))
 }
 
@@ -74,12 +91,22 @@ kotlin {
     jvm()
     jvmToolchain(21)
 
+    sqldelight {
+        databases {
+            create("SettingsDatabase") {
+                packageName = "de.visualdigits.msfs2024tools"
+            }
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             kotlin.srcDir(generateVersionClass)
         }
 
         commonMain.dependencies {
+            implementation(compose.components.resources)
+
             implementation(libs.bundles.compose)
             implementation(libs.bundles.coil)
             implementation(libs.bundles.ktor)
@@ -91,13 +118,20 @@ kotlin {
 
             implementation(libs.kotlin.xml.util)
             implementation(libs.kotlin.xml.serialization)
-            implementation(libs.flatlaf)
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.io.core)
 
             implementation(libs.kermit)
             implementation(libs.deskit)
 
             implementation(libs.html.converter)
 
+            implementation(libs.sqldelight.coroutines)
+            implementation(libs.sqlite.bundled)
+
+            implementation(libs.compose.colorpicker)
+            implementation(libs.stephans.kmp.components)
         }
 
         commonTest.dependencies {
@@ -105,17 +139,35 @@ kotlin {
             implementation(libs.junit.jupiter.api)
             implementation(libs.junit.jupiter.engine)
             implementation(libs.junit.platform.launcher)
+            implementation(libs.koin.test)
         }
 
         jvmMain.dependencies {
+            implementation(libs.flatlaf)
             implementation(compose.desktop.currentOs)
             implementation(libs.skiko.awt.runtime.windows.x64)
             implementation(libs.kotlinx.coroutinesSwing)
+            implementation(libs.sqldelight.jvm)
+            implementation(libs.kotlinx.io.core.jvm)
         }
 
         jvmTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.junit.jupiter.api)
+            implementation(libs.junit.jupiter.engine)
+            implementation(libs.junit.platform.launcher)
+            implementation(libs.koin.test)
         }
     }
+}
+
+configurations.all {
+    exclude(group = "ch.qos.logback", module = "logback-classic")
+    exclude(group = "ch.qos.logback", module = "logback-core")
+}
+
+base {
+    archivesName.set("msfs2024tools")
 }
 
 configurations.all {
@@ -139,36 +191,57 @@ compose.desktop {
         mainClass = "de.visualdigits.msfs2024tools.MainKt"
 
         nativeDistributions {
-            packageName = "de.visualdigits.msfs2024liverytools"
-            packageVersion = project.version.toString()
+            packageName = "de.visualdigits.msfs2024tools"
+            packageVersion = "1.0.$buildNumber"
             includeAllModules = false
             modules(
-                "java.instrument", // Reflection
-                "jdk.unsupported", // Wichtig für Skia-Grafik
-                "java.desktop",    // ESSENZIELL für Fenster, Menü, Icons (Swing)
-                "java.xml",        // Oft von Coil/Image-Parsern genutzt
-                "java.naming",     // Von Koin/Dependency Injection benötigt
-                "java.prefs"       // Falls du Einstellungen speicherst
+                "java.instrument",
+                "jdk.unsupported",
+                "java.desktop",
+                "java.xml",
+                "java.naming",
+                "java.prefs",
+                "java.sql",
+                "java.net.http"
             )
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb, TargetFormat.Rpm)
             windows {
-                iconFile.set(project.file("src/commonMain/composeResources/drawable/Msfs2024Tools.ico"))
+                upgradeUuid = "5cd976a1-608e-4891-9dc5-20fee6a8c579" // generated by randomness
+                shortcut = true
+                menu = true
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/favicon.ico"))
             }
-
-//            buildTypes {
-//                release {
-//                    proguard {
-//                        configurationFiles.from(project.file("proguard-rules.pro"))
-//                        isEnabled.set(false)
-//                        optimize.set(false)
-//                    }
-//                }
-//            }
+            linux {
+                // Diese Felder sind für .deb oft Pflicht!
+                packageName = "news-home-reader"
+                debMaintainer = "stephan@visualdigits.de"
+                appCategory = "News"
+                menuGroup = "Network"
+                shortcut = true // Erzeugt den Startmenü-Eintrag
+            }
+            buildTypes {
+                release {
+                    proguard {
+                        isEnabled.set(false)
+                        optimize.set(false)
+                    }
+                }
+            }
         }
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        val versionIo = libs.versions.version.kotlinx.io.core.get()
+        force("org.jetbrains.kotlinx:kotlinx-io-core:$versionIo")
+        force("org.jetbrains.kotlinx:kotlinx-io-bytestring:$versionIo")
+    }
+}
+
 tasks.register("showDependencies") {
+    group = "other"
+    description = "Shows the list of dependencies"
     doLast {
         configurations.kotlinCompilerClasspath.get()
             .forEach { println("#### ${it.canonicalPath}") }
@@ -177,7 +250,7 @@ tasks.register("showDependencies") {
 
 compose.resources {
     publicResClass = true
-//    packageOfResClass = "com.dein.projekt.generated.resources"
+    packageOfResClass = "de.visualdigits.compose.resources"
 }
 
 tasks.asciidoctorPdf {
@@ -206,7 +279,7 @@ val copyPdfToDistribution = tasks.register<Copy>("copyPdfToDistribution",) {
     val pdfTask = tasks.asciidoctorPdf.get()
     dependsOn(tasks.asciidoctorPdf)
     from(pdfTask.outputDir)
-    into(layout.buildDirectory.dir("compose/binaries/main/app/de.visualdigits.msfs2024liverytools"))
+    into(layout.buildDirectory.dir("compose/binaries/main/app/de.visualdigits.msfs2024tools"))
     include("**/*.pdf")
     eachFile { path = name }
 }
@@ -236,8 +309,7 @@ tasks.register<Zip>("zip") {
     from(layout.buildDirectory.dir("compose/binaries/main/app"))
     from(tasks.asciidoctorPdf.map { it.outputDir }) {
         include("README.pdf") // oder "**/*.pdf"
-        // Hier schiebst du es im ZIP an die richtige Stelle:
-        into("de.visualdigits.msfs2024liverytools")
+        into("de.visualdigits.msfs2024tools")
     }
 
     archiveFileName.set("msfs2024tools_${project.version}.zip")
@@ -272,4 +344,63 @@ tasks.register("joinUpdateTranslations") {
     doLast {
         TranslationUtil.joinUpdateTranslation(projectRootDir)
     }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("binaryRelease") {
+            groupId = "de.visualdigits"
+            artifactId = "msfs2024tools"
+            version = installerVersion
+
+            val rootDir = project.rootDir
+
+            // pdf docs
+            artifact(tasks.named<org.asciidoctor.gradle.jvm.pdf.AsciidoctorPdfTask>("asciidoctorPdf").map { it.outputDir.resolve("README.pdf") }) {
+                extension = "pdf"
+                classifier = "docs"
+            }
+
+            // windows zip file
+            artifact(tasks.named<Zip>("zip").flatMap { it.archiveFile }) {
+                extension = "zip"
+                classifier = "desktop"
+            }
+
+            // windows msi installer
+            val msiFile = rootDir.walkTopDown().find { it.extension == "msi" }
+            msiFile?.let { file ->
+                artifact(file) {
+                    extension = "msi"
+                    classifier = "windows"
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/sknull/News-Home-Reader")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+tasks.withType<PublishToMavenRepository> {
+    // Desktop ZIP
+    dependsOn(tasks.named("zip"))
+    // PDF
+    dependsOn(tasks.named("asciidoctorPdf"))
+
+    // Native Installer (nur wenn sie auf dem OS existieren)
+    dependsOn(tasks.matching { it.name == "packageMsi" })
+    dependsOn(tasks.matching { it.name == "packageReleaseMsi" })
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
 }

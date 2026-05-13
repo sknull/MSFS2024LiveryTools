@@ -2,10 +2,14 @@ package de.visualdigits.msfs2024tools.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,21 +17,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.presentation.components.BusyProgressCircle
-import de.visualdigits.common.presentation.components.FlexibleTextButton
-import de.visualdigits.common.presentation.components.TerminalWindow
+import de.visualdigits.common.presentation.components.button.FlexibleTextButton
+import de.visualdigits.common.presentation.components.container.TerminalWindow
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorButton
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorUnfocused
+import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
+import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
+import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.busy_hint
+import de.visualdigits.compose.resources.icon_check_small_24px
+import de.visualdigits.compose.resources.ok
+import de.visualdigits.compose.resources.stdout
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorUnfocused
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.SpaceBetweenComponents
-import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.busy_hint
-import msfs2024liverytools.composeapp.generated.resources.icon_check_small_24px
-import msfs2024liverytools.composeapp.generated.resources.ok
-import msfs2024liverytools.composeapp.generated.resources.stdout
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -44,17 +47,25 @@ fun BusyPanel(
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
     ) {
-        BusyProgressCircle(
-            modifier = Modifier
-                .fillMaxWidth(),
-            label = stringResource(Res.string.busy_hint),
-            progress = {
-                state.currentProgress
-            },
-            color = ColorUnfocused,
-            trackColor = Color(0xffcccccc),
-            space = SpaceBetweenComponents
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = stringResource(Res.string.busy_hint),
+                style = MaterialTheme.typography.titleLarge
+            )
+
+            Spacer(modifier = Modifier.height(SpaceBetweenComponents))
+
+            CircularProgressIndicator(
+                progress = {
+                    state.currentProgress
+                },
+                color = ColorUnfocused,
+                trackColor = Color(0xffcccccc)
+            )
+        }
 
         if (showTerminal) {
             TerminalWindow(

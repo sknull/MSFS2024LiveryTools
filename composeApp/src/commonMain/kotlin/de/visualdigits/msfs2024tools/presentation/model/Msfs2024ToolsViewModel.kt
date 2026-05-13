@@ -5,15 +5,16 @@ import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.UiText
-import de.visualdigits.common.domain.model.onError
-import de.visualdigits.common.domain.model.onSuccess
-import de.visualdigits.common.domain.util.toUiText
+import de.visualdigits.common.domain.model.errorhandling.onError
+import de.visualdigits.common.domain.model.errorhandling.onSuccess
+import de.visualdigits.msfs2024tools.domain.model.errorhandling.toUiText
 import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.SK
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
-import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage
-import de.visualdigits.msfs2024tools.domain.model.errorhandling.LogMessage.Companion.log
+import de.visualdigits.common.domain.model.errorhandling.LogMessage
+import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.log
+import de.visualdigits.common.domain.model.errorhandling.Result
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
 import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.domain.model.type.SimType
@@ -27,12 +28,13 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.error_global_configuration_invalid
-import msfs2024liverytools.composeapp.generated.resources.error_project_configuration_invalid
-import msfs2024liverytools.composeapp.generated.resources.warning_migration
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.error_global_configuration_invalid
+import de.visualdigits.compose.resources.error_project_configuration_invalid
+import de.visualdigits.compose.resources.warning_migration
 import java.io.File
 import java.util.Locale
+import kotlin.collections.copy
 
 class Msfs2024ToolsViewModel(
     val configurationRepository: ConfigurationRepository,
@@ -83,7 +85,7 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnSettingsValueChanged -> {
                 if (action.keyValue.descriptor.key == SK.language) {
                     action.keyValue.value?.also { l ->
-                        Locale.setDefault(Language.valueOf(l).locale)
+                        Locale.setDefault((l as Language).locale)
                     }
                 }
                 _state.update {
@@ -112,7 +114,6 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnSaveSettingsClick -> {
                 saveSettings(
                     settings = action.settings,
-                    projectConfigurations = action.projectConfigurations,
                 )
             }
 
@@ -120,8 +121,7 @@ class Msfs2024ToolsViewModel(
                 val newAirplanes = action.settings?.get<MutableList<String>>(SK.airplanes)
                 newAirplanes?.removeIf { a -> a.isBlank() }
                 saveSettings(
-                    settings = action.settings?.copy(SK.airplanes, newAirplanes?.joinToString(",")),
-                    projectConfigurations = action.projectConfigurations
+                    settings = action.settings?.copy(SK.airplanes, newAirplanes?.joinToString(","))
                 )
 
                 updateProjectConfigurations(action.projectConfigurations.filterNot { p -> p.get<String>(PK.airplaneName) == null || p.get<String>(PK.liveryName) == null })
@@ -145,7 +145,7 @@ class Msfs2024ToolsViewModel(
 
             is Msfs2024ToolsAction.OnNewProjectClick -> {
                 _state.update {
-                    val project = ProjectConfiguration(settings = it.settings)
+                    val project = ProjectConfiguration()
                     it.copy(
                         originalProjectConfiguration = null,
                         currentProjectConfiguration = project,
@@ -259,6 +259,16 @@ class Msfs2024ToolsViewModel(
                 }
             }
 
+            is Msfs2024ToolsAction.OnCollapsibleStateChange -> {
+                _state.update {
+                    val newMap = it.collapsibleState.toMutableMap()
+                    newMap[action.id] = action.isExpanded
+                    it.copy(
+                        collapsibleState = newMap
+                    )
+                }
+            }
+
             is Msfs2024ToolsAction.OnPanelOkClick -> {
                 _state.update {
                     it.copy(
@@ -325,7 +335,7 @@ class Msfs2024ToolsViewModel(
                     )
                 }
             }
-            .onError { error ->
+            .onError { error, throwable ->
                 _state.update {
                     it.copy(
                         isLoading = false,
@@ -339,7 +349,7 @@ class Msfs2024ToolsViewModel(
     private fun executeConversion(
         settings: Settings?,
         projectConfiguration: ProjectConfiguration?,
-        conversion: Conversion,
+        conversion: Conversion?,
         dryRun: Boolean,
         progress: (Float) -> Unit,
         logger: (LogMessage) -> Unit,
@@ -369,7 +379,7 @@ class Msfs2024ToolsViewModel(
                     )
                 }
             }
-            .onError { error ->
+            .onError { error, throwable ->
                 _state.update {
                     it.copy(
                         currentProgress = 0.0f,
@@ -381,8 +391,7 @@ class Msfs2024ToolsViewModel(
     }
 
     private fun saveSettings(
-        settings: Settings?,
-        projectConfigurations: List<ProjectConfiguration>
+        settings: Settings?
     ) = viewModelScope.launch {
         if (settings == null || settings.get<SimType>(SK.simType) == null) {
             _state.update {
@@ -393,11 +402,6 @@ class Msfs2024ToolsViewModel(
             }
 
             return@launch
-        }
-
-        // update settings in all projects
-        projectConfigurations.forEach { p ->
-            p.settings = settings
         }
 
         _state.update {
@@ -418,7 +422,7 @@ class Msfs2024ToolsViewModel(
                     )
                 }
             }
-            .onError { error ->
+            .onError { error, throwable ->
                 _state.update {
                     it.copy(
                         isLoading = false,
@@ -432,7 +436,9 @@ class Msfs2024ToolsViewModel(
     private fun saveProjectConfiguration(
         projectConfiguration: ProjectConfiguration?,
     ) = viewModelScope.launch {
-        if (projectConfiguration == null || projectConfiguration.get<String>(PK.airplaneName) == null || projectConfiguration.get<String>(PK.liveryName) == null) {
+        if (projectConfiguration == null || projectConfiguration.get<String>(PK.airplaneName) == null || projectConfiguration.get<String>(
+                PK.liveryName
+            ) == null) {
             _state.update {
                 it.copy(
                     uiMessage = UiText.StringResourceId(Res.string.error_project_configuration_invalid),
@@ -449,65 +455,63 @@ class Msfs2024ToolsViewModel(
             )
         }
 
-        projectConfiguration.get<File>(PK.packageTextureDir)?.also { dir ->
-            configurationRepository.determineTextureFormat(dir)
-                .onSuccess { textureFormat ->
-                    projectConfiguration.set(PK.textureFormatPackage, textureFormat)
-                }
-                .onError {error ->
-                    _state.update {
-                        it.copy(
-                            isLoading = false,
-                            uiMessage = error.toUiText(),
-                            uiMessageSeverity = Severity.Error
-                        )
+        projectConfiguration.get<File>(PK.packageTextureDir)?.let { dir ->
+            val result1 = configurationRepository.determineTextureFormat(dir)
+            if (result1 is Result.Success) {
+                var newConfiguration = projectConfiguration.copy(PK.textureFormatPackage, result1.data)
+                newConfiguration.get<File>(PK.modelTexturesDir)?.let { dir ->
+                    val result2 = configurationRepository.determineTextureFormat(dir)
+                    if (result2 is Result.Success) {
+                        newConfiguration = projectConfiguration.copy(PK.textureFormatModel, result2.data)
+                        configurationRepository.saveProjectConfiguration(newConfiguration)
+                            .onSuccess {
+                                _state.update { state ->
+                                    val projectConfigurations = state.projectConfigurations
+                                        .filterNot { p ->
+                                            (p.get<String>(PK.airplaneName) == newConfiguration.get<String>(PK.airplaneName) && p.get<String>(
+                                                PK.liveryName
+                                            ) == newConfiguration.get<String>(PK.liveryName))
+                                                    || (p.get<String>(PK.airplaneName) == null && p.get<String>(PK.liveryName) == null)
+                                        } + newConfiguration
+                                    state.copy(
+                                        currentProjectConfiguration = projectConfiguration,
+                                        projectConfigurations = projectConfigurations,
+                                        isLoading = false,
+                                        isEditingProjectConfiguration = false,
+                                        uiMessage = null,
+                                        uiMessageSeverity = null
+                                    )
+                                }
+                            }
+                            .onError { error, throwable ->
+                                _state.update {
+                                    it.copy(
+                                        isLoading = false,
+                                        uiMessage = error.toUiText(),
+                                        uiMessageSeverity = Severity.Error
+                                    )
+                                }
+                            }
+                    } else if (result2 is Result.Error) {
+                        _state.update {
+                            it.copy(
+                                isLoading = false,
+                                uiMessage = result2.error.toUiText(),
+                                uiMessageSeverity = Severity.Error
+                            )
+                        }
                     }
                 }
-        }
-
-        projectConfiguration.get<File>(PK.modelTexturesDir)?.also { dir ->
-            configurationRepository.determineTextureFormat(dir)
-                .onSuccess { textureFormat ->
-                    projectConfiguration.set(PK.textureFormatModel, textureFormat)
-                }
-                .onError {error ->
-                    _state.update {
-                        it.copy(
-                            isLoading = false,
-                            uiMessage = error.toUiText(),
-                            uiMessageSeverity = Severity.Error
-                        )
-                    }
-                }
-        }
-
-        configurationRepository.saveProjectConfiguration(projectConfiguration)
-            .onSuccess {
-                _state.update { state ->
-                    val projectConfigurations = state.projectConfigurations
-                        .filterNot { p ->
-                            (p.get<String>(PK.airplaneName) == projectConfiguration.get<String>(PK.airplaneName) && p.get<String>(PK.liveryName) == projectConfiguration.get<String>(PK.liveryName))
-                                    || (p.get<String>(PK.airplaneName) == null && p.get<String>(PK.liveryName) == null)
-                        } + projectConfiguration
-                    state.copy(
-                        currentProjectConfiguration = projectConfiguration,
-                        projectConfigurations = projectConfigurations,
-                        isLoading = false,
-                        isEditingProjectConfiguration = false,
-                        uiMessage = null,
-                        uiMessageSeverity = null
-                    )
-                }
-            }
-            .onError { error ->
+            } else if (result1 is Result.Error) {
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        uiMessage = error.toUiText(),
+                        uiMessage = result1.error.toUiText(),
                         uiMessageSeverity = Severity.Error
                     )
                 }
             }
+        }
     }
 
     private fun updateProjectConfigurations(
@@ -535,7 +539,7 @@ class Msfs2024ToolsViewModel(
                     )
                 }
             }
-            .onError { error ->
+            .onError { error, throwable ->
                 _state.update {
                     it.copy(
                         isLoading = false,
@@ -573,7 +577,7 @@ class Msfs2024ToolsViewModel(
                     )
                 }
             }
-            .onError { error ->
+            .onError { error, throwable ->
                 _state.update {
                     it.copy(
                         isLoading = false,

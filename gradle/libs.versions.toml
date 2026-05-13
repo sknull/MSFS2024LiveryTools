@@ -1,35 +1,56 @@
 [versions]
-version-proguardGradle = "7.8.2"
-version-skikoAwtRuntimeWindowsX64 = "0.9.47"
-version-uiToolingPreview = "1.10.0"
-version-kotlin = "2.3.10"
-version-jetbrains-kotlin = "1.10.2"
+agp = "8.13.2"
+android-compileSdk = "36"
+android-minSdk = "26"
+android-targetSdk = "35" # DO NOT UPGRADE FOR NOW
+tvMaterial = "1.0.1"
+version-androidx-activityCompose = "1.13.0"
+version-androidx-lifecycle = "2.10.0"
+version-coil3 = "3.4.0"
+version-colorpicker = "1.1.3"
+version-deskit = "1.4.1"
+version-flatlaf = "3.7.1"
+version-gradle-pdf = "4.0.5"
+version-html-converter = "1.1.0"
+version-jetbrains-kotlin = "1.10.3"
+version-jsoup = "1.22.2"
+version-jssc = "2.10.2"
+version-junit = "6.0.3"
+version-kermit = "2.1.0"
+version-koin = "4.2.1"
+version-kotlin = "2.3.20" # DO NOT UPGRADE FOR NOW
+version-kotlin-reactor = "1.3.0"
 version-kotlin-xml-util = "1.0.0-rc2"
-version-gradle-pdf = "4.0.2"
-
+version-kotlinx-coroutines-swing="1.10.2"
+version-kotlin-coroutines = "1.10.2"
+version-kotlinx-datetime = "0.7.1"
+version-kotlinx-io-core = "0.9.0"
+version-ktor = "3.4.3"
 version-material3 = "1.9.0"
 version-navigation-compose = "2.9.2"
-
-version-coil3 = "3.4.0"
-version-deskit = "1.4.1"
-version-koin = "4.1.1"
-version-ktor = "3.4.1"
-version-flatlaf = "3.7"
-
-version-kermit = "2.1.0"
-
-version-junit = "6.0.3"
-
-version-androidx-activityCompose = "1.12.4"
-version-androidx-lifecycle = "2.9.6"
-version-androidGradlePlugin = "8.12.3"
-version-html-converter = "1.1.0"
+version-proguardGradle = "7.9.1"
+version-room = "2.8.4"
+version-skikoAwtRuntimeWindowsX64 = "0.9.47" # DO NOT UPGRADE FOR NOW
+version-spring-boot = "4.0.5"
+version-spring-boot-dependency-management = "1.1.7"
+version-spring-restdocs-mockmvc = "4.0.0"
+version-sqldelight = "2.3.2"
+version-sqlite = "2.6.2"
+version-twinkly = "0.0.6-SNAPSHOT"
+version-stephans-kmp-components = "1.0.0"
 
 [libraries]
+androidx-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "tvMaterial" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "version-kotlin" }
 kotlin-xml-util = { module = "io.github.pdvrieze.xmlutil:core", version.ref = "version-kotlin-xml-util" }
 kotlin-xml-serialization = { module = "io.github.pdvrieze.xmlutil:serialization", version.ref = "version-kotlin-xml-util" }
-kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "version-jetbrains-kotlin" }
+kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "version-kotlinx-coroutines-swing" }
+kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "version-kotlinx-io-core" }
+kotlinx-io-core-jvm = { module = "org.jetbrains.kotlinx:kotlinx-io-core-jvm", version.ref = "version-kotlinx-io-core" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "version-kotlin-coroutines" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "version-kotlinx-datetime" }
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "version-androidx-activityCompose" }
 androidx-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "version-androidx-lifecycle" }
@@ -63,13 +84,13 @@ koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", ver
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "version-koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "version-koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "version-koin" }
+koin-test = { module = "io.insert-koin:koin-test-junit5", version.ref = "version-koin" }
 
 flatlaf = { module = "com.formdev:flatlaf", version.ref = "version-flatlaf" }
 
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "version-ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "version-ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "version-ktor" }
-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "version-ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "version-ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "version-ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "version-ktor" }
@@ -77,12 +98,56 @@ proguardGradle = { module = "com.guardsquare:proguard-gradle", version.ref = "ve
 skiko-awt-runtime-windows-x64 = { module = "org.jetbrains.skiko:skiko-awt-runtime-windows-x64", version.ref = "version-skikoAwtRuntimeWindowsX64" }
 html-converter = { module = "be.digitalia.compose.htmlconverter:htmlconverter", version.ref="version-html-converter"}
 
+sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "version-sqldelight" }
+sqldelight-jvm = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "version-sqldelight" }
+sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "version-sqldelight" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "version-sqlite" }
+
+compose-colorpicker = { module = "com.github.skydoves:colorpicker-compose", version.ref = "version-colorpicker" }
+stephans-kmp-components = { module = "de.visualdigits.kmp:stephans-kmp-components", version.ref = "version-stephans-kmp-components" }
+
+spring-boot-actuator  = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "version-spring-boot" }
+spring-boot-restclient = { module = "org.springframework.boot:spring-boot-starter-restclient", version.ref = "version-spring-boot" }
+spring-boot-webclient = { module = "org.springframework.boot:spring-boot-starter-webclient", version.ref = "version-spring-boot" }
+spring-boot-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "version-spring-boot" }
+spring-boot-webmvc = { module = "org.springframework.boot:spring-boot-starter-webmvc", version.ref = "version-spring-boot" }
+spring-boot-kotlinx-serialization-json = { module = "org.springframework.boot:spring-boot-starter-kotlinx-serialization-json", version.ref = "version-spring-boot" }
+
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "version-kotlin" }
+kotlin-reactor = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions", version.ref = "version-kotlin-reactor" }
+kotlin-reactor-coroutrines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "version-kotlin-reactor" }
+
+jssc = { module = "io.github.java-native:jssc", version.ref = "version-jssc" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "version-jsoup" }
+twinkly = { module = "de.visualdigits:twinkly-api", version.ref = "version-twinkly" }
+
+spring-boot-actuator-test  = { module = "org.springframework.boot:spring-boot-starter-actuator-test", version.ref = "version-spring-boot" }
+spring-boot-restclient-test = { module = "org.springframework.boot:spring-boot-starter-restclient-test", version.ref = "version-spring-boot" }
+spring-boot-restdocs = { module = "org.springframework.boot:spring-boot-starter-restdocs", version.ref = "version-spring-boot" }
+spring-boot-webclient-test = { module = "org.springframework.boot:spring-boot-starter-webclient-test", version.ref = "version-spring-boot" }
+spring-boot-webflux-test = { module = "org.springframework.boot:spring-boot-starter-webflux-test", version.ref = "version-spring-boot" }
+spring-boot-webmvc-test = { module = "org.springframework.boot:spring-boot-starter-webmvc-test", version.ref = "version-spring-boot" }
+spring-boot-kotlinx-serialization-json-test = { module = "org.springframework.boot:spring-boot-starter-kotlinx-serialization-json-test", version.ref = "version-spring-boot" }
+
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "version-kotlin" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "version-kotlin-reactor" }
+spring-restdocs-mockmvc = { module = "org.springframework.restdocs:spring-restdocs-mockmvc", version.ref = "version-spring-restdocs-mockmvc" }
+
 [plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "version-kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "version-kotlin" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "version-kotlin" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "version-kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "version-jetbrains-kotlin" }
 gradle-pdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "version-gradle-pdf" }
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "version-sqldelight" }
+
+room = { id = "androidx.room", version.ref = "version-room" }
+
+spring-boot = { id = "org.springframework.boot", version.ref = "version-spring-boot" }
+spring-boot-asciidoc = { id = "org.asciidoctor.jvm.convert", version.ref = "version-spring-boot" }
+spring-boot-dependency-management = { id = "io.spring.dependency-management", version.ref = "version-spring-boot-dependency-management" }
 
 [bundles]
 compose = [
@@ -93,11 +158,13 @@ compose = [
     "compose-ui",
     "compose-ui-tooling"
 ]
+
 koin = [
     "koin-compose",
     "koin-compose-viewmodel",
     "koin-core"
 ]
+
 ktor = [
     "ktor-client-auth",
     "ktor-client-content-negotiation",
@@ -106,10 +173,45 @@ ktor = [
     "ktor-client-okhttp",
     "ktor-serialization-kotlinx-json"
 ]
+
 coil = [
     "coil-compose",
     "coil-mp",
     "coil-network",
     "coil-network-ktor2",
     "coil-network-ktor3"
+]
+
+kotlin = [
+    "kotlin-reactor",
+    "kotlin-reflect",
+    "kotlin-reactor-coroutrines",
+    "kotlin-xml-util",
+    "kotlin-xml-serialization"
+]
+
+kotlin-test = [
+    "kotlin-test-junit",
+    "kotlinx-coroutines-test",
+    "spring-restdocs-mockmvc",
+    "junit-platform-launcher"
+]
+
+spring-boot = [
+    "spring-boot-actuator",
+    "spring-boot-restclient",
+    "spring-boot-webclient",
+    "spring-boot-webflux",
+    "spring-boot-webmvc",
+    "spring-boot-kotlinx-serialization-json"
+]
+
+spring-boot-test = [
+    "spring-boot-actuator-test",
+    "spring-boot-restclient-test",
+    "spring-boot-restdocs",
+    "spring-boot-webclient-test",
+    "spring-boot-webflux-test",
+    "spring-boot-webmvc-test",
+    "spring-boot-kotlinx-serialization-json-test"
 ]

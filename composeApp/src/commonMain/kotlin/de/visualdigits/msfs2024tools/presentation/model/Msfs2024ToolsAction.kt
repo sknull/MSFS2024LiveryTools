@@ -2,6 +2,7 @@ package de.visualdigits.msfs2024tools.presentation.model
 
 import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
 import de.visualdigits.common.domain.model.KeyValue
+import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
@@ -15,13 +16,18 @@ sealed interface Msfs2024ToolsAction {
     ): Msfs2024ToolsAction
 
     data class OnInitializeTabs(
-        val tabLabels: List<StringResource>
+        val tabLabels: List<UiText>
     ): Msfs2024ToolsAction
 
     data class OnLanguageSelected(
         val language: Language,
     ): Msfs2024ToolsAction
 
+
+    data class OnCollapsibleStateChange(
+        val id: String,
+        val isExpanded: Boolean
+    ): Msfs2024ToolsAction
 
     //
     // Settings
@@ -92,7 +98,7 @@ sealed interface Msfs2024ToolsAction {
     data class OnConversionClick(
         val settings: Settings?,
         val currentProjectConfiguration: ProjectConfiguration,
-        val conversion: Conversion,
+        val conversion: Conversion?,
         val dryRun: Boolean
     ): Msfs2024ToolsAction
 

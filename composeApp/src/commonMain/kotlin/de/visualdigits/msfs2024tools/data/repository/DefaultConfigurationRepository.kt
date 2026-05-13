@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.data.repository
 
 import co.touchlab.kermit.Logger
-import de.visualdigits.common.domain.model.Result
+import de.visualdigits.common.domain.model.errorhandling.Result
 import de.visualdigits.msfs2024tools.data.datasource.ConfigurationDataSource
 import de.visualdigits.msfs2024tools.data.dto.configuration.migration.Migration
 import de.visualdigits.msfs2024tools.data.mapper.toProjectConfiguration
@@ -30,7 +30,7 @@ class DefaultConfigurationRepository(
 
             val settings = migratedSettingsDto.toSettings()
 
-            Result.Success(Triple(settings, settingsDto.projects.map { p -> p.toProjectConfiguration(settings)}, migrated))
+            Result.Success(Triple(settings, settingsDto.projects.map { p -> p.toProjectConfiguration()}, migrated))
         } catch (e: Exception) {
             Logger.e("Could not load configuration", e)
             Result.Error(DataError.Local.SERIALIZATION)
@@ -72,14 +72,19 @@ class DefaultConfigurationRepository(
 
     override suspend fun determineTextureFormat(textureDir: File): Result<TextureFormat, DataError.Local> {
         return try {
-            if (textureDir.listFiles { file -> file.name.endsWith(".dds", ignoreCase = true) }?.isNotEmpty() == true) {
-                Result.Success(TextureFormat.DDS)
-            } else if (textureDir.listFiles { file -> file.name.endsWith(".ktx2", ignoreCase = true) }?.isNotEmpty() == true) {
-                Result.Success(TextureFormat.KTX2)
-            } else if (textureDir.listFiles { file -> file.name.endsWith(".png", ignoreCase = true) }?.isNotEmpty() == true) {
-                Result.Success(TextureFormat.PNG)
-            } else {
-                Result.Error(DataError.Local.FILE_NOT_FOUND)
+            when {
+                textureDir.listFiles { file -> file.name.endsWith(".dds", ignoreCase = true) }?.isNotEmpty() == true -> {
+                    Result.Success(TextureFormat.DDS)
+                }
+                textureDir.listFiles { file -> file.name.endsWith(".ktx2", ignoreCase = true) }?.isNotEmpty() == true -> {
+                    Result.Success(TextureFormat.KTX2)
+                }
+                textureDir.listFiles { file -> file.name.endsWith(".png", ignoreCase = true) }?.isNotEmpty() == true -> {
+                    Result.Success(TextureFormat.PNG)
+                }
+                else -> {
+                    Result.Error(DataError.Local.FILE_NOT_FOUND)
+                }
             }
         } catch(e: Exception) {
             Result.Error(DataError.Local.FILE_NOT_FOUND)

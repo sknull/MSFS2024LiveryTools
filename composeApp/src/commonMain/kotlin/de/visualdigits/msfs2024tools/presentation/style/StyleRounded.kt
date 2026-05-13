@@ -10,8 +10,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import msfs2024liverytools.composeapp.generated.resources.Res
-import msfs2024liverytools.composeapp.generated.resources.background_lufthansa_100_baked
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.background_lufthansa_100_baked
 
 
 abstract class StyleRounded {

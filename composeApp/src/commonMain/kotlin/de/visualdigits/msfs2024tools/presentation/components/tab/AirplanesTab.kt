@@ -2,28 +2,44 @@ package de.visualdigits.msfs2024tools.presentation.components.tab
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.domain.model.configuration.Field
-import de.visualdigits.common.presentation.components.EditableList
+import de.visualdigits.common.domain.model.UiText
+import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
+import de.visualdigits.common.domain.model.configuration.AbstractFieldDescriptor
+import de.visualdigits.common.domain.model.configuration.FieldKey
+import de.visualdigits.common.domain.model.configuration.FieldState
+import de.visualdigits.common.presentation.components.form.EditableListStandalone
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorButton
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorFocused
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
+import de.visualdigits.common.presentation.style.ProjectStyle.ColorUnfocused
+import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
+import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
+import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
 import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.SK
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorButton
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorFocused
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ColorUnfocused
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.msfs2024tools.presentation.style.ProjectStyle.SpaceBetweenComponents
 
 @Composable
-fun AirplanesTab(
+fun <K : FieldKey<K>, FK : FieldKey<FK>> AirplanesTab(
     state: Msfs2024ToolsState,
     onProjectListAction: (Msfs2024ToolsAction) -> Unit
 ) {
-    EditableList(
-        configuration = state.settings,
-        field = (state.settings?.fields[SK.airplanes] as? Field<MutableList<*>, *, *>) ?: error("No settings"),
+    val fieldDescriptor = state.settings?.lookupFieldDescriptors[SK.airplanes]!! as AbstractFieldDescriptor<Any, Any, K, FK, Any>
+    val currentOption = fieldDescriptor.currentOption(state.settings as AbstractConfiguration<*, K>)
+    val currentValue = state.settings.getUnsafe(fieldDescriptor.key)
+    EditableListStandalone(
+        fieldState = FieldState(
+            configuration = state.settings,
+            fieldDescriptor = fieldDescriptor,
+            options = fieldDescriptor.options(state.settings, null),
+            currentValue = currentValue,
+            currentOption = currentOption,
+            currentOptionUIText = currentOption?.second ?: UiText.DynamicString(
+                currentOption?.first?.toString() ?: ""
+            ),
+            valid = fieldDescriptor.valid(state.settings, currentValue)
+        ),
         fieldHeight = 70.dp,
         space = SpaceBetweenComponents,
         unfocusedBorderColor = ColorUnfocused,
@@ -34,20 +50,21 @@ fun AirplanesTab(
         buttonColor = ColorButton,
         scrollable = true,
         onValueChange = { keyValue ->
-            if (state.settings.get<List<String>>(SK.airplanes) != keyValue.value?.split(",")) {
+            if (state.settings.get<List<String>>(SK.airplanes) != (keyValue.value as? String)?.split(",")) {
                 val projectConfigurations = state.projectConfigurations
-                projectConfigurations.filter { p ->
+                val newConfigurations = projectConfigurations.filter { p ->
                     (p.get<List<String>>(PK.airplaneName) ?: "") == (keyValue.previousValue ?: "")
-                }.forEach { p ->
-                    // prevent to rename unfinished edits
+                }.mapNotNull { p ->                   // prevent to rename unfinished edits
                     if (p.get<List<String>>(PK.airplaneName) != null && keyValue.newValue != null) {
-                        p.set(PK.airplaneName, keyValue.newValue)
+                        p.copy(PK.airplaneName, keyValue.newValue)
+                    } else {
+                        p
                     }
                 }
                 onProjectListAction(
                     Msfs2024ToolsAction.OnSaveAirplanesClick(
                         settings = state.settings.copy(key = SK.airplanes, value = keyValue.value),
-                        projectConfigurations = projectConfigurations
+                        projectConfigurations = newConfigurations
                     )
                 )
             }
