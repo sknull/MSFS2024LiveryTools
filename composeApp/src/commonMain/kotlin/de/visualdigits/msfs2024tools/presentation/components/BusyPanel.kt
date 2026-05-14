@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,20 +16,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.presentation.components.button.FlexibleTextButton
+import de.visualdigits.common.presentation.components.button.IndicatorButton
 import de.visualdigits.common.presentation.components.container.TerminalWindow
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorUnfocused
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.busy_hint
 import de.visualdigits.compose.resources.icon_check_small_24px
 import de.visualdigits.compose.resources.ok
 import de.visualdigits.compose.resources.stdout
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
+import de.visualdigits.msfs2024tools.presentation.style.gap
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -45,7 +39,7 @@ fun BusyPanel(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.shapes.gap)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -56,13 +50,13 @@ fun BusyPanel(
                 style = MaterialTheme.typography.titleLarge
             )
 
-            Spacer(modifier = Modifier.height(SpaceBetweenComponents))
+            Spacer(modifier = Modifier.height(MaterialTheme.shapes.gap))
 
             CircularProgressIndicator(
                 progress = {
                     state.currentProgress
                 },
-                color = ColorUnfocused,
+                color = MaterialTheme.colorScheme.onSurface,
                 trackColor = Color(0xffcccccc)
             )
         }
@@ -71,7 +65,7 @@ fun BusyPanel(
             TerminalWindow(
                 modifier = Modifier
                     .weight(1f),
-                shapeContainer = ShapeContainer,
+                shapeContainer = MaterialTheme.shapes.small,
                 title = stringResource(Res.string.stdout),
                 listData = {
                     state.logs
@@ -79,24 +73,17 @@ fun BusyPanel(
             )
         }
 
-        FlexibleTextButton(
+        IndicatorButton(
             text = stringResource(Res.string.ok),
             height = 30.dp,
-            paddingStart = 0.dp,
-            paddingTop = 0.dp,
+            padding = 0.dp,
             onClick = onClick,
             modifier = Modifier
                 .align(Alignment.End)
                 .pointerHoverIcon(PointerIcon.Hand),
-            buttonColor = ColorButton,
-            buttonShape = ShapeButton,
-            leadingIcon = {
-                Icon(
-                    painter = painterResource(Res.drawable.icon_check_small_24px),
-                    contentDescription = null,
-                    tint = ColorIcon
-                )
-            }
+            buttonColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+            shape = MaterialTheme.shapes.extraSmall,
+            leadingIcon = painterResource(Res.drawable.icon_check_small_24px)
         )
     }
 }

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
@@ -24,17 +25,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.presentation.components.container.VerticalCollapsibleBox
-import de.visualdigits.msfs2024tools.domain.model.configuration.PK
-import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
-import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorFocused
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorUnfocused
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.icon_arrow_drop_down_24px
 import de.visualdigits.compose.resources.icon_arrow_right_24px
+import de.visualdigits.msfs2024tools.domain.model.configuration.PK
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
+import de.visualdigits.msfs2024tools.presentation.style.gap
 import org.jetbrains.compose.resources.painterResource
 
 
@@ -56,7 +53,7 @@ fun ProjectList(
                 .padding(end = 16.dp)
                 .fillMaxSize()
                 .verticalScroll(scrollState),
-            verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.shapes.gap)
         ) {
             val projects = state.projectConfigurations
                 .sortedBy { p -> p.get<String>(PK.airplaneName) }
@@ -69,10 +66,10 @@ fun ProjectList(
                 key(airplaneName) {
                     VerticalCollapsibleBox(
                         title = airplaneName,
-                        unfocusedBorderColor = ColorUnfocused,
-                        focusedBorderColor = ColorFocused,
+                        unfocusedBorderColor = MaterialTheme.colorScheme.onSurface,
+                        focusedBorderColor = MaterialTheme.colorScheme.outline,
                         backgroundColor = Color.Black.copy(alpha = 0.2f),
-                        shape = ShapeButton,
+                        shape = MaterialTheme.shapes.extraSmall,
                         isExpanded = projects.size == 1 || state.collapsibleState["airplane_$airplaneName"] == true,
                         iconArrowRight = painterResource(Res.drawable.icon_arrow_right_24px),
                         iconArrowDown = painterResource(Res.drawable.icon_arrow_drop_down_24px),
@@ -84,8 +81,9 @@ fun ProjectList(
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clip(ShapeContainer),
-                            verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
+                                .clip(MaterialTheme.shapes.small)
+                                .padding(MaterialTheme.shapes.gap),
+                            verticalArrangement = Arrangement.spacedBy(MaterialTheme.shapes.gap)
                         ) {
                             liveries.forEach { project ->
                                 key(airplaneName, project) {
@@ -115,7 +113,7 @@ fun ProjectList(
             adapter = rememberScrollbarAdapter(scrollState = scrollState),
             interactionSource = interactionSource,
             modifier = Modifier
-                .clip(ShapeContainer)
+                .clip(MaterialTheme.shapes.small)
                 .align(Alignment.CenterEnd)
                 .fillMaxHeight()
                 .background(Color.Black.copy(alpha = 0.4f))

@@ -1,5 +1,6 @@
 package de.visualdigits.msfs2024tools.presentation.components.tab
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,36 +8,32 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.UiText
+import de.visualdigits.common.domain.model.form.ConfigurationPanelResources
 import de.visualdigits.common.domain.model.form.EditableListResources
+import de.visualdigits.common.presentation.components.button.IndicatorButton
 import de.visualdigits.common.presentation.components.container.ErrorCard
-import de.visualdigits.common.presentation.components.button.FlexibleTextButton
 import de.visualdigits.common.presentation.components.form.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.form.ConfigurationPanel
 import de.visualdigits.common.presentation.model.PlatformScrollbarStyle
-import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
-import de.visualdigits.msfs2024tools.presentation.components.project.ProjectList
-import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
-import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorFocused
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
 import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.cancel
+import de.visualdigits.compose.resources.delete
+import de.visualdigits.compose.resources.edit_hint
+import de.visualdigits.compose.resources.field_unset
 import de.visualdigits.compose.resources.icon_add_24px
 import de.visualdigits.compose.resources.icon_cancel_24px
 import de.visualdigits.compose.resources.icon_check_small_24px
@@ -45,8 +42,19 @@ import de.visualdigits.compose.resources.icon_delete_24px
 import de.visualdigits.compose.resources.icon_edit_24px
 import de.visualdigits.compose.resources.icon_file_save_24px
 import de.visualdigits.compose.resources.icon_folder_open_24px
+import de.visualdigits.compose.resources.icon_info_24px
+import de.visualdigits.compose.resources.icon_warning_24px
 import de.visualdigits.compose.resources.new_project_hint
+import de.visualdigits.compose.resources.ok
+import de.visualdigits.compose.resources.tooltip_openInExplorer
+import de.visualdigits.compose.resources.tooltip_readonly
+import de.visualdigits.compose.resources.warning_delete
 import de.visualdigits.compose.resources.warning_no_results
+import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
+import de.visualdigits.msfs2024tools.presentation.components.project.ProjectList
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
+import de.visualdigits.msfs2024tools.presentation.style.gap
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -70,22 +78,21 @@ fun ProjectsTab(
         ErrorCard(
             errorMessage = UiText.StringResourceId(Res.string.warning_no_results),
             severity = Severity.Warn,
-            shapeContainer = ShapeContainer
+            shapeContainer = MaterialTheme.shapes.small
         )
-        Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
+        Spacer(Modifier.height(MaterialTheme.shapes.gap).fillMaxWidth())
     }
 
     Column(
         modifier = Modifier
             .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.shapes.gap)
     ) {
         if (!state.isEditingProjectConfiguration && state.currentProjectConfiguration == null) {
-            FlexibleTextButton(
+            IndicatorButton(
                 text = stringResource(Res.string.new_project_hint),
                 height = 30.dp,
-                paddingStart = 0.dp,
-                paddingTop = 0.dp,
+                padding = 0.dp,
                 onClick = {
                     onAction(
                         Msfs2024ToolsAction.OnNewProjectClick()
@@ -94,15 +101,9 @@ fun ProjectsTab(
                 modifier = Modifier
                     .pointerHoverIcon(PointerIcon.Hand)
                     .align(Alignment.Start),
-                buttonColor = ColorButton,
-                buttonShape = ShapeButton,
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(Res.drawable.icon_create_new_folder_24px),
-                        contentDescription = null,
-                        tint = ColorIcon
-                    )
-                }
+                buttonColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                shape = MaterialTheme.shapes.extraSmall,
+                leadingIcon = painterResource(Res.drawable.icon_create_new_folder_24px)
             )
         }
 
@@ -110,15 +111,19 @@ fun ProjectsTab(
             ErrorCard(
                 errorMessage = state.uiMessage,
                 severity = state.uiMessageSeverity,
-                shapeContainer = ShapeContainer
+                shapeContainer = MaterialTheme.shapes.small
             )
-            Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
+            Spacer(Modifier.height(MaterialTheme.shapes.gap).fillMaxWidth())
         }
 
         when {
             state.currentProjectConfiguration != null -> {
                 if (state.isEditingProjectConfiguration) {
                     ConfigurationEditForm(
+                        modifier = Modifier
+                            .clip(MaterialTheme.shapes.extraSmall)
+                            .background(Color.Black.copy(alpha = 0.4f), MaterialTheme.shapes.extraSmall)
+                            .padding(16.dp),
                         configuration = state.currentProjectConfiguration,
                         scrollbarModifier = Modifier
                             .clip(MaterialTheme.shapes.small)
@@ -128,19 +133,18 @@ fun ProjectsTab(
                         titleChooseFile = UiText.DynamicString("Choose File"),
                         iconFolder = painterResource(Res.drawable.icon_folder_open_24px),
                         editableListResources = EditableListResources(
-                            hintAdd = UiText.DynamicString("Add..."),
                             titleAdd = UiText.DynamicString("Add"),
-                            iconAdd = painterResource(Res.drawable.icon_add_24px),
                             titleEdit = UiText.DynamicString("Edit"),
+                            tooltipAdd = UiText.DynamicString("Add..."),
+                            iconAdd = Res.drawable.icon_add_24px,
                             toolTipEdit = UiText.DynamicString("Edit"),
-                            iconEdit = painterResource(Res.drawable.icon_edit_24px),
+                            iconEdit = Res.drawable.icon_edit_24px,
                             toolTipDelete = UiText.DynamicString("Delete"),
-                            iconDelete = painterResource(Res.drawable.icon_delete_24px),
+                            iconDelete = Res.drawable.icon_delete_24px,
                             labelOk = UiText.DynamicString("Ok"),
-                            iconOk = painterResource(Res.drawable.icon_check_small_24px),
+                            iconOk = Res.drawable.icon_check_small_24px,
                             labelCancel = UiText.DynamicString("Cancel"),
-                            iconCancel = painterResource(Res.drawable.icon_cancel_24px),
-                            iconSaveFile = painterResource(Res.drawable.icon_file_save_24px)
+                            iconCancel = Res.drawable.icon_cancel_24px,
                         ),
                         tooltipOk = UiText.DynamicString(""),
                         iconOk = painterResource(Res.drawable.icon_check_small_24px),
@@ -182,8 +186,32 @@ fun ProjectsTab(
                         }
                     )
                 } else {
+                    
                     ConfigurationPanel(
                         configuration = state.currentProjectConfiguration,
+                        configurationPanelResources = ConfigurationPanelResources(
+                            label_edit = UiText.StringResourceId(Res.string.edit_hint),
+                            icon_edit = Res.drawable.icon_edit_24px,
+
+                            label_delete = UiText.StringResourceId(Res.string.delete),
+                            icon_delete = Res.drawable.icon_delete_24px,
+
+                            placeholder_field_unset = UiText.StringResourceId(Res.string.field_unset),
+                            icon_info = Res.drawable.icon_info_24px,
+                            tooltip_readonly = UiText.StringResourceId(Res.string.tooltip_readonly),
+                            icon_folder = Res.drawable.icon_folder_open_24px,
+                            tooltip_open_in_explorer = UiText.StringResourceId(Res.string.tooltip_openInExplorer),
+
+                            label_ok = UiText.StringResourceId(Res.string.ok),
+                            icon_ok = Res.drawable.icon_check_small_24px,
+
+                            icon_warning = Res.drawable.icon_warning_24px,
+                            warning_delete = UiText.StringResourceId(Res.string.warning_delete),
+                            icon_save = Res.drawable.icon_file_save_24px,
+
+                            label_cancel = UiText.StringResourceId(Res.string.cancel),
+                            icon_cancel = Res.drawable.icon_cancel_24px
+                        ),
                         onEditClick = {
                             onAction(
                                 Msfs2024ToolsAction.OnEditProjectConfigurationClick()
@@ -199,12 +227,12 @@ fun ProjectsTab(
                         onOkClick = {
                             onAction(Msfs2024ToolsAction.OnPanelOkClick(state.settings))
                         },
-                        iconTint = ColorIcon,
-                        space = SpaceBetweenComponents,
+                        iconTint = MaterialTheme.colorScheme.onSurface,
+                        space = MaterialTheme.shapes.gap,
                         showOkButton = true,
-                        buttonColor = ColorButton,
-                        buttonShape = ShapeButton,
-                        focusedBorderColor = ColorFocused
+                        buttonColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                        shape = MaterialTheme.shapes.extraSmall,
+                        focusedBorderColor = MaterialTheme.colorScheme.outline
                     )
                 }
             }

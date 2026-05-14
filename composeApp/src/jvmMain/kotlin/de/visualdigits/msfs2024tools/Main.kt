@@ -10,18 +10,23 @@ import androidx.compose.ui.window.rememberWindowState
 import co.touchlab.kermit.Logger
 import com.formdev.flatlaf.FlatDarculaLaf
 import de.visualdigits.common.domain.service.getPlatformLogWriters
-import de.visualdigits.di.initKoin
-import kotlinx.coroutines.cancel
 import de.visualdigits.compose.resources.Msfs2024Tools
 import de.visualdigits.compose.resources.Res
+import de.visualdigits.msfs2024tools.di.initKoin
+import de.visualdigits.msfs2024tools.di.platformModule
+import de.visualdigits.msfs2024tools.di.sharedModule
+import kotlinx.coroutines.cancel
 import org.jetbrains.compose.resources.painterResource
+import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
 import javax.swing.UIManager
 
 fun main() {
-
-    initKoin()
-
-    val writers = getPlatformLogWriters(System.getProperty("user.home"), "MSFS2024Tools.log")
+    val koinApp = startKoin {
+        modules(sharedModule, platformModule)
+    }
+    val homeDirectoryPath = koinApp.koin.get<String>(named("homeDirectory"))
+    val writers = getPlatformLogWriters(homeDirectoryPath, "MSFS2024Tools.log")
     Logger.setLogWriters(writers)
     Logger.setTag("MSFS2024LiveryTools")
 

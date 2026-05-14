@@ -2,6 +2,7 @@ package de.visualdigits.msfs2024tools.presentation.components.project
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -23,6 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -30,22 +33,17 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.size.Size
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.icon_arrow_forward_ios_24px
+import de.visualdigits.compose.resources.icon_emergency_home_24px
+import de.visualdigits.compose.resources.show_details_hint
 import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorCardBackground
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorUnfocused
-import de.visualdigits.common.presentation.style.ProjectStyle.PaddingContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
-import de.visualdigits.compose.resources.Res
-import de.visualdigits.compose.resources.icon_arrow_forward_ios_24px
-import de.visualdigits.compose.resources.icon_emergency_home_24px
-import de.visualdigits.compose.resources.show_details_hint
+import de.visualdigits.msfs2024tools.presentation.style.gap
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -62,24 +60,21 @@ fun ProjectItem(
 
     val textureFormatPackage = project.get<TextureFormat>(PK.textureFormatPackage)
     val textureFormatModel = project.get<TextureFormat>(PK.textureFormatModel)
-//    val backgroundColor = if (
-//        textureFormatPackage == TextureFormat.KTX2 && textureFormatModel == TextureFormat.DDS
-//        || textureFormatPackage == TextureFormat.DDS && textureFormatModel == TextureFormat.KTX2
-//        ) {
-//        ColorUnfocused.copy(alpha = 0.5f)
-//    } else {
-//        Color.Black.copy(alpha = 0.2f)
-//    }
 
     Row(
         modifier = modifier
             .fillMaxWidth()
             .height(180.dp)
-            .clip(ShapeContainer)
-            .background(Color.Black.copy(alpha = 0.2f))
+            .clip(MaterialTheme.shapes.extraSmall)
+            .border(
+                width = 1.dp,
+                color = if (isHovered) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+                shape = MaterialTheme.shapes.extraSmall
+            )
             .hoverable(interactionSource)
+            .pointerHoverIcon(PointerIcon.Hand)
             .clickable(onClick = onClick)
-            .background(if (isHovered) ColorCardBackground else Color.Transparent)
+            .background(if (isHovered) Color.Black.copy(alpha = 0.4f) else Color.Transparent)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -112,7 +107,7 @@ fun ProjectItem(
         // description
         Column(
             modifier = modifier
-                .padding(horizontal = PaddingContainer)
+                .padding(horizontal = MaterialTheme.shapes.gap)
                 .weight(1f),
             verticalArrangement = Arrangement.Top
         ) {
@@ -160,7 +155,7 @@ fun ProjectItem(
             Icon(
                 painter = painterResource(Res.drawable.icon_arrow_forward_ios_24px),
                 contentDescription = stringResource(Res.string.show_details_hint),
-                tint = ColorIcon
+                tint = MaterialTheme.colorScheme.onPrimary
             )
         }
     }

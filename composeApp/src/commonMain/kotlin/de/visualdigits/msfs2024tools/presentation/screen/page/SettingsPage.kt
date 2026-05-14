@@ -21,9 +21,6 @@ import de.visualdigits.common.domain.model.form.EditableListResources
 import de.visualdigits.common.presentation.components.container.ErrorCard
 import de.visualdigits.common.presentation.components.form.ConfigurationEditForm
 import de.visualdigits.common.presentation.model.PlatformScrollbarStyle
-import de.visualdigits.common.presentation.style.ProjectStyle.PaddingContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.icon_add_24px
 import de.visualdigits.compose.resources.icon_cancel_24px
@@ -37,6 +34,7 @@ import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
+import de.visualdigits.msfs2024tools.presentation.style.gap
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -56,7 +54,7 @@ fun SettingsPage(
             .padding(start = 100.dp),
         contentModifier = Modifier
             .fillMaxSize(fraction = 0.97f)
-            .clip(ShapeContainer)
+            .clip(MaterialTheme.shapes.small)
             .background(Color.Black.copy(alpha = 0.4f)),
         label = stringResource(Res.string.label_configuration)
     ) {
@@ -70,7 +68,7 @@ fun SettingsPage(
         } else {
             Column(
                 modifier = Modifier
-                    .padding(PaddingContainer)
+                    .padding(MaterialTheme.shapes.gap)
                     .fillMaxSize()
             ) {
 
@@ -78,9 +76,9 @@ fun SettingsPage(
                     ErrorCard(
                         errorMessage = state.uiMessage,
                         severity = state.uiMessageSeverity,
-                        shapeContainer = ShapeContainer
+                        shapeContainer = MaterialTheme.shapes.small
                     )
-                    Spacer(Modifier.height(SpaceBetweenComponents).fillMaxWidth())
+                    Spacer(Modifier.height(MaterialTheme.shapes.gap).fillMaxWidth())
                 }
 
                 ConfigurationEditForm(
@@ -93,19 +91,18 @@ fun SettingsPage(
                     titleChooseFile = UiText.DynamicString("Choose File"),
                     iconFolder = painterResource(Res.drawable.icon_folder_open_24px),
                     editableListResources = EditableListResources(
-                        hintAdd = UiText.DynamicString("Add..."),
                         titleAdd = UiText.DynamicString("Add"),
-                        iconAdd = painterResource(Res.drawable.icon_add_24px),
                         titleEdit = UiText.DynamicString("Edit"),
+                        tooltipAdd = UiText.DynamicString("Add..."),
+                        iconAdd = Res.drawable.icon_add_24px,
                         toolTipEdit = UiText.DynamicString("Edit"),
-                        iconEdit = painterResource(Res.drawable.icon_edit_24px),
+                        iconEdit = Res.drawable.icon_edit_24px,
                         toolTipDelete = UiText.DynamicString("Delete"),
-                        iconDelete = painterResource(Res.drawable.icon_delete_24px),
+                        iconDelete = Res.drawable.icon_delete_24px,
                         labelOk = UiText.DynamicString("Ok"),
-                        iconOk = painterResource(Res.drawable.icon_check_small_24px),
+                        iconOk = Res.drawable.icon_check_small_24px,
                         labelCancel = UiText.DynamicString("Cancel"),
-                        iconCancel = painterResource(Res.drawable.icon_cancel_24px),
-                        iconSaveFile = painterResource(Res.drawable.icon_file_save_24px)
+                        iconCancel = Res.drawable.icon_cancel_24px,
                     ),
                     tooltipOk = UiText.DynamicString(""),
                     iconOk = painterResource(Res.drawable.icon_check_small_24px),

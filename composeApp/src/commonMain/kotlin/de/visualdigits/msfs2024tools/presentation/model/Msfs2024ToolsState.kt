@@ -5,7 +5,6 @@ import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.errorhandling.LogMessage
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
-import org.jetbrains.compose.resources.StringResource
 
 
 data class Msfs2024ToolsState(

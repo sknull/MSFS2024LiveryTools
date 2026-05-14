@@ -6,6 +6,7 @@ import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
 import de.visualdigits.common.domain.model.configuration.EnumFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.FileFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
+import de.visualdigits.common.domain.model.configuration.StringFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.keyfactory.StringListKeyFactory
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.label_airplanes
@@ -23,7 +24,7 @@ import java.io.File
 
 @Suppress("UNCHECKED_CAST")
 class Settings(
-    values: Map<SK, Any?>,
+    values: Map<SK, Any?> = mapOf(),
 ): AbstractConfiguration<Settings, SK>(values, DESCRIPTORS) {
 
     companion object {
@@ -103,6 +104,13 @@ class Settings(
                         ?:listOf() },
                 valid = { _, _ -> true }
             ),
+
+            StringFieldDescriptor(
+                key = SK.version,
+                visible = false,
+                label = UiText.DynamicString(""),
+            ),
+
         )
     }
 

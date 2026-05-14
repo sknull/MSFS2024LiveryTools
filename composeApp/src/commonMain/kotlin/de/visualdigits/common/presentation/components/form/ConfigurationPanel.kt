@@ -1,6 +1,7 @@
 package de.visualdigits.common.presentation.components.form
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.input.pointer.PointerIcon
@@ -38,31 +40,13 @@ import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
 import de.visualdigits.common.domain.model.configuration.FieldKey
 import de.visualdigits.common.domain.model.configuration.FileFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.SpacerFieldDescriptor
-import de.visualdigits.common.presentation.components.button.FlexibleTextButton
+import de.visualdigits.common.domain.model.form.ConfigurationPanelResources
 import de.visualdigits.common.presentation.components.button.IndicatorButton
-import de.visualdigits.compose.resources.Res
-import de.visualdigits.compose.resources.cancel
-import de.visualdigits.compose.resources.delete
-import de.visualdigits.compose.resources.edit_hint
-import de.visualdigits.compose.resources.field_unset
-import de.visualdigits.compose.resources.icon_cancel_24px
-import de.visualdigits.compose.resources.icon_check_small_24px
-import de.visualdigits.compose.resources.icon_delete_24px
-import de.visualdigits.compose.resources.icon_edit_24px
-import de.visualdigits.compose.resources.icon_file_save_24px
-import de.visualdigits.compose.resources.icon_folder_open_24px
-import de.visualdigits.compose.resources.icon_info_24px
-import de.visualdigits.compose.resources.icon_warning_24px
-import de.visualdigits.compose.resources.ok
-import de.visualdigits.compose.resources.title_delete
-import de.visualdigits.compose.resources.tooltip_openInExplorer
-import de.visualdigits.compose.resources.tooltip_readonly
-import de.visualdigits.compose.resources.warning_delete
+import de.visualdigits.common.presentation.components.button.IndicatorButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
 import java.awt.Desktop
 import java.io.File
 
@@ -71,6 +55,7 @@ import java.io.File
 @Composable
 fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
     configuration: AbstractConfiguration<*,*>?,
+    configurationPanelResources: ConfigurationPanelResources = ConfigurationPanelResources.DEFAULT_RESOURCES,
     onEditClick: () -> Unit,
     onDeleteClick: (() -> Unit)? = null,
     onOkClick: () -> Unit,
@@ -78,7 +63,7 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
     space: Dp,
     showOkButton: Boolean = false,
     buttonColor: Color,
-    buttonShape: Shape,
+    shape: Shape,
     focusedBorderColor: Color,
 ) {
     var showDeleteDialog by remember { mutableStateOf(false) }
@@ -87,51 +72,40 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
 
     Column(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .clip(MaterialTheme.shapes.extraSmall)
+            .background(Color.Black.copy(alpha = 0.4f), MaterialTheme.shapes.extraSmall)
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(space)
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(space),
         ) {
-            FlexibleTextButton(
-                text = stringResource(Res.string.edit_hint),
+            IndicatorButton(
+                text = configurationPanelResources.label_edit.asString(),
                 height = 30.dp,
-                paddingStart = 0.dp,
-                paddingTop = 0.dp,
+                padding = 0.dp,
                 onClick = onEditClick,
                 modifier = Modifier
                     .pointerHoverIcon(PointerIcon.Hand),
                 buttonColor = buttonColor,
-                buttonShape = buttonShape,
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(Res.drawable.icon_edit_24px),
-                        contentDescription = null,
-                        tint = iconTint
-                    )
-                }
+                shape = shape,
+                leadingIcon =configurationPanelResources.icon_edit?.let { r -> painterResource(r) }
             )
 
             if (onDeleteClick != null) {
-                FlexibleTextButton(
-                    text = stringResource(Res.string.delete),
+                IndicatorButton(
+                    text = configurationPanelResources.label_delete.asString(),
                     height = 30.dp,
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
+                    padding = 0.dp,
                     onClick = {
                         showDeleteDialog = true
                     },
                     modifier = Modifier
                         .pointerHoverIcon(PointerIcon.Hand),
                     buttonColor = buttonColor,
-                    buttonShape = buttonShape,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_delete_24px),
-                            contentDescription = null,
-                            tint = iconTint
-                        )
-                    }
+                    shape = shape,
+                    leadingIcon = configurationPanelResources.icon_delete?.let { r -> painterResource(r) }
                 )
             }
         }
@@ -172,7 +146,6 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
                             } else {
                                 Severity.Error.color()
                             }
-                            val unset = stringResource(Res.string.field_unset)
 
                             Text(
                                 text = descriptor.label.asString(),
@@ -184,7 +157,7 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
                             )
 
                             Text(
-                                text = descriptor.keyFactory.stringValue(value) ?: unset,
+                                text = descriptor.keyFactory.stringValue(value) ?: configurationPanelResources.placeholder_field_unset.asString(),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = color,
                                 maxLines = 1,
@@ -195,26 +168,26 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
 
                             if (descriptor.readOnly) {
                                 IndicatorButton(
-                                    leadingIcon = painterResource(Res.drawable.icon_info_24px),
+                                    leadingIcon = configurationPanelResources.icon_info?.let { r -> painterResource(r) },
                                     leadingIconTint = iconTint,
                                     modifier = Modifier.padding(start = 5.dp),
                                     width = 30.dp,
                                     height = 30.dp,
-                                    toolTip = stringResource(Res.string.tooltip_readonly),
-                                    shape = buttonShape,
+                                    toolTip = configurationPanelResources.tooltip_readonly.asString(),
+                                    shape = shape,
                                     buttonColor = buttonColor
                                 )
                             }
 
                             if (descriptor is FileFieldDescriptor<*,*> && descriptor.fileMode == FileMode.DIRECTORIES_ONLY) {
                                 IndicatorButton(
-                                    leadingIcon = painterResource(Res.drawable.icon_folder_open_24px),
+                                    leadingIcon = configurationPanelResources.icon_folder?.let { r -> painterResource(r) },
                                     leadingIconTint = iconTint,
                                     modifier = Modifier.padding(start = 5.dp),
                                     width = 30.dp,
                                     height = 30.dp,
-                                    toolTip = stringResource(Res.string.tooltip_openInExplorer),
-                                    shape = buttonShape,
+                                    toolTip = configurationPanelResources.tooltip_open_in_explorer.asString(),
+                                    shape = shape,
                                     buttonColor = buttonColor,
                                     enabled = (value as? File)?.exists() == true,
                                     onClick = {
@@ -230,24 +203,17 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
         }
 
         if (showOkButton) {
-            FlexibleTextButton(
-                text = stringResource(Res.string.ok),
+            IndicatorButton(
+                text = configurationPanelResources.label_ok.asString(),
                 height = 30.dp,
-                paddingStart = 0.dp,
-                paddingTop = 0.dp,
+                padding = 0.dp,
                 onClick = onOkClick,
                 modifier = Modifier
                     .pointerHoverIcon(PointerIcon.Hand)
                     .align(Alignment.End),
                 buttonColor = buttonColor,
-                buttonShape = buttonShape,
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(Res.drawable.icon_check_small_24px),
-                        contentDescription = null,
-                        tint = iconTint
-                    )
-                }
+                shape = shape,
+                leadingIcon = configurationPanelResources.icon_ok?.let { r -> painterResource(r) }
             )
         }
     }
@@ -257,10 +223,11 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
             modifier = Modifier
                 .border(1.dp, focusedBorderColor),
             containerColor = Severity.Error.color().copy(alpha = 0.8f),
-            shape = buttonShape,
+            shape = shape,
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text(
-                text = stringResource(Res.string.title_delete),
+            title = { 
+                Text(
+                text = configurationPanelResources.label_delete.asString(),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -271,18 +238,20 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
                         .fillMaxWidth(),
                     verticalArrangement = Arrangement.spacedBy(space),
                 ) {
-                    Icon(
-                        painter = painterResource(Res.drawable.icon_warning_24px),
-                        contentDescription = null,
-                        tint = iconTint,
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .height(100.dp)
-                            .aspectRatio(1.0f)
-                    )
+                    configurationPanelResources.icon_warning?.let { r -> painterResource(r) }?.let {
+                        Icon(
+                            painter = it,
+                            contentDescription = null,
+                            tint = iconTint,
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .height(100.dp)
+                                .aspectRatio(1.0f)
+                        )
+                    }
 
                     Text(
-                        text = stringResource(Res.string.warning_delete),
+                        text = configurationPanelResources.warning_delete.asString(),
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier
                             .align(Alignment.CenterHorizontally)
@@ -290,45 +259,31 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> ConfigurationPanel(
                 }
             },
             confirmButton = {
-                FlexibleTextButton(
-                    text = stringResource(Res.string.ok),
+                IndicatorButton(
+                    text = configurationPanelResources.label_ok.asString(),
                     height = 30.dp,
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
+                    padding = 0.dp,
                     onClick = onDeleteClick,
                     modifier = Modifier
                         .pointerHoverIcon(PointerIcon.Hand),
                     buttonColor = buttonColor,
-                    buttonShape = buttonShape,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_file_save_24px),
-                            contentDescription = null,
-                            tint = iconTint
-                        )
-                    },
+                    shape = shape,
+                    leadingIcon = configurationPanelResources.icon_save?.let { r -> painterResource(r) },
                 )
             },
             dismissButton = {
-                FlexibleTextButton(
-                    text = stringResource(Res.string.cancel),
+                IndicatorButton(
+                    text = configurationPanelResources.label_cancel.asString(),
                     height = 30.dp,
-                    paddingStart = 0.dp,
-                    paddingTop = 0.dp,
+                    padding = 0.dp,
                     onClick = {
                         showDeleteDialog = false
                     },
                     modifier = Modifier
                         .pointerHoverIcon(PointerIcon.Hand),
                     buttonColor = buttonColor,
-                    buttonShape = buttonShape,
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(Res.drawable.icon_cancel_24px),
-                            contentDescription = null,
-                            tint = iconTint
-                        )
-                    },
+                    shape = shape,
+                    leadingIcon = configurationPanelResources.icon_cancel?.let { r -> painterResource(r) },
                 )
             }
         )

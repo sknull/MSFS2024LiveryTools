@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -13,9 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.presentation.components.button.TabButtonRow
-import de.visualdigits.common.presentation.style.ProjectStyle.PaddingContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.tab_airplanes
 import de.visualdigits.compose.resources.tab_projects
@@ -25,6 +23,7 @@ import de.visualdigits.msfs2024tools.presentation.components.tab.ProjectsTab
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
+import de.visualdigits.msfs2024tools.presentation.style.gap
 
 @Composable
 fun ProjectListPage(
@@ -57,15 +56,15 @@ fun ProjectListPage(
             .padding(start = 100.dp),
         contentModifier = Modifier
             .fillMaxSize(fraction = 0.97f)
-            .clip(ShapeContainer)
+            .clip(MaterialTheme.shapes.small)
             .background(Color.Black.copy(alpha = 0.2f)),
         label = state.selectedTabLabel?.asString() ?: "?"
     ) {
         Column(
             modifier = Modifier
-                .padding(PaddingContainer)
+                .padding(MaterialTheme.shapes.gap)
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents)
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.shapes.gap)
         ) {
             // menu tab buttons
             TabButtonRow(

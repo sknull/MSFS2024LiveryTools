@@ -1,8 +1,17 @@
 package de.visualdigits.msfs2024tools.presentation.components.msfsbutton
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.hoverable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,16 +25,18 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.withTransform
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.presentation.components.button.FlexibleTextButton
-import de.visualdigits.common.presentation.style.ProjectStyle.MsfsTabButtonSelectedBgColor
-import de.visualdigits.common.presentation.style.ProjectStyle.MsfsTabButtonSelectedFgColor
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.icon_checkmark
 import org.jetbrains.compose.resources.painterResource
+
 
 @Composable
 fun MsfsTabButton(
@@ -39,27 +50,37 @@ fun MsfsTabButton(
     onClick: () -> Unit,
     selected: Boolean = false
 ) {
-    FlexibleTextButton(
-        text = text,
-        width = width,
-        height = height,
-        outerPaddingValues = PaddingValues(0.dp),
-        contentAlignment = Alignment.TopStart,
-        paddingStart = paddingStart,
-        paddingTop = paddingTop,
-        paddingEnd = paddingEnd,
-        paddingBottom = paddingBottom,
-        onClick = onClick,
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Box(
         modifier = Modifier
-            .clip(ShapeButton)
+            .semantics { role = Role.Button }
+            .width(width = width)
+            .height(height = height)
+            .padding(0.dp)
+            .clip(MaterialTheme.shapes.extraSmall)
+            .hoverable(interactionSource = interactionSource)
+            .pointerHoverIcon(PointerIcon.Hand)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = LocalIndication.current,
+                onClick = onClick
+            )
             .msfs2024Button(
                 selected = selected,
-                selectedBgColor = MsfsTabButtonSelectedBgColor
+                selectedBgColor = Color(0xff193866)
             ),
-        buttonShape = ShapeButton,
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.Top
-    )
+        contentAlignment = Alignment.TopStart
+    ) {
+        Text(
+            modifier = Modifier
+                .padding(start = paddingStart, top = paddingTop, end = paddingEnd, bottom = paddingBottom),
+            text = text,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onPrimary
+        )
+    }
+
 }
 
 @Composable
@@ -98,7 +119,7 @@ private fun Modifier.msfs2024Button(
                         size = size,
                         density = this@drawWithCache
                     ),
-                    color = MsfsTabButtonSelectedFgColor,
+                    color = Color(0xff3b84eb),
                 )
             } else {
                 drawRect(

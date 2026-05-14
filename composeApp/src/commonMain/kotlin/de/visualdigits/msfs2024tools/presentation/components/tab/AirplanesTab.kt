@@ -1,5 +1,6 @@
 package de.visualdigits.msfs2024tools.presentation.components.tab
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import de.visualdigits.common.domain.model.UiText
@@ -7,18 +8,27 @@ import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
 import de.visualdigits.common.domain.model.configuration.AbstractFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.FieldKey
 import de.visualdigits.common.domain.model.configuration.FieldState
-import de.visualdigits.common.presentation.components.form.EditableListStandalone
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorFocused
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorUnfocused
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
+import de.visualdigits.common.domain.model.form.EditableListResources
+import de.visualdigits.common.presentation.components.form.EditableList
+import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.add
+import de.visualdigits.compose.resources.add_hint
+import de.visualdigits.compose.resources.cancel
+import de.visualdigits.compose.resources.delete
+import de.visualdigits.compose.resources.edit
+import de.visualdigits.compose.resources.icon_add_24px
+import de.visualdigits.compose.resources.icon_cancel_24px
+import de.visualdigits.compose.resources.icon_check_small_24px
+import de.visualdigits.compose.resources.icon_delete_24px
+import de.visualdigits.compose.resources.icon_edit_24px
+import de.visualdigits.compose.resources.icon_folder_open_24px
+import de.visualdigits.compose.resources.ok
 import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.SK
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
+import de.visualdigits.msfs2024tools.presentation.style.gap
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun <K : FieldKey<K>, FK : FieldKey<FK>> AirplanesTab(
@@ -28,7 +38,7 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> AirplanesTab(
     val fieldDescriptor = state.settings?.lookupFieldDescriptors[SK.airplanes]!! as AbstractFieldDescriptor<Any, Any, K, FK, Any>
     val currentOption = fieldDescriptor.currentOption(state.settings as AbstractConfiguration<*, K>)
     val currentValue = state.settings.getUnsafe(fieldDescriptor.key)
-    EditableListStandalone(
+    EditableList(
         fieldState = FieldState(
             configuration = state.settings,
             fieldDescriptor = fieldDescriptor,
@@ -40,21 +50,37 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> AirplanesTab(
             ),
             valid = fieldDescriptor.valid(state.settings, currentValue)
         ),
+        iconFolder = painterResource(Res.drawable.icon_folder_open_24px),
+        resources = EditableListResources(
+            titleAdd = UiText.StringResourceId(Res.string.add),
+            titleEdit = UiText.StringResourceId(Res.string.edit),
+            tooltipAdd = UiText.StringResourceId(Res.string.add_hint),
+            iconAdd = Res.drawable.icon_add_24px,
+            toolTipEdit = UiText.StringResourceId(Res.string.edit),
+            iconEdit = Res.drawable.icon_edit_24px,
+            toolTipDelete = UiText.StringResourceId(Res.string.delete),
+            iconDelete = Res.drawable.icon_delete_24px,
+            labelOk = UiText.StringResourceId(Res.string.ok),
+            iconOk = Res.drawable.icon_check_small_24px,
+            labelCancel = UiText.StringResourceId(Res.string.cancel),
+            iconCancel = Res.drawable.icon_cancel_24px
+        ),
         fieldHeight = 70.dp,
-        space = SpaceBetweenComponents,
-        unfocusedBorderColor = ColorUnfocused,
-        focusedBorderColor = ColorFocused,
-        iconTint = ColorIcon,
-        buttonShape = ShapeButton,
-        containerShape = ShapeContainer,
-        buttonColor = ColorButton,
+        space = MaterialTheme.shapes.gap,
+        focusedBorderColor = MaterialTheme.colorScheme.outline,
+        unfocusedBorderColor = MaterialTheme.colorScheme.onSurface,
+        iconTint = MaterialTheme.colorScheme.onPrimary,
+        buttonShape = MaterialTheme.shapes.extraSmall,
+        containerShape = MaterialTheme.shapes.small,
+        buttonColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         scrollable = true,
+        textStyle = MaterialTheme.typography.bodyMedium,
         onValueChange = { keyValue ->
             if (state.settings.get<List<String>>(SK.airplanes) != (keyValue.value as? String)?.split(",")) {
                 val projectConfigurations = state.projectConfigurations
                 val newConfigurations = projectConfigurations.filter { p ->
                     (p.get<List<String>>(PK.airplaneName) ?: "") == (keyValue.previousValue ?: "")
-                }.mapNotNull { p ->                   // prevent to rename unfinished edits
+                }.map { p ->                   // prevent to rename unfinished edits
                     if (p.get<List<String>>(PK.airplaneName) != null && keyValue.newValue != null) {
                         p.copy(PK.airplaneName, keyValue.newValue)
                     } else {
@@ -70,7 +96,7 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> AirplanesTab(
             }
         }
     ) { descriptor, value ->
-        when (descriptor.key) {
+        when (descriptor?.key) {
             SK.airplanes -> state.projectConfigurations.none { p ->
                 val airplaneName = p.get<String>(PK.airplaneName) ?: ""
                 airplaneName == value

@@ -15,11 +15,10 @@ import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
-import de.visualdigits.generated.AppVersion
-import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeContainer
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.title_info
+import de.visualdigits.generated.AppVersion
+import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
 import org.jetbrains.compose.resources.stringResource
 import java.time.LocalDate
 import java.time.temporal.ChronoField
@@ -36,7 +35,7 @@ fun InfoPage(
             .padding(start = 100.dp),
         contentModifier = Modifier
             .fillMaxSize(fraction = 0.97f)
-            .clip(ShapeContainer)
+            .clip(MaterialTheme.shapes.small)
             .background(Color.Black.copy(alpha = 0.4f)),
         label = stringResource(Res.string.title_info)
     ) {

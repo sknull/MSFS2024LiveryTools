@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,17 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.presentation.components.button.FlexibleTextButton
-import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
-import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
-import de.visualdigits.msfs2024tools.domain.model.type.Conversion
-import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
-import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorButton
-import de.visualdigits.common.presentation.style.ProjectStyle.ColorIcon
-import de.visualdigits.common.presentation.style.ProjectStyle.PaddingContainer
-import de.visualdigits.common.presentation.style.ProjectStyle.ShapeButton
-import de.visualdigits.common.presentation.style.ProjectStyle.SpaceBetweenComponents
+import de.visualdigits.common.presentation.components.button.IndicatorButton
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.conversion_dds_to_png
 import de.visualdigits.compose.resources.conversion_ktx2_to_png
@@ -39,6 +28,12 @@ import de.visualdigits.compose.resources.conversion_png_to_dds
 import de.visualdigits.compose.resources.conversion_png_to_ktx2
 import de.visualdigits.compose.resources.icon_create2d_24px
 import de.visualdigits.compose.resources.label_dryrun
+import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
+import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
+import de.visualdigits.msfs2024tools.domain.model.type.Conversion
+import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
+import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
+import de.visualdigits.msfs2024tools.presentation.style.gap
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
@@ -58,9 +53,9 @@ fun RowScope.ProjectButtons(
 
     Column(
         modifier = modifier
-            .padding(horizontal = PaddingContainer)
+            .padding(horizontal = MaterialTheme.shapes.gap)
             .weight(1f),
-        verticalArrangement = Arrangement.spacedBy(SpaceBetweenComponents),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.shapes.gap),
     ) {
         Row(
             modifier = Modifier
@@ -160,10 +155,9 @@ private fun ColumnScope.ConversionButton(
     project: ProjectConfiguration,
     isCheckedDryRun: Boolean
 ) {
-    FlexibleTextButton(
+    IndicatorButton(
         text = stringResource(label),
-        paddingStart = 0.dp,
-        paddingTop = 0.dp,
+        padding = 0.dp,
         onClick = {
             onProjectListAction(
                 Msfs2024ToolsAction.OnConversionClick(
@@ -177,25 +171,9 @@ private fun ColumnScope.ConversionButton(
         modifier = Modifier
             .pointerHoverIcon(PointerIcon.Hand)
             .align(Alignment.Start),
-        buttonColor = ColorButton,
-        buttonShape = ShapeButton,
-        leadingIcon = if (leadingIcon != null && leadingIcon) {
-            {
-                Icon(
-                    painter = painterResource(icon),
-                    contentDescription = null,
-                    tint = ColorIcon
-                )
-            }
-        } else null,
-        trailingIcon = if (leadingIcon != null && !leadingIcon) {
-            {
-                Icon(
-                    painter = painterResource(icon),
-                    contentDescription = null,
-                    tint = ColorIcon
-                )
-            }
-        } else null
+        buttonColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+        shape = MaterialTheme.shapes.extraSmall,
+        leadingIcon = if (leadingIcon == true) painterResource(icon) else null,
+        trailingIcon = if (leadingIcon == false) painterResource(icon) else null
     )
 }
