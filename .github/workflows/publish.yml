@@ -39,6 +39,7 @@ jobs:
           cache-encryption-key: ${{ secrets.Gradle_Encryption_Key }}
 
       - name: Build and zip package
+        working-directory: MSFS2024LiveryTools
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew zip
