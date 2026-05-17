@@ -10,9 +10,8 @@ import androidx.compose.ui.window.rememberWindowState
 import co.touchlab.kermit.Logger
 import com.formdev.flatlaf.FlatDarculaLaf
 import de.visualdigits.common.domain.service.getPlatformLogWriters
-import de.visualdigits.compose.resources.Msfs2024Tools
 import de.visualdigits.compose.resources.Res
-import de.visualdigits.msfs2024tools.di.initKoin
+import de.visualdigits.compose.resources.favicon
 import de.visualdigits.msfs2024tools.di.platformModule
 import de.visualdigits.msfs2024tools.di.sharedModule
 import kotlinx.coroutines.cancel
@@ -46,7 +45,7 @@ fun main() {
                 exitApplication()
             },
             title = "MSFS 2024 Livery Tools",
-            icon = painterResource(Res.drawable.Msfs2024Tools),
+            icon = painterResource(Res.drawable.favicon),
             state = state
         ) {
             App()
