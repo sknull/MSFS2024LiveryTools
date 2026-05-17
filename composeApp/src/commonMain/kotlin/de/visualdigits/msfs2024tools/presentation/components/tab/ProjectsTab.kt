@@ -29,6 +29,7 @@ import de.visualdigits.common.presentation.components.container.ErrorCard
 import de.visualdigits.common.presentation.components.form.ConfigurationEditForm
 import de.visualdigits.common.presentation.components.form.ConfigurationPanel
 import de.visualdigits.common.presentation.model.PlatformScrollbarStyle
+import de.visualdigits.common.presentation.model.ScrollIntent
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.cancel
 import de.visualdigits.compose.resources.delete
@@ -64,7 +65,7 @@ fun ProjectsTab(
     state: Msfs2024ToolsState,
     onAction: (Msfs2024ToolsAction) -> Unit
 ) {
-    val scrollPosition= mutableMapOf<String, Pair<Int, Int?>>()
+    val scrollPosition= mutableMapOf<String, Triple<Int, Int?, ScrollIntent>>()
 
     if (state.isLoading || state.isConverting) {
         BusyPanel(

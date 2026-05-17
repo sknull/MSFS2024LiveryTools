@@ -21,6 +21,7 @@ import de.visualdigits.common.domain.model.form.EditableListResources
 import de.visualdigits.common.presentation.components.container.ErrorCard
 import de.visualdigits.common.presentation.components.form.ConfigurationEditForm
 import de.visualdigits.common.presentation.model.PlatformScrollbarStyle
+import de.visualdigits.common.presentation.model.ScrollIntent
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.icon_add_24px
 import de.visualdigits.compose.resources.icon_cancel_24px
@@ -45,7 +46,7 @@ fun SettingsPage(
     modifier: Modifier = Modifier,
     onAction: (Msfs2024ToolsAction) -> Unit,
 ) {
-    val scrollPosition= mutableMapOf<String, Pair<Int, Int?>>()
+    val scrollPosition= mutableMapOf<String, Triple<Int, Int?, ScrollIntent>>()
 
     ScreenFrame(
         modifier = modifier,
