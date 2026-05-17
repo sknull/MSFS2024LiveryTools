@@ -6,7 +6,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
         google()
-        mavenLocal()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -15,11 +14,8 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         google()
-        mavenLocal()
         mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://maven.pkg.jetbrains.space")
-        maven("https://central.sonatype.com/repository/maven-snapshots/")
+        maven("https://sonatype.com")
         maven("https://jitpack.io")
     }
 }
