@@ -5,9 +5,6 @@ import de.visualdigits.common.domain.model.errorhandling.LogMessage
 import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.log
 import de.visualdigits.common.domain.util.WindowsUtils
 import de.visualdigits.common.domain.util.WindowsUtils.runCommand
-import de.visualdigits.msfs2024tools.domain.util.copyToIfNotExists
-import de.visualdigits.msfs2024tools.domain.util.createDirectoryIfNotExists
-import de.visualdigits.msfs2024tools.domain.util.writeValueAsXmlFile
 import de.visualdigits.msfs2024tools.data.model.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.data.model.configuration.SettingsDto
 import de.visualdigits.msfs2024tools.data.model.msfs2024.Project
@@ -16,8 +13,10 @@ import de.visualdigits.msfs2024tools.data.model.msfs2024.descriptor.BitmapConfig
 import de.visualdigits.msfs2024tools.data.model.msfs2024.usersettings.UserSettings
 import de.visualdigits.msfs2024tools.domain.model.type.SimType
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
+import de.visualdigits.msfs2024tools.domain.util.copyToIfNotExists
+import de.visualdigits.msfs2024tools.domain.util.createDirectoryIfNotExists
+import de.visualdigits.msfs2024tools.domain.util.writeValueAsXmlFile
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.io.File

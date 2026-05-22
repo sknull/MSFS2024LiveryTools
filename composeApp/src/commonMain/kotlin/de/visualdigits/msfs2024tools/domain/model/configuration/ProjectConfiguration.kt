@@ -40,7 +40,7 @@ class ProjectConfiguration(
                 key = PK.airplaneName,
                 label = UiText.StringResourceId(Res.string.label_airplaneName),
                 keyFactory = StringKeyFactory,
-                options = { configuration, settings ->
+                options = { _, settings ->
                     settings?.get<List<String>>(SK.airplanes)
                         ?.sorted()
                         ?.map { airplaneName ->
@@ -66,7 +66,7 @@ class ProjectConfiguration(
                 valid = { _, value -> (value as? File)?.exists() == true && value.isDirectory }
             ),
 
-            SpacerFieldDescriptor(PK.spacer),
+            SpacerFieldDescriptor(key = PK.spacer),
                     
             FileFieldDescriptor(
                 key = PK.packageTextureDir,

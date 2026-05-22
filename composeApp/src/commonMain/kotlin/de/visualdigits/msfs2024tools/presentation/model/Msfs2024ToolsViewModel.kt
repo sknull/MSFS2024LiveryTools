@@ -302,7 +302,7 @@ class Msfs2024ToolsViewModel(
                     }
                     },
                     logger = { lm ->
-                        log(lm)
+                        lm.log("MSFS")
                         _state.update {
                             it.copy(
                                 logs = (it.logs + lm).takeLast(MAX_LOG_LINES)
