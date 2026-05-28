@@ -15,7 +15,7 @@ sealed interface Msfs2024ToolsAction {
     ): Msfs2024ToolsAction
 
     data class OnInitializeTabs(
-        val tabLabels: List<UiText>
+        val tabLabels: List<Pair<String, UiText>>
     ): Msfs2024ToolsAction
 
     data class OnLanguageSelected(

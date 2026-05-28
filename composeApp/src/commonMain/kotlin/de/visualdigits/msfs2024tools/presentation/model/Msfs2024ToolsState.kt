@@ -19,7 +19,7 @@ data class Msfs2024ToolsState(
 
     val selectedTabIndex: Int = 0,
     val selectedTabLabel: UiText? = null,
-    val tabLabels: List<UiText> = listOf(),
+    val tabLabels: List<Pair<String, UiText>> = listOf(),
 
     val isShowInfos: Boolean = false,
     val isEditingSettings: Boolean = false,

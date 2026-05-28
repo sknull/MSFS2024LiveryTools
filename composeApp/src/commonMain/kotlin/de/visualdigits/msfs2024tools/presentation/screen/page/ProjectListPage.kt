@@ -30,8 +30,8 @@ fun ProjectListPage(
     state: Msfs2024ToolsState,
     onAction: (Msfs2024ToolsAction) -> Unit
 ) {
-    val items = linkedMapOf<UiText, @Composable (() -> Unit)>(
-        UiText.StringResourceId(Res.string.tab_projects) to {
+    val items = linkedMapOf<Pair<String, UiText>, @Composable (() -> Unit)>(
+        Pair("tab_projects", UiText.StringResourceId(Res.string.tab_projects)) to {
             ProjectsTab(
                 state = state,
                 onAction = { action ->
@@ -39,7 +39,7 @@ fun ProjectListPage(
                 }
             )
         },
-        UiText.StringResourceId(Res.string.tab_airplanes) to {
+        Pair("tab_airplanes", UiText.StringResourceId(Res.string.tab_airplanes)) to {
             AirplanesTab(
                 state = state,
                 onProjectListAction = { action ->

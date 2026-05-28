@@ -225,7 +225,7 @@ class Msfs2024ToolsViewModel(
                     it.copy(
                         tabLabels = action.tabLabels,
                         selectedTabIndex = 0,
-                        selectedTabLabel = action.tabLabels.firstOrNull(),
+                        selectedTabLabel = action.tabLabels.firstOrNull()?.second,
                         isEditingSettings = false,
                         isShowInfos = false,
                         isEditingProjectConfiguration = false,
@@ -236,10 +236,10 @@ class Msfs2024ToolsViewModel(
             }
 
             is Msfs2024ToolsAction.OnTabSelected -> {
-                _state.update {
-                    it.copy(
+                _state.update { state ->
+                    state.copy(
                         selectedTabIndex = action.index,
-                        selectedTabLabel = it.tabLabels[action.index],
+                        selectedTabLabel = state.tabLabels[action.index].second,
                         isEditingSettings = false,
                         isShowInfos = false,
                         isEditingProjectConfiguration = false,
