@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components.msfsbutton
+package de.visualdigits.msfs2024tools.presentation.screen
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
@@ -77,7 +77,7 @@ fun MsfsTabButton(
                 .padding(start = paddingStart, top = paddingTop, end = paddingEnd, bottom = paddingBottom),
             text = text,
             style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onPrimary
+            color = MaterialTheme.colorScheme.onBackground
         )
     }
 
@@ -171,7 +171,7 @@ private fun createMsfsButtonOutline(
         // 5. Zurück nach oben links abrunden
         lineTo(0f, radiusF)
         arcTo(
-            rect = Rect(Offset.Companion.Zero, Size(2 * radiusF, 2 * radiusF)),
+            rect = Rect(Offset.Zero, Size(2 * radiusF, 2 * radiusF)),
             startAngleDegrees = 180f,
             sweepAngleDegrees = 90f,
             forceMoveTo = false

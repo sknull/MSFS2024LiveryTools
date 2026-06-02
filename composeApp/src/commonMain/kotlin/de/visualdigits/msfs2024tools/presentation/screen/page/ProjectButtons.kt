@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components.project
+package de.visualdigits.msfs2024tools.presentation.screen.page
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -45,7 +45,6 @@ fun RowScope.ProjectButtons(
     modifier: Modifier,
     settings: Settings?,
     textureFormatPackage: TextureFormat?,
-    textureFormatModel: TextureFormat?,
     project: ProjectConfiguration,
     onProjectListAction: (Msfs2024ToolsAction) -> Unit
 ) {
@@ -157,7 +156,6 @@ private fun ColumnScope.ConversionButton(
 ) {
     IndicatorButton(
         text = stringResource(label),
-        padding = 0.dp,
         onClick = {
             onProjectListAction(
                 Msfs2024ToolsAction.OnConversionClick(

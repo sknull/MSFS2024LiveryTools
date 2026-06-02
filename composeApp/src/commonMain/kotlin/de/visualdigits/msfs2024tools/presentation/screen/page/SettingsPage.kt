@@ -28,10 +28,8 @@ import de.visualdigits.compose.resources.icon_cancel_24px
 import de.visualdigits.compose.resources.icon_check_small_24px
 import de.visualdigits.compose.resources.icon_delete_24px
 import de.visualdigits.compose.resources.icon_edit_24px
-import de.visualdigits.compose.resources.icon_file_save_24px
 import de.visualdigits.compose.resources.icon_folder_open_24px
 import de.visualdigits.compose.resources.label_configuration
-import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame

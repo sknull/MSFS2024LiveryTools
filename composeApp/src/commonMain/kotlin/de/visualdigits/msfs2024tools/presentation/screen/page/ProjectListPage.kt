@@ -17,9 +17,7 @@ import de.visualdigits.common.presentation.components.button.TabButtonRow
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.tab_airplanes
 import de.visualdigits.compose.resources.tab_projects
-import de.visualdigits.msfs2024tools.presentation.components.msfsbutton.MsfsTabButton
-import de.visualdigits.msfs2024tools.presentation.components.tab.AirplanesTab
-import de.visualdigits.msfs2024tools.presentation.components.tab.ProjectsTab
+import de.visualdigits.msfs2024tools.presentation.screen.MsfsTabButton
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame

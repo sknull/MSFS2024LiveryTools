@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components
+package de.visualdigits.msfs2024tools.presentation.screen.page
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -76,7 +76,6 @@ fun BusyPanel(
         IndicatorButton(
             text = stringResource(Res.string.ok),
             height = 30.dp,
-            padding = 0.dp,
             onClick = onClick,
             modifier = Modifier
                 .align(Alignment.End)

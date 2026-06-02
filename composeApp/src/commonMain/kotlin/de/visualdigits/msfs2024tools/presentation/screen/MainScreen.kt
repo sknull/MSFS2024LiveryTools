@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import de.visualdigits.common.presentation.components.button.IndicatorButton
 import de.visualdigits.compose.resources.Res
+import de.visualdigits.compose.resources.background_lufthansa_100_baked
 import de.visualdigits.compose.resources.icon_info_24px
 import de.visualdigits.compose.resources.icon_menu_24px
 import de.visualdigits.compose.resources.icon_settings_24px
@@ -34,7 +36,6 @@ import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
 import de.visualdigits.msfs2024tools.presentation.screen.page.InfoPage
 import de.visualdigits.msfs2024tools.presentation.screen.page.ProjectListPage
 import de.visualdigits.msfs2024tools.presentation.screen.page.SettingsPage
-import de.visualdigits.msfs2024tools.presentation.style.DisplayThemeEnum
 import de.visualdigits.msfs2024tools.presentation.style.MyShapes
 import de.visualdigits.msfs2024tools.presentation.style.typography
 import org.jetbrains.compose.resources.imageResource
@@ -46,8 +47,6 @@ fun MainScreen(
     viewModel: Msfs2024ToolsViewModel,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-
-    val displayTheme = DisplayThemeEnum.DARK
 
 
     BoxWithConstraints(
@@ -64,9 +63,28 @@ fun MainScreen(
         }
 
         MaterialTheme(
-            colorScheme = displayTheme.colorScheme,
+            colorScheme = darkColorScheme(
+                secondary = Color(0xFF313030), // switchbox unchecked track
+                onSecondary = Color(0xFFFFFFFF), // switchbox unchecked thumb and border
+
+                background = Color(0xFF000000),
+                onBackground = Color(0xFFFFFFFF),
+
+                surface = Color(0xFF000000), // buttons
+                onSurface = Color(0xff3b84eb), // spot color
+
+                surfaceContainer = Color.Transparent,
+                surfaceContainerLowest = Color(0xFF373737),
+
+                errorContainer = Color(0xffff002a), // delete dialogs
+                onErrorContainer = Color(0xFFFFFFFF), // delete dialogs
+
+                outline = Color(0xFFFFFFFF), // focused border
+
+                primaryFixed = Color(0xAA000000) // terminal
+            ),
             typography = typography(
-                textColor = displayTheme.textColor,
+                textColor = Color(0xFFFFFFFF),
                 sizeFactor = sizeFactor
             ),
             shapes = MyShapes
@@ -148,7 +166,7 @@ fun MainScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .paint(
-                                painter = BitmapPainter(imageResource(displayTheme.backgroundImage)),
+                                painter = BitmapPainter(imageResource(Res.drawable.background_lufthansa_100_baked)),
                                 alignment = Alignment.TopStart,
                                 contentScale = ContentScale.FillBounds
                             )

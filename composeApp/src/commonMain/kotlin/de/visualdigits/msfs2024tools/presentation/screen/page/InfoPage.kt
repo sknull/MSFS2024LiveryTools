@@ -39,7 +39,7 @@ fun InfoPage(
             .background(Color.Black.copy(alpha = 0.4f)),
         label = stringResource(Res.string.title_info)
     ) {
-        val linkColor = MaterialTheme.colorScheme.primary
+        val linkColor = MaterialTheme.colorScheme.onSurface
 
         val html = remember(linkColor) {
             htmlToAnnotatedString(

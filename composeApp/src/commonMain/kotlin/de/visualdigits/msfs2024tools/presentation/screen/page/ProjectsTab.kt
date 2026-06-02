@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components.tab
+package de.visualdigits.msfs2024tools.presentation.screen.page
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -38,8 +38,6 @@ import de.visualdigits.compose.resources.icon_edit_24px
 import de.visualdigits.compose.resources.icon_folder_open_24px
 import de.visualdigits.compose.resources.new_project_hint
 import de.visualdigits.compose.resources.warning_no_results
-import de.visualdigits.msfs2024tools.presentation.components.BusyPanel
-import de.visualdigits.msfs2024tools.presentation.components.project.ProjectList
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.style.gap
@@ -79,8 +77,8 @@ fun ProjectsTab(
         if (!state.isEditingProjectConfiguration && state.currentProjectConfiguration == null) {
             IndicatorButton(
                 text = stringResource(Res.string.new_project_hint),
+                width = 200.dp,
                 height = 30.dp,
-                padding = 0.dp,
                 onClick = {
                     onAction(
                         Msfs2024ToolsAction.OnNewProjectClick()

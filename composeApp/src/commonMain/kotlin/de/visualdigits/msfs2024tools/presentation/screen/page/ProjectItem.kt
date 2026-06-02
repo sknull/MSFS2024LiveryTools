@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components.project
+package de.visualdigits.msfs2024tools.presentation.screen.page
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -64,11 +64,10 @@ fun ProjectItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(180.dp)
             .clip(MaterialTheme.shapes.extraSmall)
             .border(
                 width = 1.dp,
-                color = if (isHovered) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+                color = if (isHovered) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
                 shape = MaterialTheme.shapes.extraSmall
             )
             .hoverable(interactionSource)
@@ -140,7 +139,6 @@ fun ProjectItem(
             modifier = modifier,
             settings = settings,
             textureFormatPackage = textureFormatPackage,
-            textureFormatModel = textureFormatModel,
             project = project,
             onProjectListAction = onProjectListAction
         )
@@ -155,7 +153,7 @@ fun ProjectItem(
             Icon(
                 painter = painterResource(Res.drawable.icon_arrow_forward_ios_24px),
                 contentDescription = stringResource(Res.string.show_details_hint),
-                tint = MaterialTheme.colorScheme.onPrimary
+                tint = MaterialTheme.colorScheme.onBackground
             )
         }
     }

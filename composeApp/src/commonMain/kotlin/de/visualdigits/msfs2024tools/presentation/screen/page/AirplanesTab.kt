@@ -1,4 +1,4 @@
-package de.visualdigits.msfs2024tools.presentation.components.tab
+package de.visualdigits.msfs2024tools.presentation.screen.page
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -69,7 +69,7 @@ fun <K : FieldKey<K>, FK : FieldKey<FK>> AirplanesTab(
         space = MaterialTheme.shapes.gap,
         focusedBorderColor = MaterialTheme.colorScheme.outline,
         unfocusedBorderColor = MaterialTheme.colorScheme.onSurface,
-        iconTint = MaterialTheme.colorScheme.onPrimary,
+        iconTint = MaterialTheme.colorScheme.onBackground,
         buttonShape = MaterialTheme.shapes.extraSmall,
         containerShape = MaterialTheme.shapes.small,
         buttonColor = MaterialTheme.colorScheme.surfaceContainerLowest,
