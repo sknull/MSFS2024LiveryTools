@@ -74,8 +74,12 @@ fun Settings.toSettingsDto(): SettingsDto {
 }
 
 val stringListAdapter = object : ColumnAdapter<List<String>, String> {
-    override fun decode(databaseValue: String): List<String> = databaseValue.split(",")
-    override fun encode(value: List<String>): String = value.joinToString(",")
+    override fun decode(databaseValue: String): List<String> {
+        return databaseValue.split(",")
+    }
+    override fun encode(value: List<String>): String {
+        return value.joinToString(",")
+    }
 }
 
 val projectsAdapter = object : ColumnAdapter<List<ProjectConfigurationDto>, String> {

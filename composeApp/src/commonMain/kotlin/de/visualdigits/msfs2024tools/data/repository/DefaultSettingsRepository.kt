@@ -28,7 +28,6 @@ class DefaultSettingsRepository(
 
     override suspend fun getSettings(): Result<Pair<Settings, List<ProjectConfiguration>>, DataError.Local> {
         return try {
-            val settingsEnity = databaseSettingsDataSource.loadSettings()
             val settingsDto = filesystemSettingsDataSource.loadSettings()?.toSettingsDto()
             val settings = if (settingsDto != null) {
                 log.i("Found settings from json file")
@@ -38,6 +37,7 @@ class DefaultSettingsRepository(
                     log.i("Migrated settings - saving new json file")
                     filesystemSettingsDataSource.saveSettings(migratedSettingsEntity)
                 }
+                val settingsEnity = databaseSettingsDataSource.loadSettings()
                 if (settingsEnity == null) {
                     try {
                         log.i("No database found - converting old json file to database")
@@ -57,10 +57,10 @@ class DefaultSettingsRepository(
                 migratedSettingsDto.toSettingsEntity()
             } else {
                 log.i("Found no settings json file - trying to load database")
-                val databaseSettings = databaseSettingsDataSource.loadSettings()
-                if (databaseSettings != null) {
+                val settingsEnity = databaseSettingsDataSource.loadSettings()
+                if (settingsEnity != null) {
                     log.i("Found database")
-                    databaseSettings
+                    settingsEnity
                 } else {
                     log.i("Found no database either - creating default settings and save to database")
                     val newSettings = settingsEnity
