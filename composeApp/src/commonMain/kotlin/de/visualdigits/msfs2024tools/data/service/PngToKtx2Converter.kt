@@ -2,7 +2,7 @@ package de.visualdigits.msfs2024tools.data.service
 
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.errorhandling.LogMessage
-import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.log
+import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.logMessage
 import de.visualdigits.common.domain.util.WindowsUtils
 import de.visualdigits.common.domain.util.WindowsUtils.runCommand
 import de.visualdigits.msfs2024tools.data.model.configuration.ProjectConfigurationDto
@@ -35,8 +35,8 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
         logger: (LogMessage) -> Unit,
         dryRun: Boolean
     ): Boolean = withContext(Dispatchers.IO) {
-        logger(log(Severity.Info, "Converting png texture files in '${projectConfiguration.modelTexturesDir}'"))
-        logger(log(Severity.Info, "Using target texture directory: ${projectConfiguration.packageTextureDir}"))
+        logger(logMessage(Severity.Info, "Converting png texture files in '${projectConfiguration.modelTexturesDir}'"))
+        logger(logMessage(Severity.Info, "Using target texture directory: ${projectConfiguration.packageTextureDir}"))
 
         if (checkDirectories(projectConfiguration, logger)) return@withContext false
 
@@ -74,13 +74,13 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
                     logger = logger,
                 )
             } else {
-                logger(log(Severity.Warn, "No modified textures found."))
+                logger(logMessage(Severity.Warn, "No modified textures found."))
             }
         } else {
-            logger(log(Severity.Info, "No actual conversion done due to a dry run."))
+            logger(logMessage(Severity.Info, "No actual conversion done due to a dry run."))
         }
 
-        logger(log(Severity.Info, "Deleting temporary directory."))
+        logger(logMessage(Severity.Info, "Deleting temporary directory."))
         tempDir.deleteRecursively()
 
         if (!dryRun && modifiedFiles.isNotEmpty()) {
@@ -90,7 +90,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
                 logger = logger,
             )
         } else {
-            logger(log(Severity.Warn, "No images converted - not regenerating layout.json"))
+            logger(logMessage(Severity.Warn, "No images converted - not regenerating layout.json"))
         }
 
         modifiedFiles.isNotEmpty()
@@ -121,7 +121,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
         logger: (LogMessage) -> Unit,
         dryRun: Boolean = false
     ): List<File> = withContext(Dispatchers.IO) {
-        logger(log(Severity.Info, "Preprocessing source directory '${projectConfiguration.modelTexturesDir}'..."))
+        logger(logMessage(Severity.Info, "Preprocessing source directory '${projectConfiguration.modelTexturesDir}'..."))
 
         val tempTargetDir = projectConfiguration.modelTexturesDir?.let { d -> File(d) }
                 ?.resolve("TempPackage/PackageSources/SimObjects/Airplanes/png-2-ktx2/common/texture")
@@ -139,7 +139,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
                 val textureType = determineTextureType(f)
                 val targetFile = File(tempTargetDir, f.name)
                 if (!targetFile.exists()) {
-                    logger(log(Severity.Info, "Copy texture file '${f.name}'"))
+                    logger(logMessage(Severity.Info, "Copy texture file '${f.name}'"))
                     if (!dryRun) {
                         f.copyToIfNotExists(
                             targetFile = targetFile,
@@ -147,7 +147,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
                         )
                     }
                 }
-                logger(log(Severity.Info, "Generating descriptor file '${f.name}.xml'"))
+                logger(logMessage(Severity.Info, "Generating descriptor file '${f.name}.xml'"))
                 if (!dryRun) {
                     val bitmapConfiguration =
                         BitmapConfiguration(
@@ -184,7 +184,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
             "\"png-2-ktx2.xml\"",
         ))
 
-        logger(log(Severity.Info, "Executing command '${command.joinToString(" ")}'..."))
+        logger(logMessage(Severity.Info, "Executing command '${command.joinToString(" ")}'..."))
 
         runCommand(
             command = command,
@@ -205,7 +205,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
             if (newFiles.isNotEmpty()) {
                 detectedFiles.addAll(
                     newFiles.map { f ->
-                        logger(log(Severity.Info, "Detected converted image '${f.name}'"))
+                        logger(logMessage(Severity.Info, "Detected converted image '${f.name}'"))
                         f.name
                     }
                 )
@@ -213,7 +213,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
             }
             delay(100)
         }
-        logger(log(Severity.Info, "Command finished."))
+        logger(logMessage(Severity.Info, "Command finished."))
     }
 
     private suspend fun collectConvertedTextures(
@@ -221,7 +221,7 @@ object PngToKtx2Converter : AbstractMsfsConverter() {
         targetDirectory: File,
         logger: (LogMessage) -> Unit,
     ) = withContext(Dispatchers.IO) {
-        logger(log(Severity.Info, "Copy ktx2 textures with descriptors..."))
+        logger(logMessage(Severity.Info, "Copy ktx2 textures with descriptors..."))
         val finalTexturesDir = sourceDirectory
             .resolve("TempPackage/Packages/png-2-ktx2/SimObjects/Airplanes/png-2-ktx2/common/texture")
         findFiles(finalTexturesDir, listOf(".ktx2", ".json"))

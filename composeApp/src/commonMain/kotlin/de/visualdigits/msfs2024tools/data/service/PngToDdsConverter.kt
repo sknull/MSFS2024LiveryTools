@@ -2,11 +2,10 @@ package de.visualdigits.msfs2024tools.data.service
 
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.errorhandling.LogMessage
-import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.log
+import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.logMessage
 import de.visualdigits.msfs2024tools.data.model.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.data.model.configuration.SettingsDto
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -19,8 +18,8 @@ object PngToDdsConverter : AbstractMsfsConverter() {
         logger: (LogMessage) -> Unit,
         dryRun: Boolean
     ): Boolean = withContext(Dispatchers.IO) {
-        logger(log(Severity.Info, "Converting png texture files in '${projectConfiguration.packageTextureDir}'"))
-        logger(log(Severity.Info, "Using target texture directory: ${projectConfiguration.modelTexturesDir}"))
+        logger(logMessage(Severity.Info, "Converting png texture files in '${projectConfiguration.packageTextureDir}'"))
+        logger(logMessage(Severity.Info, "Using target texture directory: ${projectConfiguration.modelTexturesDir}"))
 
         if (checkDirectories(projectConfiguration, logger)) return@withContext false
 

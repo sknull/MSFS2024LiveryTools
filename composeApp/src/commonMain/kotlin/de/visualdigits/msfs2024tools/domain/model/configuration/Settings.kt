@@ -1,5 +1,6 @@
 package de.visualdigits.msfs2024tools.domain.model.configuration
 
+import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.FileMode
 import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
@@ -40,7 +41,7 @@ class Settings(
                 label = UiText.StringResourceId(Res.string.label_language),
                 options = { _, _ -> Language.options },
                 keyFactory = Language,
-                valid = { _, value -> value != null },
+                valid = { _, value -> if(value != null) Severity.Info else Severity.Error },
             ),
 
             EnumFieldDescriptor(
@@ -49,14 +50,14 @@ class Settings(
                 label = UiText.StringResourceId(Res.string.label_simType),
                 options = { _, _ -> SimType.options },
                 keyFactory = SimType,
-                valid = { _, value -> value != null }
+                valid = { _, value -> if(value != null) Severity.Info else Severity.Error }
             ),
 
             FileFieldDescriptor(
                 key = SK.sdkRoot,
                 label = UiText.StringResourceId(Res.string.label_sdkRoot),
                 fileMode = FileMode.DIRECTORIES_ONLY,
-                valid = { _, value -> File(value as File, "Tools").exists() && value?.isDirectory == true }
+                valid = { _, value -> if(File(value as File, "Tools").exists() && value?.isDirectory == true) Severity.Info else Severity.Error }
             ),
 
             FileFieldDescriptor(
@@ -64,7 +65,7 @@ class Settings(
                 label = UiText.StringResourceId(Res.string.label_layoutGeneratorToolPath),
                 fileMode = FileMode.FILES_ONLY,
                 options = { _, _ -> listOf(Triple("exe", null, null)) },
-                valid = { _, value -> value == null || ((value as? File)?.exists() == true && value.isFile) }
+                valid = { _, value -> if(value == null || ((value as? File)?.exists() == true && value.isFile)) Severity.Info else Severity.Error }
             ),
 
             FileFieldDescriptor(
@@ -72,21 +73,21 @@ class Settings(
                 label = UiText.StringResourceId(Res.string.label_nvidiaTextureToolPath),
                 fileMode = FileMode.FILES_ONLY,
                 options = { _, _ -> listOf(Triple("exe", null, null)) },
-                valid = { _, value -> (value as? File)?.exists() == true && value.isFile() }
+                valid = { _, value -> if((value as? File)?.exists() == true && value.isFile()) Severity.Info else Severity.Error }
             ),
 
             FileFieldDescriptor(
                 key = SK.mainLibraryRootFolder,
                 label = UiText.StringResourceId(Res.string.label_mainLibraryRootFolder),
                 fileMode = FileMode.DIRECTORIES_ONLY,
-                valid = { _, _ -> true }
+                valid = { _, _ -> Severity.Info }
             ),
 
             FileFieldDescriptor(
                 key = SK.projectRootFolder,
                 label = UiText.StringResourceId(Res.string.label_projectRootFolder),
                 fileMode = FileMode.DIRECTORIES_ONLY,
-                valid = { _, _ -> true }
+                valid = { _, _ -> Severity.Info }
             ),
 
             ListFieldDescriptor(
@@ -102,7 +103,7 @@ class Settings(
                             Triple<String, UiText?, DrawableResource?>(airplaneName, null, null)
                         }
                         ?:listOf() },
-                valid = { _, _ -> true }
+                valid = { _, _ -> Severity.Info }
             ),
 
             StringFieldDescriptor(

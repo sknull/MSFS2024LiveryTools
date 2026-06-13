@@ -2,13 +2,12 @@ package de.visualdigits.msfs2024tools.data.service
 
 import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.errorhandling.LogMessage
-import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.log
+import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.logMessage
 import de.visualdigits.common.domain.util.WindowsUtils.runCommand
 import de.visualdigits.msfs2024tools.data.model.configuration.ProjectConfigurationDto
 import de.visualdigits.msfs2024tools.data.model.configuration.SettingsDto
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 import java.io.File
 
@@ -21,10 +20,10 @@ abstract class AbstractMsfsConverter(
         logger: (LogMessage) -> Unit
     ): Boolean {
         if (projectConfiguration.packageTextureDir == null) {
-            logger(log(Severity.Error, "Package texture directory unset"))
+            logger(logMessage(Severity.Error, "Package texture directory unset"))
         }
         if (projectConfiguration.modelTexturesDir == null) {
-            logger(log(Severity.Error, "Model texture directory unset"))
+            logger(logMessage(Severity.Error, "Model texture directory unset"))
         }
         if (projectConfiguration.packageTextureDir == null || projectConfiguration.modelTexturesDir == null) {
             return true
@@ -56,7 +55,7 @@ abstract class AbstractMsfsConverter(
             modifiedFiles
                 .forEachIndexed { i, f ->
                     progress(i / n)
-                    logger(log(Severity.Info, "Converting texture file '${f.name}'"))
+                    logger(logMessage(Severity.Info, "Converting texture file '${f.name}'"))
                     val targetFile = File(targetDirectory, "${f.name.dropLast(charsToDrop)}$extensionToAdd")
                     val command = listOf(
                         "\"${settingsDto.nvidiaTextureToolPath}\"",
@@ -64,7 +63,7 @@ abstract class AbstractMsfsConverter(
                         "\"${targetFile.canonicalPath}\"",
                         "\"${f.canonicalPath}\""
                     )
-                    logger(log(Severity.Info, "Executing command '$command'"))
+                    logger(logMessage(Severity.Info, "Executing command '$command'"))
                     if (!dryRun) {
                         runCommand(
                             command = command,
@@ -72,11 +71,11 @@ abstract class AbstractMsfsConverter(
                             logger = logger,
                         )
                     } else {
-                        logger(log(Severity.Warn, "Dry run - not actually executing command"))
+                        logger(logMessage(Severity.Warn, "Dry run - not actually executing command"))
                     }
                 }
         } else {
-            logger(log(Severity.Warn, "No modified textures found."))
+            logger(logMessage(Severity.Warn, "No modified textures found."))
         }
 
         modifiedFiles
@@ -113,7 +112,7 @@ abstract class AbstractMsfsConverter(
     ) = withContext(dispatcher) {
         val layoutGeneratorToolPath = settingsDto.layoutGeneratorToolPath
         if (layoutGeneratorToolPath != null && File(layoutGeneratorToolPath).exists()) {
-            logger(log(Severity.Info, "Generating ${projectConfiguration.packageDir}/layout.json"))
+            logger(logMessage(Severity.Info, "Generating ${projectConfiguration.packageDir}/layout.json"))
             val layoutFile = File(projectConfiguration.packageDir, "layout.json")
             runCommand(
                 command = listOf(
@@ -124,7 +123,7 @@ abstract class AbstractMsfsConverter(
                 logger = logger,
             )
         } else {
-            logger(log(Severity.Warn, "Layout generator executable not configured - not regenerating layout file!"))
+            logger(logMessage(Severity.Warn, "Layout generator executable not configured - not regenerating layout file!"))
         }
     }
 }

@@ -1,5 +1,6 @@
 package de.visualdigits.msfs2024tools.domain.model.configuration
 
+import co.touchlab.kermit.Severity
 import de.visualdigits.common.domain.model.FileMode
 import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
@@ -48,7 +49,7 @@ class ProjectConfiguration(
                         }
                         ?:listOf() },
                 valid = { _, value ->
-                    (value as? String)?.isNotBlank() == true
+                    if((value as? String)?.isNotBlank() == true) Severity.Info else Severity.Error
                 }
             ),
 
@@ -56,14 +57,14 @@ class ProjectConfiguration(
                 key = PK.liveryName,
                 label = UiText.StringResourceId(Res.string.label_liveryName),
                 toolTip = UiText.StringResourceId(Res.string.tooltip_liveryName),
-                valid = { _, value -> (value as? String)?.isNotBlank() == true }
+                valid = { _, value -> if((value as? String)?.isNotBlank() == true) Severity.Info else Severity.Error }
             ),
 
             FileFieldDescriptor(
                 key = PK.packageDir,
                 label = UiText.StringResourceId(Res.string.label_packageDir),
                 fileMode = FileMode.DIRECTORIES_ONLY,
-                valid = { _, value -> (value as? File)?.exists() == true && value.isDirectory }
+                valid = { _, value -> if((value as? File)?.exists() == true && value.isDirectory) Severity.Info else Severity.Error }
             ),
 
             SpacerFieldDescriptor(key = PK.spacer),
@@ -76,7 +77,7 @@ class ProjectConfiguration(
                     val get = (configuration as ProjectConfiguration).get<File>(PK.packageDir)
                     get ?: File(System.getProperty("user.home"))
                 },
-                valid = { _, value -> (value as? File)?.exists() == true && value.isDirectory }
+                valid = { _, value -> if((value as? File)?.exists() == true && value.isDirectory) Severity.Info else Severity.Error }
             ),
             
             EnumFieldDescriptor(
@@ -86,14 +87,14 @@ class ProjectConfiguration(
                 label = UiText.StringResourceId(Res.string.label_textureFormat),
                 options = { _, _ -> TextureFormat.options },
                 keyFactory = TextureFormat,
-                valid = { _, value -> value != null }
+                valid = { _, value -> if(value != null) Severity.Info else Severity.Error }
             ),
 
             FileFieldDescriptor(
                 key = PK.modelTexturesDir,
                 label = UiText.StringResourceId(Res.string.label_modelTexturesDir),
                 fileMode = FileMode.DIRECTORIES_ONLY,
-                valid = { _, value -> (value as? File)?.exists() == true && value.isDirectory }
+                valid = { _, value -> if((value as? File)?.exists() == true && value.isDirectory) Severity.Info else Severity.Error }
             ),
 
             EnumFieldDescriptor(
@@ -103,7 +104,7 @@ class ProjectConfiguration(
                 label = UiText.StringResourceId(Res.string.label_textureFormat),
                 options = { _, _ -> TextureFormat.options },
                 keyFactory = TextureFormat,
-                valid = { _, value -> value != null }
+                valid = { _, value -> if(value != null) Severity.Info else Severity.Error }
             ),
 
             ListFieldDescriptor(
@@ -112,7 +113,7 @@ class ProjectConfiguration(
                 label = UiText.StringResourceId(Res.string.label_textureTypes),
                 options = { _, _ -> TextureType.options },
                 keyFactory = TextureTypeListKeyFactory,
-                valid = { _, value -> (value as? MutableList<TextureType>)?.isNotEmpty() == true }
+                valid = { _, value -> if((value as? MutableList<TextureType>)?.isNotEmpty() == true) Severity.Info else Severity.Error }
             ),
         )
     }
