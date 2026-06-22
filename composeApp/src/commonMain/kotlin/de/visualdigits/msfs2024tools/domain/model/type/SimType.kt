@@ -1,8 +1,8 @@
 package de.visualdigits.msfs2024tools.domain.model.type
 
-import de.visualdigits.common.domain.model.Enumerable
-import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.configuration.keyfactory.KeyFactory
+import de.visualdigits.common.domain.model.ui.Enumerable
+import de.visualdigits.common.domain.model.ui.UiText
 import org.jetbrains.compose.resources.DrawableResource
 
 enum class SimType : Enumerable<SimType> {

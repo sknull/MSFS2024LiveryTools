@@ -4,12 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Severity
-import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.errorhandling.LogMessage
-import de.visualdigits.common.domain.model.errorhandling.LogMessage.Companion.log
 import de.visualdigits.common.domain.model.errorhandling.Result
 import de.visualdigits.common.domain.model.errorhandling.onError
 import de.visualdigits.common.domain.model.errorhandling.onSuccess
+import de.visualdigits.common.domain.model.ui.UiText
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.error_global_configuration_invalid
 import de.visualdigits.compose.resources.error_project_configuration_invalid
@@ -21,8 +20,8 @@ import de.visualdigits.msfs2024tools.domain.model.errorhandling.toUiText
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion
 import de.visualdigits.msfs2024tools.domain.model.type.Language
 import de.visualdigits.msfs2024tools.domain.model.type.SimType
-import de.visualdigits.msfs2024tools.domain.service.SettingsRepository
 import de.visualdigits.msfs2024tools.domain.service.Msfs2024Service
+import de.visualdigits.msfs2024tools.domain.service.SettingsRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

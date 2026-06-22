@@ -12,14 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.domain.model.UiText
+import de.visualdigits.common.domain.model.ui.UiText
 import de.visualdigits.common.presentation.components.button.TabButtonRow
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.tab_airplanes
 import de.visualdigits.compose.resources.tab_projects
-import de.visualdigits.msfs2024tools.presentation.screen.MsfsTabButton
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
+import de.visualdigits.msfs2024tools.presentation.screen.MsfsTabButton
 import de.visualdigits.msfs2024tools.presentation.screen.ScreenFrame
 import de.visualdigits.msfs2024tools.presentation.style.gap
 

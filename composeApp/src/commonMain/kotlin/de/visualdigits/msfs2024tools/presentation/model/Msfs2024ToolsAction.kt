@@ -1,8 +1,8 @@
 package de.visualdigits.msfs2024tools.presentation.model
 
-import de.visualdigits.common.domain.model.KeyValue
-import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
+import de.visualdigits.common.domain.model.ui.KeyValue
+import de.visualdigits.common.domain.model.ui.UiText
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 import de.visualdigits.msfs2024tools.domain.model.type.Conversion

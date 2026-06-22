@@ -1,14 +1,14 @@
 package de.visualdigits.msfs2024tools.domain.model.configuration
 
 import co.touchlab.kermit.Severity
-import de.visualdigits.common.domain.model.FileMode
-import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.configuration.AbstractConfiguration
 import de.visualdigits.common.domain.model.configuration.EnumFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.FileFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.ListFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.StringFieldDescriptor
 import de.visualdigits.common.domain.model.configuration.keyfactory.StringListKeyFactory
+import de.visualdigits.common.domain.model.ui.FileMode
+import de.visualdigits.common.domain.model.ui.UiText
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.label_airplanes
 import de.visualdigits.compose.resources.label_language

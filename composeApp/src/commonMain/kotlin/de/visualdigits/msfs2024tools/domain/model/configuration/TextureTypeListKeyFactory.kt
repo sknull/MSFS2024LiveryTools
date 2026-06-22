@@ -1,7 +1,7 @@
 package de.visualdigits.msfs2024tools.domain.model.configuration
 
-import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.configuration.keyfactory.KeyFactory
+import de.visualdigits.common.domain.model.ui.UiText
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
 import org.jetbrains.compose.resources.DrawableResource
 

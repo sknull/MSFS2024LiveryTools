@@ -1,8 +1,8 @@
 package de.visualdigits.msfs2024tools.presentation.model
 
 import co.touchlab.kermit.Severity
-import de.visualdigits.common.domain.model.UiText
 import de.visualdigits.common.domain.model.errorhandling.LogMessage
+import de.visualdigits.common.domain.model.ui.UiText
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.Settings
 
