@@ -9,6 +9,7 @@ import de.visualdigits.common.domain.model.errorhandling.Result
 import de.visualdigits.common.domain.model.errorhandling.onError
 import de.visualdigits.common.domain.model.errorhandling.onSuccess
 import de.visualdigits.common.domain.model.ui.UiText
+import de.visualdigits.common.presentation.components.applyAppLanguage
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.error_global_configuration_invalid
 import de.visualdigits.compose.resources.error_project_configuration_invalid
@@ -31,7 +32,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.File
-import java.util.Locale
 
 class Msfs2024ToolsViewModel(
     val settingsRepository: SettingsRepository,
@@ -82,7 +82,7 @@ class Msfs2024ToolsViewModel(
             is Msfs2024ToolsAction.OnSettingsValueChanged -> {
                 if (action.keyValue.descriptor.key == SK.language) {
                     action.keyValue.value?.also { l ->
-                        Locale.setDefault((l as Language).locale)
+                        applyAppLanguage((l as Language).localeCode)
                     }
                 }
                 _state.update {
@@ -98,7 +98,7 @@ class Msfs2024ToolsViewModel(
 
             is Msfs2024ToolsAction.OnEditSettingsCancelClick -> {
                 _state.update { state ->
-                    state.originalSettings?.get<Language>(SK.language)?.also { l -> Locale.setDefault(l.locale) }
+                    state.originalSettings?.get<Language>(SK.language)?.also { l -> applyAppLanguage(l.localeCode) }
                     state.copy(
                         settings = state.originalSettings?.copy(),
                         isEditingSettings = false,
@@ -321,7 +321,7 @@ class Msfs2024ToolsViewModel(
         }
         settingsRepository.getSettings()
             .onSuccess { (settings, projectConfigurations) ->
-                Locale.setDefault(settings.get<Language>(SK.language)?.locale?: Language.EN.locale)
+                applyAppLanguage(settings.get<Language>(SK.language)?.localeCode?: Language.EN.localeCode)
                 _state.update {
                     it.copy(
                         settings = settings,

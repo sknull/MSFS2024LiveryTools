@@ -5,7 +5,9 @@ Cancel
 Select directory
 Select file
 Close
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Simulation type
 Texture format
 Texture types
 Bulgarian
-Chinese
 Czech
 German
 Danish
@@ -77,6 +78,7 @@ Swedish
 Slovak
 Slovenian
 Turkish
+Chinese
 About
 Help
 New Project...

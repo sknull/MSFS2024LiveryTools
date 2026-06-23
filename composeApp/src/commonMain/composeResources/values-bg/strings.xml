@@ -7,12 +7,12 @@
   <string name="choose_directory">Избор на папка</string>
   <string name="choose_file">Избор на файл</string>
   <string name="close">Затвори</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Изтрий</string>
   <string name="edit">Редактирай</string>
   <string name="edit_hint">Редактирай...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Формат на текстурата</string>
   <string name="label_textureTypes">Типове текстури</string>
   <string name="language_bg">Български</string>
-  <string name="language_cn">Китайски</string>
-  <string name="language_cz">Чешки</string>
+  <string name="language_cs">Чешки</string>
   <string name="language_de">Немски</string>
   <string name="language_dk">Датски</string>
   <string name="language_en">Английски</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Словашки</string>
   <string name="language_sl">Словенски</string>
   <string name="language_tr">Турски</string>
+  <string name="language_zh">Китайски</string>
   <string name="menu_about">За</string>
   <string name="menu_help">Помощ</string>
   <string name="new_project_hint">Нов проект...</string>

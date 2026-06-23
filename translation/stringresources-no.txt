@@ -5,7 +5,9 @@ Avbryt
 Velg katalog
 Velg fil
 Lukk
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Simuleringstype
 Teksturformat
 Teksturtyper
 Bulgarsk
-Kinesisk
 Tsjekkisk
 Tysk
 Dansk
@@ -77,6 +78,7 @@ Svensk
 Slovakisk
 Slovensk
 Tyrkisk
+Kinesisk
 Om
 Hjelp
 Nytt prosjekt...

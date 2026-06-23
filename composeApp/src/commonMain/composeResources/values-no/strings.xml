@@ -7,12 +7,12 @@
   <string name="choose_directory">Velg katalog</string>
   <string name="choose_file">Velg fil</string>
   <string name="close">Lukk</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Slett</string>
   <string name="edit">Rediger</string>
   <string name="edit_hint">Rediger...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Teksturformat</string>
   <string name="label_textureTypes">Teksturtyper</string>
   <string name="language_bg">Bulgarsk</string>
-  <string name="language_cn">Kinesisk</string>
-  <string name="language_cz">Tsjekkisk</string>
+  <string name="language_cs">Tsjekkisk</string>
   <string name="language_de">Tysk</string>
   <string name="language_dk">Dansk</string>
   <string name="language_en">Engelsk</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Slovakisk</string>
   <string name="language_sl">Slovensk</string>
   <string name="language_tr">Tyrkisk</string>
+  <string name="language_zh">Kinesisk</string>
   <string name="menu_about">Om</string>
   <string name="menu_help">Hjelp</string>
   <string name="new_project_hint">Nytt prosjekt...</string>

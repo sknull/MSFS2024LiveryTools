@@ -7,12 +7,12 @@
   <string name="choose_directory">Dizini Seç</string>
   <string name="choose_file">Dosyayı Seç</string>
   <string name="close">Kapat</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Sil</string>
   <string name="edit">Düzenle</string>
   <string name="edit_hint">Düzenle...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Doku biçimi</string>
   <string name="label_textureTypes">Doku türleri</string>
   <string name="language_bg">Bulgarian</string>
-  <string name="language_cn">Çince</string>
-  <string name="language_cz">Czech</string>
+  <string name="language_cs">Czech</string>
   <string name="language_de">Almanca</string>
   <string name="language_dk">Danish</string>
   <string name="language_en">İngilizce</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Slovak</string>
   <string name="language_sl">Slovenian</string>
   <string name="language_tr">Türkçe</string>
+  <string name="language_zh">Çince</string>
   <string name="menu_about">Hakkında</string>
   <string name="menu_help">Yardım</string>
   <string name="new_project_hint">Yeni proje...</string>

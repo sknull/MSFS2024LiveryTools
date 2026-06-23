@@ -5,7 +5,9 @@ MEŞGUL...
 Dizini Seç
 Dosyayı Seç
 Kapat
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Simülasyon türü
 Doku biçimi
 Doku türleri
 Bulgarian
-Çince
 Czech
 Almanca
 Danish
@@ -77,6 +78,7 @@ Swedish
 Slovak
 Slovenian
 Türkçe
+Çince
 Hakkında
 Yardım
 Yeni proje...

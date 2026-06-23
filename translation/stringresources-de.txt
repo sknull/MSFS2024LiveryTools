@@ -5,7 +5,9 @@ Abbrechen
 Verzeichnis auswählen
 Datei auswählen
 Schließen
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Simulationstyp
 Texturformat
 Texturtypen
 Bulgarisch
-Chinesisch
 Tschechisch
 Deutsch
 Dänisch
@@ -77,6 +78,7 @@ Schwedisch
 Slowakisch
 Slowenisch
 Türkisch
+Chinesisch
 Über
 Hilfe
 Neues Projekt...

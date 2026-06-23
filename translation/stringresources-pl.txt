@@ -5,7 +5,9 @@ Anuluj
 Wybierz katalog
 Wybierz plik
 Zamknij
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Typ symulacji
 Format tekstury
 Typy tekstur
 Bułgarski
-Chiński
 Czeski
 Niemiecki
 Duński
@@ -77,6 +78,7 @@ Szwedzki
 Słowacki
 Słoweński
 Turecki
+Chiński
 O programie
 Pomoc
 Nowy projekt...

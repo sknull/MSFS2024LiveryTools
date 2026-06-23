@@ -5,7 +5,9 @@ Peruuta
 Valitse kansio
 Valitse tiedosto
 Sulje
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Simulaatiotyyppi
 Tekstuuriformaatti
 Tekstuurityypit
 bulgaria
-kiina
 tšekki
 saksa
 tanska
@@ -77,6 +78,7 @@ ruotsi
 slovakia
 slovenia
 turkki
+kiina
 Tietoja
 Ohje
 Uusi projekti...

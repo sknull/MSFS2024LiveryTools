@@ -7,12 +7,12 @@
   <string name="choose_directory">Επιλογή καταλόγου</string>
   <string name="choose_file">Επιλογή αρχείου</string>
   <string name="close">Κλείσιμο</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Διαγραφή</string>
   <string name="edit">Επεξεργασία</string>
   <string name="edit_hint">Επεξεργασία...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Μορφή υφής</string>
   <string name="label_textureTypes">Τύποι υφών</string>
   <string name="language_bg">Βουλγαρικά</string>
-  <string name="language_cn">Κινέζικα</string>
-  <string name="language_cz">Τσεχικά</string>
+  <string name="language_cs">Τσεχικά</string>
   <string name="language_de">Γερμανικά</string>
   <string name="language_dk">Δανικά</string>
   <string name="language_en">Αγγλικά</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Σλοβακικά</string>
   <string name="language_sl">Σλοβενικά</string>
   <string name="language_tr">Τουρκικά</string>
+  <string name="language_zh">Κινέζικα</string>
   <string name="menu_about">Σχετικά</string>
   <string name="menu_help">Βοήθεια</string>
   <string name="new_project_hint">Νέο έργο...</string>

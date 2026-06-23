@@ -7,12 +7,12 @@
   <string name="choose_directory">Select directory</string>
   <string name="choose_file">Select file</string>
   <string name="close">Close</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Delete</string>
   <string name="edit">Edit</string>
   <string name="edit_hint">Edit...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Texture format</string>
   <string name="label_textureTypes">Texture types</string>
   <string name="language_bg">Bulgarian</string>
-  <string name="language_cn">Chinese</string>
-  <string name="language_cz">Czech</string>
+  <string name="language_cs">Czech</string>
   <string name="language_de">German</string>
   <string name="language_dk">Danish</string>
   <string name="language_en">English</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Slovak</string>
   <string name="language_sl">Slovenian</string>
   <string name="language_tr">Turkish</string>
+  <string name="language_zh">Chinese</string>
   <string name="menu_about">About</string>
   <string name="menu_help">Help</string>
   <string name="new_project_hint">New Project...</string>

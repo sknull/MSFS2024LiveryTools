@@ -7,12 +7,12 @@
   <string name="choose_directory">Välj katalog</string>
   <string name="choose_file">Välj fil</string>
   <string name="close">Stäng</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Ta bort</string>
   <string name="edit">Redigera</string>
   <string name="edit_hint">Redigera...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Texturformat</string>
   <string name="label_textureTypes">Texturtyper</string>
   <string name="language_bg">Bulgariska</string>
-  <string name="language_cn">Kinesiska</string>
-  <string name="language_cz">Tjeckiska</string>
+  <string name="language_cs">Tjeckiska</string>
   <string name="language_de">Tyska</string>
   <string name="language_dk">Danska</string>
   <string name="language_en">Engelska</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Slovakiska</string>
   <string name="language_sl">Slovenska</string>
   <string name="language_tr">Turkiska</string>
+  <string name="language_zh">Kinesiska</string>
   <string name="menu_about">Om</string>
   <string name="menu_help">Hjälp</string>
   <string name="new_project_hint">Nytt projekt...</string>

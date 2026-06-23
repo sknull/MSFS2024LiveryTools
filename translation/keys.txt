@@ -5,7 +5,9 @@ cancel
 choose_directory
 choose_file
 close
+conversion_dds_to_ktx2
 conversion_dds_to_png
+conversion_ktx2_to_dds
 conversion_ktx2_to_png
 conversion_png_to_dds
 conversion_png_to_ktx2
@@ -52,8 +54,7 @@ label_simType
 label_textureFormat
 label_textureTypes
 language_bg
-language_cn
-language_cz
+language_cs
 language_de
 language_dk
 language_en
@@ -77,6 +78,7 @@ language_se
 language_sk
 language_sl
 language_tr
+language_zh
 menu_about
 menu_help
 new_project_hint

@@ -31,8 +31,7 @@ import de.visualdigits.compose.resources.flag_sk
 import de.visualdigits.compose.resources.flag_sl
 import de.visualdigits.compose.resources.flag_tr
 import de.visualdigits.compose.resources.language_bg
-import de.visualdigits.compose.resources.language_cn
-import de.visualdigits.compose.resources.language_cz
+import de.visualdigits.compose.resources.language_cs
 import de.visualdigits.compose.resources.language_de
 import de.visualdigits.compose.resources.language_dk
 import de.visualdigits.compose.resources.language_en
@@ -56,41 +55,42 @@ import de.visualdigits.compose.resources.language_se
 import de.visualdigits.compose.resources.language_sk
 import de.visualdigits.compose.resources.language_sl
 import de.visualdigits.compose.resources.language_tr
+import de.visualdigits.compose.resources.language_zh
 import org.jetbrains.compose.resources.DrawableResource
 import java.util.Locale
 
 enum class Language(
     override val uiText: UiText,
     override val drawableResourceId: DrawableResource?,
-    val locale: Locale
+    val localeCode: String
 ) : StringResourceEnumerable<Language> {
 
-    BG(UiText.StringResourceId(Res.string.language_bg), Res.drawable.flag_bg, Locale.Builder().setLanguage("bg").setLanguageTag("BG").build()),
-    CZ(UiText.StringResourceId(Res.string.language_cz), Res.drawable.flag_cz, Locale.Builder().setLanguage("cz").setLanguageTag("CZ").build()),
-    CN(UiText.StringResourceId(Res.string.language_cn), Res.drawable.flag_cn, Locale.Builder().setLanguage("cn").setLanguageTag("CN").build()),
-    DE(UiText.StringResourceId(Res.string.language_de), Res.drawable.flag_de, Locale.GERMANY),
-    DK(UiText.StringResourceId(Res.string.language_dk), Res.drawable.flag_dk, Locale.Builder().setLanguage("dk").setLanguageTag("DK").build()),
-    EN(UiText.StringResourceId(Res.string.language_en), Res.drawable.flag_en, Locale.US),
-    ES(UiText.StringResourceId(Res.string.language_es), Res.drawable.flag_es, Locale.Builder().setLanguage("es").setLanguageTag("ES").build()),
-    FI(UiText.StringResourceId(Res.string.language_fi), Res.drawable.flag_fi, Locale.Builder().setLanguage("fi").setLanguageTag("FI").build()),
-    FR(UiText.StringResourceId(Res.string.language_fr), Res.drawable.flag_fr, Locale.FRANCE),
-    GR(UiText.StringResourceId(Res.string.language_gr), Res.drawable.flag_gr, Locale.Builder().setLanguage("gr").setLanguageTag("GR").build()),
-    HR(UiText.StringResourceId(Res.string.language_hr), Res.drawable.flag_hr, Locale.Builder().setLanguage("hr").setLanguageTag("HR").build()),
-    HU(UiText.StringResourceId(Res.string.language_hu), Res.drawable.flag_hu, Locale.Builder().setLanguage("hu").setLanguageTag("HU").build()),
-    IR(UiText.StringResourceId(Res.string.language_ir), Res.drawable.flag_ir, Locale.Builder().setLanguage("ir").setLanguageTag("IR").build()),
-    IT(UiText.StringResourceId(Res.string.language_it), Res.drawable.flag_it, Locale.ITALY),
-    JP(UiText.StringResourceId(Res.string.language_jp), Res.drawable.flag_jp, Locale.Builder().setLanguage("jp").setLanguageTag("JP").build()),
-    NL(UiText.StringResourceId(Res.string.language_nl), Res.drawable.flag_nl, Locale.Builder().setLanguage("nl").setLanguageTag("NL").build()),
-    NO(UiText.StringResourceId(Res.string.language_no), Res.drawable.flag_no, Locale.Builder().setLanguage("no").setLanguageTag("NO").build()),
-    PL(UiText.StringResourceId(Res.string.language_pl), Res.drawable.flag_pl, Locale.Builder().setLanguage("pl").setLanguageTag("PL").build()),
-    PT(UiText.StringResourceId(Res.string.language_pt), Res.drawable.flag_pt, Locale.Builder().setLanguage("pt").setLanguageTag("PT").build()),
-    RO(UiText.StringResourceId(Res.string.language_ro), Res.drawable.flag_ro, Locale.Builder().setLanguage("ro").setLanguageTag("RO").build()),
-    RS(UiText.StringResourceId(Res.string.language_rs), Res.drawable.flag_rs, Locale.Builder().setLanguage("rs").setLanguageTag("RS").build()),
-    RU(UiText.StringResourceId(Res.string.language_ru), Res.drawable.flag_ru, Locale.Builder().setLanguage("ru").setLanguageTag("RU").build()),
-    SE(UiText.StringResourceId(Res.string.language_se), Res.drawable.flag_se, Locale.Builder().setLanguage("se").setLanguageTag("SE").build()),
-    SK(UiText.StringResourceId(Res.string.language_sk), Res.drawable.flag_sk, Locale.Builder().setLanguage("sk").setLanguageTag("SK").build()),
-    SL(UiText.StringResourceId(Res.string.language_sl), Res.drawable.flag_sl, Locale.Builder().setLanguage("sl").setLanguageTag("SL").build()),
-    TR(UiText.StringResourceId(Res.string.language_tr), Res.drawable.flag_tr, Locale.Builder().setLanguage("tr").setLanguageTag("TR").build()),
+    BG(UiText.StringResourceId(Res.string.language_bg), Res.drawable.flag_bg, "bg"),
+    CS(UiText.StringResourceId(Res.string.language_cs), Res.drawable.flag_cz, "cs"),
+    DE(UiText.StringResourceId(Res.string.language_de), Res.drawable.flag_de, "de"),
+    DK(UiText.StringResourceId(Res.string.language_dk), Res.drawable.flag_dk, "dk"),
+    EN(UiText.StringResourceId(Res.string.language_en), Res.drawable.flag_en, "en"),
+    ES(UiText.StringResourceId(Res.string.language_es), Res.drawable.flag_es, "es"),
+    FI(UiText.StringResourceId(Res.string.language_fi), Res.drawable.flag_fi, "fi"),
+    FR(UiText.StringResourceId(Res.string.language_fr), Res.drawable.flag_fr, "fr"),
+    GR(UiText.StringResourceId(Res.string.language_gr), Res.drawable.flag_gr, "gr"),
+    HR(UiText.StringResourceId(Res.string.language_hr), Res.drawable.flag_hr, "hr"),
+    HU(UiText.StringResourceId(Res.string.language_hu), Res.drawable.flag_hu, "hu"),
+    IR(UiText.StringResourceId(Res.string.language_ir), Res.drawable.flag_ir, "ir"),
+    IT(UiText.StringResourceId(Res.string.language_it), Res.drawable.flag_it, "it"),
+    JA(UiText.StringResourceId(Res.string.language_jp), Res.drawable.flag_jp, "ja"),
+    NL(UiText.StringResourceId(Res.string.language_nl), Res.drawable.flag_nl, "nl"),
+    NO(UiText.StringResourceId(Res.string.language_no), Res.drawable.flag_no, "no"),
+    PL(UiText.StringResourceId(Res.string.language_pl), Res.drawable.flag_pl, "pl"),
+    PT(UiText.StringResourceId(Res.string.language_pt), Res.drawable.flag_pt, "pt"),
+    RO(UiText.StringResourceId(Res.string.language_ro), Res.drawable.flag_ro, "ro"),
+    RS(UiText.StringResourceId(Res.string.language_rs), Res.drawable.flag_rs, "rs"),
+    RU(UiText.StringResourceId(Res.string.language_ru), Res.drawable.flag_ru, "ru"),
+    SE(UiText.StringResourceId(Res.string.language_se), Res.drawable.flag_se, "se"),
+    SK(UiText.StringResourceId(Res.string.language_sk), Res.drawable.flag_sk, "sk"),
+    SL(UiText.StringResourceId(Res.string.language_sl), Res.drawable.flag_sl, "sl"),
+    TR(UiText.StringResourceId(Res.string.language_tr), Res.drawable.flag_tr, "tr"),
+    ZH(UiText.StringResourceId(Res.string.language_zh), Res.drawable.flag_cn, "zh"),
     ;
 
     companion object : KeyFactory<Language> {
@@ -105,7 +105,7 @@ enum class Language(
             return when (value) {
                 is String -> Language.Companion.fromString(value)
                 is Language -> value
-                is Locale -> Language.entries.find { e -> e.locale == value }
+                is Locale -> Language.entries.find { e -> e.localeCode == value }
                 else -> null
             }
         }

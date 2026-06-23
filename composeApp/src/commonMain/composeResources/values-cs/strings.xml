@@ -7,12 +7,12 @@
   <string name="choose_directory">Vybrat adresář</string>
   <string name="choose_file">Vybrat soubor</string>
   <string name="close">Zavřít</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Odstranit</string>
   <string name="edit">Upravit</string>
   <string name="edit_hint">Upravit...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Formát textury</string>
   <string name="label_textureTypes">Typy textur</string>
   <string name="language_bg">Bulharština</string>
-  <string name="language_cn">Čínština</string>
-  <string name="language_cz">Čeština</string>
+  <string name="language_cs">Čeština</string>
   <string name="language_de">Němčina</string>
   <string name="language_dk">Dánština</string>
   <string name="language_en">Angličtina</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Slovenština</string>
   <string name="language_sl">Slovinština</string>
   <string name="language_tr">Turečtina</string>
+  <string name="language_zh">Čínština</string>
   <string name="menu_about">O aplikaci</string>
   <string name="menu_help">Nápověda</string>
   <string name="new_project_hint">Nový projekt...</string>

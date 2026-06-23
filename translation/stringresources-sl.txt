@@ -5,7 +5,9 @@ Prekini
 Izberi mapo
 Izberi datoteko
 Zapri
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Vrsta simulacije
 Format teksture
 Vrste tekstur
 Bolgarščina
-Kitajščina
 Češčina
 Nemščina
 Danska
@@ -77,6 +78,7 @@ ruščina
 Slovaščina
 Sloveneščina
 Turščina
+Kitajščina
 O
 Pomoč
 Nov projekt...

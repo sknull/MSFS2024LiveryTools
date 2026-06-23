@@ -5,7 +5,9 @@ Anulare
 Selectare director
 Selectare fișier
 Închidere
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Tipul de simulare
 Formatul texturii
 Tipuri de texturi
 Bulgară
-Chineză
 Cehă
 Germană
 Daneză
@@ -77,6 +78,7 @@ Suedeză
 Slovacă
 Slovenă
 Turcă
+Chineză
 Despre
 Ajutor
 Proiect nou...

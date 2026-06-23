@@ -1,10 +1,5 @@
 package de.visualdigits.translation.util
 
-import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
-import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
-import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
-import java.io.File
-
 
 /**
  * Takes care about some special chars before serialize them back to xml.

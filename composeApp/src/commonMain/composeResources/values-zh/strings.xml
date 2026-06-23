@@ -7,12 +7,12 @@
   <string name="choose_directory">选择目录</string>
   <string name="choose_file">选择文件</string>
   <string name="close">关闭</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">删除</string>
   <string name="edit">编辑</string>
   <string name="edit_hint">编辑...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">纹理格式</string>
   <string name="label_textureTypes">纹理类型</string>
   <string name="language_bg">保加利亚语</string>
-  <string name="language_cn">中文</string>
-  <string name="language_cz">捷克语</string>
+  <string name="language_cs">捷克语</string>
   <string name="language_de">德语</string>
   <string name="language_dk">丹麦语</string>
   <string name="language_en">英语</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">斯洛伐克语</string>
   <string name="language_sl">斯洛文尼亚语</string>
   <string name="language_tr">土耳其语</string>
+  <string name="language_zh">中文</string>
   <string name="menu_about">关于</string>
   <string name="menu_help">帮助</string>
   <string name="new_project_hint">新建项目...</string>

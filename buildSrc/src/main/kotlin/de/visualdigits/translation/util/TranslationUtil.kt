@@ -52,7 +52,7 @@ object TranslationUtil {
                 languageLists[language]?.add(value.replace("\n", " # ").replace("\\n", " # "))
                 value
             }
-        }
+        }.sortedBy { row -> row.first().lowercase() }
 
         val newLanguages = allKeys
             .filter { k -> k.startsWith("language_") }
@@ -72,7 +72,7 @@ object TranslationUtil {
 
         val csvFile = File(targetDir, CSV_FILE)
         Logger.i("Writing string resources.csv: ${csvFile.canonicalPath}")
-        csvFile.writeCsv(languages, rows)
+        csvFile.writeCsv(listOf("label") + languages.sortedBy { language -> language.lowercase() }, rows)
 
         languageLists.forEach { (language, values) ->
             val targetFile = File(targetDir, "stringresources-$language.txt")

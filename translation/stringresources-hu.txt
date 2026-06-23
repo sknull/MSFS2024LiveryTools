@@ -5,7 +5,9 @@ Mégse
 Könyvtár kiválasztása
 Fájl kiválasztása
 Bezárás
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Szimulációtípus
 Textúraformátum
 Textúratípusok
 Bolgár
-kínai
 Cseh
 Német
 Dán
@@ -77,6 +78,7 @@ Svéd
 Szlovák
 Szlovén
 Török
+kínai
 Rólunk
 Súgó
 Új projekt...

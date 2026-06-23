@@ -5,7 +5,9 @@ Otkaži
 Odaberi direktorij
 Odaberi datoteku
 Zatvori
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Vrsta simulacije
 Format teksture
 Vrste tekstura
 Bugarski
-Kineski
 Češki
 Njemački
 Danski
@@ -77,6 +78,7 @@ Ruski
 Slovački
 Slovenski
 Turski
+Kineski
 O programu
 Pomoć
 Novi projekt...

@@ -22,6 +22,7 @@ import de.visualdigits.compose.resources.label_textureTypes
 import de.visualdigits.compose.resources.tooltip_liveryName
 import de.visualdigits.msfs2024tools.domain.model.type.TextureFormat
 import de.visualdigits.msfs2024tools.domain.model.type.TextureType
+import kotlinx.io.files.Path
 import org.jetbrains.compose.resources.DrawableResource
 import java.io.File
 import java.nio.file.Paths
@@ -74,8 +75,8 @@ class ProjectConfiguration(
                 label = UiText.StringResourceId(Res.string.label_packageTextureDir),
                 fileMode = FileMode.DIRECTORIES_ONLY,
                 startDirectory = { configuration ->
-                    val get = (configuration as ProjectConfiguration).get<File>(PK.packageDir)
-                    get ?: File(System.getProperty("user.home"))
+                    (configuration as ProjectConfiguration).get<Path>(PK.packageDir)
+                        ?: Path(System.getProperty("user.home"))
                 },
                 valid = { _, value -> if((value as? File)?.exists() == true && value.isDirectory) Severity.Info else Severity.Error }
             ),

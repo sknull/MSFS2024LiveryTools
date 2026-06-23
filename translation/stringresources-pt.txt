@@ -5,7 +5,9 @@ Cancelar
 Selecionar diretório
 Selecionar ficheiro
 Fechar
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Tipo de simulação
 Formato de textura
 Tipos de textura
 Búlgaro
-Chinês
 Checo
 Alemão
 Dinamarquês
@@ -77,6 +78,7 @@ Sueco
 Eslovaco
 Esloveno
 Turco
+Chinês
 Sobre
 Ajuda
 Novo projeto...

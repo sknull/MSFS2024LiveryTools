@@ -5,7 +5,9 @@ Annuleren
 Map selecteren
 Bestand selecteren
 Sluiten
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Simulatietype
 Textuurformaat
 Textuurtypes
 Bulgaars
-Chinees
 Tsjechisch
 Duits
 Deens
@@ -77,6 +78,7 @@ Zweeds
 Slowaaks
 Sloveens
 Turks
+Chinees
 Over
 Help
 Nieuw project...

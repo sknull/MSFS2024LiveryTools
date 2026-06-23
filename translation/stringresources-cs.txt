@@ -5,7 +5,9 @@ Zrušit
 Vybrat adresář
 Vybrat soubor
 Zavřít
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Typ simulace
 Formát textury
 Typy textur
 Bulharština
-Čínština
 Čeština
 Němčina
 Dánština
@@ -77,6 +78,7 @@ ruština
 Slovenština
 Slovinština
 Turečtina
+Čínština
 O aplikaci
 Nápověda
 Nový projekt...

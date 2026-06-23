@@ -5,7 +5,9 @@ Sceit
 Roghnaigh eolaire
 Roghnaigh comhad
 Dún
+DDS > KTX2
 DDS > PNG
+KTX2 > DDS
 KTX2 > DDS
 PNG > DDS
 PNG > KTX2
@@ -52,7 +54,6 @@ Cineál insamhalta
 Formáid uigeachta
 Cineálacha uigeachta
 Bulgáiris
-Sínis
 Seicis
 Gearmáinis
 Danmhairgis
@@ -77,6 +78,7 @@ Sualannais
 Slovacais
 Slóivéinis
 Tuircis
+Sínis
 Maidir le
 Cabhair
 Tionscadal nua...

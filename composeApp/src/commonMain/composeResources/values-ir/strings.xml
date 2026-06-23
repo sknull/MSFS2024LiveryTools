@@ -7,12 +7,12 @@
   <string name="choose_directory">Roghnaigh eolaire</string>
   <string name="choose_file">Roghnaigh comhad</string>
   <string name="close">Dún</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Scrios</string>
   <string name="edit">Cuir in eagar</string>
   <string name="edit_hint">Cuir in eagar...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Formáid uigeachta</string>
   <string name="label_textureTypes">Cineálacha uigeachta</string>
   <string name="language_bg">Bulgáiris</string>
-  <string name="language_cn">Sínis</string>
-  <string name="language_cz">Seicis</string>
+  <string name="language_cs">Seicis</string>
   <string name="language_de">Gearmáinis</string>
   <string name="language_dk">Danmhairgis</string>
   <string name="language_en">Béarla</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Slovacais</string>
   <string name="language_sl">Slóivéinis</string>
   <string name="language_tr">Tuircis</string>
+  <string name="language_zh">Sínis</string>
   <string name="menu_about">Maidir le</string>
   <string name="menu_help">Cabhair</string>
   <string name="new_project_hint">Tionscadal nua...</string>

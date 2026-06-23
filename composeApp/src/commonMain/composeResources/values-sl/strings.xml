@@ -7,12 +7,12 @@
   <string name="choose_directory">Izberi mapo</string>
   <string name="choose_file">Izberi datoteko</string>
   <string name="close">Zapri</string>
+  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
   <string name="conversion_dds_to_png">DDS &gt; PNG</string>
+  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="conversion_ktx2_to_png">KTX2 &gt; DDS</string>
   <string name="conversion_png_to_dds">PNG &gt; DDS</string>
   <string name="conversion_png_to_ktx2">PNG &gt; KTX2</string>
-  <string name="conversion_dds_to_ktx2">DDS &gt; KTX2</string>
-  <string name="conversion_ktx2_to_dds">KTX2 &gt; DDS</string>
   <string name="delete">Izbriši</string>
   <string name="edit">Uredi</string>
   <string name="edit_hint">Uredi...</string>
@@ -56,8 +56,7 @@
   <string name="label_textureFormat">Format teksture</string>
   <string name="label_textureTypes">Vrste tekstur</string>
   <string name="language_bg">Bolgarščina</string>
-  <string name="language_cn">Kitajščina</string>
-  <string name="language_cz">Češčina</string>
+  <string name="language_cs">Češčina</string>
   <string name="language_de">Nemščina</string>
   <string name="language_dk">Danska</string>
   <string name="language_en">Angleščina</string>
@@ -81,6 +80,7 @@
   <string name="language_sk">Slovaščina</string>
   <string name="language_sl">Sloveneščina</string>
   <string name="language_tr">Turščina</string>
+  <string name="language_zh">Kitajščina</string>
   <string name="menu_about">O</string>
   <string name="menu_help">Pomoč</string>
   <string name="new_project_hint">Nov projekt...</string>
