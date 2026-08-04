@@ -9,6 +9,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import co.touchlab.kermit.Logger
 import com.formdev.flatlaf.FlatDarculaLaf
+import de.visualdigits.common.domain.model.platform.PlatformType
 import de.visualdigits.common.domain.service.getPlatformLogWriters
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.favicon
@@ -48,7 +49,7 @@ fun main() {
             icon = painterResource(Res.drawable.favicon),
             state = state
         ) {
-            App()
+            App(PlatformType.jvm)
         }
     }
 }

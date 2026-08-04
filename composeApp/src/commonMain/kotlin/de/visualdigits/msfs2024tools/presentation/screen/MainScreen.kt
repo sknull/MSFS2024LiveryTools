@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import de.visualdigits.common.domain.model.platform.PlatformType
 import de.visualdigits.common.presentation.components.button.IndicatorButton
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.background_lufthansa_100_baked
@@ -36,6 +37,7 @@ import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsViewModel
 import de.visualdigits.msfs2024tools.presentation.screen.page.InfoPage
 import de.visualdigits.msfs2024tools.presentation.screen.page.ProjectListPage
 import de.visualdigits.msfs2024tools.presentation.screen.page.SettingsPage
+import de.visualdigits.msfs2024tools.presentation.style.AppCompositionProvider
 import de.visualdigits.msfs2024tools.presentation.style.MyShapes
 import de.visualdigits.msfs2024tools.presentation.style.typography
 import org.jetbrains.compose.resources.imageResource
@@ -45,9 +47,9 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun MainScreen(
     viewModel: Msfs2024ToolsViewModel,
+    platformType: PlatformType
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-
 
     BoxWithConstraints(
         modifier = Modifier
@@ -89,104 +91,106 @@ fun MainScreen(
             ),
             shapes = MyShapes
         ) {
-
-            Row(
-                modifier = Modifier
-                    .fillMaxSize(),
-            ) {
-                Box(
+            AppCompositionProvider {
+                Row(
                     modifier = Modifier
-                        .background(Color(0xFF071323))
-                        .width(40.dp)
-                        .fillMaxSize()
-                        .drawBehind() {
-                            val strokeWidth = 1.dp.toPx()
-                            drawLine(
-                                color = Color(0xFF618CC1),
-                                start = Offset(size.width - strokeWidth / 2, 0f),
-                                end = Offset(size.width - strokeWidth / 2, size.height),
-                                strokeWidth = strokeWidth
-                            )
-                        },
+                        .fillMaxSize(),
                 ) {
-                    Column(
+                    Box(
                         modifier = Modifier
-                            .fillMaxSize(),
-                        verticalArrangement = Arrangement.spacedBy(20.dp),
+                            .background(Color(0xFF071323))
+                            .width(40.dp)
+                            .fillMaxSize()
+                            .drawBehind() {
+                                val strokeWidth = 1.dp.toPx()
+                                drawLine(
+                                    color = Color(0xFF618CC1),
+                                    start = Offset(size.width - strokeWidth / 2, 0f),
+                                    end = Offset(size.width - strokeWidth / 2, size.height),
+                                    strokeWidth = strokeWidth
+                                )
+                            },
                     ) {
-                        IndicatorButton(
+                        Column(
                             modifier = Modifier
-                                .padding(top = 10.dp)
-                                .align(Alignment.CenterHorizontally),
-                            leadingIcon = painterResource(Res.drawable.icon_menu_24px),
-                            leadingIconTint = Color.White,
-                            width = 30.dp,
-                            height = 30.dp,
-                            onClick = {
-                                viewModel.onAction(Msfs2024ToolsAction.OnTabSelected(0))
-                            }
-                        )
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.spacedBy(20.dp),
+                        ) {
+                            IndicatorButton(
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                                    .align(Alignment.CenterHorizontally),
+                                leadingIcon = painterResource(Res.drawable.icon_menu_24px),
+                                leadingIconTint = Color.White,
+                                width = 30.dp,
+                                height = 30.dp,
+                                onClick = {
+                                    viewModel.onAction(Msfs2024ToolsAction.OnTabSelected(0))
+                                }
+                            )
 
-                        IndicatorButton(
-                            modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                                .padding(top = 30.dp),
-                            leadingIcon = painterResource(Res.drawable.icon_settings_24px),
-                            leadingIconTint = Color.White,
-                            toolTip = stringResource(Res.string.label_configuration),
-                            width = 30.dp,
-                            height = 30.dp,
-                            onClick = {
-                                viewModel.onAction(Msfs2024ToolsAction.OnEditSettingsClick(!state.isEditingSettings))
-                            }
-                        )
+                            IndicatorButton(
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally)
+                                    .padding(top = 30.dp),
+                                leadingIcon = painterResource(Res.drawable.icon_settings_24px),
+                                leadingIconTint = Color.White,
+                                toolTip = stringResource(Res.string.label_configuration),
+                                width = 30.dp,
+                                height = 30.dp,
+                                onClick = {
+                                    viewModel.onAction(Msfs2024ToolsAction.OnEditSettingsClick(!state.isEditingSettings))
+                                }
+                            )
 
-                        IndicatorButton(
-                            modifier = Modifier
-                                .align(Alignment.CenterHorizontally),
-                            leadingIcon = painterResource(Res.drawable.icon_info_24px),
-                            leadingIconTint = Color.White,
-                            toolTip = stringResource(Res.string.title_info),
-                            width = 30.dp,
-                            height = 30.dp,
-                            onClick = {
-                                viewModel.onAction(Msfs2024ToolsAction.OnShowInfosClick(!state.isShowInfos))
-                            }
-                        )
+                            IndicatorButton(
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally),
+                                leadingIcon = painterResource(Res.drawable.icon_info_24px),
+                                leadingIconTint = Color.White,
+                                toolTip = stringResource(Res.string.title_info),
+                                width = 30.dp,
+                                height = 30.dp,
+                                onClick = {
+                                    viewModel.onAction(Msfs2024ToolsAction.OnShowInfosClick(!state.isShowInfos))
+                                }
+                            )
+                        }
                     }
-                }
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) {
-
-                    // background image
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .paint(
-                                painter = BitmapPainter(imageResource(Res.drawable.background_lufthansa_100_baked)),
-                                alignment = Alignment.TopStart,
-                                contentScale = ContentScale.FillBounds
-                            )
-                    )
+                    ) {
 
-                    when {
-                        state.isEditingSettings -> SettingsPage(
-                            state = state,
-                            onAction = { action ->
+                        // background image
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .paint(
+                                    painter = BitmapPainter(imageResource(Res.drawable.background_lufthansa_100_baked)),
+                                    alignment = Alignment.TopStart,
+                                    contentScale = ContentScale.FillBounds
+                                )
+                        )
+
+                        when {
+                            state.isEditingSettings -> SettingsPage(
+                                state = state,
+                                platformType = platformType
+                            ) { action ->
                                 viewModel.onAction(action)
                             }
-                        )
-                        state.isShowInfos -> InfoPage(
-                        )
-                        else -> ProjectListPage(
-                            state = state,
-                            onAction = { action ->
+
+                            state.isShowInfos -> InfoPage(
+                            )
+                            else -> ProjectListPage(
+                                state = state,
+                                platformType = platformType
+                            ) { action ->
                                 viewModel.onAction(action)
                             }
-                        )
+                        }
                     }
                 }
             }

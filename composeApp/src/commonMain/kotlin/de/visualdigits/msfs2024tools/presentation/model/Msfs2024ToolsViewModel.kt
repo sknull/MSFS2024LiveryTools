@@ -13,6 +13,8 @@ import de.visualdigits.common.presentation.components.applyAppLanguage
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.error_global_configuration_invalid
 import de.visualdigits.compose.resources.error_project_configuration_invalid
+import de.visualdigits.compose.resources.tab_airplanes
+import de.visualdigits.compose.resources.tab_projects
 import de.visualdigits.msfs2024tools.domain.model.configuration.PK
 import de.visualdigits.msfs2024tools.domain.model.configuration.ProjectConfiguration
 import de.visualdigits.msfs2024tools.domain.model.configuration.SK
@@ -43,10 +45,6 @@ class Msfs2024ToolsViewModel(
         private const val MAX_LOG_LINES = 200
     }
 
-    init {
-        Logger.i("Application has started.")
-    }
-
     private val _state = MutableStateFlow(Msfs2024ToolsState())
     val state: StateFlow<Msfs2024ToolsState> = _state
         .onStart {
@@ -59,6 +57,17 @@ class Msfs2024ToolsViewModel(
             SharingStarted.WhileSubscribed(5000L),
             _state.value
         )
+
+    init {
+        Logger.i("Application has started.")
+
+        onAction(Msfs2024ToolsAction.OnInitializeTabs(
+            tabLabels = listOf(
+                "tab_projects" to UiText.StringResourceId(Res.string.tab_projects),
+                "tab_airplanes" to UiText.StringResourceId(Res.string.tab_airplanes),
+            )
+        ))
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun onAction(action: Msfs2024ToolsAction) {
@@ -322,9 +331,16 @@ class Msfs2024ToolsViewModel(
         settingsRepository.getSettings()
             .onSuccess { (settings, projectConfigurations) ->
                 applyAppLanguage(settings.get<Language>(SK.language)?.localeCode?: Language.EN.localeCode)
+                val airplanes = projectConfigurations.mapNotNull { pc ->
+                    pc.get<String>(PK.airplaneName)
+                }.distinct().sorted()
+                val finalSettings = settings.copy(
+                    key = SK.airplanes,
+                    value = airplanes
+                )
                 _state.update {
                     it.copy(
-                        settings = settings,
+                        settings = finalSettings,
                         projectConfigurations = projectConfigurations,
                         isLoading = false,
                     )

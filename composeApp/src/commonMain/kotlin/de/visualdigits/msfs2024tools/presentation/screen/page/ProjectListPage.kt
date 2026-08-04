@@ -12,11 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import de.visualdigits.common.domain.model.ui.UiText
+import de.visualdigits.common.domain.model.platform.PlatformType
 import de.visualdigits.common.presentation.components.button.TabButtonRow
-import de.visualdigits.compose.resources.Res
-import de.visualdigits.compose.resources.tab_airplanes
-import de.visualdigits.compose.resources.tab_projects
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsAction
 import de.visualdigits.msfs2024tools.presentation.model.Msfs2024ToolsState
 import de.visualdigits.msfs2024tools.presentation.screen.MsfsTabButton
@@ -26,18 +23,19 @@ import de.visualdigits.msfs2024tools.presentation.style.gap
 @Composable
 fun ProjectListPage(
     state: Msfs2024ToolsState,
+    platformType: PlatformType,
     onAction: (Msfs2024ToolsAction) -> Unit
 ) {
-    val items = linkedMapOf<Pair<String, UiText>, @Composable (() -> Unit)>(
-        Pair("tab_projects", UiText.StringResourceId(Res.string.tab_projects)) to {
+    val items = linkedMapOf<String, @Composable (() -> Unit)>(
+        "tab_projects" to {
             ProjectsTab(
                 state = state,
-                onAction = { action ->
-                    onAction(action)
-                }
-            )
+                platformType = platformType
+            ) { action ->
+                onAction(action)
+            }
         },
-        Pair("tab_airplanes", UiText.StringResourceId(Res.string.tab_airplanes)) to {
+        "tab_airplanes" to {
             AirplanesTab(
                 state = state,
                 onProjectListAction = { action ->
@@ -71,17 +69,8 @@ fun ProjectListPage(
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 selectedTab = { state.selectedTabIndex },
-                initializeViewModel = {
-                    if (state.selectedTabLabel == null) {
-                        onAction(
-                            Msfs2024ToolsAction.OnInitializeTabs(
-                                tabLabels = items.keys.toList()
-                            )
-                        )
-                    }
-                },
                 items = items
-            ) { label, index ->
+            ) { index ->
                 MsfsTabButton(
                     width = 160.dp,
                     height = 50.dp,
@@ -91,7 +80,7 @@ fun ProjectListPage(
                             Msfs2024ToolsAction.OnTabSelected(index)
                         )
                     },
-                    text = label.asString(),
+                    text = state.tabLabels[index].second.asString()
                 )
             }
         }
