@@ -57,7 +57,7 @@ class Settings(
                 key = SK.sdkRoot,
                 label = UiText.StringResourceId(Res.string.label_sdkRoot),
                 fileMode = FileMode.DIRECTORIES_ONLY,
-                valid = { _, value -> if(File(value as File, "Tools").exists() && value?.isDirectory == true) Severity.Info else Severity.Error }
+                valid = { _, value -> value?.let { v -> if(File(value as File, "Tools").exists() && value.isDirectory) Severity.Info else Severity.Error } ?: Severity.Error  }
             ),
 
             FileFieldDescriptor(

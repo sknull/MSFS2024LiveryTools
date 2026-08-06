@@ -154,7 +154,7 @@ object TranslationUtil {
                 if (lines.size != expectedNumberOfRows) error("Single file '${f.name}' has not the expected number of lines - not joining!")
                 Pair(language, resourceKeys.zip(lines).toMap())
             }?:mapOf()
-        val keys = listOf("key") + languages
+        val keys = listOf("label") + languages
         val rows = mutableListOf<List<String>>()
         resourceKeys.forEach { resourceKey ->
             rows.add((listOf(resourceKey) + languages.map { language ->

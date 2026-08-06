@@ -45,22 +45,19 @@ fun AppCompositionProvider(
         buttonShape = MaterialTheme.shapes.extraSmall,
         iconOk = painterResource(Res.drawable.icon_check_small_24px),
         iconCancel = painterResource(Res.drawable.icon_cancel_24px),
-        iconTint = Color.White,
         buttonColor = Color.Black,
         containerShape = MaterialTheme.shapes.small,
     )
     val formFieldResources = FormFieldResources(
         fieldHeight = 50.dp,
         textStyle = MaterialTheme.typography.bodyMedium,
+        iconTint = Color.White,
         shape = MaterialTheme.shapes.extraSmall,
         focusedBorderColor = MaterialTheme.colorScheme.outline,
         unfocusedBorderColor = MaterialTheme.colorScheme.onSurface
     )
     val fileChooserResources = FileChooserResources(
-        fieldHeight = 50.dp,
         iconFolder = painterResource(Res.drawable.icon_folder_open_24px),
-        iconTint = MaterialTheme.colorScheme.onSurface,
-        buttonColor =MaterialTheme.colorScheme.surface,
         titleDirectories = "Choose Directory",
         titleFiles = "Choose File",
     )
