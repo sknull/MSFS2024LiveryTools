@@ -28,9 +28,11 @@ import java.io.File
 import java.nio.file.Paths
 
 @Suppress("UNCHECKED_CAST")
-class ProjectConfiguration(
-    values: Map<PK, Any?> = mapOf()
-): AbstractConfiguration<ProjectConfiguration, PK>(values, DESCRIPTORS) {
+class ProjectConfiguration: AbstractConfiguration<ProjectConfiguration, PK>() {
+
+    init {
+        initialize(DESCRIPTORS)
+    }
 
     companion object {
 
@@ -131,7 +133,7 @@ class ProjectConfiguration(
     }
 
     override fun createInstance(newValues: Map<PK, Any?>): ProjectConfiguration {
-        return ProjectConfiguration(newValues)
+        return ProjectConfiguration().initialize(DESCRIPTORS, newValues)
     }
 }
 

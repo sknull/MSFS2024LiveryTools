@@ -24,9 +24,11 @@ import org.jetbrains.compose.resources.DrawableResource
 import java.io.File
 
 @Suppress("UNCHECKED_CAST")
-class Settings(
-    values: Map<SK, Any?> = mapOf(),
-): AbstractConfiguration<Settings, SK>(values, DESCRIPTORS) {
+class Settings: AbstractConfiguration<Settings, SK>() {
+
+    init {
+        initialize(DESCRIPTORS)
+    }
 
     companion object {
 
@@ -57,7 +59,7 @@ class Settings(
                 key = SK.sdkRoot,
                 label = UiText.StringResourceId(Res.string.label_sdkRoot),
                 fileMode = FileMode.DIRECTORIES_ONLY,
-                valid = { _, value -> value?.let { v -> if(File(value as File, "Tools").exists() && value.isDirectory) Severity.Info else Severity.Error } ?: Severity.Error  }
+                valid = { _, value -> value?.let { _ -> if(File(value as File, "Tools").exists() && value.isDirectory) Severity.Info else Severity.Error } ?: Severity.Error  }
             ),
 
             FileFieldDescriptor(
@@ -116,6 +118,6 @@ class Settings(
     }
 
     override fun createInstance(newValues: Map<SK, Any?>): Settings {
-        return Settings(newValues)
+        return Settings().initialize(DESCRIPTORS, newValues)
     }
 }

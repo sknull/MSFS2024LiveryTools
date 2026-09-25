@@ -54,7 +54,12 @@ fun AppCompositionProvider(
         iconTint = Color.White,
         shape = MaterialTheme.shapes.extraSmall,
         focusedBorderColor = MaterialTheme.colorScheme.outline,
-        unfocusedBorderColor = MaterialTheme.colorScheme.onSurface
+        unfocusedBorderColor = MaterialTheme.colorScheme.onSurface,
+        focusedContainerColor = Color.Transparent,
+        unfocusedContainerColor = Color.Transparent,
+        focusedGroupBoxColor = Color.Transparent,
+        unfocusedGroupBoxColor = Color.Transparent,
+        dropDownBackgroundColor = MaterialTheme.colorScheme.background,
     )
     val fileChooserResources = FileChooserResources(
         iconFolder = painterResource(Res.drawable.icon_folder_open_24px),

@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
+import de.visualdigits.common.domain.model.platform.PlatformType
 import de.visualdigits.common.presentation.components.button.IndicatorButton
 import de.visualdigits.common.presentation.components.container.TerminalWindow
 import de.visualdigits.compose.resources.Res
@@ -65,9 +66,11 @@ fun BusyPanel(
             TerminalWindow(
                 modifier = Modifier
                     .weight(1f),
+                platformType = PlatformType.jvm,
                 shapeContainer = MaterialTheme.shapes.small,
                 title = stringResource(Res.string.stdout),
-                listData = {
+                terminalId = "messages",
+                messages = {
                     state.logs
                 }
             )

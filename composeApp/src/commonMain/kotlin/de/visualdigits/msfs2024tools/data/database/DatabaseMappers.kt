@@ -30,22 +30,21 @@ fun Settings.toSettingsEntity(
 }
 
 fun SettingsEntity.toSettings(): Pair<Settings, List<ProjectConfigurationDto>> {
-    val settings = Settings(
-        valueMap(
-            fieldDescriptors = Settings.DESCRIPTORS,
-            values = mapOf(
-                SK.version to version,
-                SK.language to Language.fromValue(language),
-                SK.simType to SimType.fromValue(simType),
-                SK.sdkRoot to File(sdkRoot),
-                SK.layoutGeneratorToolPath to File(layoutGeneratorToolPath),
-                SK.nvidiaTextureToolPath to File(nvidiaTextureToolPath),
-                SK.mainLibraryRootFolder to File(mainLibraryRootFolder),
-                SK.projectRootFolder to File(projectRootFolder),
-                SK.airplanes to airplanes,
-            )
+    val newValues = valueMap(
+        fieldDescriptors = Settings.DESCRIPTORS,
+        values = mapOf(
+            SK.version to version,
+            SK.language to Language.fromValue(language),
+            SK.simType to SimType.fromValue(simType),
+            SK.sdkRoot to File(sdkRoot),
+            SK.layoutGeneratorToolPath to File(layoutGeneratorToolPath),
+            SK.nvidiaTextureToolPath to File(nvidiaTextureToolPath),
+            SK.mainLibraryRootFolder to File(mainLibraryRootFolder),
+            SK.projectRootFolder to File(projectRootFolder),
+            SK.airplanes to airplanes,
         )
     )
+    val settings = Settings().initialize(Settings.DESCRIPTORS, newValues)
     return Pair(settings, projects)
 }
 

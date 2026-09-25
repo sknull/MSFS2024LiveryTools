@@ -17,7 +17,7 @@ import kotlinx.serialization.json.Json
 import java.io.File
 
 fun ProjectConfigurationDto.toProjectConfiguration(): ProjectConfiguration {
-    val projectConfiguration = ProjectConfiguration(mapOf(
+    val newValues = mapOf(
         PK.airplaneName to airplaneName,
         PK.liveryName to liveryName,
         PK.packageDir to packageDir?.let { File(it) },
@@ -26,7 +26,8 @@ fun ProjectConfigurationDto.toProjectConfiguration(): ProjectConfiguration {
         PK.textureFormatPackage to textureFormatPackage,
         PK.textureFormatModel to textureFormatModel,
         PK.textureTypes to textureTypes
-    ))
+    )
+    val projectConfiguration = ProjectConfiguration().initialize(ProjectConfiguration.DESCRIPTORS, newValues)
 
     return projectConfiguration
 }
@@ -45,7 +46,7 @@ fun ProjectConfiguration.toProjectConfigurationDto(): ProjectConfigurationDto {
 }
 
 fun SettingsDto.toSettings(): Settings {
-    val settings = Settings(mapOf(
+    val newValues = mapOf(
         SK.language to language,
         SK.simType to simType,
         SK.sdkRoot to File(sdkRoot),
@@ -54,7 +55,8 @@ fun SettingsDto.toSettings(): Settings {
         SK.mainLibraryRootFolder to mainLibraryRootFolder?.let { p -> File(p) },
         SK.projectRootFolder to projectRootFolder?.let { p -> File(p) },
         SK.airplanes to airplanes,
-    ))
+    )
+    val settings = Settings().initialize(Settings.DESCRIPTORS, newValues)
 
     return settings
 }
