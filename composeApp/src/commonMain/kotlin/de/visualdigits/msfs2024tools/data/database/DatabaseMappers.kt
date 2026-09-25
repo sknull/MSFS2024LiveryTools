@@ -19,7 +19,7 @@ fun Settings.toSettingsEntity(
         version = AppVersion().version,
         language = get<Language>(SK.language)?.name ?: "EN",
         simType = get<SimType>(SK.simType)?.name ?: "MICROSOFT",
-        sdkRoot = get<Language>(SK.sdkRoot)?.name ?: Settings.SDK_ROOT_DEFAULT,
+        sdkRoot = get<File>(SK.sdkRoot)?.canonicalPath ?: Settings.SDK_ROOT_DEFAULT,
         layoutGeneratorToolPath = get<File>(SK.layoutGeneratorToolPath)?.name ?: "",
         nvidiaTextureToolPath = get<File>(SK.nvidiaTextureToolPath)?.name ?: Settings.NVIDIA_TEXTURETOOL_PATH_DEFAULT,
         mainLibraryRootFolder = get<File>(SK.mainLibraryRootFolder)?.name ?: "",
